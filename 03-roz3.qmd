@@ -1,4 +1,8 @@
-# Materiały {#sec-materialy}
+# Dane źródłowe {#sec-dane}
+
+## Dane satelitarne {#sec-sat}
+
+## Dane o pokryciu terenu {#sec-landcover}
 
 Celem tego rozdziału jest przedstawienie użytych w pracy danych.
 Należy wyjaśnić jakie dane zostały użyte, jakiego są one rodzaju, dla jakiego okresu zostały pobrane/stworzone, co one zawierają, etc.

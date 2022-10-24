@@ -1,5 +1,15 @@
 # Metody {#sec-metody}
 
+## Środowisko języka R {#sec-r}
+
+## Metody uczenia maszynowego {#sec-ml}
+
+### Algorytm lasów losowych (ang.*random forest*) {#sec-rf}
+
+### Tuning parametrów modelu {#sec-tuning}
+
+### Metody oceny jakości modelu {#sec-resampling}
+
 Rozdział **Metody** zawiera opis użytych metod (np. statystycznych czy geostatystycznych) oraz technologii (np. pakiety R). 
 Opis każdej z metod czy technologi powinien być zwarty i zawierać tylko najważniejsze informacje z punktu widzenia pracy dyplomowej.
 

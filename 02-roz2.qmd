@@ -18,8 +18,3 @@ W przypadku, gdy praca dyplomowa opisuje konkretny obszar to można po tym rozdz
 Ten i kolejne rozdziału moją mieć także podrozdziały.
 Tworzenie podrozdziałów polega na stworzeniu nowej linii rozpoczynającej się od znaków `##` a następnie tytułu podrozdziału.
 Dodatkowo w postaci `{#sec-}` można dodać skrót nazwy rozdziału/podrozdziału umożliwiający odnoszenie się do niego używając operatora `[-@sec]`.
-
-## Podrozdział {#sec-podr}
-
-Przykładowo, "te kwestie zostały opisane w podrozdziale [-@sec-podr]".
-Zwróć uwagę, że w ten sposób automatycznie tworzony jest odnośnik w pliku PDF.
