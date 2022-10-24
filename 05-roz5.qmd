@@ -2,16 +2,41 @@
 
 ## Wynikowa mapa pokrycia terenu {#sec-mapa}
 
+-   mapa pokrycia terenu aglomeracji poznańskiej
+
+-   mapa prawdopodobieństwa/pewności wybrania danej klasy
+
 ## Ocena jakości modelu klasyfikacyjnego {#sec-ocena}
+
+Tabela ze wskaźnikami:
+
+-   skuteczność (OA)
+
+-   błąd klasyfikacji (CE)
+
+-   skuteczność producenta i użytkownika (PA, UA)
+
+-   współczynnik Kappa
 
 ## Ocena wpływu kanału termalnego na wyniki klasyfikacji {#sec-wplyw}
 
-Część **Wyniki** może składać się z jednego lub więcej rozdziałów. 
-Każdy z tych rozdziałów powinien mieć tytuł adekwatny do swojej treści.
+-   porównanie wskaźników z i bez kanału termalnego
 
-Rozdziały wynikowe powinny korzystać z wiedzy opisanej w poprzednich rozdziałach (Rozdziały [-@sec-lit], [-@sec-dane], [-@sec-metody]).
-W przypadku prac analitycznych, ich treść powinna przedstawiać kolejne etapy eksploracji i analizy danych.
-W przypadku prac technicznych, treść tych rozdziałów powinna opisywać stworzone narzędzia, a następnie pokazywać ich zastosowanie/a.
+-   średnia temperatura dla każdej klasy pokrycia terenu
+
+-   wykresy uśredniające wpływ zmiennych na model, profile zmiennych
+
+-   mapa wpływu kanału termalnego na model (metoda agregacji rastra oraz interpolacji z punktów LUCAS)
+
+-   średni wpływ kanału termalnego na każdą klasę pokrycia terenu
+
+-   mapa różnic pomiędzy modele pokrycia terenu z i bez kanału termalnego, macierz zmian
+
+------------------------------------------------------------------------
+
+Część **Wyniki** może składać się z jednego lub więcej rozdziałów. Każdy z tych rozdziałów powinien mieć tytuł adekwatny do swojej treści.
+
+Rozdziały wynikowe powinny korzystać z wiedzy opisanej w poprzednich rozdziałach (Rozdziały [-@sec-lit], [-@sec-dane], [-@sec-metody]). W przypadku prac analitycznych, ich treść powinna przedstawiać kolejne etapy eksploracji i analizy danych. W przypadku prac technicznych, treść tych rozdziałów powinna opisywać stworzone narzędzia, a następnie pokazywać ich zastosowanie/a.
 
 W przypadku prac technicznych warto pokazywać fragmenty napisanego rozwiązania lub jego wywołania używając bloków kodu.
 
@@ -21,4 +46,3 @@ moja_funkcja = function(x){
 }
 moja_funkcja("Autor tej pracy")
 ```
-

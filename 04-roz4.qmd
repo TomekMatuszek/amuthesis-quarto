@@ -2,19 +2,39 @@
 
 ## Środowisko języka R {#sec-r}
 
+Krótki opis języka R oraz RStudio. Można również wspomnieć wykorzystane pakiety.
+
 ## Metody uczenia maszynowego {#sec-ml}
+
+-   czym jest uczenie maszynowe i do czego się je wykorzystuje
+
+-   klasyfikacja a regresja
+
+-   klasyfikacja nadzorowana a nienadzorowana
 
 ### Algorytm lasów losowych (ang.*random forest*) {#sec-rf}
 
-### Tuning parametrów modelu {#sec-tuning}
+-   czym jest drzewo decyzyjne
+
+-   jak działają lasy losowe
 
 ### Metody oceny jakości modelu {#sec-resampling}
 
-Rozdział **Metody** zawiera opis użytych metod (np. statystycznych czy geostatystycznych) oraz technologii (np. pakiety R). 
-Opis każdej z metod czy technologi powinien być zwarty i zawierać tylko najważniejsze informacje z punktu widzenia pracy dyplomowej.
+-   idea resamplingu
 
-Każda użyta metoda i technologia powinna być zacytowana.
-W przypadku pakietów R, wystarczy wypełnić poniższy blok kodu (zwróć uwagę, że ten blok kodu ma parametr `echo: false`; oznacza to, że będzie on niewidoczny w wynikowym pliku PDF)...
+-   miary jakości modelu klasyfikacyjnego
+
+### Tuning parametrów modelu {#sec-tuning}
+
+-   czym jest tuning parametrów?
+
+-   resampling zagnieżdżony
+
+------------------------------------------------------------------------
+
+Rozdział **Metody** zawiera opis użytych metod (np. statystycznych czy geostatystycznych) oraz technologii (np. pakiety R). Opis każdej z metod czy technologi powinien być zwarty i zawierać tylko najważniejsze informacje z punktu widzenia pracy dyplomowej.
+
+Każda użyta metoda i technologia powinna być zacytowana. W przypadku pakietów R, wystarczy wypełnić poniższy blok kodu (zwróć uwagę, że ten blok kodu ma parametr `echo: false`; oznacza to, że będzie on niewidoczny w wynikowym pliku PDF)...
 
 ```{r}
 #| label: pakietbib
@@ -24,9 +44,6 @@ pakiety = c("base", "kableExtra")
 knitr::write_bib(pakiety, "packages.bib", width = 60)
 ```
 
-... a następnie zacytować pakiet używając znaku `@`, po którym podać nazwę pakietu rozpoczynającą się od prefiksu `R-`.
-Przykładowe cytowanie języka R bez nawiasu to @R-base, a pakietu **kableExtra** w nawiasie to [@R-kableExtra].
-Więcej przykładów cytowania można znaleźć na stronie https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html#citations.
+... a następnie zacytować pakiet używając znaku `@`, po którym podać nazwę pakietu rozpoczynającą się od prefiksu `R-`. Przykładowe cytowanie języka R bez nawiasu to @R-base, a pakietu **kableExtra** w nawiasie to [@R-kableExtra]. Więcej przykładów cytowania można znaleźć na stronie https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html#citations.
 
-W przypadkach, gdy cytowanie istnieje, ale nie jest pakietem R to należy dodać je do pliku `thesis.bib` i użyć powyższej składni ze znakiem `@`.
-W ostateczności, gdy dana technologia nie posiada cytowania, należy podać jej adres internetowy.
+W przypadkach, gdy cytowanie istnieje, ale nie jest pakietem R to należy dodać je do pliku `thesis.bib` i użyć powyższej składni ze znakiem `@`. W ostateczności, gdy dana technologia nie posiada cytowania, należy podać jej adres internetowy.

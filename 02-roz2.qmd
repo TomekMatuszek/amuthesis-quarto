@@ -1,4 +1,12 @@
+---
+editor: 
+  markdown: 
+    wrap: sentence
+---
+
 # Przegląd literatury {#sec-lit}
+
+------------------------------------------------------------------------
 
 Ten rozdział zawiera wyjaśnienie kontekstu pracy.
 

@@ -25,7 +25,8 @@ book:
     - 06-roz6.qmd
 
 bibliography:
-  - papers.bib
+  - thesis.bib
+  - packages.bib
 
 format:
   pdf:
