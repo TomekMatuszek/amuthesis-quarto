@@ -83,6 +83,8 @@ Keywords: (as stated before)
 \hypertarget{sec-wprowadzenie}{%
 \chapter{Wprowadzenie}\label{sec-wprowadzenie}}
 
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
 Wprowadzenie powinno mieć charakter opisu od ogółu do szczegółu (np.
 trzy-pięć paragrafów). Pierwszy paragraf powinien być najbardziej
 ogólny, a kolejne powinny przybliżać czytelnika do problemu.
@@ -97,6 +99,8 @@ pracy.
 
 \hypertarget{sec-lit}{%
 \chapter{Przegląd literatury}\label{sec-lit}}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 Ten rozdział zawiera wyjaśnienie kontekstu pracy.
 
@@ -133,11 +137,46 @@ operatora \texttt{{[}-@sec{]}}.
 \hypertarget{sec-dane}{%
 \chapter{Dane źródłowe}\label{sec-dane}}
 
+Do przeprowadzenia analiz wykorzystano dwa typy danych:
+
+\begin{itemize}
+\item
+  rastrowe dane satelitarne Landsat pobrane przy pomocy narzędzia GLAD
+  ARD
+\item
+  punktowe dane o pokryciu terenu pozyskane w wyniku programu LUCAS
+\end{itemize}
+
 \hypertarget{sec-sat}{%
 \section{Dane satelitarne}\label{sec-sat}}
 
+\begin{itemize}
+\item
+  opis procesu obróbki danych Landsat wykonany przez zespół z
+  Uniwersytetu Maryland
+\item
+  proces pobierania danych
+\item
+  struktura danych GLAD ARD
+\end{itemize}
+
 \hypertarget{sec-landcover}{%
 \section{Dane o pokryciu terenu}\label{sec-landcover}}
+
+\begin{itemize}
+\item
+  czym jest program LUCAS i jak powstają dane w ramach jego działania
+\item
+  LUCAS Grid i LUCAS Micro Data
+\item
+  struktura danych punktowych, opis dodatkowych kolumn poza kategorią
+  pokrycia terenu
+\item
+  obróbka danych w celu wybrania odpowiednych punktów treningowych i
+  reklasyfikacji do wspólnego podziału na kategorie pokrycia terenu
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 Celem tego rozdziału jest przedstawienie użytych w pracy danych. Należy
 wyjaśnić jakie dane zostały użyte, jakiego są one rodzaju, dla jakiego
@@ -213,18 +252,53 @@ a & b\\
 \hypertarget{sec-r}{%
 \section{Środowisko języka R}\label{sec-r}}
 
+Krótki opis języka R oraz RStudio. Można również wspomnieć wykorzystane
+pakiety.
+
 \hypertarget{sec-ml}{%
 \section{Metody uczenia maszynowego}\label{sec-ml}}
+
+\begin{itemize}
+\item
+  czym jest uczenie maszynowe i do czego się je wykorzystuje
+\item
+  klasyfikacja a regresja
+\item
+  klasyfikacja nadzorowana a nienadzorowana
+\end{itemize}
 
 \hypertarget{sec-rf}{%
 \subsection{\texorpdfstring{Algorytm lasów losowych (ang.\emph{random
 forest})}{Algorytm lasów losowych (ang.random forest)}}\label{sec-rf}}
 
-\hypertarget{sec-tuning}{%
-\subsection{Tuning parametrów modelu}\label{sec-tuning}}
+\begin{itemize}
+\item
+  czym jest drzewo decyzyjne
+\item
+  jak działają lasy losowe
+\end{itemize}
 
 \hypertarget{sec-resampling}{%
 \subsection{Metody oceny jakości modelu}\label{sec-resampling}}
+
+\begin{itemize}
+\item
+  idea resamplingu
+\item
+  miary jakości modelu klasyfikacyjnego
+\end{itemize}
+
+\hypertarget{sec-tuning}{%
+\subsection{Tuning parametrów modelu}\label{sec-tuning}}
+
+\begin{itemize}
+\item
+  czym jest tuning parametrów?
+\item
+  resampling zagnieżdżony
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 Rozdział \textbf{Metody} zawiera opis użytych metod (np. statystycznych
 czy geostatystycznych) oraz technologii (np. pakiety R). Opis każdej z
@@ -256,12 +330,51 @@ cytowania, należy podać jej adres internetowy.
 \hypertarget{sec-mapa}{%
 \section{Wynikowa mapa pokrycia terenu}\label{sec-mapa}}
 
+\begin{itemize}
+\item
+  mapa pokrycia terenu aglomeracji poznańskiej
+\item
+  mapa prawdopodobieństwa/pewności wybrania danej klasy
+\end{itemize}
+
 \hypertarget{sec-ocena}{%
 \section{Ocena jakości modelu klasyfikacyjnego}\label{sec-ocena}}
+
+Tabela ze wskaźnikami:
+
+\begin{itemize}
+\item
+  skuteczność (OA)
+\item
+  błąd klasyfikacji (CE)
+\item
+  skuteczność producenta i użytkownika (PA, UA)
+\item
+  współczynnik Kappa
+\end{itemize}
 
 \hypertarget{sec-wplyw}{%
 \section{Ocena wpływu kanału termalnego na wyniki
 klasyfikacji}\label{sec-wplyw}}
+
+\begin{itemize}
+\item
+  porównanie wskaźników z i bez kanału termalnego
+\item
+  średnia temperatura dla każdej klasy pokrycia terenu
+\item
+  wykresy uśredniające wpływ zmiennych na model, profile zmiennych
+\item
+  mapa wpływu kanału termalnego na model (metoda agregacji rastra oraz
+  interpolacji z punktów LUCAS)
+\item
+  średni wpływ kanału termalnego na każdą klasę pokrycia terenu
+\item
+  mapa różnic pomiędzy modele pokrycia terenu z i bez kanału termalnego,
+  macierz zmian
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 Część \textbf{Wyniki} może składać się z jednego lub więcej rozdziałów.
 Każdy z tych rozdziałów powinien mieć tytuł adekwatny do swojej treści.
@@ -293,6 +406,8 @@ Autor tej pracy rządzi!
 
 \hypertarget{podsumowanie}{%
 \chapter{Podsumowanie}\label{podsumowanie}}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 Podsumowanie pracy jest w pewnym sensie znacznie rozbudowanym
 abstraktem. Należy wyliczyć i opisać osiągnięcia uzyskane w pracy
