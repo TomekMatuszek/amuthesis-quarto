@@ -83,6 +83,21 @@ Keywords: (as stated before)
 \hypertarget{sec-wprowadzenie}{%
 \chapter{Wprowadzenie}\label{sec-wprowadzenie}}
 
+\begin{itemize}
+\item
+  zastosowania i istotność map pokrycia terenu
+\item
+  uczenie maszynowe i klasyfikacja nadzorowana obrazów satelitarnych
+  jako narzędzie do tworzenia map pokrycia terenu
+\item
+  zwrócenie uwagi na częste pomijanie kanału termalnego w modelach
+  klasyfikacyjnych, nie do końca jasny wpływ informacji termalnej na
+  wyniki klasyfikacji
+\item
+  celem pracy jest stworzenie mapy pokrycia terenu metropolii
+  poznańskiej oraz ocena wpływu kanału termalnego na wyniki modelu
+\end{itemize}
+
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 Wprowadzenie powinno mieć charakter opisu od ogółu do szczegółu (np.
@@ -190,19 +205,7 @@ w wynikowym pliku PDF. Każdy z bloków kodu musi mieć unikalną nazwę; w
 przypadku rycin powinna się~ona rozpoczynać od prefiksu \texttt{fig-}.
 Dodanie podpisu pod rycinę odbywa się używając parametru
 \texttt{\#\textbar{}\ fig-cap:}. Następnie do tej ryciny można się
-odnieść używając operatora \texttt{{[}-@{]}}. Przykładowo, odniesienie
-się do pierwszej ryciny wymaga wpisania \texttt{{[}-@fig-rycina1{]}}
-(Rycina \ref{fig-rycina1}).
-
-\begin{figure}[t]
-
-{\centering \includegraphics{./03-roz3_files/figure-pdf/fig-rycina1-1.pdf}
-
-}
-
-\caption{\label{fig-rycina1}Moja pierwsza rycina}
-
-\end{figure}
+odnieść używając operatora \texttt{{[}-@{]}}.
 
 Podobnie wygląda odnoszenie się do plików graficznych. Tutaj wewnątrz
 bloku kodu należy użyć funkcji \texttt{knitr::include\_graphics()}
@@ -252,8 +255,8 @@ a & b\\
 \hypertarget{sec-r}{%
 \section{Środowisko języka R}\label{sec-r}}
 
-Krótki opis języka R oraz RStudio. Można również wspomnieć wykorzystane
-pakiety.
+Krótki opis języka R oraz RStudio. Wymienienie wykorzystanych
+pakietów/bibliotek.
 
 \hypertarget{sec-ml}{%
 \section{Metody uczenia maszynowego}\label{sec-ml}}

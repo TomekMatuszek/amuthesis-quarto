@@ -41,7 +41,6 @@ Zwróć uwagę, że poniższe bloki kodu mają parametr `#| echo: false`; oznacz
 Każdy z bloków kodu musi mieć unikalną nazwę; w przypadku rycin powinna się ona rozpoczynać od prefiksu `fig-`.
 Dodanie podpisu pod rycinę odbywa się używając parametru `#| fig-cap:`.
 Następnie do tej ryciny można się odnieść używając operatora `[-@]`.
-Przykładowo, odniesienie się do pierwszej ryciny wymaga wpisania `[-@fig-rycina1]` (Rycina [-@fig-rycina1]).
 
 Podobnie wygląda odnoszenie się do plików graficznych.
 Tutaj wewnątrz bloku kodu należy użyć funkcji `knitr::include_graphics()` (Rycina [-@fig-rycina2]).
