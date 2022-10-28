@@ -1,5 +1,15 @@
 # Podsumowanie {#podsumowanie}
 
+-   udało się stworzyć mapę pokrycia terenu aglomeracji poznańskiej oraz określić wpływ kanału termalnego na jej wyniki
+
+-   mimo że ogólny wpływ kanału termalnego na model był niski, to występuje jednak silna autokorelacja przestrzenna dla jego istotności
+
+-   temperatura powierzchni terenu była szczególnie istotna w klasyfikacji pokrycia terenu na obszarach miejskich, pomagała rozpoznawać tereny zabudowane
+
+-   może to oznaczać, że kanał termalny będzie coraz bardziej istotny w badaniach rozrostu miast i urbanizacji
+
+-   lepsze mapy pokrycia terenu pomogą w bardziej skutecznym zarządzaniu rozwojem metropolii oraz ocenie wpływu tego rozwoju na środowisko naturalne
+
 ------------------------------------------------------------------------
 
 Podsumowanie pracy jest w pewnym sensie znacznie rozbudowanym abstraktem. Należy wyliczyć i opisać osiągnięcia uzyskane w pracy dyplomowej. Tutaj jednak (w przeciwieństwie do np. rozdziału [-@sec-wprowadzenie]) należy przechodzić od szczegółu do ogółu - co zostało stworzone/określone, jak zostało to zrobione, jakie ma to konsekwencje, itd.
