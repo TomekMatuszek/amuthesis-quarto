@@ -1,9 +1,5 @@
 # Metody {#sec-metody}
 
-## Środowisko języka R {#sec-r}
-
-Krótki opis języka R oraz RStudio. Wymienienie wykorzystanych pakietów/bibliotek.
-
 ## Metody uczenia maszynowego {#sec-ml}
 
 -   czym jest uczenie maszynowe i do czego się je wykorzystuje
@@ -29,6 +25,10 @@ Krótki opis języka R oraz RStudio. Wymienienie wykorzystanych pakietów/biblio
 -   czym jest tuning parametrów?
 
 -   resampling zagnieżdżony
+
+## Środowisko języka R {#sec-r}
+
+Krótki opis języka R oraz RStudio. Wymienienie wykorzystanych pakietów/bibliotek.
 
 ------------------------------------------------------------------------
 
