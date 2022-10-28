@@ -23,6 +23,7 @@ book:
     - 04-roz4.qmd
     - 05-roz5.qmd
     - 06-roz6.qmd
+    - 07-roz7.qmd
 
 bibliography:
   - thesis.bib

@@ -110,21 +110,12 @@ Wprowadzenie powinno być zakończone stwierdzeniem celu pracy. Dodatkowo
 tutaj może znaleźć się również krótki opis co zostało zrealizowane w
 pracy.
 
-\bookmarksetup{startatroot}
-
-\hypertarget{sec-lit}{%
-\chapter{Przegląd literatury}\label{sec-lit}}
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-Ten rozdział zawiera wyjaśnienie kontekstu pracy.
-
 Pisząc ten rozdział proszę pomyśleć o osobach, które zupełnie nie znają
 opisywanej tematyki. Należy tutaj krok po kroku wyjaśnić podstawowe
 koncepcje, istotność problemu, wyniki poprzednich podobnych badań, itd.
 Ten rozdział obejmuje tylko kwestie, które już zostały wykonane przez
 inne osoby - nowe wyniki mają swoje miejsce w rozdziale
-\ref{sec-wyniki}.
+\textbf{?@sec-wyniki}.
 
 Każda kwestia opisana w tym rozdziale powinna być cytowana. Dodatnie
 cytowania odbywa się poprzez uzupełnienie pliku \texttt{thesis.bib}
@@ -327,11 +318,8 @@ cytowania, należy podać jej adres internetowy.
 
 \bookmarksetup{startatroot}
 
-\hypertarget{sec-wyniki}{%
-\chapter{Wyniki}\label{sec-wyniki}}
-
-\hypertarget{sec-mapa}{%
-\section{Wynikowa mapa pokrycia terenu}\label{sec-mapa}}
+\hypertarget{sec-wyniki-mapa}{%
+\chapter{Wynikowa mapa pokrycia terenu}\label{sec-wyniki-mapa}}
 
 \begin{itemize}
 \item
@@ -340,8 +328,38 @@ cytowania, należy podać jej adres internetowy.
   mapa prawdopodobieństwa/pewności wybrania danej klasy
 \end{itemize}
 
-\hypertarget{sec-ocena}{%
-\section{Ocena jakości modelu klasyfikacyjnego}\label{sec-ocena}}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+Część \textbf{Wyniki} może składać się z jednego lub więcej rozdziałów.
+Każdy z tych rozdziałów powinien mieć tytuł adekwatny do swojej treści.
+
+Rozdziały wynikowe powinny korzystać z wiedzy opisanej w poprzednich
+rozdziałach (Rozdziały \textbf{?@sec-lit}, \ref{sec-dane},
+\ref{sec-metody}). W przypadku prac analitycznych, ich treść powinna
+przedstawiać kolejne etapy eksploracji i analizy danych. W przypadku
+prac technicznych, treść tych rozdziałów powinna opisywać stworzone
+narzędzia, a następnie pokazywać ich zastosowanie/a.
+
+W przypadku prac technicznych warto pokazywać fragmenty napisanego
+rozwiązania lub jego wywołania używając bloków kodu.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{moja\_funkcja }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(x)\{}
+  \FunctionTok{cat}\NormalTok{(x, }\StringTok{"rządzi!"}\NormalTok{)}
+\NormalTok{\}}
+\FunctionTok{moja\_funkcja}\NormalTok{(}\StringTok{"Autor tej pracy"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Autor tej pracy rządzi!
+\end{verbatim}
+
+\bookmarksetup{startatroot}
+
+\hypertarget{sec-wyniki-ocena}{%
+\chapter{Ocena jakości modelu klasyfikacyjnego}\label{sec-wyniki-ocena}}
 
 Tabela ze wskaźnikami:
 
@@ -356,9 +374,39 @@ Tabela ze wskaźnikami:
   współczynnik Kappa
 \end{itemize}
 
-\hypertarget{sec-wplyw}{%
-\section{Ocena wpływu kanału termalnego na wyniki
-klasyfikacji}\label{sec-wplyw}}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+Część \textbf{Wyniki} może składać się z jednego lub więcej rozdziałów.
+Każdy z tych rozdziałów powinien mieć tytuł adekwatny do swojej treści.
+
+Rozdziały wynikowe powinny korzystać z wiedzy opisanej w poprzednich
+rozdziałach (Rozdziały \textbf{?@sec-lit}, \ref{sec-dane},
+\ref{sec-metody}). W przypadku prac analitycznych, ich treść powinna
+przedstawiać kolejne etapy eksploracji i analizy danych. W przypadku
+prac technicznych, treść tych rozdziałów powinna opisywać stworzone
+narzędzia, a następnie pokazywać ich zastosowanie/a.
+
+W przypadku prac technicznych warto pokazywać fragmenty napisanego
+rozwiązania lub jego wywołania używając bloków kodu.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{moja\_funkcja }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(x)\{}
+  \FunctionTok{cat}\NormalTok{(x, }\StringTok{"rządzi!"}\NormalTok{)}
+\NormalTok{\}}
+\FunctionTok{moja\_funkcja}\NormalTok{(}\StringTok{"Autor tej pracy"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Autor tej pracy rządzi!
+\end{verbatim}
+
+\bookmarksetup{startatroot}
+
+\hypertarget{sec-wyniki-term}{%
+\chapter{Ocena wpływu kanału termalnego na wyniki
+klasyfikacji}\label{sec-wyniki-term}}
 
 \begin{itemize}
 \item
@@ -383,11 +431,11 @@ Część \textbf{Wyniki} może składać się z jednego lub więcej rozdziałów
 Każdy z tych rozdziałów powinien mieć tytuł adekwatny do swojej treści.
 
 Rozdziały wynikowe powinny korzystać z wiedzy opisanej w poprzednich
-rozdziałach (Rozdziały \ref{sec-lit}, \ref{sec-dane}, \ref{sec-metody}).
-W przypadku prac analitycznych, ich treść powinna przedstawiać kolejne
-etapy eksploracji i analizy danych. W przypadku prac technicznych, treść
-tych rozdziałów powinna opisywać stworzone narzędzia, a następnie
-pokazywać ich zastosowanie/a.
+rozdziałach (Rozdziały \textbf{?@sec-lit}, \ref{sec-dane},
+\ref{sec-metody}). W przypadku prac analitycznych, ich treść powinna
+przedstawiać kolejne etapy eksploracji i analizy danych. W przypadku
+prac technicznych, treść tych rozdziałów powinna opisywać stworzone
+narzędzia, a następnie pokazywać ich zastosowanie/a.
 
 W przypadku prac technicznych warto pokazywać fragmenty napisanego
 rozwiązania lub jego wywołania używając bloków kodu.

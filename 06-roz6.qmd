@@ -1,7 +1,28 @@
-# Podsumowanie {#podsumowanie}
+# Ocena wpływu kanału termalnego na wyniki klasyfikacji {#sec-wyniki-term}
+
+-   porównanie wskaźników z i bez kanału termalnego
+
+-   średnia temperatura dla każdej klasy pokrycia terenu
+
+-   wykresy uśredniające wpływ zmiennych na model, profile zmiennych
+
+-   mapa wpływu kanału termalnego na model (metoda agregacji rastra oraz interpolacji z punktów LUCAS)
+
+-   średni wpływ kanału termalnego na każdą klasę pokrycia terenu
+
+-   mapa różnic pomiędzy modele pokrycia terenu z i bez kanału termalnego, macierz zmian
 
 ------------------------------------------------------------------------
 
-Podsumowanie pracy jest w pewnym sensie znacznie rozbudowanym abstraktem. Należy wyliczyć i opisać osiągnięcia uzyskane w pracy dyplomowej. Tutaj jednak (w przeciwieństwie do np. rozdziału [-@sec-wprowadzenie]) należy przechodzić od szczegółu do ogółu - co zostało stworzone/określone, jak zostało to zrobione, jakie ma to konsekwencje, itd.
+Część **Wyniki** może składać się z jednego lub więcej rozdziałów. Każdy z tych rozdziałów powinien mieć tytuł adekwatny do swojej treści.
 
-Ten rozdział powinien też zawierać opis kwestii, których nie udało się rozwiązać w pracy dyplomowej (i dlaczego się nie udało) oraz pomysły na przyszłe ulepszenie uzyskanych wyników lub dalsze badania.
+Rozdziały wynikowe powinny korzystać z wiedzy opisanej w poprzednich rozdziałach (Rozdziały [-@sec-lit], [-@sec-dane], [-@sec-metody]). W przypadku prac analitycznych, ich treść powinna przedstawiać kolejne etapy eksploracji i analizy danych. W przypadku prac technicznych, treść tych rozdziałów powinna opisywać stworzone narzędzia, a następnie pokazywać ich zastosowanie/a.
+
+W przypadku prac technicznych warto pokazywać fragmenty napisanego rozwiązania lub jego wywołania używając bloków kodu.
+
+```{r}
+moja_funkcja = function(x){
+  cat(x, "rządzi!")
+}
+moja_funkcja("Autor tej pracy")
+```

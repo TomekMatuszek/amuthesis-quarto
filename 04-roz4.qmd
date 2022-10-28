@@ -1,49 +1,20 @@
-# Metody {#sec-metody}
+# Wynikowa mapa pokrycia terenu {#sec-wyniki-mapa}
 
-## Środowisko języka R {#sec-r}
+-   mapa pokrycia terenu aglomeracji poznańskiej
 
-Krótki opis języka R oraz RStudio. Wymienienie wykorzystanych pakietów/bibliotek.
-
-## Metody uczenia maszynowego {#sec-ml}
-
--   czym jest uczenie maszynowe i do czego się je wykorzystuje
-
--   klasyfikacja a regresja
-
--   klasyfikacja nadzorowana a nienadzorowana
-
-### Algorytm lasów losowych (ang.*random forest*) {#sec-rf}
-
--   czym jest drzewo decyzyjne
-
--   jak działają lasy losowe
-
-### Metody oceny jakości modelu {#sec-resampling}
-
--   idea resamplingu
-
--   miary jakości modelu klasyfikacyjnego
-
-### Tuning parametrów modelu {#sec-tuning}
-
--   czym jest tuning parametrów?
-
--   resampling zagnieżdżony
+-   mapa prawdopodobieństwa/pewności wybrania danej klasy
 
 ------------------------------------------------------------------------
 
-Rozdział **Metody** zawiera opis użytych metod (np. statystycznych czy geostatystycznych) oraz technologii (np. pakiety R). Opis każdej z metod czy technologi powinien być zwarty i zawierać tylko najważniejsze informacje z punktu widzenia pracy dyplomowej.
+Część **Wyniki** może składać się z jednego lub więcej rozdziałów. Każdy z tych rozdziałów powinien mieć tytuł adekwatny do swojej treści.
 
-Każda użyta metoda i technologia powinna być zacytowana. W przypadku pakietów R, wystarczy wypełnić poniższy blok kodu (zwróć uwagę, że ten blok kodu ma parametr `echo: false`; oznacza to, że będzie on niewidoczny w wynikowym pliku PDF)...
+Rozdziały wynikowe powinny korzystać z wiedzy opisanej w poprzednich rozdziałach (Rozdziały [-@sec-lit], [-@sec-dane], [-@sec-metody]). W przypadku prac analitycznych, ich treść powinna przedstawiać kolejne etapy eksploracji i analizy danych. W przypadku prac technicznych, treść tych rozdziałów powinna opisywać stworzone narzędzia, a następnie pokazywać ich zastosowanie/a.
+
+W przypadku prac technicznych warto pokazywać fragmenty napisanego rozwiązania lub jego wywołania używając bloków kodu.
 
 ```{r}
-#| label: pakietbib
-#| echo: false
-#| warning: false
-pakiety = c("base", "kableExtra")
-knitr::write_bib(pakiety, "packages.bib", width = 60)
+moja_funkcja = function(x){
+  cat(x, "rządzi!")
+}
+moja_funkcja("Autor tej pracy")
 ```
-
-... a następnie zacytować pakiet używając znaku `@`, po którym podać nazwę pakietu rozpoczynającą się od prefiksu `R-`. Przykładowe cytowanie języka R bez nawiasu to @R-base, a pakietu **kableExtra** w nawiasie to [@R-kableExtra]. Więcej przykładów cytowania można znaleźć na stronie https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html#citations.
-
-W przypadkach, gdy cytowanie istnieje, ale nie jest pakietem R to należy dodać je do pliku `thesis.bib` i użyć powyższej składni ze znakiem `@`. W ostateczności, gdy dana technologia nie posiada cytowania, należy podać jej adres internetowy.

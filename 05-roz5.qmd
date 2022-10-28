@@ -1,12 +1,4 @@
-# Wyniki {#sec-wyniki}
-
-## Wynikowa mapa pokrycia terenu {#sec-mapa}
-
--   mapa pokrycia terenu aglomeracji poznańskiej
-
--   mapa prawdopodobieństwa/pewności wybrania danej klasy
-
-## Ocena jakości modelu klasyfikacyjnego {#sec-ocena}
+# Ocena jakości modelu klasyfikacyjnego {#sec-wyniki-ocena}
 
 Tabela ze wskaźnikami:
 
@@ -17,20 +9,6 @@ Tabela ze wskaźnikami:
 -   skuteczność producenta i użytkownika (PA, UA)
 
 -   współczynnik Kappa
-
-## Ocena wpływu kanału termalnego na wyniki klasyfikacji {#sec-wplyw}
-
--   porównanie wskaźników z i bez kanału termalnego
-
--   średnia temperatura dla każdej klasy pokrycia terenu
-
--   wykresy uśredniające wpływ zmiennych na model, profile zmiennych
-
--   mapa wpływu kanału termalnego na model (metoda agregacji rastra oraz interpolacji z punktów LUCAS)
-
--   średni wpływ kanału termalnego na każdą klasę pokrycia terenu
-
--   mapa różnic pomiędzy modele pokrycia terenu z i bez kanału termalnego, macierz zmian
 
 ------------------------------------------------------------------------
 

@@ -4,25 +4,67 @@ editor:
     wrap: sentence
 ---
 
-# Przegląd literatury {#sec-lit}
+# Dane źródłowe {#sec-dane}
+
+Do przeprowadzenia analiz wykorzystano dwa typy danych:
+
+-   rastrowe dane satelitarne Landsat pobrane przy pomocy narzędzia GLAD ARD
+
+-   punktowe dane o pokryciu terenu pozyskane w wyniku programu LUCAS
+
+## Dane satelitarne {#sec-sat}
+
+-   opis procesu obróbki danych Landsat wykonany przez zespół z Uniwersytetu Maryland
+
+-   proces pobierania danych
+
+-   struktura danych GLAD ARD
+
+## Dane o pokryciu terenu {#sec-landcover}
+
+-   czym jest program LUCAS i jak powstają dane w ramach jego działania
+
+-   LUCAS Grid i LUCAS Micro Data
+
+-   struktura danych punktowych, opis dodatkowych kolumn poza kategorią pokrycia terenu
+
+-   obróbka danych w celu wybrania odpowiednych punktów treningowych i reklasyfikacji do wspólnego podziału na kategorie pokrycia terenu
 
 ------------------------------------------------------------------------
 
-Ten rozdział zawiera wyjaśnienie kontekstu pracy.
+Celem tego rozdziału jest przedstawienie użytych w pracy danych.
+Należy wyjaśnić jakie dane zostały użyte, jakiego są one rodzaju, dla jakiego okresu zostały pobrane/stworzone, co one zawierają, etc.
 
-Pisząc ten rozdział proszę pomyśleć o osobach, które zupełnie nie znają opisywanej tematyki.
-Należy tutaj krok po kroku wyjaśnić podstawowe koncepcje, istotność problemu, wyniki poprzednich podobnych badań, itd.
-Ten rozdział obejmuje tylko kwestie, które już zostały wykonane przez inne osoby - nowe wyniki mają swoje miejsce w rozdziale [-@sec-wyniki].
+W tym rozdziale warto dodać ryciny i tabele przedstawiające użyte dane.
 
-Każda kwestia opisana w tym rozdziale powinna być cytowana.
-Dodatnie cytowania odbywa się poprzez uzupełnienie pliku `thesis.bib` zapisem w formacie BibTeX, a następnie dodanie nazwy referencji poprzedzonej znakiem `@`.
-Przykładowo, zacytowanie książki Geocomputation with R odbywa się poprzez [@lovelace_geocomputation_2019].
-<!-- https://tex.stackexchange.com/questions/143/what-are-good-sites-to-find-citations-in-bibtex-format -->
+Zwróć uwagę, że poniższe bloki kodu mają parametr `#| echo: false`; oznacza to, że będą one niewidoczne w wynikowym pliku PDF.
+Każdy z bloków kodu musi mieć unikalną nazwę; w przypadku rycin powinna się ona rozpoczynać od prefiksu `fig-`.
+Dodanie podpisu pod rycinę odbywa się używając parametru `#| fig-cap:`.
+Następnie do tej ryciny można się odnieść używając operatora `[-@]`.
 
-W przypadku, gdy cytowanie zostało poprawnie wpisane oraz istnieje w pliku `thesis.bib` to bibliografia powinna się automatycznie wygenerować na końcu pracy.
+Podobnie wygląda odnoszenie się do plików graficznych.
+Tutaj wewnątrz bloku kodu należy użyć funkcji `knitr::include_graphics()` (Rycina [-@fig-rycina2]).
+Dodatkowo możliwa jest zmiana rozmiary obrazka używając parametrów takich jak `#| out-width:` i `#| out-height:`.
 
-W przypadku, gdy praca dyplomowa opisuje konkretny obszar to można po tym rozdziale stworzyć kolejny rozdział opisujący "obszar badań".
+```{r}
+#| label: fig-rycina2
+#| echo: false
+#| fig-cap: "Moja druga rycina"
+#| out-width: "100%"
+#| out-height: 300px
+knitr::include_graphics("figures/rcookies.png")
+```
 
-Ten i kolejne rozdziału moją mieć także podrozdziały.
-Tworzenie podrozdziałów polega na stworzeniu nowej linii rozpoczynającej się od znaków `##` a następnie tytułu podrozdziału.
-Dodatkowo w postaci `{#sec-}` można dodać skrót nazwy rozdziału/podrozdziału umożliwiający odnoszenie się do niego używając operatora `[-@sec]`.
+Odnoszenie się do tabel odbywa się poprzez operator `[-@]` wraz z prefiksem `tbl-`.
+Natomiast tworzenie podpisu nad tabelą ma miejsce używając parametru `#| tbl-cap:`.
+Dodatkowo możliwe jest użycie pakietu **kableExtra** [@R-kableExtra] do określenia szerokości kolumn (Tabela [-@tbl-tabela1]).
+
+```{r tabela1, echo=FALSE}
+#| label: tbl-tabela1
+#| echo: false
+#| tbl-cap: "Moja pierwsza tabela"
+df = data.frame(a = 1:5, b = letters[1:5])
+knitr::kable(df, booktabs = TRUE) |> 
+  kableExtra::column_spec(1, width = "2cm") |>  
+  kableExtra::column_spec(2, width = "4cm")
+```

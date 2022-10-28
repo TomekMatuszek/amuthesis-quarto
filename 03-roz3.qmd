@@ -1,70 +1,49 @@
----
-editor: 
-  markdown: 
-    wrap: sentence
----
+# Metody {#sec-metody}
 
-# Dane źródłowe {#sec-dane}
+## Środowisko języka R {#sec-r}
 
-Do przeprowadzenia analiz wykorzystano dwa typy danych:
+Krótki opis języka R oraz RStudio. Wymienienie wykorzystanych pakietów/bibliotek.
 
--   rastrowe dane satelitarne Landsat pobrane przy pomocy narzędzia GLAD ARD
+## Metody uczenia maszynowego {#sec-ml}
 
--   punktowe dane o pokryciu terenu pozyskane w wyniku programu LUCAS
+-   czym jest uczenie maszynowe i do czego się je wykorzystuje
 
-## Dane satelitarne {#sec-sat}
+-   klasyfikacja a regresja
 
--   opis procesu obróbki danych Landsat wykonany przez zespół z Uniwersytetu Maryland
+-   klasyfikacja nadzorowana a nienadzorowana
 
--   proces pobierania danych
+### Algorytm lasów losowych (ang.*random forest*) {#sec-rf}
 
--   struktura danych GLAD ARD
+-   czym jest drzewo decyzyjne
 
-## Dane o pokryciu terenu {#sec-landcover}
+-   jak działają lasy losowe
 
--   czym jest program LUCAS i jak powstają dane w ramach jego działania
+### Metody oceny jakości modelu {#sec-resampling}
 
--   LUCAS Grid i LUCAS Micro Data
+-   idea resamplingu
 
--   struktura danych punktowych, opis dodatkowych kolumn poza kategorią pokrycia terenu
+-   miary jakości modelu klasyfikacyjnego
 
--   obróbka danych w celu wybrania odpowiednych punktów treningowych i reklasyfikacji do wspólnego podziału na kategorie pokrycia terenu
+### Tuning parametrów modelu {#sec-tuning}
+
+-   czym jest tuning parametrów?
+
+-   resampling zagnieżdżony
 
 ------------------------------------------------------------------------
 
-Celem tego rozdziału jest przedstawienie użytych w pracy danych.
-Należy wyjaśnić jakie dane zostały użyte, jakiego są one rodzaju, dla jakiego okresu zostały pobrane/stworzone, co one zawierają, etc.
+Rozdział **Metody** zawiera opis użytych metod (np. statystycznych czy geostatystycznych) oraz technologii (np. pakiety R). Opis każdej z metod czy technologi powinien być zwarty i zawierać tylko najważniejsze informacje z punktu widzenia pracy dyplomowej.
 
-W tym rozdziale warto dodać ryciny i tabele przedstawiające użyte dane.
-
-Zwróć uwagę, że poniższe bloki kodu mają parametr `#| echo: false`; oznacza to, że będą one niewidoczne w wynikowym pliku PDF.
-Każdy z bloków kodu musi mieć unikalną nazwę; w przypadku rycin powinna się ona rozpoczynać od prefiksu `fig-`.
-Dodanie podpisu pod rycinę odbywa się używając parametru `#| fig-cap:`.
-Następnie do tej ryciny można się odnieść używając operatora `[-@]`.
-
-Podobnie wygląda odnoszenie się do plików graficznych.
-Tutaj wewnątrz bloku kodu należy użyć funkcji `knitr::include_graphics()` (Rycina [-@fig-rycina2]).
-Dodatkowo możliwa jest zmiana rozmiary obrazka używając parametrów takich jak `#| out-width:` i `#| out-height:`.
+Każda użyta metoda i technologia powinna być zacytowana. W przypadku pakietów R, wystarczy wypełnić poniższy blok kodu (zwróć uwagę, że ten blok kodu ma parametr `echo: false`; oznacza to, że będzie on niewidoczny w wynikowym pliku PDF)...
 
 ```{r}
-#| label: fig-rycina2
+#| label: pakietbib
 #| echo: false
-#| fig-cap: "Moja druga rycina"
-#| out-width: "100%"
-#| out-height: 300px
-knitr::include_graphics("figures/rcookies.png")
+#| warning: false
+pakiety = c("base", "kableExtra")
+knitr::write_bib(pakiety, "packages.bib", width = 60)
 ```
 
-Odnoszenie się do tabel odbywa się poprzez operator `[-@]` wraz z prefiksem `tbl-`.
-Natomiast tworzenie podpisu nad tabelą ma miejsce używając parametru `#| tbl-cap:`.
-Dodatkowo możliwe jest użycie pakietu **kableExtra** [@R-kableExtra] do określenia szerokości kolumn (Tabela [-@tbl-tabela1]).
+... a następnie zacytować pakiet używając znaku `@`, po którym podać nazwę pakietu rozpoczynającą się od prefiksu `R-`. Przykładowe cytowanie języka R bez nawiasu to @R-base, a pakietu **kableExtra** w nawiasie to [@R-kableExtra]. Więcej przykładów cytowania można znaleźć na stronie https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html#citations.
 
-```{r tabela1, echo=FALSE}
-#| label: tbl-tabela1
-#| echo: false
-#| tbl-cap: "Moja pierwsza tabela"
-df = data.frame(a = 1:5, b = letters[1:5])
-knitr::kable(df, booktabs = TRUE) |> 
-  kableExtra::column_spec(1, width = "2cm") |>  
-  kableExtra::column_spec(2, width = "4cm")
-```
+W przypadkach, gdy cytowanie istnieje, ale nie jest pakietem R to należy dodać je do pliku `thesis.bib` i użyć powyższej składni ze znakiem `@`. W ostateczności, gdy dana technologia nie posiada cytowania, należy podać jej adres internetowy.
