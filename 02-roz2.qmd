@@ -1,50 +1,38 @@
----
-editor: 
-  markdown: 
-    wrap: sentence
----
+# Source data {#sec-data}
 
-# Dane źródłowe {#sec-dane}
+Two types of spatial data were used:
 
-Do przeprowadzenia analiz wykorzystano dwa typy danych:
+-   satellite images from Landsat programme downloaded using GLAD ARD software (raster data)
 
--   rastrowe dane satelitarne Landsat pobrane przy pomocy narzędzia GLAD ARD
+-   training points with information about land cover acquired from LUCAS programme (vector data)
 
--   punktowe dane o pokryciu terenu pozyskane w wyniku programu LUCAS
+## Satellite imagery {#sec-sat}
 
-## Dane satelitarne {#sec-sat}
+-   preprocessing of satellite imagery performed by GLAD team from University of Maryland
 
--   opis procesu obróbki danych Landsat wykonany przez zespół z Uniwersytetu Maryland
+-   process of downloading data using GLAD ARD software
 
--   proces pobierania danych
+-   GLAD ARD dataset structure
 
--   struktura danych GLAD ARD
+## Land cover data {#sec-landcover}
 
-## Dane o pokryciu terenu {#sec-landcover}
+-   what is LUCAS programme and how its datasets are created
 
--   czym jest program LUCAS i jak powstają dane w ramach jego działania
+-   LUCAS Grid and LUCAS Micro Data
 
--   LUCAS Grid i LUCAS Micro Data
+-   structure of LUCAS points dataset, description of relevant columns in addition to the land cover classification
 
--   struktura danych punktowych, opis dodatkowych kolumn poza kategorią pokrycia terenu
-
--   obróbka danych w celu wybrania odpowiednych punktów treningowych i reklasyfikacji do wspólnego podziału na kategorie pokrycia terenu
+-   processing of data in order to choose reliable training points; reclassification to chosen set of land cover categories
 
 ------------------------------------------------------------------------
 
-Celem tego rozdziału jest przedstawienie użytych w pracy danych.
-Należy wyjaśnić jakie dane zostały użyte, jakiego są one rodzaju, dla jakiego okresu zostały pobrane/stworzone, co one zawierają, etc.
+Celem tego rozdziału jest przedstawienie użytych w pracy danych. Należy wyjaśnić jakie dane zostały użyte, jakiego są one rodzaju, dla jakiego okresu zostały pobrane/stworzone, co one zawierają, etc.
 
 W tym rozdziale warto dodać ryciny i tabele przedstawiające użyte dane.
 
-Zwróć uwagę, że poniższe bloki kodu mają parametr `#| echo: false`; oznacza to, że będą one niewidoczne w wynikowym pliku PDF.
-Każdy z bloków kodu musi mieć unikalną nazwę; w przypadku rycin powinna się ona rozpoczynać od prefiksu `fig-`.
-Dodanie podpisu pod rycinę odbywa się używając parametru `#| fig-cap:`.
-Następnie do tej ryciny można się odnieść używając operatora `[-@]`.
+Zwróć uwagę, że poniższe bloki kodu mają parametr `#| echo: false`; oznacza to, że będą one niewidoczne w wynikowym pliku PDF. Każdy z bloków kodu musi mieć unikalną nazwę; w przypadku rycin powinna się ona rozpoczynać od prefiksu `fig-`. Dodanie podpisu pod rycinę odbywa się używając parametru `#| fig-cap:`. Następnie do tej ryciny można się odnieść używając operatora `[-@]`.
 
-Podobnie wygląda odnoszenie się do plików graficznych.
-Tutaj wewnątrz bloku kodu należy użyć funkcji `knitr::include_graphics()` (Rycina [-@fig-rycina2]).
-Dodatkowo możliwa jest zmiana rozmiary obrazka używając parametrów takich jak `#| out-width:` i `#| out-height:`.
+Podobnie wygląda odnoszenie się do plików graficznych. Tutaj wewnątrz bloku kodu należy użyć funkcji `knitr::include_graphics()` (Rycina [-@fig-rycina2]). Dodatkowo możliwa jest zmiana rozmiary obrazka używając parametrów takich jak `#| out-width:` i `#| out-height:`.
 
 ```{r}
 #| label: fig-rycina2
@@ -55,9 +43,7 @@ Dodatkowo możliwa jest zmiana rozmiary obrazka używając parametrów takich ja
 knitr::include_graphics("figures/rcookies.png")
 ```
 
-Odnoszenie się do tabel odbywa się poprzez operator `[-@]` wraz z prefiksem `tbl-`.
-Natomiast tworzenie podpisu nad tabelą ma miejsce używając parametru `#| tbl-cap:`.
-Dodatkowo możliwe jest użycie pakietu **kableExtra** [@R-kableExtra] do określenia szerokości kolumn (Tabela [-@tbl-tabela1]).
+Odnoszenie się do tabel odbywa się poprzez operator `[-@]` wraz z prefiksem `tbl-`. Natomiast tworzenie podpisu nad tabelą ma miejsce używając parametru `#| tbl-cap:`. Dodatkowo możliwe jest użycie pakietu **kableExtra** [@R-kableExtra] do określenia szerokości kolumn (Tabela [-@tbl-tabela1]).
 
 ```{r tabela1, echo=FALSE}
 #| label: tbl-tabela1

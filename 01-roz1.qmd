@@ -1,12 +1,12 @@
-# Wprowadzenie {#sec-wprowadzenie}
+# Introduction {#sec-intro}
 
--   zastosowania i istotność map pokrycia terenu
+-   applications and relevance of land cover maps
 
--   uczenie maszynowe i klasyfikacja nadzorowana obrazów satelitarnych jako narzędzie do tworzenia map pokrycia terenu
+-   machine learning and supervised classification of satellite images as a tool for creating land cover maps
 
--   zwrócenie uwagi na częste pomijanie kanału termalnego w modelach klasyfikacyjnych, nie do końca jasny wpływ informacji termalnej na wyniki klasyfikacji
+-   pointing out that thermal band if often omitted in land cover classification models, exact impact of thermal factor isn't fully clear
 
--   celem pracy jest stworzenie mapy pokrycia terenu metropolii poznańskiej oraz ocena wpływu kanału termalnego na wyniki modelu
+-   goal of the thesis is to create land cover map of Poznań metropolitan area and measure the impact of thermal band on the model results
 
 ------------------------------------------------------------------------
 

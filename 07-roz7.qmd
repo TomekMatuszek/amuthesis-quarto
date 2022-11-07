@@ -1,14 +1,14 @@
-# Podsumowanie {#podsumowanie}
+# Conclusion {#conclusion}
 
--   udało się stworzyć mapę pokrycia terenu aglomeracji poznańskiej oraz określić wpływ kanału termalnego na jej wyniki
+-   land cover map of Poznań metropolitan area was created, impact of thermal band on classification results was measured
 
--   mimo że ogólny wpływ kanału termalnego na model był niski, to występuje jednak silna autokorelacja przestrzenna dla jego istotności
+-   despite thermal band having low overall impact on model results, there is a strong spatial auto-correlation for its importance
 
--   temperatura powierzchni terenu była szczególnie istotna w klasyfikacji pokrycia terenu na obszarach miejskich, pomagała rozpoznawać tereny zabudowane
+-   land surface temperature was especially significant for land cover classification of urban areas, it helped in identify built-up areas
 
--   może to oznaczać, że kanał termalny będzie coraz bardziej istotny w badaniach rozrostu miast i urbanizacji
+-   it may mean that thermal band will become increasingly important in studies on urban sprawl and suburbanisation
 
--   lepsze mapy pokrycia terenu pomogą w bardziej skutecznym zarządzaniu rozwojem metropolii oraz ocenie wpływu tego rozwoju na środowisko naturalne
+-   better land cover maps will help in better management of metropolitan areas growth and quantifying impact of urbanisation on natural environment more precisely
 
 ------------------------------------------------------------------------
 

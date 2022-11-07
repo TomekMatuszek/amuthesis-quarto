@@ -1,8 +1,8 @@
-# Wynikowa mapa pokrycia terenu {#sec-wyniki-mapa}
+# Result of the model - land cover map {#sec-results-map}
 
--   mapa pokrycia terenu aglomeracji poznańskiej
+-   land cover map of Poznań metropolitan area
 
--   mapa prawdopodobieństwa/pewności wybrania danej klasy
+-   probability map of model results
 
 ------------------------------------------------------------------------
 

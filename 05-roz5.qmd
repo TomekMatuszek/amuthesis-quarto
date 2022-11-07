@@ -1,14 +1,14 @@
-# Ocena jakości modelu klasyfikacyjnego {#sec-wyniki-ocena}
+# Assessing model quality {#sec-results-eval}
 
-Tabela ze wskaźnikami:
+Table with quality indices:
 
--   skuteczność (OA)
+-   overall accuracy (OA)
 
--   błąd klasyfikacji (CE)
+-   classification error (CE)
 
--   skuteczność producenta i użytkownika (PA, UA)
+-   producer's and user's accuracy (PA, UA)
 
--   współczynnik Kappa
+-   Kappa coefficient
 
 ------------------------------------------------------------------------
 

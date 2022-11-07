@@ -2,8 +2,8 @@ project:
   type: book
   output-dir: docs
 
-title: "Ocena wpływu zastosowania kanału termalnego Landsat na wyniki nadzorowanej klasyfikacji pokrycia terenu"
-titleeng: "Measuring impact of adding Landsat 8 thermal band on supervised land cover classification"
+title: "Measuring impact of addition of Landsat 8 thermal band on supervised land cover classification results"
+titleeng: "Ocena wpływu zastosowania kanału termalnego Landsat na wyniki nadzorowanej klasyfikacji pokrycia terenu"
 degreetype: "Praca inżynierska"
 author: "Tomasz Matuszek"
 major: "Geoinformacja"

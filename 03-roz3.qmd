@@ -1,34 +1,34 @@
-# Metody {#sec-metody}
+# Methods {#sec-methods}
 
-## Metody uczenia maszynowego {#sec-ml}
+## Machine learning {#sec-ml}
 
--   czym jest uczenie maszynowe i do czego się je wykorzystuje
+-   what is machine learning and what are its applications
 
--   klasyfikacja a regresja
+-   classification vs regression algorithms
 
--   klasyfikacja nadzorowana a nienadzorowana
+-   supervised and unsupervised classification
 
-### Algorytm lasów losowych (ang.*random forest*) {#sec-rf}
+### Random forest algorithm {#sec-rf}
 
--   czym jest drzewo decyzyjne
+-   what is a decision tree
 
--   jak działają lasy losowe
+-   how random forest algorithm works
 
-### Metody oceny jakości modelu {#sec-resampling}
+### Model quality assessment {#sec-resampling}
 
--   idea resamplingu
+-   idea of resampling
 
--   miary jakości modelu klasyfikacyjnego
+-   measures and indices of classification model quality
 
-### Tuning parametrów modelu {#sec-tuning}
+### Parameter tuning {#sec-tuning}
 
--   czym jest tuning parametrów?
+-   what is tuning of model's parameters
 
--   resampling zagnieżdżony
+-   idea of nested resampling
 
-## Środowisko języka R {#sec-r}
+## R language environment {#sec-r}
 
-Krótki opis języka R oraz RStudio. Wymienienie wykorzystanych pakietów/bibliotek.
+Short description of R and RStudio environment. List of used libraries and packages.
 
 ------------------------------------------------------------------------
 

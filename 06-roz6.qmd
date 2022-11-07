@@ -1,16 +1,14 @@
-# Ocena wpływu kanału termalnego na wyniki klasyfikacji {#sec-wyniki-term}
+# Evaluation of thermal band's impact on prediction results {#sec-results-therm}
 
--   porównanie wskaźników z i bez kanału termalnego
+-   mean temperature for every predicted land cover class
 
--   średnia temperatura dla każdej klasy pokrycia terenu
+-   variable importance plots, variable profiles
 
--   wykresy uśredniające wpływ zmiennych na model, profile zmiennych
+-   thermal band importance map (two methods: raster aggregation and interpolation of importance in LUCAS points)
 
--   mapa wpływu kanału termalnego na model (metoda agregacji rastra oraz interpolacji z punktów LUCAS)
+-   mean importance of thermal band on each land cover class
 
--   średni wpływ kanału termalnego na każdą klasę pokrycia terenu
-
--   mapa różnic pomiędzy modele pokrycia terenu z i bez kanału termalnego, macierz zmian
+-   difference raster map between prediction with and without thermal band included, transition matrix
 
 ------------------------------------------------------------------------
 
