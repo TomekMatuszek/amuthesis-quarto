@@ -22,10 +22,10 @@
 \usepackage{bookmark} % Adds indent in the first paragraph %
 
 \author{Tomasz Matuszek}
-\title{Ocena wpływu zastosowania kanału termalnego Landsat na wyniki
-nadzorowanej klasyfikacji pokrycia terenu}
-\def\titleeng{Measuring impact of adding Landsat 8 thermal band on
-supervised land cover classification}
+\title{Measuring impact of addition of Landsat 8 thermal band on
+supervised land cover classification results}
+\def\titleeng{Ocena wpływu zastosowania kanału termalnego Landsat na
+wyniki nadzorowanej klasyfikacji pokrycia terenu}
 \def\degreetitle{Praca inżynierska}
 \def\major{Geoinformacja}
 \def\albumid{455828}
@@ -35,8 +35,8 @@ supervised land cover classification}
      %pdfsubject={The Subject},
      %pdfkeywords={Some Keywords},
      pdfauthor={Tomasz Matuszek},
-     pdftitle={Ocena wpływu zastosowania kanału termalnego Landsat na
-wyniki nadzorowanej klasyfikacji pokrycia terenu},
+     pdftitle={Measuring impact of addition of Landsat 8 thermal band on
+supervised land cover classification results},
      pdfproducer={quarto with LaTeX}
 }
 
@@ -80,22 +80,22 @@ Keywords: (as stated before)
 
 \bookmarksetup{startatroot}
 
-\hypertarget{sec-wprowadzenie}{%
-\chapter{Wprowadzenie}\label{sec-wprowadzenie}}
+\hypertarget{sec-intro}{%
+\chapter{Introduction}\label{sec-intro}}
 
 \begin{itemize}
 \item
-  zastosowania i istotność map pokrycia terenu
+  applications and relevance of land cover maps
 \item
-  uczenie maszynowe i klasyfikacja nadzorowana obrazów satelitarnych
-  jako narzędzie do tworzenia map pokrycia terenu
+  machine learning and supervised classification of satellite images as
+  a tool for creating land cover maps
 \item
-  zwrócenie uwagi na częste pomijanie kanału termalnego w modelach
-  klasyfikacyjnych, nie do końca jasny wpływ informacji termalnej na
-  wyniki klasyfikacji
+  pointing out that thermal band if often omitted in land cover
+  classification models, exact impact of thermal factor isn't fully
+  clear
 \item
-  celem pracy jest stworzenie mapy pokrycia terenu metropolii
-  poznańskiej oraz ocena wpływu kanału termalnego na wyniki modelu
+  goal of the thesis is to create land cover map of Poznań metropolitan
+  area and measure the impact of thermal band on the model results
 \end{itemize}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
@@ -140,46 +140,47 @@ operatora \texttt{{[}-@sec{]}}.
 
 \bookmarksetup{startatroot}
 
-\hypertarget{sec-dane}{%
-\chapter{Dane źródłowe}\label{sec-dane}}
+\hypertarget{sec-data}{%
+\chapter{Source data}\label{sec-data}}
 
-Do przeprowadzenia analiz wykorzystano dwa typy danych:
+Two types of spatial data were used:
 
 \begin{itemize}
 \item
-  rastrowe dane satelitarne Landsat pobrane przy pomocy narzędzia GLAD
-  ARD
+  satellite images from Landsat programme downloaded using GLAD ARD
+  software (raster data)
 \item
-  punktowe dane o pokryciu terenu pozyskane w wyniku programu LUCAS
+  training points with information about land cover acquired from LUCAS
+  programme (vector data)
 \end{itemize}
 
 \hypertarget{sec-sat}{%
-\section{Dane satelitarne}\label{sec-sat}}
+\section{Satellite imagery}\label{sec-sat}}
 
 \begin{itemize}
 \item
-  opis procesu obróbki danych Landsat wykonany przez zespół z
-  Uniwersytetu Maryland
+  preprocessing of satellite imagery performed by GLAD team from
+  University of Maryland
 \item
-  proces pobierania danych
+  process of downloading data using GLAD ARD software
 \item
-  struktura danych GLAD ARD
+  GLAD ARD dataset structure
 \end{itemize}
 
 \hypertarget{sec-landcover}{%
-\section{Dane o pokryciu terenu}\label{sec-landcover}}
+\section{Land cover data}\label{sec-landcover}}
 
 \begin{itemize}
 \item
-  czym jest program LUCAS i jak powstają dane w ramach jego działania
+  what is LUCAS programme and how its datasets are created
 \item
-  LUCAS Grid i LUCAS Micro Data
+  LUCAS Grid and LUCAS Micro Data
 \item
-  struktura danych punktowych, opis dodatkowych kolumn poza kategorią
-  pokrycia terenu
+  structure of LUCAS points dataset, description of relevant columns in
+  addition to the land cover classification
 \item
-  obróbka danych w celu wybrania odpowiednych punktów treningowych i
-  reklasyfikacji do wspólnego podziału na kategorie pokrycia terenu
+  processing of data in order to choose reliable training points;
+  reclassification to chosen set of land cover categories
 \end{itemize}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
@@ -240,57 +241,56 @@ a & b\\
 
 \bookmarksetup{startatroot}
 
-\hypertarget{sec-metody}{%
-\chapter{Metody}\label{sec-metody}}
+\hypertarget{sec-methods}{%
+\chapter{Methods}\label{sec-methods}}
 
 \hypertarget{sec-ml}{%
-\section{Metody uczenia maszynowego}\label{sec-ml}}
+\section{Machine learning}\label{sec-ml}}
 
 \begin{itemize}
 \item
-  czym jest uczenie maszynowe i do czego się je wykorzystuje
+  what is machine learning and what are its applications
 \item
-  klasyfikacja a regresja
+  classification vs regression algorithms
 \item
-  klasyfikacja nadzorowana a nienadzorowana
+  supervised and unsupervised classification
 \end{itemize}
 
 \hypertarget{sec-rf}{%
-\subsection{\texorpdfstring{Algorytm lasów losowych (ang.\emph{random
-forest})}{Algorytm lasów losowych (ang.random forest)}}\label{sec-rf}}
+\subsection{Random forest algorithm}\label{sec-rf}}
 
 \begin{itemize}
 \item
-  czym jest drzewo decyzyjne
+  what is a decision tree
 \item
-  jak działają lasy losowe
+  how random forest algorithm works
 \end{itemize}
 
 \hypertarget{sec-resampling}{%
-\subsection{Metody oceny jakości modelu}\label{sec-resampling}}
+\subsection{Model quality assessment}\label{sec-resampling}}
 
 \begin{itemize}
 \item
-  idea resamplingu
+  idea of resampling
 \item
-  miary jakości modelu klasyfikacyjnego
+  measures and indices of classification model quality
 \end{itemize}
 
 \hypertarget{sec-tuning}{%
-\subsection{Tuning parametrów modelu}\label{sec-tuning}}
+\subsection{Parameter tuning}\label{sec-tuning}}
 
 \begin{itemize}
 \item
-  czym jest tuning parametrów?
+  what is tuning of model's parameters
 \item
-  resampling zagnieżdżony
+  idea of nested resampling
 \end{itemize}
 
 \hypertarget{sec-r}{%
-\section{Środowisko języka R}\label{sec-r}}
+\section{R language environment}\label{sec-r}}
 
-Krótki opis języka R oraz RStudio. Wymienienie wykorzystanych
-pakietów/bibliotek.
+Short description of R and RStudio environment. List of used libraries
+and packages.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -318,14 +318,14 @@ cytowania, należy podać jej adres internetowy.
 
 \bookmarksetup{startatroot}
 
-\hypertarget{sec-wyniki-mapa}{%
-\chapter{Wynikowa mapa pokrycia terenu}\label{sec-wyniki-mapa}}
+\hypertarget{sec-results-map}{%
+\chapter{Result of the model - land cover map}\label{sec-results-map}}
 
 \begin{itemize}
 \item
-  mapa pokrycia terenu aglomeracji poznańskiej
+  land cover map of Poznań metropolitan area
 \item
-  mapa prawdopodobieństwa/pewności wybrania danej klasy
+  probability map of model results
 \end{itemize}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
@@ -334,11 +334,11 @@ Część \textbf{Wyniki} może składać się z jednego lub więcej rozdziałów
 Każdy z tych rozdziałów powinien mieć tytuł adekwatny do swojej treści.
 
 Rozdziały wynikowe powinny korzystać z wiedzy opisanej w poprzednich
-rozdziałach (Rozdziały \textbf{?@sec-lit}, \ref{sec-dane},
-\ref{sec-metody}). W przypadku prac analitycznych, ich treść powinna
-przedstawiać kolejne etapy eksploracji i analizy danych. W przypadku
-prac technicznych, treść tych rozdziałów powinna opisywać stworzone
-narzędzia, a następnie pokazywać ich zastosowanie/a.
+rozdziałach (Rozdziały \textbf{?@sec-lit}, \textbf{?@sec-dane},
+\textbf{?@sec-metody}). W przypadku prac analitycznych, ich treść
+powinna przedstawiać kolejne etapy eksploracji i analizy danych. W
+przypadku prac technicznych, treść tych rozdziałów powinna opisywać
+stworzone narzędzia, a następnie pokazywać ich zastosowanie/a.
 
 W przypadku prac technicznych warto pokazywać fragmenty napisanego
 rozwiązania lub jego wywołania używając bloków kodu.
@@ -358,20 +358,20 @@ Autor tej pracy rządzi!
 
 \bookmarksetup{startatroot}
 
-\hypertarget{sec-wyniki-ocena}{%
-\chapter{Ocena jakości modelu klasyfikacyjnego}\label{sec-wyniki-ocena}}
+\hypertarget{sec-results-eval}{%
+\chapter{Assessing model quality}\label{sec-results-eval}}
 
-Tabela ze wskaźnikami:
+Table with quality indices:
 
 \begin{itemize}
 \item
-  skuteczność (OA)
+  overall accuracy (OA)
 \item
-  błąd klasyfikacji (CE)
+  classification error (CE)
 \item
-  skuteczność producenta i użytkownika (PA, UA)
+  producer's and user's accuracy (PA, UA)
 \item
-  współczynnik Kappa
+  Kappa coefficient
 \end{itemize}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
@@ -380,11 +380,11 @@ Część \textbf{Wyniki} może składać się z jednego lub więcej rozdziałów
 Każdy z tych rozdziałów powinien mieć tytuł adekwatny do swojej treści.
 
 Rozdziały wynikowe powinny korzystać z wiedzy opisanej w poprzednich
-rozdziałach (Rozdziały \textbf{?@sec-lit}, \ref{sec-dane},
-\ref{sec-metody}). W przypadku prac analitycznych, ich treść powinna
-przedstawiać kolejne etapy eksploracji i analizy danych. W przypadku
-prac technicznych, treść tych rozdziałów powinna opisywać stworzone
-narzędzia, a następnie pokazywać ich zastosowanie/a.
+rozdziałach (Rozdziały \textbf{?@sec-lit}, \textbf{?@sec-dane},
+\textbf{?@sec-metody}). W przypadku prac analitycznych, ich treść
+powinna przedstawiać kolejne etapy eksploracji i analizy danych. W
+przypadku prac technicznych, treść tych rozdziałów powinna opisywać
+stworzone narzędzia, a następnie pokazywać ich zastosowanie/a.
 
 W przypadku prac technicznych warto pokazywać fragmenty napisanego
 rozwiązania lub jego wywołania używając bloków kodu.
@@ -404,25 +404,23 @@ Autor tej pracy rządzi!
 
 \bookmarksetup{startatroot}
 
-\hypertarget{sec-wyniki-term}{%
-\chapter{Ocena wpływu kanału termalnego na wyniki
-klasyfikacji}\label{sec-wyniki-term}}
+\hypertarget{sec-results-therm}{%
+\chapter{Evaluation of thermal band's impact on prediction
+results}\label{sec-results-therm}}
 
 \begin{itemize}
 \item
-  porównanie wskaźników z i bez kanału termalnego
+  mean temperature for every predicted land cover class
 \item
-  średnia temperatura dla każdej klasy pokrycia terenu
+  variable importance plots, variable profiles
 \item
-  wykresy uśredniające wpływ zmiennych na model, profile zmiennych
+  thermal band importance map (two methods: raster aggregation and
+  interpolation of importance in LUCAS points)
 \item
-  mapa wpływu kanału termalnego na model (metoda agregacji rastra oraz
-  interpolacji z punktów LUCAS)
+  mean importance of thermal band on each land cover class
 \item
-  średni wpływ kanału termalnego na każdą klasę pokrycia terenu
-\item
-  mapa różnic pomiędzy modele pokrycia terenu z i bez kanału termalnego,
-  macierz zmian
+  difference raster map between prediction with and without thermal band
+  included, transition matrix
 \end{itemize}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
@@ -431,11 +429,11 @@ Część \textbf{Wyniki} może składać się z jednego lub więcej rozdziałów
 Każdy z tych rozdziałów powinien mieć tytuł adekwatny do swojej treści.
 
 Rozdziały wynikowe powinny korzystać z wiedzy opisanej w poprzednich
-rozdziałach (Rozdziały \textbf{?@sec-lit}, \ref{sec-dane},
-\ref{sec-metody}). W przypadku prac analitycznych, ich treść powinna
-przedstawiać kolejne etapy eksploracji i analizy danych. W przypadku
-prac technicznych, treść tych rozdziałów powinna opisywać stworzone
-narzędzia, a następnie pokazywać ich zastosowanie/a.
+rozdziałach (Rozdziały \textbf{?@sec-lit}, \textbf{?@sec-dane},
+\textbf{?@sec-metody}). W przypadku prac analitycznych, ich treść
+powinna przedstawiać kolejne etapy eksploracji i analizy danych. W
+przypadku prac technicznych, treść tych rozdziałów powinna opisywać
+stworzone narzędzia, a następnie pokazywać ich zastosowanie/a.
 
 W przypadku prac technicznych warto pokazywać fragmenty napisanego
 rozwiązania lub jego wywołania używając bloków kodu.
@@ -455,16 +453,35 @@ Autor tej pracy rządzi!
 
 \bookmarksetup{startatroot}
 
-\hypertarget{podsumowanie}{%
-\chapter{Podsumowanie}\label{podsumowanie}}
+\hypertarget{conclusion}{%
+\chapter{Conclusion}\label{conclusion}}
+
+\begin{itemize}
+\item
+  land cover map of Poznań metropolitan area was created, impact of
+  thermal band on classification results was measured
+\item
+  despite thermal band having low overall impact on model results, there
+  is a strong spatial auto-correlation for its importance
+\item
+  land surface temperature was especially significant for land cover
+  classification of urban areas, it helped in identify built-up areas
+\item
+  it may mean that thermal band will become increasingly important in
+  studies on urban sprawl and suburbanisation
+\item
+  better land cover maps will help in better management of metropolitan
+  areas growth and quantifying impact of urbanisation on natural
+  environment more precisely
+\end{itemize}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 Podsumowanie pracy jest w pewnym sensie znacznie rozbudowanym
 abstraktem. Należy wyliczyć i opisać osiągnięcia uzyskane w pracy
 dyplomowej. Tutaj jednak (w przeciwieństwie do np. rozdziału
-\ref{sec-wprowadzenie}) należy przechodzić od szczegółu do ogółu - co
-zostało stworzone/określone, jak zostało to zrobione, jakie ma to
+\textbf{?@sec-wprowadzenie}) należy przechodzić od szczegółu do ogółu -
+co zostało stworzone/określone, jak zostało to zrobione, jakie ma to
 konsekwencje, itd.
 
 Ten rozdział powinien też zawierać opis kwestii, których nie udało się
