@@ -1,6 +1,9 @@
 # Source data {#sec-data}
 
-Satellite imagery used in our model was downloaded from Landsat ARD dataset, provided by GLAD laboratory at the University of Maryland [@potapov2020]. Training points were obtained from LUCAS dataset created by Eurostat [@dandrimont2020]. This data was pre-processed and then used to train the model and validate its performance. Middle-West Poland was chosen as a training area for which satellite imagery and land cover data were downloaded (Figure [-@fig-rycina1]).
+Satellite imagery used in our model was downloaded from Landsat ARD dataset, provided by GLAD laboratory at the University of Maryland [@potapov2020].
+Training points were obtained from LUCAS dataset created by Eurostat [@dandrimont2020].
+This data was pre-processed and then used to train the model and validate its performance.
+Middle-West Poland was chosen as a training area for which satellite imagery and land cover data were downloaded (Figure [-@fig-rycina1]).
 
 ```{r}
 #| label: fig-rycina1
@@ -13,11 +16,25 @@ knitr::include_graphics("figures/study_area.png")
 
 ## Satellite imagery {#sec-sat}
 
-Satellite imagery from GLAD Landsat ARD is available in 16-day interval composites. Processing of original Landsat images included conversion of spectral bands to top-of-atmosphere (TOA) reflectance, conversion of thermal band to brightness temperature (BT) in Kelvins, scaling the values of all bands as well as adding quality flag for every pixel [@potapov2020]. The ARD dataset is divided into 1 x 1 geographic degrees tiles.
+Satellite imagery from GLAD Landsat ARD is available in 16-day interval composites and is divided into 1 x 1 geographic degrees tiles.
+Processing of original Landsat images performed by GLAD team included conversion of spectral bands to top-of-atmosphere (TOA) reflectance, conversion of thermal band to brightness temperature (BT) in Kelvins, scaling the values of all bands as well as adding quality flag for every pixel [@potapov2020].
 
 Satellite images for eight 1 x 1 degree tiles (Figure [-@fig-rycina1]) were downloaded using GLAD Tools v1.1 and PERL programming language.
+These images come from 10th interval of the year 2018, so downloaded mosaics consist of images created between 24.05.2018 and 8.06.2018.
 All downloaded images were merged and reprojected from WGS84 coordinate reference system (EPSG:4326) to UTM zone 33N (EPSG:32633).
 Every band was also resampled to 30 meters resolution.
+In addition, four spectral indices were derived: Normalized Difference Vegetation Index (NDVI), Modified Normalized Difference Water Index (MNDWI), Normalized Difference Moisture Index (NDMI) and Modified Bare soil Index (MBI).
+Formulas used to calculate these indices can be found in below table (Table [-@tbl-tabela1]).
+
+```{r tabela1, echo=FALSE}
+#| label: tbl-tabela1
+#| echo: false
+#| tbl-cap: "Formulas of spectral indices dervied from Landsat data"
+df = data.frame(a = 1:5, b = letters[1:5])
+knitr::kable(df, booktabs = TRUE) |> 
+  kableExtra::column_spec(1, width = "2cm") |>  
+  kableExtra::column_spec(2, width = "4cm")
+```
 
 -   preprocessing of satellite imagery performed by GLAD team from University of Maryland
 
@@ -33,17 +50,39 @@ Every band was also resampled to 30 meters resolution.
 
 -   structure of LUCAS points dataset, description of relevant columns in addition to the land cover classification
 
--   processing of data in order to choose reliable training points; reclassification to chosen set of land cover categories
+-   processing of data in order to choose reliable training points; reclassification to chosen set of land cover categories:
+
+    -   excluding railways, runways, roads and temporary grasslands from LUCAS Micro Data
+
+    -   reclassifying LUCAS Micro Data to seven main classes
+
+    -   filtering of training points based on auxillary information (% of impervious surface or according land cover type)
+
+    -   adding LUCAS Grid data to three less frequent classes (with smaller weight)
+
+    -   choose only points where quality flag of Landsat ARD image was "clear sky"
+
+    -   choose only these points from water category where NDWI was above 0
+
+-   example of training points spatial distribution
+
+-   table with land cover categories
 
 ------------------------------------------------------------------------
 
-Celem tego rozdziału jest przedstawienie użytych w pracy danych. Należy wyjaśnić jakie dane zostały użyte, jakiego są one rodzaju, dla jakiego okresu zostały pobrane/stworzone, co one zawierają, etc.
+Celem tego rozdziału jest przedstawienie użytych w pracy danych.
+Należy wyjaśnić jakie dane zostały użyte, jakiego są one rodzaju, dla jakiego okresu zostały pobrane/stworzone, co one zawierają, etc.
 
 W tym rozdziale warto dodać ryciny i tabele przedstawiające użyte dane.
 
-Zwróć uwagę, że poniższe bloki kodu mają parametr `#| echo: false`; oznacza to, że będą one niewidoczne w wynikowym pliku PDF. Każdy z bloków kodu musi mieć unikalną nazwę; w przypadku rycin powinna się ona rozpoczynać od prefiksu `fig-`. Dodanie podpisu pod rycinę odbywa się używając parametru `#| fig-cap:`. Następnie do tej ryciny można się odnieść używając operatora `[-@]`.
+Zwróć uwagę, że poniższe bloki kodu mają parametr `#| echo: false`; oznacza to, że będą one niewidoczne w wynikowym pliku PDF.
+Każdy z bloków kodu musi mieć unikalną nazwę; w przypadku rycin powinna się ona rozpoczynać od prefiksu `fig-`.
+Dodanie podpisu pod rycinę odbywa się używając parametru `#| fig-cap:`.
+Następnie do tej ryciny można się odnieść używając operatora `[-@]`.
 
-Podobnie wygląda odnoszenie się do plików graficznych. Tutaj wewnątrz bloku kodu należy użyć funkcji `knitr::include_graphics()` (Rycina [-@fig-rycina2]). Dodatkowo możliwa jest zmiana rozmiary obrazka używając parametrów takich jak `#| out-width:` i `#| out-height:`.
+Podobnie wygląda odnoszenie się do plików graficznych.
+Tutaj wewnątrz bloku kodu należy użyć funkcji `knitr::include_graphics()` (Rycina [-@fig-rycina2]).
+Dodatkowo możliwa jest zmiana rozmiary obrazka używając parametrów takich jak `#| out-width:` i `#| out-height:`.
 
 ```{r}
 #| label: fig-rycina2
@@ -54,10 +93,12 @@ Podobnie wygląda odnoszenie się do plików graficznych. Tutaj wewnątrz bloku 
 knitr::include_graphics("figures/rcookies.png")
 ```
 
-Odnoszenie się do tabel odbywa się poprzez operator `[-@]` wraz z prefiksem `tbl-`. Natomiast tworzenie podpisu nad tabelą ma miejsce używając parametru `#| tbl-cap:`. Dodatkowo możliwe jest użycie pakietu **kableExtra** [@R-kableExtra] do określenia szerokości kolumn (Tabela [-@tbl-tabela1]).
+Odnoszenie się do tabel odbywa się poprzez operator `[-@]` wraz z prefiksem `tbl-`.
+Natomiast tworzenie podpisu nad tabelą ma miejsce używając parametru `#| tbl-cap:`.
+Dodatkowo możliwe jest użycie pakietu **kableExtra** [@R-kableExtra] do określenia szerokości kolumn (Tabela [-@tbl-tabela1]).
 
-```{r tabela1, echo=FALSE}
-#| label: tbl-tabela1
+```{r tabela2, echo=FALSE}
+#| label: tbl-tabela2
 #| echo: false
 #| tbl-cap: "Moja pierwsza tabela"
 df = data.frame(a = 1:5, b = letters[1:5])

@@ -166,18 +166,43 @@ satellite imagery and land cover data were downloaded (Figure
 \section{Satellite imagery}\label{sec-sat}}
 
 Satellite imagery from GLAD Landsat ARD is available in 16-day interval
-composites. Processing of original Landsat images included conversion of
-spectral bands to top-of-atmosphere (TOA) reflectance, conversion of
-thermal band to brightness temperature (BT) in Kelvins, scaling the
-values of all bands as well as adding quality flag for every pixel
-\autocite{potapov2020}. The ARD dataset is divided into 1 x 1 geographic
-degrees tiles.
+composites and is divided into 1 x 1 geographic degrees tiles.
+Processing of original Landsat images performed by GLAD team included
+conversion of spectral bands to top-of-atmosphere (TOA) reflectance,
+conversion of thermal band to brightness temperature (BT) in Kelvins,
+scaling the values of all bands as well as adding quality flag for every
+pixel \autocite{potapov2020}.
 
 Satellite images for eight 1 x 1 degree tiles (Figure \ref{fig-rycina1})
-were downloaded using GLAD Tools v1.1 and PERL programming language. All
+were downloaded using GLAD Tools v1.1 and PERL programming language.
+These images come from 10th interval of the year 2018, so downloaded
+mosaics consist of images created between 24.05.2018 and 8.06.2018. All
 downloaded images were merged and reprojected from WGS84 coordinate
 reference system (EPSG:4326) to UTM zone 33N (EPSG:32633). Every band
-was also resampled to 30 meters resolution.
+was also resampled to 30 meters resolution. In addition, four spectral
+indices were derived: Normalized Difference Vegetation Index (NDVI),
+Modified Normalized Difference Water Index (MNDWI), Normalized
+Difference Moisture Index (NDMI) and Modified Bare soil Index (MBI).
+Formulas used to calculate these indices can be found in below table
+(Table \ref{tbl-tabela1}).
+
+\hypertarget{tbl-tabela1}{}
+\begin{table}
+\caption{\label{tbl-tabela1}Formulas of spectral indices dervied from Landsat data }\tabularnewline
+
+\centering
+\begin{tabular}{>{\raggedleft\arraybackslash}p{2cm}>{\raggedright\arraybackslash}p{4cm}}
+\toprule
+a & b\\
+\midrule
+1 & a\\
+2 & b\\
+3 & c\\
+4 & d\\
+5 & e\\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \begin{itemize}
 \item
@@ -202,7 +227,30 @@ was also resampled to 30 meters resolution.
   addition to the land cover classification
 \item
   processing of data in order to choose reliable training points;
-  reclassification to chosen set of land cover categories
+  reclassification to chosen set of land cover categories:
+
+  \begin{itemize}
+  \item
+    excluding railways, runways, roads and temporary grasslands from
+    LUCAS Micro Data
+  \item
+    reclassifying LUCAS Micro Data to seven main classes
+  \item
+    filtering of training points based on auxillary information (\% of
+    impervious surface or according land cover type)
+  \item
+    adding LUCAS Grid data to three less frequent classes (with smaller
+    weight)
+  \item
+    choose only points where quality flag of Landsat ARD image was
+    ``clear sky''
+  \item
+    choose only these points from water category where NDWI was above 0
+  \end{itemize}
+\item
+  example of training points spatial distribution
+\item
+  table with land cover categories
 \end{itemize}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
@@ -243,9 +291,9 @@ ma miejsce używając parametru \texttt{\#\textbar{}\ tbl-cap:}. Dodatkowo
 możliwe jest użycie pakietu \textbf{kableExtra} \autocite{R-kableExtra}
 do określenia szerokości kolumn (Tabela \ref{tbl-tabela1}).
 
-\hypertarget{tbl-tabela1}{}
+\hypertarget{tbl-tabela2}{}
 \begin{table}
-\caption{\label{tbl-tabela1}Moja pierwsza tabela }\tabularnewline
+\caption{\label{tbl-tabela2}Moja pierwsza tabela }\tabularnewline
 
 \centering
 \begin{tabular}{>{\raggedleft\arraybackslash}p{2cm}>{\raggedright\arraybackslash}p{4cm}}
