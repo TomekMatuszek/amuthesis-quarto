@@ -1,4 +1,4 @@
-# Streszczenie {.unnumbered}
+# Abstract {.unnumbered}
 
 **Abstrakt**
 

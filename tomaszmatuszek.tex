@@ -12,8 +12,8 @@
 \documentclass{amuthesis}
 % \usepackage[polish]{babel}
 \usepackage{polski}
-\renewcommand{\figurename}{Rycina} % Redefine default figure caption %
-\renewcommand{\tablename}{Tabela} % Redefine default table caption %
+\renewcommand{\figurename}{Figure} % Redefine default figure caption %
+\renewcommand{\tablename}{Table} % Redefine default table caption %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Add any LaTeX packages and other preamble here if required
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -50,9 +50,9 @@ supervised land cover classification results},
 
 \bookmarksetup{startatroot}
 
-\hypertarget{streszczenie}{%
-\chapter*{Streszczenie}\label{streszczenie}}
-\addcontentsline{toc}{chapter}{Streszczenie}
+\hypertarget{abstract}{%
+\chapter*{Abstract}\label{abstract}}
+\addcontentsline{toc}{chapter}{Abstract}
 
 \textbf{Abstrakt}
 
@@ -143,19 +143,41 @@ operatora \texttt{{[}-@sec{]}}.
 \hypertarget{sec-data}{%
 \chapter{Source data}\label{sec-data}}
 
-Two types of spatial data were used:
+Satellite imagery used in our model was downloaded from Landsat ARD
+dataset, provided by GLAD laboratory at the University of Maryland
+\autocite{potapov2020}. Training points were obtained from LUCAS dataset
+created by Eurostat \autocite{dandrimont2020}. This data was
+pre-processed and then used to train the model and validate its
+performance. Middle-West Poland was chosen as a training area for which
+satellite imagery and land cover data were downloaded (Figure
+\ref{fig-rycina1}).
 
-\begin{itemize}
-\item
-  satellite images from Landsat programme downloaded using GLAD ARD
-  software (raster data)
-\item
-  training points with information about land cover acquired from LUCAS
-  programme (vector data)
-\end{itemize}
+\begin{figure}[t]
+
+{\centering \includegraphics[width=1\textwidth,height=4.16667in]{./figures/study_area.png}
+
+}
+
+\caption{\label{fig-rycina1}Training area}
+
+\end{figure}
 
 \hypertarget{sec-sat}{%
 \section{Satellite imagery}\label{sec-sat}}
+
+Satellite imagery from GLAD Landsat ARD is available in 16-day interval
+composites. Processing of original Landsat images included conversion of
+spectral bands to top-of-atmosphere (TOA) reflectance, conversion of
+thermal band to brightness temperature (BT) in Kelvins, scaling the
+values of all bands as well as adding quality flag for every pixel
+\autocite{potapov2020}. The ARD dataset is divided into 1 x 1 geographic
+degrees tiles.
+
+Satellite images for eight 1 x 1 degree tiles (Figure \ref{fig-rycina1})
+were downloaded using GLAD Tools v1.1 and PERL programming language. All
+downloaded images were merged and reprojected from WGS84 coordinate
+reference system (EPSG:4326) to UTM zone 33N (EPSG:32633). Every band
+was also resampled to 30 meters resolution.
 
 \begin{itemize}
 \item

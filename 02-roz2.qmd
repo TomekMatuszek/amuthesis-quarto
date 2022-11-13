@@ -1,12 +1,23 @@
 # Source data {#sec-data}
 
-Two types of spatial data were used:
+Satellite imagery used in our model was downloaded from Landsat ARD dataset, provided by GLAD laboratory at the University of Maryland [@potapov2020]. Training points were obtained from LUCAS dataset created by Eurostat [@dandrimont2020]. This data was pre-processed and then used to train the model and validate its performance. Middle-West Poland was chosen as a training area for which satellite imagery and land cover data were downloaded (Figure [-@fig-rycina1]).
 
--   satellite images from Landsat programme downloaded using GLAD ARD software (raster data)
-
--   training points with information about land cover acquired from LUCAS programme (vector data)
+```{r}
+#| label: fig-rycina1
+#| echo: false
+#| fig-cap: "Training area"
+#| out-width: "100%"
+#| out-height: 400px
+knitr::include_graphics("figures/study_area.png")
+```
 
 ## Satellite imagery {#sec-sat}
+
+Satellite imagery from GLAD Landsat ARD is available in 16-day interval composites. Processing of original Landsat images included conversion of spectral bands to top-of-atmosphere (TOA) reflectance, conversion of thermal band to brightness temperature (BT) in Kelvins, scaling the values of all bands as well as adding quality flag for every pixel [@potapov2020]. The ARD dataset is divided into 1 x 1 geographic degrees tiles.
+
+Satellite images for eight 1 x 1 degree tiles (Figure [-@fig-rycina1]) were downloaded using GLAD Tools v1.1 and PERL programming language.
+All downloaded images were merged and reprojected from WGS84 coordinate reference system (EPSG:4326) to UTM zone 33N (EPSG:32633).
+Every band was also resampled to 30 meters resolution.
 
 -   preprocessing of satellite imagery performed by GLAD team from University of Maryland
 
