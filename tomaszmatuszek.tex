@@ -217,6 +217,80 @@ a & b\\
 \hypertarget{sec-landcover}{%
 \section{Land cover data}\label{sec-landcover}}
 
+Regarding land cover training set, data collected during LUCAS survey
+was chosen. It seems to be the most accurate and comprehensive dataset
+containing information about land use and land cover
+\autocite{pflugmacher2019} due to the fact, that every point was either
+photo-interpreted by human or assessed during \emph{in-situ} visit.
+
+Survey consists of two phases. First phase is based on grid of points
+with 2km spacing covering whole territory of the European Union (which
+is above 1 million points). Each point of the grid is visually
+interpreted using ortho-photos or satellite images, and classified into
+one of seven land-cover classes. These are: arable land, permanent
+crops, grassland, wooded areas/shrub land, bare land, artificial land
+and water. In the second phase a subsample of grid points is selected
+and then visited by Eurostat surveyors. They classify each point
+according to full LUCAS land cover and land use classification. The
+survey takes place in the spring and summer in order to observe chosen
+places in high vegetation season.
+
+Surveyor not only assign a land cover and land use classes to a point,
+but they also add auxillary information such as plant species present at
+the site, percentage of land coverage for chosen class, height of the
+trees and their maturity as well as information about water management
+and irrigation. If there are more than one land cover/land use types at
+the point, observer can also assign secondary class for every LUCAS
+point. TUTAJ BĘDZIE REFERENCJA DO LUCAS COPERNICUS REPORT GDY DOWIEM
+SIĘ, JAK GO CYTOWAĆ
+
+Majority of the training points used to train our classification model
+were points from the second phase of LUCAS survey, also called LUCAS
+Micro Data. We downloaded a total of 4153 points for our study area.
+Pre-processing step included omitting records with missing data,
+excluding linear artificial land cover classes and excluding points that
+were surveyed more than 500 meters from their theoretical location. In
+the next step, detailed land cover classes were aggregated into eight
+main groups of land cover types. Then, we filtered some of the classes
+according to the percentage of land coverage or percentage of impervious
+surface coverage.
+
+For the least frequent classes in the LUCAS Micro Data dataset - bare
+land, artificial land and water bodies - we also added points classified
+during the first phase of LUCAS survey. This step was necessary to
+ensure that every land cover class is represented by enough number of
+points. At the end of the pre-processing, we were left with 3778
+training points.
+
+\begin{figure}[t]
+
+{\centering \includegraphics[width=1\textwidth,height=4.16667in]{./figures/lucas_data.png}
+
+}
+
+\caption{\label{fig-rycina2}Distribution of land cover classes after
+pre-processing}
+
+\end{figure}
+
+Later in the analysis, after extracting values from Landsat ARD raster,
+LUCAS points were also filtered using quality flag provided. Only points
+with clear-sky quality flag were taken into account during the process
+of model training. We also excluded water bodies points in which NDWI
+was lower than 0. These two conditions excluded over 400 points in
+total.
+
+\begin{figure}[t]
+
+{\centering \includegraphics[width=1\textwidth,height=4.16667in]{./figures/lucas_distribution.png}
+
+}
+
+\caption{\label{fig-rycina3}Spatial distribution of LUCAS training
+points after pre-processing}
+
+\end{figure}
+
 \begin{itemize}
 \item
   what is LUCAS programme and how its datasets are created
@@ -271,43 +345,14 @@ odnieść używając operatora \texttt{{[}-@{]}}.
 
 Podobnie wygląda odnoszenie się do plików graficznych. Tutaj wewnątrz
 bloku kodu należy użyć funkcji \texttt{knitr::include\_graphics()}
-(Rycina \ref{fig-rycina2}). Dodatkowo możliwa jest zmiana rozmiary
-obrazka używając parametrów takich jak \texttt{\#\textbar{}\ out-width:}
-i \texttt{\#\textbar{}\ out-height:}.
-
-\begin{figure}[t]
-
-{\centering \includegraphics[width=1\textwidth,height=3.125in]{./figures/rcookies.png}
-
-}
-
-\caption{\label{fig-rycina2}Moja druga rycina}
-
-\end{figure}
-
-Odnoszenie się do tabel odbywa się poprzez operator \texttt{{[}-@{]}}
-wraz z prefiksem \texttt{tbl-}. Natomiast tworzenie podpisu nad tabelą
-ma miejsce używając parametru \texttt{\#\textbar{}\ tbl-cap:}. Dodatkowo
-możliwe jest użycie pakietu \textbf{kableExtra} \autocite{R-kableExtra}
-do określenia szerokości kolumn (Tabela \ref{tbl-tabela1}).
-
-\hypertarget{tbl-tabela2}{}
-\begin{table}
-\caption{\label{tbl-tabela2}Moja pierwsza tabela }\tabularnewline
-
-\centering
-\begin{tabular}{>{\raggedleft\arraybackslash}p{2cm}>{\raggedright\arraybackslash}p{4cm}}
-\toprule
-a & b\\
-\midrule
-1 & a\\
-2 & b\\
-3 & c\\
-4 & d\\
-5 & e\\
-\bottomrule
-\end{tabular}
-\end{table}
+(Rycina). Dodatkowo możliwa jest zmiana rozmiary obrazka używając
+parametrów takich jak \texttt{\#\textbar{}\ out-width:} i
+\texttt{\#\textbar{}\ out-height:}.Odnoszenie się do tabel odbywa się
+poprzez operator \texttt{{[}-@{]}} wraz z prefiksem \texttt{tbl-}.
+Natomiast tworzenie podpisu nad tabelą ma miejsce używając parametru
+\texttt{\#\textbar{}\ tbl-cap:}. Dodatkowo możliwe jest użycie pakietu
+\textbf{kableExtra} \autocite{R-kableExtra} do określenia szerokości
+kolumn (Tabela).
 
 \bookmarksetup{startatroot}
 
