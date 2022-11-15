@@ -36,20 +36,14 @@ knitr::kable(df, booktabs = TRUE) |>
   kableExtra::column_spec(2, width = "4cm")
 ```
 
--   preprocessing of satellite imagery performed by GLAD team from University of Maryland
-
--   process of downloading data using GLAD ARD software
-
--   GLAD ARD dataset structure
-
 ## Land cover data {#sec-landcover}
 
-Regarding land cover training set, data collected during LUCAS survey was chosen.
-It seems to be the most accurate and comprehensive dataset containing information about land use and land cover [@pflugmacher2019] due to the fact, that every point was either photo-interpreted by human or assessed during *in-situ* visit.
+Data collected during LUCAS survey performed by Eurostat was chosen as land cover training set.
+It seems to be the most accurate and comprehensive dataset containing information about land use and land cover [@pflugmacher2019] due to the fact, that every point was either manually photo-interpreted or assessed during *in-situ* visit.
 
-Survey consists of two phases.
-First phase is based on grid of points with 2km spacing covering whole territory of the European Union (which is above 1 million points).
-Each point of the grid is visually interpreted using ortho-photos or satellite images, and classified into one of seven land-cover classes.
+LUCAS survey consists of two phases.
+First phase is based on grid of points with 2km spacing covering whole territory of the European Union (which equals to more than 1 million points).
+Each point of the grid is visually interpreted using ortho-photos or satellite images, and classified into one of seven major land-cover classes.
 These are: arable land, permanent crops, grassland, wooded areas/shrub land, bare land, artificial land and water.
 In the second phase a subsample of grid points is selected and then visited by Eurostat surveyors.
 They classify each point according to full LUCAS land cover and land use classification.
@@ -61,12 +55,23 @@ TUTAJ BĘDZIE REFERENCJA DO LUCAS COPERNICUS REPORT GDY DOWIEM SIĘ, JAK GO CYTO
 
 Majority of the training points used to train our classification model were points from the second phase of LUCAS survey, also called LUCAS Micro Data.
 We downloaded a total of 4153 points for our study area.
-Pre-processing step included omitting records with missing data, excluding linear artificial land cover classes and excluding points that were surveyed more than 500 meters from their theoretical location.
+Pre-processing step included omitting records with missing data, excluding linear artificial land cover classes (e.g. roads or railways) and excluding points that were surveyed more than 500 meters from their theoretical location.
 In the next step, detailed land cover classes were aggregated into eight main groups of land cover types.
-Then, we filtered some of the classes according to the percentage of land coverage or percentage of impervious surface coverage.
+Then, we filtered some of the classes according to the percentage of land coverage or percentage of impervious surface coverage (Table [-@tbl-tabela2]).
 
-For the least frequent classes in the LUCAS Micro Data dataset - bare land, artificial land and water bodies - we also added points classified during the first phase of LUCAS survey.
+```{r tabela2, echo=FALSE}
+#| label: tbl-tabela2
+#| echo: false
+#| tbl-cap: "Filters applied to certain land cover groups"
+df = data.frame(a = 1:5, b = letters[1:5])
+knitr::kable(df, booktabs = TRUE) |> 
+  kableExtra::column_spec(1, width = "2cm") |>  
+  kableExtra::column_spec(2, width = "4cm")
+```
+
+For the least frequent classes in the LUCAS Micro Data dataset - bare land, artificial land and water bodies - we also added points classified during the first phase of LUCAS survey (Figure [-@fig-rycina2]).
 This step was necessary to ensure that every land cover class is represented by enough number of points.
+It wasn't possible only for wetlands type, because of lack of such category in the first phase classification.
 At the end of the pre-processing, we were left with 3778 training points.
 
 ```{r}
@@ -92,44 +97,3 @@ These two conditions excluded over 400 points in total.
 knitr::include_graphics("figures/lucas_distribution.png")
 ```
 
--   what is LUCAS programme and how its datasets are created
-
--   LUCAS Grid and LUCAS Micro Data
-
--   structure of LUCAS points dataset, description of relevant columns in addition to the land cover classification
-
--   processing of data in order to choose reliable training points; reclassification to chosen set of land cover categories:
-
-    -   excluding railways, runways, roads and temporary grasslands from LUCAS Micro Data
-
-    -   reclassifying LUCAS Micro Data to seven main classes
-
-    -   filtering of training points based on auxillary information (% of impervious surface or according land cover type)
-
-    -   adding LUCAS Grid data to three less frequent classes (with smaller weight)
-
-    -   choose only points where quality flag of Landsat ARD image was "clear sky"
-
-    -   choose only these points from water category where NDWI was above 0
-
--   example of training points spatial distribution
-
--   table with land cover categories
-
-------------------------------------------------------------------------
-
-Celem tego rozdziału jest przedstawienie użytych w pracy danych.
-Należy wyjaśnić jakie dane zostały użyte, jakiego są one rodzaju, dla jakiego okresu zostały pobrane/stworzone, co one zawierają, etc.
-
-W tym rozdziale warto dodać ryciny i tabele przedstawiające użyte dane.
-
-Zwróć uwagę, że poniższe bloki kodu mają parametr `#| echo: false`; oznacza to, że będą one niewidoczne w wynikowym pliku PDF.
-Każdy z bloków kodu musi mieć unikalną nazwę; w przypadku rycin powinna się ona rozpoczynać od prefiksu `fig-`.
-Dodanie podpisu pod rycinę odbywa się używając parametru `#| fig-cap:`.
-Następnie do tej ryciny można się odnieść używając operatora `[-@]`.
-
-Podobnie wygląda odnoszenie się do plików graficznych.
-Tutaj wewnątrz bloku kodu należy użyć funkcji `knitr::include_graphics()` (Rycina).
-Dodatkowo możliwa jest zmiana rozmiary obrazka używając parametrów takich jak `#| out-width:` i `#| out-height:`.Odnoszenie się do tabel odbywa się poprzez operator `[-@]` wraz z prefiksem `tbl-`.
-Natomiast tworzenie podpisu nad tabelą ma miejsce używając parametru `#| tbl-cap:`.
-Dodatkowo możliwe jest użycie pakietu **kableExtra** [@R-kableExtra] do określenia szerokości kolumn (Tabela).
