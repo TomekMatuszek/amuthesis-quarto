@@ -71,7 +71,7 @@ knitr::kable(df, booktabs = TRUE) |>
 
 For the least frequent classes in the LUCAS Micro Data dataset - bare land, artificial land and water bodies - we also added points classified during the first phase of LUCAS survey (Figure [-@fig-rycina2]).
 This step was necessary to ensure that every land cover class is represented by enough number of points.
-It wasn't possible only for wetlands type, because of lack of such category in the first phase classification.
+It wasn't possible only for wetlands class, because of lack of such category in the first phase classification.
 At the end of the pre-processing, we were left with 3778 training points.
 
 ```{r}
@@ -88,6 +88,9 @@ Only points with clear-sky quality flag were taken into account during the proce
 We also excluded water bodies points in which NDWI was lower than 0.
 These two conditions excluded over 400 points in total.
 
+Training set obtained after pre-processing can be seen on Figure [-@fig-rycina3].
+Spatial distribution of data points was fairly even and due to the structure of LUCAS data set, every point was at least 2 kilometers from another one.
+
 ```{r}
 #| label: fig-rycina3
 #| echo: false
@@ -96,4 +99,3 @@ These two conditions excluded over 400 points in total.
 #| out-height: 400px
 knitr::include_graphics("figures/lucas_distribution.png")
 ```
-
