@@ -204,8 +204,8 @@
     \vspace*{-2cm}
     \centerline{\includegraphics[width=19cm]{figures/uam-logo}}
     \begin{center}
-    \textbf{Kierunek studiów: \major{}}\\
-    \textbf{Nr albumu: \albumid{}}
+    \textbf{Field of studies: \major{}}\\
+    \textbf{Album ID: \albumid{}}
     \end{center}
     \vfill
     \begin{center}
@@ -217,10 +217,10 @@
     \end{center}
     \vfill
     \begin{flushright}
-        \degreetitle{} napisana\\
-        w Instytucie Geoekologii i Geoinformacji\\
-        pod kierunkiem\\
-        dr. hab. Jakuba Nowosada
+        \degreetitle{} written\\
+        in the Institute of Geoecology and Geoinformation\\
+        under the supervision of\\
+        dr. hab. Jakub Nowosad
     \end{flushright}
     \vfill
     \begin{center}

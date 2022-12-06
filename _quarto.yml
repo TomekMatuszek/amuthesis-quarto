@@ -4,9 +4,9 @@ project:
 
 title: "Measuring impact of addition of Landsat 8 thermal band on supervised land cover classification results"
 titleeng: "Ocena wpływu zastosowania kanału termalnego Landsat na wyniki nadzorowanej klasyfikacji pokrycia terenu"
-degreetype: "Praca inżynierska"
+degreetype: "Engineer's Thesis"
 author: "Tomasz Matuszek"
-major: "Geoinformacja"
+major: "Geoinformation"
 albumid: "455828"
 year: "2022"
 
@@ -15,8 +15,6 @@ book:
   number-sections: true
   chapters:
     - index.qmd
-    #- 00-oswiadczenie.qmd
-    #- 00-abstrakt.qmd
     - 01-roz1.qmd
     - 02-roz2.qmd
     - 03-roz3.qmd
