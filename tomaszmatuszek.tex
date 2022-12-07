@@ -148,8 +148,8 @@ dataset, provided by GLAD laboratory at the University of Maryland
 \autocite{potapov2020}. Training points were obtained from LUCAS dataset
 created by Eurostat \autocite{dandrimont2020}. This data was
 pre-processed and then used to train the model and validate its
-performance. Middle-West Poland was chosen as a training area for which
-satellite imagery and land cover data were downloaded (Figure
+performance. Central-Western Poland was chosen as a training area for
+which satellite imagery and land cover data were downloaded (Figure
 \ref{fig-rycina1}).
 
 \begin{figure}[t]
@@ -168,8 +168,8 @@ satellite imagery and land cover data were downloaded (Figure
 Satellite imagery from GLAD Landsat ARD is available in 16-day interval
 composites and is divided into 1 x 1 geographic degrees tiles.
 Processing of original Landsat images performed by GLAD team included
-conversion of spectral bands to top-of-atmosphere (TOA) reflectance,
-conversion of thermal band to brightness temperature (BT) in Kelvins,
+converting spectral bands to top-of-atmosphere (TOA) reflectance,
+converting thermal band to brightness temperature (BT) in Kelvins,
 scaling the values of all bands as well as adding quality flag for every
 pixel \autocite{potapov2020}.
 
@@ -236,7 +236,7 @@ point.
 
 Majority of the training points used to train our classification model
 were points from the second phase of LUCAS survey, also called LUCAS
-Micro Data. We downloaded a total of 4153 points for our study area.
+Primary Data. We downloaded a total of 4153 points for our study area.
 Pre-processing step included omitting records with missing data,
 excluding linear artificial land cover classes (e.g.~roads or railways)
 and excluding points that were surveyed more than 500 meters from their
@@ -263,7 +263,7 @@ a & b\\
 \end{tabular}
 \end{table}
 
-For the least frequent classes in the LUCAS Micro Data dataset - bare
+For the least frequent classes in the LUCAS Primary Data dataset - bare
 land, artificial land and water bodies - we also added points classified
 during the first phase of LUCAS survey (Figure \ref{fig-rycina2}). This
 step was necessary to ensure that every land cover class is represented
