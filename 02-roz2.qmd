@@ -1,9 +1,9 @@
 # Source data {#sec-data}
 
-Satellite imagery used in our model was downloaded from Landsat ARD dataset, provided by GLAD laboratory at the University of Maryland [@potapov2020].
+Landsat ARD dataset, provided by GLAD laboratory at the Univeristy of Maryland, was used in this study.
+Central-Western Poland was chosen as a training area for which satellite imagery and land cover data were downloaded (Figure [-@fig-rycina1]).
 Training points were obtained from LUCAS dataset created by Eurostat [@dandrimont2020].
 This data was pre-processed and then used to train the model and validate its performance.
-Central-Western Poland was chosen as a training area for which satellite imagery and land cover data were downloaded (Figure [-@fig-rycina1]).
 
 ```{r}
 #| label: fig-rycina1
@@ -16,15 +16,16 @@ knitr::include_graphics("figures/study_area.png")
 
 ## Satellite imagery {#sec-sat}
 
-Satellite imagery from GLAD Landsat ARD is available in 16-day interval composites and is divided into 1 x 1 geographic degrees tiles.
+Satellite imagery from GLAD Landsat ARD is available in 16-day interval composites and is divided into 1° x 1° tiles.
 Processing of original Landsat images performed by GLAD team included converting spectral bands to top-of-atmosphere (TOA) reflectance, converting thermal band to brightness temperature (BT) in Kelvins, scaling the values of all bands as well as adding quality flag for every pixel [@potapov2020].
 
-Satellite images for eight 1 x 1 degree tiles (Figure [-@fig-rycina1]) were downloaded using GLAD Tools v1.1 and PERL programming language.
-These images come from 10th interval of the year 2018, so downloaded mosaics consist of images created between 24.05.2018 and 8.06.2018.
+Satellite images for eight 1° x 1° tiles, covering the study area (Figure [-@fig-rycina1]), were downloaded using GLAD Tools v1.1 and PERL programming language.
+These images are from 10th interval of the year 2018, so downloaded mosaics consist of images created between 24.05.2018 and 8.06.2018.
 All downloaded images were merged and reprojected from WGS84 coordinate reference system (EPSG:4326) to UTM zone 33N (EPSG:32633).
-Every band was also resampled to 30 meters resolution.
+Every band was also resampled from 0.00025° resolution (corresponding to 27.83 m on equator) to 30 meters resolution.
+
 In addition, four spectral indices were derived: Normalized Difference Vegetation Index (NDVI), Modified Normalized Difference Water Index (MNDWI), Normalized Difference Moisture Index (NDMI) and Modified Bare soil Index (MBI).
-Formulas used to calculate these indices can be found in below table (Table [-@tbl-tabela1]).
+Formulas used to calculate these indices can be found in Table [-@tbl-tabela1].
 
 ```{r tabela1, echo=FALSE}
 #| label: tbl-tabela1
@@ -39,23 +40,24 @@ knitr::kable(df, booktabs = TRUE) |>
 ## Land cover data {#sec-landcover}
 
 Data collected during LUCAS survey performed by Eurostat was chosen as land cover training set.
-It seems to be the most accurate and comprehensive dataset containing information about land use and land cover [@pflugmacher2019] due to the fact, that every point was either manually photo-interpreted or assessed during *in-situ* visit.
+At the moment of writing, it is the most accurate and comprehensive dataset containing information about land use and land cover [@pflugmacher2019] due to the fact, that every point was either manually photo-interpreted or assessed during *in-situ* visit.
 
 LUCAS survey consists of two phases.
 First phase is based on grid of points with 2km spacing covering whole territory of the European Union (which equals to more than 1 million points).
 Each point of the grid is visually interpreted using ortho-photos or satellite images, and classified into one of seven major land-cover classes.
-These are: arable land, permanent crops, grassland, wooded areas/shrub land, bare land, artificial land and water.
-In the second phase a subsample of grid points is selected and then visited by Eurostat surveyors.
+These classes are: arable land, permanent crops, grassland, wooded areas/shrub land, bare land, artificial land and water.
+In the second phase, a subsample of grid points is selected and then visited by Eurostat surveyors.
 They classify each point according to full LUCAS land cover and land use classification.
-The survey takes place in the spring and summer in order to observe chosen places in high vegetation season.
+The survey takes place in the spring and summer in order to observe chosen places in high vegetation season [@dandrimont2020].
 
-Surveyor not only assign a land cover and land use classes to a point, but they also add auxillary information such as plant species present at the site, percentage of land coverage for chosen class, height of the trees and their maturity as well as information about water management and irrigation.
-If there are more than one land cover/land use types at the point, observer can also assign secondary class for every LUCAS point.
+Surveyor not only assign land cover and land use classes to points, but they also add auxillary information such as plant species present at the site, percentage of land coverage for a chosen class, height of the trees and their maturity, as well as information about water management and irrigation.
+If there are more than one land cover/land use types at the point, observer can also assign a secondary class for every LUCAS point.
 
-Majority of the training points used to train our classification model were points from the second phase of LUCAS survey, also called LUCAS Primary Data.
-We downloaded a total of 4153 points for our study area.
-Pre-processing step included omitting records with missing data, excluding linear artificial land cover classes (e.g. roads or railways) and excluding points that were surveyed more than 500 meters from their theoretical location.
+Majority of the training points used for the classification model were points from the second phase of LUCAS survey, also called LUCAS Primary Data.
+We downloaded a total of 4,153 points for the study area.
+Pre-processing step included omitting records with missing data, excluding artificial linear land cover classes (e.g. roads or railways) and excluding points that were surveyed more than 500 meters from their theoretical location.
 In the next step, detailed land cover classes were aggregated into eight main groups of land cover types.
+Two of them - grassland and shrubland were additionally aggregated into one land cover class.
 Then, we filtered some of the classes according to the percentage of land coverage or percentage of impervious surface coverage (Table [-@tbl-tabela2]).
 
 ```{r tabela2, echo=FALSE}
@@ -70,8 +72,8 @@ knitr::kable(df, booktabs = TRUE) |>
 
 For the least frequent classes in the LUCAS Primary Data dataset - bare land, artificial land and water bodies - we also added points classified during the first phase of LUCAS survey (Figure [-@fig-rycina2]).
 This step was necessary to ensure that every land cover class is represented by enough number of points.
-It wasn't possible only for wetlands class, because of lack of such category in the first phase classification.
-At the end of the pre-processing, we were left with 3778 training points [@oliverbuck2015].
+It was not possible only for wetlands class, because of lack of such category in the first phase classification.
+At the end of the pre-processing, we were left with 3,778 training points [@oliverbuck2015].
 
 ```{r}
 #| label: fig-rycina2
@@ -82,13 +84,13 @@ At the end of the pre-processing, we were left with 3778 training points [@olive
 knitr::include_graphics("figures/lucas_data.png")
 ```
 
-Later in the analysis, after extracting values from Landsat ARD raster, LUCAS points were also filtered using quality flag provided.
+After extracting values from Landsat ARD raster, LUCAS points were also filtered using quality flag provided.
 Only points with clear-sky quality flag were taken into account during the process of model training.
 We also excluded water bodies points in which NDWI was lower than 0.
 These two conditions excluded over 400 points in total.
 
-Training set obtained after pre-processing can be seen on Figure [-@fig-rycina3].
-Spatial distribution of data points was fairly even and due to the structure of LUCAS data set, every point was at least 2 kilometers from another one.
+Training set obtained after pre-processing can be seen in Figure [-@fig-rycina3].
+Spatial distribution of data points was fairly even and due to the structure of LUCAS data set, every point was located at least 2 kilometers from another one.
 
 ```{r}
 #| label: fig-rycina3
