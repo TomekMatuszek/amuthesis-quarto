@@ -31,10 +31,19 @@ Formulas used to calculate these indices can be found in Table [-@tbl-tabela1].
 #| label: tbl-tabela1
 #| echo: false
 #| tbl-cap: "Formulas of spectral indices dervied from Landsat data"
-df = data.frame(a = 1:5, b = letters[1:5])
-knitr::kable(df, booktabs = TRUE) |> 
-  kableExtra::column_spec(1, width = "2cm") |>  
-  kableExtra::column_spec(2, width = "4cm")
+df = data.frame(
+  a = c("Blue", "Green", "Red", "Near Infrared", "Short-wave Infrared 1", "Short-wave Infrared 2", "Thermal", "Normalized Difference Vegetation Index", "Modified Normalized Difference Water Index", "Normalized Difference Moisture Index", "Modified Bare Surface Index"),
+  b = c("B2", "B3", "B4", "B5 (NIR)", "B6 (SWIR1)", "B7 (SWIR2)", "B10 (TIRS1)", "NDVI", "MNDWI", "NDMI", "MBI"),
+  c = c(rep("-", 7), "(B5 -B4) / (B4 + B5)", "(B3 - B6) / (B3 + B6)", "(B5 - B6) / (B5 + B6)", "(B6 - B7 - B5) / (B6 + B7 + B5) + 0.5")
+)
+colnames(df) = c("band/index", "short name", "formula")
+knitr::kable(df, booktabs = TRUE) |>
+  kableExtra::column_spec(1, width = "4cm") |>
+  kableExtra::row_spec(0, bold = TRUE) |>
+  kableExtra::kable_classic(full_width = FALSE) |>
+  kableExtra::row_spec(1:nrow(df), extra_css = "border-bottom: 1px solid grey;") #|>
+  # kableExtra::column_spec(1:2, border_left = TRUE) |>
+  # kableExtra::column_spec(3, border_left = TRUE, border_right = TRUE)
 ```
 
 ## Land cover data {#sec-landcover}
