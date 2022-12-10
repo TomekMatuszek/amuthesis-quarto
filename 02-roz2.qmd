@@ -89,7 +89,7 @@ At the end of the pre-processing, we were left with 3,778 training points [@oliv
 #| echo: false
 #| fig-cap: "Distribution of land cover classes after pre-processing"
 #| out-width: "100%"
-#| out-height: 400px
+#| out-height: 350px
 knitr::include_graphics("figures/lucas_data.png")
 ```
 
