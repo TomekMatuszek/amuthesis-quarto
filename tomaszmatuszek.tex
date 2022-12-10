@@ -22,21 +22,21 @@
 \usepackage{bookmark} % Adds indent in the first paragraph %
 
 \author{Tomasz Matuszek}
-\title{Measuring impact of addition of Landsat 8 thermal band on
-supervised land cover classification results}
+\title{Measuring impact of Landsat 8 thermal band on supervised land
+cover classification results}
 \def\titleeng{Ocena wpływu zastosowania kanału termalnego Landsat na
 wyniki nadzorowanej klasyfikacji pokrycia terenu}
 \def\degreetitle{Engineer's Thesis}
 \def\major{Geoinformation}
 \def\albumid{455828}
-\def\thesisyear{2022}
+\def\thesisyear{2023}
 % Add subject and keywords below
 \hypersetup{
      %pdfsubject={The Subject},
      %pdfkeywords={Some Keywords},
      pdfauthor={Tomasz Matuszek},
-     pdftitle={Measuring impact of addition of Landsat 8 thermal band on
-supervised land cover classification results},
+     pdftitle={Measuring impact of Landsat 8 thermal band on supervised
+land cover classification results},
      pdfproducer={quarto with LaTeX}
 }
 
@@ -143,14 +143,13 @@ operatora \texttt{{[}-@sec{]}}.
 \hypertarget{sec-data}{%
 \chapter{Source data}\label{sec-data}}
 
-Satellite imagery used in our model was downloaded from Landsat ARD
-dataset, provided by GLAD laboratory at the University of Maryland
-\autocite{potapov2020}. Training points were obtained from LUCAS dataset
-created by Eurostat \autocite{dandrimont2020}. This data was
-pre-processed and then used to train the model and validate its
-performance. Central-Western Poland was chosen as a training area for
-which satellite imagery and land cover data were downloaded (Figure
-\ref{fig-rycina1}).
+Landsat ARD dataset, provided by GLAD laboratory at the Univeristy of
+Maryland, was used in this study. Central-Western Poland was chosen as a
+training area for which satellite imagery and land cover data were
+downloaded (Figure \ref{fig-rycina1}). Training points were obtained
+from LUCAS dataset created by Eurostat \autocite{dandrimont2020}. This
+data was pre-processed and then used to train the model and validate its
+performance.
 
 \begin{figure}[t]
 
@@ -166,40 +165,50 @@ which satellite imagery and land cover data were downloaded (Figure
 \section{Satellite imagery}\label{sec-sat}}
 
 Satellite imagery from GLAD Landsat ARD is available in 16-day interval
-composites and is divided into 1 x 1 geographic degrees tiles.
-Processing of original Landsat images performed by GLAD team included
-converting spectral bands to top-of-atmosphere (TOA) reflectance,
-converting thermal band to brightness temperature (BT) in Kelvins,
-scaling the values of all bands as well as adding quality flag for every
-pixel \autocite{potapov2020}.
+composites and is divided into 1° x 1° tiles. Processing of original
+Landsat images performed by GLAD team included converting spectral bands
+to top-of-atmosphere (TOA) reflectance, converting thermal band to
+brightness temperature (BT) in Kelvins, scaling the values of all bands
+as well as adding quality flag for every pixel \autocite{potapov2020}.
 
-Satellite images for eight 1 x 1 degree tiles (Figure \ref{fig-rycina1})
-were downloaded using GLAD Tools v1.1 and PERL programming language.
-These images come from 10th interval of the year 2018, so downloaded
-mosaics consist of images created between 24.05.2018 and 8.06.2018. All
-downloaded images were merged and reprojected from WGS84 coordinate
-reference system (EPSG:4326) to UTM zone 33N (EPSG:32633). Every band
-was also resampled to 30 meters resolution. In addition, four spectral
-indices were derived: Normalized Difference Vegetation Index (NDVI),
-Modified Normalized Difference Water Index (MNDWI), Normalized
-Difference Moisture Index (NDMI) and Modified Bare soil Index (MBI).
-Formulas used to calculate these indices can be found in below table
-(Table \ref{tbl-tabela1}).
+Satellite images for eight 1° x 1° tiles, covering the study area
+(Figure \ref{fig-rycina1}), were downloaded using GLAD Tools v1.1 and
+PERL programming language. These images are from 10th interval of the
+year 2018, so downloaded mosaics consist of images created between
+24.05.2018 and 8.06.2018. All downloaded images were merged and
+reprojected from WGS84 coordinate reference system (EPSG:4326) to UTM
+zone 33N (EPSG:32633). Every band was also resampled from 0.00025°
+resolution (corresponding to 27.83 m on equator) to 30 meters
+resolution.
+
+In addition, four spectral indices were derived: Normalized Difference
+Vegetation Index (NDVI), Modified Normalized Difference Water Index
+(MNDWI), Normalized Difference Moisture Index (NDMI) and Modified Bare
+soil Index (MBI). Formulas used to calculate these indices can be found
+in Table \ref{tbl-tabela1}.
 
 \hypertarget{tbl-tabela1}{}
 \begin{table}
 \caption{\label{tbl-tabela1}Formulas of spectral indices dervied from Landsat data }\tabularnewline
 
 \centering
-\begin{tabular}{>{\raggedleft\arraybackslash}p{2cm}>{\raggedright\arraybackslash}p{4cm}}
+\begin{tabular}{>{\raggedright\arraybackslash}p{4cm}ll}
 \toprule
-a & b\\
+\textbf{band/index} & \textbf{short name} & \textbf{formula}\\
 \midrule
-1 & a\\
-2 & b\\
-3 & c\\
-4 & d\\
-5 & e\\
+Blue & B2 & -\\
+Green & B3 & -\\
+Red & B4 & -\\
+Near Infrared & B5 (NIR) & -\\
+Short-wave Infrared 1 & B6 (SWIR1) & -\\
+\addlinespace
+Short-wave Infrared 2 & B7 (SWIR2) & -\\
+Thermal & B10 (TIRS1) & -\\
+Normalized Difference Vegetation Index & NDVI & (B5 -B4) / (B4 + B5)\\
+Modified Normalized Difference Water Index & MNDWI & (B3 - B6) / (B3 + B6)\\
+Normalized Difference Moisture Index & NDMI & (B5 - B6) / (B5 + B6)\\
+\addlinespace
+Modified Bare Surface Index & MBI & (B6 - B7 - B5) / (B6 + B7 + B5) + 0.5\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -208,42 +217,45 @@ a & b\\
 \section{Land cover data}\label{sec-landcover}}
 
 Data collected during LUCAS survey performed by Eurostat was chosen as
-land cover training set. It seems to be the most accurate and
-comprehensive dataset containing information about land use and land
-cover \autocite{pflugmacher2019} due to the fact, that every point was
-either manually photo-interpreted or assessed during \emph{in-situ}
-visit.
+land cover training set. At the moment of writing, it is the most
+accurate and comprehensive dataset containing information about land use
+and land cover \autocite{pflugmacher2019} due to the fact, that every
+point was either manually photo-interpreted or assessed during
+\emph{in-situ} visit.
 
 LUCAS survey consists of two phases. First phase is based on grid of
 points with 2km spacing covering whole territory of the European Union
 (which equals to more than 1 million points). Each point of the grid is
 visually interpreted using ortho-photos or satellite images, and
-classified into one of seven major land-cover classes. These are: arable
-land, permanent crops, grassland, wooded areas/shrub land, bare land,
-artificial land and water. In the second phase a subsample of grid
-points is selected and then visited by Eurostat surveyors. They classify
-each point according to full LUCAS land cover and land use
+classified into one of seven major land-cover classes. These classes
+are: arable land, permanent crops, grassland, wooded areas/shrub land,
+bare land, artificial land and water. In the second phase, a subsample
+of grid points is selected and then visited by Eurostat surveyors. They
+classify each point according to full LUCAS land cover and land use
 classification. The survey takes place in the spring and summer in order
-to observe chosen places in high vegetation season.
+to observe chosen places in high vegetation season
+\autocite{dandrimont2020}.
 
-Surveyor not only assign a land cover and land use classes to a point,
-but they also add auxillary information such as plant species present at
-the site, percentage of land coverage for chosen class, height of the
-trees and their maturity as well as information about water management
+Surveyor not only assign land cover and land use classes to points, but
+they also add auxillary information such as plant species present at the
+site, percentage of land coverage for a chosen class, height of the
+trees and their maturity, as well as information about water management
 and irrigation. If there are more than one land cover/land use types at
-the point, observer can also assign secondary class for every LUCAS
+the point, observer can also assign a secondary class for every LUCAS
 point.
 
-Majority of the training points used to train our classification model
-were points from the second phase of LUCAS survey, also called LUCAS
-Primary Data. We downloaded a total of 4153 points for our study area.
+Majority of the training points used for the classification model were
+points from the second phase of LUCAS survey, also called LUCAS Primary
+Data. We downloaded a total of 4,153 points for the study area.
 Pre-processing step included omitting records with missing data,
-excluding linear artificial land cover classes (e.g.~roads or railways)
+excluding artificial linear land cover classes (e.g.~roads or railways)
 and excluding points that were surveyed more than 500 meters from their
 theoretical location. In the next step, detailed land cover classes were
-aggregated into eight main groups of land cover types. Then, we filtered
-some of the classes according to the percentage of land coverage or
-percentage of impervious surface coverage (Table \ref{tbl-tabela2}).
+aggregated into eight main groups of land cover types. Two of them -
+grassland and shrubland were additionally aggregated into one land cover
+class. Then, we filtered some of the classes according to the percentage
+of land coverage or percentage of impervious surface coverage (Table
+\ref{tbl-tabela2}).
 
 \hypertarget{tbl-tabela2}{}
 \begin{table}
@@ -267,9 +279,9 @@ For the least frequent classes in the LUCAS Primary Data dataset - bare
 land, artificial land and water bodies - we also added points classified
 during the first phase of LUCAS survey (Figure \ref{fig-rycina2}). This
 step was necessary to ensure that every land cover class is represented
-by enough number of points. It wasn't possible only for wetlands class,
+by enough number of points. It was not possible only for wetlands class,
 because of lack of such category in the first phase classification. At
-the end of the pre-processing, we were left with 3778 training points
+the end of the pre-processing, we were left with 3,778 training points
 \autocite{oliverbuck2015}.
 
 \begin{figure}[t]
@@ -283,17 +295,16 @@ pre-processing}
 
 \end{figure}
 
-Later in the analysis, after extracting values from Landsat ARD raster,
-LUCAS points were also filtered using quality flag provided. Only points
-with clear-sky quality flag were taken into account during the process
-of model training. We also excluded water bodies points in which NDWI
-was lower than 0. These two conditions excluded over 400 points in
-total.
+After extracting values from Landsat ARD raster, LUCAS points were also
+filtered using quality flag provided. Only points with clear-sky quality
+flag were taken into account during the process of model training. We
+also excluded water bodies points in which NDWI was lower than 0. These
+two conditions excluded over 400 points in total.
 
-Training set obtained after pre-processing can be seen on Figure
+Training set obtained after pre-processing can be seen in Figure
 \ref{fig-rycina3}. Spatial distribution of data points was fairly even
-and due to the structure of LUCAS data set, every point was at least 2
-kilometers from another one.
+and due to the structure of LUCAS data set, every point was located at
+least 2 kilometers from another one.
 
 \begin{figure}[t]
 
