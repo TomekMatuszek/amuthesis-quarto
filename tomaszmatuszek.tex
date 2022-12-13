@@ -259,18 +259,22 @@ of land coverage or percentage of impervious surface coverage (Table
 
 \hypertarget{tbl-tabela2}{}
 \begin{table}
-\caption{\label{tbl-tabela2}Filters applied to certain land cover groups }\tabularnewline
+\caption{\label{tbl-tabela2}Filters applied to reclassified land cover groups. IMP - impervious
+surface, HERB - herbaceous plants cover, TC - tree cover }\tabularnewline
 
 \centering
-\begin{tabular}{>{\raggedleft\arraybackslash}p{2cm}>{\raggedright\arraybackslash}p{4cm}}
+\begin{tabular}{lll>{\raggedright\arraybackslash}p{4cm}>{\raggedright\arraybackslash}p{3cm}}
 \toprule
-a & b\\
+\textbf{ID} & \textbf{LC class} & \textbf{LUCAS Grid} & \textbf{LUCAS Primary Data} & \textbf{Applied filters}\\
 \midrule
-1 & a\\
-2 & b\\
-3 & c\\
-4 & d\\
-5 & e\\
+1 & arable land & - & B00 (Cropland) & <30\% IMP\\
+2 & grasslands & - & E00 (Grassland), D00 (Shrubland) & >50\% HERB; <30\% IMP\\
+3 & forests & - & C00 (Woodland) & >50\% TC; <20\% IMP\\
+4 & bare land & 6 (Bare surface) & F00 (Bare land) & -\\
+5 & artificial land & 7 (Artificial areas) & A00 (Artificial land) & >70\% IMP\\
+\addlinespace
+6 & water bodies & 8 (Inland water) & G00 (Water areas) & -\\
+7 & wetlands & - & H00 (Wetlands) & -\\
 \bottomrule
 \end{tabular}
 \end{table}
