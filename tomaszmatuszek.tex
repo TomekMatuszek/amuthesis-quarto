@@ -192,7 +192,7 @@ in Table \ref{tbl-tabela1}.
 \caption{\label{tbl-tabela1}Formulas of spectral indices dervied from Landsat data }\tabularnewline
 
 \centering
-\begin{tabular}{>{\raggedright\arraybackslash}p{4cm}ll}
+\begin{tabular}{|>{}l|>{}l|>{}l|}
 \toprule
 \textbf{band/index} & \textbf{short name} & \textbf{formula}\\
 \midrule
@@ -260,15 +260,15 @@ of land coverage or percentage of impervious surface coverage (Table
 \hypertarget{tbl-tabela2}{}
 \begin{table}
 \caption{\label{tbl-tabela2}Filters applied to reclassified land cover groups. IMP - impervious
-surface, HERB - herbaceous plants cover, TC - tree cover }\tabularnewline
+surface, HRB - herbaceous plants cover, TC - tree cover }\tabularnewline
 
 \centering
-\begin{tabular}{lll>{\raggedright\arraybackslash}p{4cm}>{\raggedright\arraybackslash}p{3cm}}
+\begin{tabular}{|>{}l|>{}l|>{}l|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{2cm}|}
 \toprule
-\textbf{ID} & \textbf{LC class} & \textbf{LUCAS Grid} & \textbf{LUCAS Primary Data} & \textbf{Applied filters}\\
+\textbf{ID} & \textbf{LC class} & \textbf{LUCAS Grid} & \textbf{LUCAS Primary Data} & \textbf{Filters}\\
 \midrule
 1 & arable land & - & B00 (Cropland) & <30\% IMP\\
-2 & grasslands & - & E00 (Grassland), D00 (Shrubland) & >50\% HERB; <30\% IMP\\
+2 & grasslands & - & E00 (Grassland), D00 (Shrubland) & >50\% HRB; <30\% IMP\\
 3 & forests & - & C00 (Woodland) & >50\% TC; <20\% IMP\\
 4 & bare land & 6 (Bare surface) & F00 (Bare land) & -\\
 5 & artificial land & 7 (Artificial areas) & A00 (Artificial land) & >70\% IMP\\
