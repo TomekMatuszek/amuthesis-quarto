@@ -197,17 +197,25 @@ in Table \ref{tbl-tabela1}.
 \textbf{band/index} & \textbf{short name} & \textbf{formula}\\
 \midrule
 Blue & B2 & -\\
+\hline
 Green & B3 & -\\
+\hline
 Red & B4 & -\\
+\hline
 Near Infrared & B5 (NIR) & -\\
+\hline
 Short-wave Infrared 1 & B6 (SWIR1) & -\\
-\addlinespace
+\hline
 Short-wave Infrared 2 & B7 (SWIR2) & -\\
+\hline
 Thermal & B10 (TIRS1) & -\\
+\hline
 Normalized Difference Vegetation Index & NDVI & (B5 -B4) / (B4 + B5)\\
+\hline
 Modified Normalized Difference Water Index & MNDWI & (B3 - B6) / (B3 + B6)\\
+\hline
 Normalized Difference Moisture Index & NDMI & (B5 - B6) / (B5 + B6)\\
-\addlinespace
+\hline
 Modified Bare Surface Index & MBI & (B6 - B7 - B5) / (B6 + B7 + B5) + 0.5\\
 \bottomrule
 \end{tabular}
@@ -268,12 +276,17 @@ surface, HRB - herbaceous plants cover, TC - tree cover }\tabularnewline
 \textbf{ID} & \textbf{LC class} & \textbf{LUCAS Grid} & \textbf{LUCAS Primary Data} & \textbf{Filters}\\
 \midrule
 1 & arable land & - & B00 (Cropland) & <30\% IMP\\
+\hline
 2 & grasslands & - & E00 (Grassland), D00 (Shrubland) & >50\% HRB; <30\% IMP\\
+\hline
 3 & forests & - & C00 (Woodland) & >50\% TC; <20\% IMP\\
+\hline
 4 & bare land & 6 (Bare surface) & F00 (Bare land) & -\\
+\hline
 5 & artificial land & 7 (Artificial areas) & A00 (Artificial land) & >70\% IMP\\
-\addlinespace
+\hline
 6 & water bodies & 8 (Inland water) & G00 (Water areas) & -\\
+\hline
 7 & wetlands & - & H00 (Wetlands) & -\\
 \bottomrule
 \end{tabular}

@@ -37,11 +37,12 @@ df = data.frame(
   c = c(rep("-", 7), "(B5 -B4) / (B4 + B5)", "(B3 - B6) / (B3 + B6)", "(B5 - B6) / (B5 + B6)", "(B6 - B7 - B5) / (B6 + B7 + B5) + 0.5")
 )
 colnames(df) = c("band/index", "short name", "formula")
-knitr::kable(df, booktabs = TRUE) |>
+df |>
+  knitr::kable(format = "latex", booktabs = TRUE, linesep = "") |>
   kableExtra::column_spec(1, width = "4cm") |>
   kableExtra::row_spec(0, bold = TRUE, extra_css = "border-left: 1px solid grey; border-right: 1px solid grey") |>
   kableExtra::kable_classic(full_width = FALSE) |>
-  kableExtra::row_spec(1:nrow(df), extra_css = "border-bottom: 1px solid grey;") |>
+  kableExtra::row_spec(1:(nrow(df) - 1), extra_latex_after = "\\hline") |>
   kableExtra::column_spec(1:2, border_left = TRUE) |>
   kableExtra::column_spec(3, border_left = TRUE, border_right = TRUE)
 ```
@@ -83,14 +84,14 @@ df = data.frame(
 colnames(df) = c("ID", "LC class", "LUCAS Grid", "LUCAS Primary Data", "Filters")
 cols = c("#e8ef5f", "#80dc59", "#11a723", "#b7b7b7", "#ea001f","#56a4f3", "#7a338c")
 df |>
-  knitr::kable(booktabs = TRUE) |> 
+  knitr::kable(format = "latex", booktabs = TRUE, linesep = "") |> 
   kableExtra::row_spec(0, bold = TRUE, extra_css = "border-left: 1px solid grey; border-right: 1px solid grey") |>
   kableExtra::column_spec(1:3, border_left = TRUE) |>
   kableExtra::column_spec(4, width = "4cm", border_left = TRUE) |>
   kableExtra::column_spec(5, width = "2cm", border_left = TRUE, border_right = TRUE) |>
   #kableExtra::column_spec(1, bold = TRUE, background = cols) |>
   kableExtra::kable_classic(full_width = FALSE) |>
-  kableExtra::row_spec(1:nrow(df), extra_css = "border-bottom: 1px solid grey;")
+  kableExtra::row_spec(1:(nrow(df) - 1), extra_latex_after = "\\hline")
 ```
 
 For the least frequent classes in the LUCAS Primary Data dataset - bare land, artificial land and water bodies - we also added points classified during the first phase of LUCAS survey (Figure [-@fig-rycina2]).
