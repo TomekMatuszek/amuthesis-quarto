@@ -20,6 +20,20 @@
 \usepackage{booktabs,tabularx} % Allows kableExtra to work %
 \usepackage{indentfirst} % Adds indent in the first paragraph %
 \usepackage{bookmark} % Adds indent in the first paragraph %
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
 
 \author{Tomasz Matuszek}
 \title{Measuring impact of Landsat 8 thermal band on supervised land
@@ -271,23 +285,23 @@ of land coverage or percentage of impervious surface coverage (Table
 surface, HRB - herbaceous plants cover, TC - tree cover }\tabularnewline
 
 \centering
-\begin{tabular}{|>{}l|>{}l|>{}l|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{2cm}|}
+\begin{tabular}{>{}l|>{}l|>{}l|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{2cm}|}
 \toprule
 \textbf{ID} & \textbf{LC class} & \textbf{LUCAS Grid} & \textbf{LUCAS Primary Data} & \textbf{Filters}\\
 \midrule
-1 & arable land & - & B00 (Cropland) & <30\% IMP\\
+\cellcolor[HTML]{e8ef5f}{\textbf{1}} & arable land & - & B00 (Cropland) & <30\% IMP\\
 \hline
-2 & grasslands & - & E00 (Grassland), D00 (Shrubland) & >50\% HRB; <30\% IMP\\
+\cellcolor[HTML]{80dc59}{\textbf{2}} & grasslands & - & E00 (Grassland), D00 (Shrubland) & >50\% HRB; <30\% IMP\\
 \hline
-3 & forests & - & C00 (Woodland) & >50\% TC; <20\% IMP\\
+\cellcolor[HTML]{11a723}{\textbf{3}} & forests & - & C00 (Woodland) & >50\% TC; <20\% IMP\\
 \hline
-4 & bare land & 6 (Bare surface) & F00 (Bare land) & -\\
+\cellcolor[HTML]{b7b7b7}{\textbf{4}} & bare land & 6 (Bare surface) & F00 (Bare land) & -\\
 \hline
-5 & artificial land & 7 (Artificial areas) & A00 (Artificial land) & >70\% IMP\\
+\cellcolor[HTML]{ea001f}{\textbf{5}} & artificial land & 7 (Artificial areas) & A00 (Artificial land) & >70\% IMP\\
 \hline
-6 & water bodies & 8 (Inland water) & G00 (Water areas) & -\\
+\cellcolor[HTML]{56a4f3}{\textbf{6}} & water bodies & 8 (Inland water) & G00 (Water areas) & -\\
 \hline
-7 & wetlands & - & H00 (Wetlands) & -\\
+\cellcolor[HTML]{7a338c}{\textbf{7}} & wetlands & - & H00 (Wetlands) & -\\
 \bottomrule
 \end{tabular}
 \end{table}
