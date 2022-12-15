@@ -1,12 +1,27 @@
 # Methods {#sec-methods}
 
+Workflow of our study consisted of several stages: preprocessing source data (described in Chapter [-@sec-data]), creating training dataset, model's parameters tuning, land cover map prediction, model quality assessment and evaluating the impact of thermal band on model's results.
+Every of these steps was performed using R programming language [@R-base].
+Final visualisations were created in QGIS software [@QGIS_software].
+Both programming environment and GIS software used in this process are open-source.
+
+ADD WORKFLOW CHART
+
 ## Machine learning {#sec-ml}
 
--   what is machine learning and what are its applications
+Machine learning is a computation method used to teach machines to learn from datasets in order to handle the data more efficiently and enhance from experience automatically without being specifically programmed [@mahesh_machine_2018] [@sarker_machine_2021].
+We can divide machine learning into two main groups: supervised and unsupervised.
 
--   classification vs regression algorithms
+Unsupervised learning analyzes unlabeled datasets without the need for human intervention.
+This is widely used for extracting generative features, identifying meaningful trends and structures, groupings in results, and exploratory purposes. [@sarker_machine_2021]
+This type of machine learning discovers hidden patterns or data groupings (clusters) which is used in exploratory analysis or objects segmentation.
+The most common unsupervised learning algorithm is clustering.
 
--   supervised and unsupervised classification
+Supervised learning uses labeled training data and a collection of training examples which are used by algorithm to find relationships and functions between different variables used to describe training data.
+It is carried out when certain goals are identified to be accomplished from a certain set of inputs.
+There are two types of supervised learning tasks: classification (seperating data) and regression (fitting data). [@sarker_machine_2021]
+
+In this study, supervised classification algorithm called Random Forest was used.
 
 ### Random forest algorithm {#sec-rf}
 
@@ -14,17 +29,17 @@
 
 -   how random forest algorithm works
 
-### Model quality assessment {#sec-resampling}
-
--   idea of resampling
-
--   measures and indices of classification model quality
-
 ### Parameter tuning {#sec-tuning}
 
 -   what is tuning of model's parameters
 
 -   idea of nested resampling
+
+### Model quality assessment {#sec-resampling}
+
+-   idea of resampling
+
+-   measures and indices of classification model quality
 
 ## R language environment {#sec-r}
 
@@ -33,12 +48,6 @@ List of used libraries and packages.
 
 ------------------------------------------------------------------------
 
-Rozdział **Metody** zawiera opis użytych metod (np. statystycznych czy geostatystycznych) oraz technologii (np. pakiety R).
-Opis każdej z metod czy technologi powinien być zwarty i zawierać tylko najważniejsze informacje z punktu widzenia pracy dyplomowej.
-
-Każda użyta metoda i technologia powinna być zacytowana.
-W przypadku pakietów R, wystarczy wypełnić poniższy blok kodu (zwróć uwagę, że ten blok kodu ma parametr `echo: false`; oznacza to, że będzie on niewidoczny w wynikowym pliku PDF)...
-
 ```{r}
 #| label: pakietbib
 #| echo: false
@@ -46,10 +55,3 @@ W przypadku pakietów R, wystarczy wypełnić poniższy blok kodu (zwróć uwag�
 pakiety = c("base", "kableExtra")
 knitr::write_bib(pakiety, "packages.bib", width = 60)
 ```
-
-... a następnie zacytować pakiet używając znaku `@`, po którym podać nazwę pakietu rozpoczynającą się od prefiksu `R-`.
-Przykładowe cytowanie języka R bez nawiasu to @R-base, a pakietu **kableExtra** w nawiasie to [@R-kableExtra].
-Więcej przykładów cytowania można znaleźć na stronie https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html#citations.
-
-W przypadkach, gdy cytowanie istnieje, ale nie jest pakietem R to należy dodać je do pliku `thesis.bib` i użyć powyższej składni ze znakiem `@`.
-W ostateczności, gdy dana technologia nie posiada cytowania, należy podać jej adres internetowy.
