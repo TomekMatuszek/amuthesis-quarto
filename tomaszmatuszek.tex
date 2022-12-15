@@ -326,17 +326,46 @@ points after pre-processing}
 \hypertarget{sec-methods}{%
 \chapter{Methods}\label{sec-methods}}
 
+Workflow of our study consisted of several stages: preprocessing source
+data (described in Chapter \ref{sec-data}), creating training dataset,
+model's parameters tuning, land cover map prediction, model quality
+assessment and evaluating the impact of thermal band on model's results.
+Every of these steps was performed using R programming language
+\autocite{R-base}. Final visualisations were created in QGIS software
+\autocite{QGIS_software}. Both programming environment and GIS software
+used in this process are open-source.
+
+ADD WORKFLOW CHART
+
 \hypertarget{sec-ml}{%
 \section{Machine learning}\label{sec-ml}}
 
-\begin{itemize}
-\item
-  what is machine learning and what are its applications
-\item
-  classification vs regression algorithms
-\item
-  supervised and unsupervised classification
-\end{itemize}
+Machine learning is a computation method used to teach machines to learn
+from datasets in order to handle the data more efficiently and enhance
+from experience automatically without being specifically programmed
+\autocite{mahesh_machine_2018} \autocite{sarker_machine_2021}. We can
+divide machine learning into two main groups: supervised and
+unsupervised.
+
+Unsupervised learning analyzes unlabeled datasets without the need for
+human intervention. This is widely used for extracting generative
+features, identifying meaningful trends and structures, groupings in
+results, and exploratory purposes. \autocite{sarker_machine_2021} This
+type of machine learning discovers hidden patterns or data groupings
+(clusters) which is used in exploratory analysis or objects
+segmentation. The most common unsupervised learning algorithm is
+clustering.
+
+Supervised learning uses labeled training data and a collection of
+training examples which are used by algorithm to find relationships and
+functions between different variables used to describe training data. It
+is carried out when certain goals are identified to be accomplished from
+a certain set of inputs. There are two types of supervised learning
+tasks: classification (seperating data) and regression (fitting data).
+\autocite{sarker_machine_2021}
+
+In this study, supervised classification algorithm called Random Forest
+was used.
 
 \hypertarget{sec-rf}{%
 \subsection{Random forest algorithm}\label{sec-rf}}
@@ -346,16 +375,6 @@ points after pre-processing}
   what is a decision tree
 \item
   how random forest algorithm works
-\end{itemize}
-
-\hypertarget{sec-resampling}{%
-\subsection{Model quality assessment}\label{sec-resampling}}
-
-\begin{itemize}
-\item
-  idea of resampling
-\item
-  measures and indices of classification model quality
 \end{itemize}
 
 \hypertarget{sec-tuning}{%
@@ -368,6 +387,16 @@ points after pre-processing}
   idea of nested resampling
 \end{itemize}
 
+\hypertarget{sec-resampling}{%
+\subsection{Model quality assessment}\label{sec-resampling}}
+
+\begin{itemize}
+\item
+  idea of resampling
+\item
+  measures and indices of classification model quality
+\end{itemize}
+
 \hypertarget{sec-r}{%
 \section{R language environment}\label{sec-r}}
 
@@ -375,28 +404,6 @@ Short description of R and RStudio environment. List of used libraries
 and packages.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-Rozdział \textbf{Metody} zawiera opis użytych metod (np. statystycznych
-czy geostatystycznych) oraz technologii (np. pakiety R). Opis każdej z
-metod czy technologi powinien być zwarty i zawierać tylko najważniejsze
-informacje z punktu widzenia pracy dyplomowej.
-
-Każda użyta metoda i technologia powinna być zacytowana. W przypadku
-pakietów R, wystarczy wypełnić poniższy blok kodu (zwróć uwagę, że ten
-blok kodu ma parametr \texttt{echo:\ false}; oznacza to, że będzie on
-niewidoczny w wynikowym pliku PDF)\ldots{}
-
-\ldots{} a następnie zacytować pakiet używając znaku \texttt{@}, po
-którym podać nazwę pakietu rozpoczynającą się od prefiksu \texttt{R-}.
-Przykładowe cytowanie języka R bez nawiasu to \textcite{R-base}, a
-pakietu \textbf{kableExtra} w nawiasie to \autocite{R-kableExtra}.
-Więcej przykładów cytowania można znaleźć na stronie
-https://rmarkdown.rstudio.com/authoring\_bibliographies\_and\_citations.html\#citations.
-
-W przypadkach, gdy cytowanie istnieje, ale nie jest pakietem R to należy
-dodać je do pliku \texttt{thesis.bib} i użyć powyższej składni ze
-znakiem \texttt{@}. W ostateczności, gdy dana technologia nie posiada
-cytowania, należy podać jej adres internetowy.
 
 \bookmarksetup{startatroot}
 
