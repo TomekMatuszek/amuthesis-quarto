@@ -13,13 +13,14 @@ Machine learning is a computation method used to teach machines to learn from da
 We can divide machine learning into two main groups: supervised and unsupervised.
 
 Unsupervised learning analyzes unlabeled datasets without the need for human intervention.
-This is widely used for extracting generative features, identifying meaningful trends and structures, groupings in results, and exploratory purposes. [@sarker_machine_2021]
-This type of machine learning discovers hidden patterns or data groupings (clusters) which is used in exploratory analysis or objects segmentation.
+This is widely used for extracting generative features, identifying meaningful trends and structures, groupings in results, and exploratory purposes.
+[@sarker_machine_2021] This type of machine learning discovers hidden patterns or data groupings (clusters) which is used in exploratory analysis or objects segmentation.
 The most common unsupervised learning algorithm is clustering.
 
 Supervised learning uses labeled training data and a collection of training examples which are used by algorithm to find relationships and functions between different variables used to describe training data.
 It is carried out when certain goals are identified to be accomplished from a certain set of inputs.
-There are two types of supervised learning tasks: classification (seperating data) and regression (fitting data). [@sarker_machine_2021]
+There are two types of supervised learning tasks: classification (seperating data) and regression (fitting data).
+[@sarker_machine_2021]
 
 In this study, supervised classification algorithm called Random Forest was used.
 
@@ -33,18 +34,41 @@ In this study, supervised classification algorithm called Random Forest was used
 
 -   what is tuning of model's parameters
 
--   idea of nested resampling
-
 ### Model quality assessment {#sec-resampling}
+
+-   measures and indices of classification model quality
 
 -   idea of resampling
 
--   measures and indices of classification model quality
+-   idea of nested resampling
+
+-   spatial cross-validation and its purpose
 
 ## R language environment {#sec-r}
 
 Short description of R and RStudio environment.
-List of used libraries and packages.
+
+List of used libraries and packages:
+
+-   terra
+
+-   sf
+
+-   mlr3
+
+-   ranger
+
+-   ggplot2
+
+-   dplyr
+
+-   tidyr
+
+-   DALEX + DALEXtra
+
+-   future
+
+-   gstat
 
 ------------------------------------------------------------------------
 
@@ -52,6 +76,6 @@ List of used libraries and packages.
 #| label: pakietbib
 #| echo: false
 #| warning: false
-pakiety = c("base", "kableExtra")
+pakiety = c("base", "kableExtra", "terra", "sf", "mlr3", "ranger", "ggplot2", "dplyr", "tidyr", "DALEX", "DALEXtra", "future", "gstat")
 knitr::write_bib(pakiety, "packages.bib", width = 60)
 ```
