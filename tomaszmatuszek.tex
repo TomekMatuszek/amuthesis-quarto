@@ -430,32 +430,27 @@ was used.
 \hypertarget{sec-r}{%
 \section{R language environment}\label{sec-r}}
 
-Short description of R and RStudio environment.
-
-List of used libraries and packages:
-
-\begin{itemize}
-\item
-  terra
-\item
-  sf
-\item
-  mlr3
-\item
-  ranger
-\item
-  ggplot2
-\item
-  dplyr
-\item
-  tidyr
-\item
-  DALEX + DALEXtra
-\item
-  future
-\item
-  gstat
-\end{itemize}
+Almost every step of analysis described in previous sections was
+performed with use of R \autocite{R-base} - an open-source programming
+language designed mainly for statistical computing and visualizing data.
+We used RStudio \autocite{R-studio} as an integrated development
+environment (IDE) created for R. Apart from base R functionalities, we
+used a number of packages created by R community. We used \emph{terra}
+package \autocite{R-terra} to perform raster data operations and
+\emph{sf} \autocite{R-sf} to manipulate and process vector data. To
+conduct machine learning steps of our analysis, we used whole
+environment of various machine learning packages called \emph{mlr3}
+\autocite{R-mlr3}. Random forest algorithm used by \emph{mlr3} framework
+is part of \emph{ranger} package \autocite{R-ranger} . We also used
+\emph{dplyr} and \emph{tidyr} packages \autocite{R-dplyr} to clean and
+process tabular data. \emph{DALEX} and \emph{DALEXtra}
+\autocite{R-DALEX} packages provided various functionalities enabling us
+to estimate variable importance and visualize these results with the
+help of \emph{ggplot2} package \autocite{R-ggplot2}. Package called
+\emph{gstat} \autocite{R-gstat} helped us to interpolate variable
+importance values from points to continuous raster layer. In addition,
+\emph{future} package \autocite{R-future} was used to enable
+multi-threading of some computationally intensive tasks.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
