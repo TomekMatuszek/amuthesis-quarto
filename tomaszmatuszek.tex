@@ -463,6 +463,8 @@ multi-threading of some computationally intensive tasks.
 \item
   land cover map of Poznań metropolitan area
 \item
+  comparison of land cover map and RGB satellite imagery
+\item
   probability map of model results
 \end{itemize}
 
@@ -503,9 +505,7 @@ Table with quality indices:
 
 \begin{itemize}
 \item
-  overall accuracy (OA)
-\item
-  classification error (CE)
+  overall accuracy (OA) / classification error (CE)
 \item
   producer's and user's accuracy (PA, UA)
 \item
@@ -546,16 +546,26 @@ Autor tej pracy rządzi!
 \chapter{Evaluation of thermal band's impact on prediction
 results}\label{sec-results-therm}}
 
+\hypertarget{sec-imp-overall}{%
+\section{Overall importance of thermal band}\label{sec-imp-overall}}
+
 \begin{itemize}
 \item
   mean temperature for every predicted land cover class
 \item
   variable importance plots, variable profiles
 \item
+  mean importance of thermal band on each land cover class
+\end{itemize}
+
+\hypertarget{sec-imp-spat}{%
+\section{Spatial distribution of thermal band's
+importance}\label{sec-imp-spat}}
+
+\begin{itemize}
+\item
   thermal band importance map (two methods: raster aggregation and
   interpolation of importance in LUCAS points)
-\item
-  mean importance of thermal band on each land cover class
 \item
   difference raster map between prediction with and without thermal band
   included, transition matrix

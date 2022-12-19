@@ -2,9 +2,7 @@
 
 Table with quality indices:
 
--   overall accuracy (OA)
-
--   classification error (CE)
+-   overall accuracy (OA) / classification error (CE)
 
 -   producer's and user's accuracy (PA, UA)
 

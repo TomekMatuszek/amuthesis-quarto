@@ -2,6 +2,8 @@
 
 -   land cover map of Poznań metropolitan area
 
+-   comparison of land cover map and RGB satellite imagery
+
 -   probability map of model results
 
 ------------------------------------------------------------------------

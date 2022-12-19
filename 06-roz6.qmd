@@ -1,12 +1,16 @@
 # Evaluation of thermal band's impact on prediction results {#sec-results-therm}
 
+## Overall importance of thermal band {#sec-imp-overall}
+
 -   mean temperature for every predicted land cover class
 
 -   variable importance plots, variable profiles
 
--   thermal band importance map (two methods: raster aggregation and interpolation of importance in LUCAS points)
-
 -   mean importance of thermal band on each land cover class
+
+## Spatial distribution of thermal band's importance {#sec-imp-spat}
+
+-   thermal band importance map (two methods: raster aggregation and interpolation of importance in LUCAS points)
 
 -   difference raster map between prediction with and without thermal band included, transition matrix
 
