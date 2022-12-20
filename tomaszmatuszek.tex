@@ -397,12 +397,27 @@ was used.
 \hypertarget{sec-rf}{%
 \subsection{Random forest algorithm}\label{sec-rf}}
 
-\begin{itemize}
-\item
-  what is a decision tree
-\item
-  how random forest algorithm works
-\end{itemize}
+We chose Random Forest (RF) as an algorithm used in our study. It is
+very popular machine learning tool thanks to its high interpretability
+and relatively high accuracy. Other advantages of this algorithm is
+ability to handle missing values, wide spectrum of accepted variable
+types (continuous, binary, categorical) and ease of modelling
+high-dimensional data. \autocite{qi_random_2012} Random Forest consists
+of specified number of decision trees, which are algorithms based on
+series of splitting rules.
+
+Decision tree aims to partition the dataset into smaller, more
+homogeneous groups. \autocite{kuhn_applied_2013} This process creates
+set of rules dividing dataset into several categories. Each rule in the
+decision tree is specified by feature (variable used to split) and
+threshold (value of a feature dividing dataset).
+\autocite{sekulic_random_2020} Random forest algorithm is characterized
+by using many decision trees at the same time and receiving results by
+applying majority voting system based on outputs of all decision trees.
+\autocite{kuhn_applied_2013} Each tree in the forest has slightly
+different input data - a random subset of data is sampled with
+replacement to get different result in every tree. This process is known
+as bagging or bootstrap aggregating. \autocite{schonlau_random_2020}
 
 \hypertarget{sec-tuning}{%
 \subsection{Parameter tuning}\label{sec-tuning}}

@@ -26,9 +26,18 @@ In this study, supervised classification algorithm called Random Forest was used
 
 ### Random forest algorithm {#sec-rf}
 
--   what is a decision tree
+We chose Random Forest (RF) as an algorithm used in our study.
+It is very popular machine learning tool thanks to its high interpretability and relatively high accuracy.
+Other advantages of this algorithm is ability to handle missing values, wide spectrum of accepted variable types (continuous, binary, categorical) and ease of modelling high-dimensional data.
+[@qi_random_2012] Random Forest consists of specified number of decision trees, which are algorithms based on series of splitting rules.
 
--   how random forest algorithm works
+Decision tree aims to partition the dataset into smaller, more homogeneous groups.
+[@kuhn_applied_2013] This process creates set of rules dividing dataset into several categories.
+Each rule in the decision tree is specified by feature (variable used to split) and threshold (value of a feature dividing dataset).
+[@sekulic_random_2020] Random forest algorithm is characterized by using many decision trees at the same time and receiving results by applying majority voting system based on outputs of all decision trees.
+[@kuhn_applied_2013] Each tree in the forest has slightly different input data - a random subset of data is sampled with replacement to get different result in every tree.
+This process is known as bagging or bootstrap aggregating.
+[@schonlau_random_2020]
 
 ### Parameter tuning {#sec-tuning}
 
