@@ -2,7 +2,7 @@
 
 Landsat ARD dataset, provided by GLAD laboratory at the Univeristy of Maryland, was used in this study.
 Central-Western Poland was chosen as a training area for which satellite imagery and land cover data were downloaded (Figure [-@fig-rycina1]).
-Training points were obtained from LUCAS dataset created by Eurostat [@dandrimont2020].
+Training points were obtained from LUCAS dataset created by Eurostat [@dandrimont_harmonised_2020].
 This data was pre-processed and then used to train the model and validate its performance.
 
 ```{r}
@@ -17,7 +17,7 @@ knitr::include_graphics("figures/study_area.png")
 ## Satellite imagery {#sec-sat}
 
 Satellite imagery from GLAD Landsat ARD is available in 16-day interval composites and is divided into 1° x 1° tiles.
-Processing of original Landsat images performed by GLAD team included converting spectral bands to top-of-atmosphere (TOA) reflectance, converting thermal band to brightness temperature (BT) in Kelvins, scaling the values of all bands as well as adding quality flag for every pixel [@potapov2020].
+Processing of original Landsat images performed by GLAD team included converting spectral bands to top-of-atmosphere (TOA) reflectance, converting thermal band to brightness temperature (BT) in Kelvins, scaling the values of all bands as well as adding quality flag for every pixel [@potapov_landsat_2020].
 
 Satellite images for eight 1° x 1° tiles, covering the study area (Figure [-@fig-rycina1]), were downloaded using GLAD Tools v1.1 and PERL programming language.
 These images are from 10th interval of the year 2018, so downloaded mosaics consist of images created between 24.05.2018 and 8.06.2018.
@@ -36,21 +36,21 @@ df = data.frame(
   b = c("B2", "B3", "B4", "B5 (NIR)", "B6 (SWIR1)", "B7 (SWIR2)", "B10 (TIRS1)", "NDVI", "MNDWI", "NDMI", "MBI"),
   c = c(rep("-", 7), "(B5 -B4) / (B4 + B5)", "(B3 - B6) / (B3 + B6)", "(B5 - B6) / (B5 + B6)", "(B6 - B7 - B5) / (B6 + B7 + B5) + 0.5")
 )
-colnames(df) = c("band/index", "short name", "formula")
+colnames(df) = c("band/index", "abbreviation", "formula")
 df |>
   knitr::kable(format = "latex", booktabs = TRUE, linesep = "") |>
-  kableExtra::column_spec(1, width = "4cm") |>
   kableExtra::row_spec(0, bold = TRUE, extra_css = "border-left: 1px solid grey; border-right: 1px solid grey") |>
   kableExtra::kable_classic(full_width = FALSE) |>
   kableExtra::row_spec(1:(nrow(df) - 1), extra_latex_after = "\\hline") |>
-  kableExtra::column_spec(1:2, border_left = TRUE) |>
+  kableExtra::column_spec(1, border_left = TRUE, width = "4cm") |>
+  kableExtra::column_spec(2, border_left = TRUE) |>
   kableExtra::column_spec(3, border_left = TRUE, border_right = TRUE)
 ```
 
 ## Land cover data {#sec-landcover}
 
 Data collected during LUCAS survey performed by Eurostat was chosen as land cover training set.
-At the moment of writing, it is the most accurate and comprehensive dataset containing information about land use and land cover [@pflugmacher2019] due to the fact, that every point was either manually photo-interpreted or assessed during *in-situ* visit.
+At the moment of writing, it is the most accurate and comprehensive dataset containing information about land use and land cover [@pflugmacher_mapping_2019] due to the fact, that every point was either manually photo-interpreted or assessed during *in-situ* visit.
 
 LUCAS survey consists of two phases.
 First phase is based on grid of points with 2km spacing covering whole territory of the European Union (which equals to more than 1 million points).
@@ -58,7 +58,7 @@ Each point of the grid is visually interpreted using ortho-photos or satellite i
 These classes are: arable land, permanent crops, grassland, wooded areas/shrub land, bare land, artificial land and water.
 In the second phase, a subsample of grid points is selected and then visited by Eurostat surveyors.
 They classify each point according to full LUCAS land cover and land use classification.
-The survey takes place in the spring and summer in order to observe chosen places in high vegetation season [@dandrimont2020].
+The survey takes place in the spring and summer in order to observe chosen places in high vegetation season [@dandrimont_harmonised_2020].
 
 Surveyor not only assign land cover and land use classes to points, but they also add auxillary information such as plant species present at the site, percentage of land coverage for a chosen class, height of the trees and their maturity, as well as information about water management and irrigation.
 If there are more than one land cover/land use types at the point, observer can also assign a secondary class for every LUCAS point.
@@ -97,12 +97,12 @@ df |>
 For the least frequent classes in the LUCAS Primary Data dataset - bare land, artificial land and water bodies - we also added points classified during the first phase of LUCAS survey (Figure [-@fig-rycina2]).
 This step was necessary to ensure that every land cover class is represented by enough number of points.
 It was not possible only for wetlands class, because of lack of such category in the first phase classification.
-At the end of the pre-processing, we were left with 3,778 training points [@oliverbuck2015].
+At the end of the pre-processing, we were left with 3,778 training points [@oliver_buck_analysis_2015].
 
 ```{r}
 #| label: fig-rycina2
 #| echo: false
-#| fig-cap: "Distribution of land cover classes after pre-processing"
+#| fig-cap: "Distribution of points by land cover class after pre-processing"
 #| out-width: "100%"
 #| out-height: 350px
 knitr::include_graphics("figures/lucas_data.png")

@@ -2,7 +2,7 @@
 
 Workflow of our study consisted of several stages: preprocessing source data (described in Chapter [-@sec-data]), creating training dataset, model's parameters tuning, land cover map prediction, model quality assessment and evaluating the impact of thermal band on model's results.
 Every of these steps was performed using R programming language [@R-base].
-Final visualisations were created in QGIS software [@QGIS_software].
+Final visualisations were created in QGIS software [@qgis_development_team_qgis_2009].
 Both programming environment and GIS software used in this process are open-source.
 
 ADD WORKFLOW CHART
@@ -27,9 +27,9 @@ In this study, supervised classification algorithm called Random Forest was used
 ### Random forest algorithm {#sec-rf}
 
 We chose Random Forest (RF) as an algorithm used in our study.
-It is very popular machine learning tool thanks to its high interpretability and relatively high accuracy.
-Other advantages of this algorithm is ability to handle missing values, wide spectrum of accepted variable types (continuous, binary, categorical) and ease of modelling high-dimensional data.
-[@qi_random_2012] Random Forest consists of specified number of decision trees, which are algorithms based on series of splitting rules.
+It is very popular machine learning tool thanks to its high interpretability and relatively high accuracy [@qi_random_2012].
+Other advantages of this algorithm is ability to handle missing values, wide spectrum of accepted variable types (continuous, binary, categorical) and ease of modelling high-dimensional data [@qi_random_2012].
+Random Forest consists of specified number of decision trees, which are algorithms based on series of splitting rules.
 
 Decision tree aims to partition the dataset into smaller, more homogeneous groups.
 [@kuhn_applied_2013] This process creates set of rules dividing dataset into several categories.
@@ -56,7 +56,7 @@ This process is known as bagging or bootstrap aggregating.
 ## R language environment {#sec-r}
 
 Almost every step of analysis described in previous sections was performed with use of R [@R-base] - an open-source programming language designed mainly for statistical computing and visualizing data.
-We used RStudio [@R-studio] as an integrated development environment (IDE) created for R.
+We used RStudio [@rstudio_team_rstudio_2020] as an integrated development environment (IDE) created for R.
 Apart from base R functionalities, we used a number of packages created by R community.
 We used *terra* package [@R-terra] to perform raster data operations and *sf* [@R-sf] to manipulate and process vector data.
 To conduct machine learning steps of our analysis, we used whole environment of various machine learning packages called *mlr3* [@R-mlr3].

@@ -161,9 +161,9 @@ Landsat ARD dataset, provided by GLAD laboratory at the Univeristy of
 Maryland, was used in this study. Central-Western Poland was chosen as a
 training area for which satellite imagery and land cover data were
 downloaded (Figure \ref{fig-rycina1}). Training points were obtained
-from LUCAS dataset created by Eurostat \autocite{dandrimont2020}. This
-data was pre-processed and then used to train the model and validate its
-performance.
+from LUCAS dataset created by Eurostat
+\autocite{dandrimont_harmonised_2020}. This data was pre-processed and
+then used to train the model and validate its performance.
 
 \begin{figure}[t]
 
@@ -183,7 +183,8 @@ composites and is divided into 1° x 1° tiles. Processing of original
 Landsat images performed by GLAD team included converting spectral bands
 to top-of-atmosphere (TOA) reflectance, converting thermal band to
 brightness temperature (BT) in Kelvins, scaling the values of all bands
-as well as adding quality flag for every pixel \autocite{potapov2020}.
+as well as adding quality flag for every pixel
+\autocite{potapov_landsat_2020}.
 
 Satellite images for eight 1° x 1° tiles, covering the study area
 (Figure \ref{fig-rycina1}), were downloaded using GLAD Tools v1.1 and
@@ -206,9 +207,9 @@ in Table \ref{tbl-tabela1}.
 \caption{\label{tbl-tabela1}Formulas of spectral indices dervied from Landsat data }\tabularnewline
 
 \centering
-\begin{tabular}{|>{}l|>{}l|>{}l|}
+\begin{tabular}{|>{\raggedright\arraybackslash}p{4cm}|>{}l|>{}l|}
 \toprule
-\textbf{band/index} & \textbf{short name} & \textbf{formula}\\
+\textbf{band/index} & \textbf{abbreviation} & \textbf{formula}\\
 \midrule
 Blue & B2 & -\\
 \hline
@@ -241,8 +242,8 @@ Modified Bare Surface Index & MBI & (B6 - B7 - B5) / (B6 + B7 + B5) + 0.5\\
 Data collected during LUCAS survey performed by Eurostat was chosen as
 land cover training set. At the moment of writing, it is the most
 accurate and comprehensive dataset containing information about land use
-and land cover \autocite{pflugmacher2019} due to the fact, that every
-point was either manually photo-interpreted or assessed during
+and land cover \autocite{pflugmacher_mapping_2019} due to the fact, that
+every point was either manually photo-interpreted or assessed during
 \emph{in-situ} visit.
 
 LUCAS survey consists of two phases. First phase is based on grid of
@@ -256,7 +257,7 @@ of grid points is selected and then visited by Eurostat surveyors. They
 classify each point according to full LUCAS land cover and land use
 classification. The survey takes place in the spring and summer in order
 to observe chosen places in high vegetation season
-\autocite{dandrimont2020}.
+\autocite{dandrimont_harmonised_2020}.
 
 Surveyor not only assign land cover and land use classes to points, but
 they also add auxillary information such as plant species present at the
@@ -313,7 +314,7 @@ step was necessary to ensure that every land cover class is represented
 by enough number of points. It was not possible only for wetlands class,
 because of lack of such category in the first phase classification. At
 the end of the pre-processing, we were left with 3,778 training points
-\autocite{oliverbuck2015}.
+\autocite{oliver_buck_analysis_2015}.
 
 \begin{figure}[t]
 
@@ -321,8 +322,8 @@ the end of the pre-processing, we were left with 3,778 training points
 
 }
 
-\caption{\label{fig-rycina2}Distribution of land cover classes after
-pre-processing}
+\caption{\label{fig-rycina2}Distribution of points by land cover class
+after pre-processing}
 
 \end{figure}
 
@@ -359,8 +360,8 @@ model's parameters tuning, land cover map prediction, model quality
 assessment and evaluating the impact of thermal band on model's results.
 Every of these steps was performed using R programming language
 \autocite{R-base}. Final visualisations were created in QGIS software
-\autocite{QGIS_software}. Both programming environment and GIS software
-used in this process are open-source.
+\autocite{qgis_development_team_qgis_2009}. Both programming environment
+and GIS software used in this process are open-source.
 
 ADD WORKFLOW CHART
 
@@ -399,12 +400,12 @@ was used.
 
 We chose Random Forest (RF) as an algorithm used in our study. It is
 very popular machine learning tool thanks to its high interpretability
-and relatively high accuracy. Other advantages of this algorithm is
-ability to handle missing values, wide spectrum of accepted variable
-types (continuous, binary, categorical) and ease of modelling
-high-dimensional data. \autocite{qi_random_2012} Random Forest consists
-of specified number of decision trees, which are algorithms based on
-series of splitting rules.
+and relatively high accuracy \autocite{qi_random_2012}. Other advantages
+of this algorithm is ability to handle missing values, wide spectrum of
+accepted variable types (continuous, binary, categorical) and ease of
+modelling high-dimensional data \autocite{qi_random_2012}. Random Forest
+consists of specified number of decision trees, which are algorithms
+based on series of splitting rules.
 
 Decision tree aims to partition the dataset into smaller, more
 homogeneous groups. \autocite{kuhn_applied_2013} This process creates
@@ -448,24 +449,25 @@ as bagging or bootstrap aggregating. \autocite{schonlau_random_2020}
 Almost every step of analysis described in previous sections was
 performed with use of R \autocite{R-base} - an open-source programming
 language designed mainly for statistical computing and visualizing data.
-We used RStudio \autocite{R-studio} as an integrated development
-environment (IDE) created for R. Apart from base R functionalities, we
-used a number of packages created by R community. We used \emph{terra}
-package \autocite{R-terra} to perform raster data operations and
-\emph{sf} \autocite{R-sf} to manipulate and process vector data. To
-conduct machine learning steps of our analysis, we used whole
-environment of various machine learning packages called \emph{mlr3}
-\autocite{R-mlr3}. Random forest algorithm used by \emph{mlr3} framework
-is part of \emph{ranger} package \autocite{R-ranger} . We also used
-\emph{dplyr} and \emph{tidyr} packages \autocite{R-dplyr} to clean and
-process tabular data. \emph{DALEX} and \emph{DALEXtra}
-\autocite{R-DALEX} packages provided various functionalities enabling us
-to estimate variable importance and visualize these results with the
-help of \emph{ggplot2} package \autocite{R-ggplot2}. Package called
-\emph{gstat} \autocite{R-gstat} helped us to interpolate variable
-importance values from points to continuous raster layer. In addition,
-\emph{future} package \autocite{R-future} was used to enable
-multi-threading of some computationally intensive tasks.
+We used RStudio \autocite{rstudio_team_rstudio_2020} as an integrated
+development environment (IDE) created for R. Apart from base R
+functionalities, we used a number of packages created by R community. We
+used \emph{terra} package \autocite{R-terra} to perform raster data
+operations and \emph{sf} \autocite{R-sf} to manipulate and process
+vector data. To conduct machine learning steps of our analysis, we used
+whole environment of various machine learning packages called
+\emph{mlr3} \autocite{R-mlr3}. Random forest algorithm used by
+\emph{mlr3} framework is part of \emph{ranger} package
+\autocite{R-ranger} . We also used \emph{dplyr} and \emph{tidyr}
+packages \autocite{R-dplyr} to clean and process tabular data.
+\emph{DALEX} and \emph{DALEXtra} \autocite{R-DALEX} packages provided
+various functionalities enabling us to estimate variable importance and
+visualize these results with the help of \emph{ggplot2} package
+\autocite{R-ggplot2}. Package called \emph{gstat} \autocite{R-gstat}
+helped us to interpolate variable importance values from points to
+continuous raster layer. In addition, \emph{future} package
+\autocite{R-future} was used to enable multi-threading of some
+computationally intensive tasks.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
