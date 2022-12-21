@@ -36,11 +36,11 @@
 \usepackage{xcolor}
 
 \author{Tomasz Matuszek}
-\title{Measuring impact of Landsat 8 thermal band on supervised land
-cover classification results}
+\title{Measuring an impact of the Landsat 8 thermal band on the
+supervised land cover classification results}
 \def\titleeng{Ocena wpływu zastosowania kanału termalnego Landsat na
 wyniki nadzorowanej klasyfikacji pokrycia terenu}
-\def\degreetitle{Engineer's Thesis}
+\def\degreetitle{Engineer's thesis}
 \def\major{Geoinformation}
 \def\albumid{455828}
 \def\thesisyear{2023}
@@ -49,8 +49,8 @@ wyniki nadzorowanej klasyfikacji pokrycia terenu}
      %pdfsubject={The Subject},
      %pdfkeywords={Some Keywords},
      pdfauthor={Tomasz Matuszek},
-     pdftitle={Measuring impact of Landsat 8 thermal band on supervised
-land cover classification results},
+     pdftitle={Measuring an impact of the Landsat 8 thermal band on the
+supervised land cover classification results},
      pdfproducer={quarto with LaTeX}
 }
 
@@ -354,14 +354,14 @@ points after pre-processing}
 \hypertarget{sec-methods}{%
 \chapter{Methods}\label{sec-methods}}
 
-Workflow of our study consisted of several stages: preprocessing source
-data (described in Chapter \ref{sec-data}), creating training dataset,
-model's parameters tuning, land cover map prediction, model quality
-assessment and evaluating the impact of thermal band on model's results.
-Every of these steps was performed using R programming language
-\autocite{R-base}. Final visualisations were created in QGIS software
-\autocite{qgis_development_team_qgis_2009}. Both programming environment
-and GIS software used in this process are open-source.
+Workflow of the study consisted of several stages: preprocessing of
+source data (described in Chapter \ref{sec-data}), creating training
+dataset, model's parameters tuning, land cover map prediction, model
+quality assessment and evaluating the impact of thermal band on the
+model's results. Each of these steps was performed using R programming
+language \autocite{R-base}. Final visualisations were created in QGIS
+software \autocite{qgis_development_team_qgis_2009}. Both programming
+environment and GIS software used in this process are open-source.
 
 ADD WORKFLOW CHART
 
@@ -369,56 +369,54 @@ ADD WORKFLOW CHART
 \section{Machine learning}\label{sec-ml}}
 
 Machine learning is a computation method used to teach machines to learn
-from datasets in order to handle the data more efficiently and enhance
-from experience automatically without being specifically programmed
-\autocite{mahesh_machine_2018} \autocite{sarker_machine_2021}. We can
+from datasets automatically without being specifically programmed
+(\textcite{mahesh_machine_2018}; \textcite{sarker_machine_2021}). We can
 divide machine learning into two main groups: supervised and
 unsupervised.
 
 Unsupervised learning analyzes unlabeled datasets without the need for
 human intervention. This is widely used for extracting generative
-features, identifying meaningful trends and structures, groupings in
-results, and exploratory purposes. \autocite{sarker_machine_2021} This
-type of machine learning discovers hidden patterns or data groupings
-(clusters) which is used in exploratory analysis or objects
-segmentation. The most common unsupervised learning algorithm is
-clustering.
+features, identifying meaningful trends and structures, grouping results
+and exploratory purposes \autocite{sarker_machine_2021}. This type of
+machine learning discovers hidden patterns or data groupings (clusters)
+which is used in exploratory analysis or objects segmentation. The most
+common unsupervised learning algorithm is clustering. REF NEEDED
 
 Supervised learning uses labeled training data and a collection of
-training examples which are used by algorithm to find relationships and
-functions between different variables used to describe training data. It
-is carried out when certain goals are identified to be accomplished from
-a certain set of inputs. There are two types of supervised learning
-tasks: classification (seperating data) and regression (fitting data).
-\autocite{sarker_machine_2021}
+training examples, which are used by an algorithm to find relationships
+between different variables used to describe training data. It is
+carried out when certain goals are identified to be accomplished from a
+certain set of inputs. There are two types of supervised learning tasks:
+classification (seperating data) and regression (fitting data)
+\autocite{sarker_machine_2021}.
 
 In this study, supervised classification algorithm called Random Forest
-was used.
+(RF) was used \autocite{breiman_random_2001}.
 
 \hypertarget{sec-rf}{%
 \subsection{Random forest algorithm}\label{sec-rf}}
 
-We chose Random Forest (RF) as an algorithm used in our study. It is
-very popular machine learning tool thanks to its high interpretability
-and relatively high accuracy \autocite{qi_random_2012}. Other advantages
-of this algorithm is ability to handle missing values, wide spectrum of
+I chose Random Forest as an algorithm used in this study. It is a very
+popular machine learning tool thanks to its high interpretability and
+relatively high accuracy \autocite{qi_random_2012}. Other advantages of
+this algorithm is its ability to handle missing values, wide spectrum of
 accepted variable types (continuous, binary, categorical) and ease of
 modelling high-dimensional data \autocite{qi_random_2012}. Random Forest
-consists of specified number of decision trees, which are algorithms
-based on series of splitting rules.
+consists of a specified number of decision trees, which are based on
+series of splitting rules.
 
 Decision tree aims to partition the dataset into smaller, more
-homogeneous groups. \autocite{kuhn_applied_2013} This process creates
-set of rules dividing dataset into several categories. Each rule in the
-decision tree is specified by feature (variable used to split) and
-threshold (value of a feature dividing dataset).
-\autocite{sekulic_random_2020} Random forest algorithm is characterized
+homogeneous groups \autocite{kuhn_applied_2013}. This process creates
+set of rules by dividing dataset into several categories. Each rule in
+the decision tree is specified by a feature (variable used to split) and
+a threshold (value of a feature dividing dataset)
+\autocite{sekulic_random_2020}. Random forest algorithm is characterized
 by using many decision trees at the same time and receiving results by
-applying majority voting system based on outputs of all decision trees.
-\autocite{kuhn_applied_2013} Each tree in the forest has slightly
-different input data - a random subset of data is sampled with
-replacement to get different result in every tree. This process is known
-as bagging or bootstrap aggregating. \autocite{schonlau_random_2020}
+applying majority voting system based on outputs of all decision trees
+\autocite{kuhn_applied_2013}. Each tree in the forest has slightly
+different input data - a subset of data is sampled with replacement to
+get different result in every tree. This process is known as bagging or
+bootstrap aggregating \autocite{schonlau_random_2020}.
 
 \hypertarget{sec-tuning}{%
 \subsection{Parameter tuning}\label{sec-tuning}}
@@ -458,16 +456,16 @@ vector data. To conduct machine learning steps of our analysis, we used
 whole environment of various machine learning packages called
 \emph{mlr3} \autocite{R-mlr3}. Random forest algorithm used by
 \emph{mlr3} framework is part of \emph{ranger} package
-\autocite{R-ranger} . We also used \emph{dplyr} and \emph{tidyr}
-packages \autocite{R-dplyr} to clean and process tabular data.
-\emph{DALEX} and \emph{DALEXtra} \autocite{R-DALEX} packages provided
-various functionalities enabling us to estimate variable importance and
-visualize these results with the help of \emph{ggplot2} package
-\autocite{R-ggplot2}. Package called \emph{gstat} \autocite{R-gstat}
-helped us to interpolate variable importance values from points to
-continuous raster layer. In addition, \emph{future} package
-\autocite{R-future} was used to enable multi-threading of some
-computationally intensive tasks.
+\autocite{R-ranger} . We also used \emph{dplyr} \autocite{R-dplyr} and
+\emph{tidyr} packages \autocite{R-tidyr} to clean and process tabular
+data. \emph{DALEX} \autocite{R-DALEX} and \emph{DALEXtra}
+\autocite{R-DALEXtra} packages provided various functionalities enabling
+us to estimate variable importance and visualize these results with the
+help of \emph{ggplot2} package \autocite{R-ggplot2}. Package called
+\emph{gstat} \autocite{R-gstat} helped us to interpolate variable
+importance values from points to continuous raster layer. In addition,
+\emph{future} package \autocite{R-future} was used to enable
+multi-threading of some computationally intensive tasks.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 

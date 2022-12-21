@@ -1,7 +1,7 @@
 # Methods {#sec-methods}
 
-Workflow of our study consisted of several stages: preprocessing source data (described in Chapter [-@sec-data]), creating training dataset, model's parameters tuning, land cover map prediction, model quality assessment and evaluating the impact of thermal band on model's results.
-Every of these steps was performed using R programming language [@R-base].
+Workflow of the study consisted of several stages: preprocessing of source data (described in Chapter [-@sec-data]), creating training dataset, model's parameters tuning, land cover map prediction, model quality assessment and evaluating the impact of thermal band on the model's results.
+Each of these steps was performed using R programming language [@R-base].
 Final visualisations were created in QGIS software [@qgis_development_team_qgis_2009].
 Both programming environment and GIS software used in this process are open-source.
 
@@ -9,35 +9,34 @@ ADD WORKFLOW CHART
 
 ## Machine learning {#sec-ml}
 
-Machine learning is a computation method used to teach machines to learn from datasets in order to handle the data more efficiently and enhance from experience automatically without being specifically programmed [@mahesh_machine_2018] [@sarker_machine_2021].
+Machine learning is a computation method used to teach machines to learn from datasets automatically without being specifically programmed (@mahesh_machine_2018; @sarker_machine_2021).
 We can divide machine learning into two main groups: supervised and unsupervised.
 
 Unsupervised learning analyzes unlabeled datasets without the need for human intervention.
-This is widely used for extracting generative features, identifying meaningful trends and structures, groupings in results, and exploratory purposes.
-[@sarker_machine_2021] This type of machine learning discovers hidden patterns or data groupings (clusters) which is used in exploratory analysis or objects segmentation.
+This is widely used for extracting generative features, identifying meaningful trends and structures, grouping results and exploratory purposes [@sarker_machine_2021].
+This type of machine learning discovers hidden patterns or data groupings (clusters) which is used in exploratory analysis or objects segmentation.
 The most common unsupervised learning algorithm is clustering.
+REF NEEDED
 
-Supervised learning uses labeled training data and a collection of training examples which are used by algorithm to find relationships and functions between different variables used to describe training data.
+Supervised learning uses labeled training data and a collection of training examples, which are used by an algorithm to find relationships between different variables used to describe training data.
 It is carried out when certain goals are identified to be accomplished from a certain set of inputs.
-There are two types of supervised learning tasks: classification (seperating data) and regression (fitting data).
-[@sarker_machine_2021]
+There are two types of supervised learning tasks: classification (seperating data) and regression (fitting data) [@sarker_machine_2021].
 
-In this study, supervised classification algorithm called Random Forest was used.
+In this study, supervised classification algorithm called Random Forest (RF) was used [@breiman_random_2001].
 
 ### Random forest algorithm {#sec-rf}
 
-We chose Random Forest (RF) as an algorithm used in our study.
-It is very popular machine learning tool thanks to its high interpretability and relatively high accuracy [@qi_random_2012].
-Other advantages of this algorithm is ability to handle missing values, wide spectrum of accepted variable types (continuous, binary, categorical) and ease of modelling high-dimensional data [@qi_random_2012].
-Random Forest consists of specified number of decision trees, which are algorithms based on series of splitting rules.
+I chose Random Forest as an algorithm used in this study.
+It is a very popular machine learning tool thanks to its high interpretability and relatively high accuracy [@qi_random_2012].
+Other advantages of this algorithm is its ability to handle missing values, wide spectrum of accepted variable types (continuous, binary, categorical) and ease of modelling high-dimensional data [@qi_random_2012].
+Random Forest consists of a specified number of decision trees, which are based on series of splitting rules.
 
-Decision tree aims to partition the dataset into smaller, more homogeneous groups.
-[@kuhn_applied_2013] This process creates set of rules dividing dataset into several categories.
-Each rule in the decision tree is specified by feature (variable used to split) and threshold (value of a feature dividing dataset).
-[@sekulic_random_2020] Random forest algorithm is characterized by using many decision trees at the same time and receiving results by applying majority voting system based on outputs of all decision trees.
-[@kuhn_applied_2013] Each tree in the forest has slightly different input data - a random subset of data is sampled with replacement to get different result in every tree.
-This process is known as bagging or bootstrap aggregating.
-[@schonlau_random_2020]
+Decision tree aims to partition the dataset into smaller, more homogeneous groups [@kuhn_applied_2013].
+This process creates set of rules by dividing dataset into several categories.
+Each rule in the decision tree is specified by a feature (variable used to split) and a threshold (value of a feature dividing dataset) [@sekulic_random_2020].
+Random forest algorithm is characterized by using many decision trees at the same time and receiving results by applying majority voting system based on outputs of all decision trees [@kuhn_applied_2013].
+Each tree in the forest has slightly different input data - a subset of data is sampled with replacement to get different result in every tree.
+This process is known as bagging or bootstrap aggregating [@schonlau_random_2020].
 
 ### Parameter tuning {#sec-tuning}
 
@@ -61,8 +60,8 @@ Apart from base R functionalities, we used a number of packages created by R com
 We used *terra* package [@R-terra] to perform raster data operations and *sf* [@R-sf] to manipulate and process vector data.
 To conduct machine learning steps of our analysis, we used whole environment of various machine learning packages called *mlr3* [@R-mlr3].
 Random forest algorithm used by *mlr3* framework is part of *ranger* package [@R-ranger] .
-We also used *dplyr* and *tidyr* packages [@R-dplyr] to clean and process tabular data.
-*DALEX* and *DALEXtra* [@R-DALEX] packages provided various functionalities enabling us to estimate variable importance and visualize these results with the help of *ggplot2* package [@R-ggplot2].
+We also used *dplyr* [@R-dplyr] and *tidyr* packages [@R-tidyr] to clean and process tabular data.
+*DALEX* [@R-DALEX] and *DALEXtra* [@R-DALEXtra] packages provided various functionalities enabling us to estimate variable importance and visualize these results with the help of *ggplot2* package [@R-ggplot2].
 Package called *gstat* [@R-gstat] helped us to interpolate variable importance values from points to continuous raster layer.
 In addition, *future* package [@R-future] was used to enable multi-threading of some computationally intensive tasks.
 
