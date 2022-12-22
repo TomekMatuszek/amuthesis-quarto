@@ -269,14 +269,14 @@ point.
 
 Majority of the training points used for the classification model were
 points from the second phase of LUCAS survey, also called LUCAS Primary
-Data. We downloaded a total of 4,153 points for the study area.
+Data. I downloaded a total of 4,153 points for the study area.
 Pre-processing step included omitting records with missing data,
 excluding artificial linear land cover classes (e.g.~roads or railways)
 and excluding points that were surveyed more than 500 meters from their
 theoretical location. In the next step, detailed land cover classes were
 aggregated into eight main groups of land cover types. Two of them -
 grassland and shrubland were additionally aggregated into one land cover
-class. Then, we filtered some of the classes according to the percentage
+class. Then, I filtered some of the classes according to the percentage
 of land coverage or percentage of impervious surface coverage (Table
 \ref{tbl-tabela2}).
 
@@ -308,13 +308,13 @@ surface, HRB - herbaceous plants cover, TC - tree cover }\tabularnewline
 \end{table}
 
 For the least frequent classes in the LUCAS Primary Data dataset - bare
-land, artificial land and water bodies - we also added points classified
+land, artificial land and water bodies - I also added points classified
 during the first phase of LUCAS survey (Figure \ref{fig-rycina2}). This
 step was necessary to ensure that every land cover class is represented
 by enough number of points. It was not possible only for wetlands class,
 because of lack of such category in the first phase classification. At
-the end of the pre-processing, we were left with 3,778 training points
-\autocite{oliver_buck_analysis_2015}.
+the end of the pre-processing, dataset was left with 3,778 training
+points \autocite{oliver_buck_analysis_2015}.
 
 \begin{figure}[t]
 
@@ -329,9 +329,9 @@ after pre-processing}
 
 After extracting values from Landsat ARD raster, LUCAS points were also
 filtered using quality flag provided. Only points with clear-sky quality
-flag were taken into account during the process of model training. We
-also excluded water bodies points in which NDWI was lower than 0. These
-two conditions excluded over 400 points in total.
+flag were taken into account during the process of model training.
+Moreover, water bodies points in which NDWI was lower than 0 were also
+excluded. These two conditions eliminated over 400 points in total.
 
 Training set obtained after pre-processing can be seen in Figure
 \ref{fig-rycina3}. Spatial distribution of data points was fairly even
@@ -363,7 +363,31 @@ language \autocite{R-base}. Final visualisations were created in QGIS
 software \autocite{qgis_development_team_qgis_2009}. Both programming
 environment and GIS software used in this process are open-source.
 
-ADD WORKFLOW CHART
+\begin{figure}[H]
+
+{\centering \includegraphics[width=6.3in,height=3.8in]{./03-roz3_files/figure-latex/dot-figure-1.png}
+
+}
+
+\end{figure}
+
+\begin{figure}
+
+{\centering 
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=6.3in,height=3.8in]{./03-roz3_files/figure-latex/mermaid-figure-1.png}
+
+}
+
+\end{figure}
+
+}
+
+\caption{\label{fig-rycina42}Mermaid flowchart}
+
+\end{figure}
 
 \hypertarget{sec-ml}{%
 \section{Machine learning}\label{sec-ml}}
@@ -371,7 +395,7 @@ ADD WORKFLOW CHART
 Machine learning is a computation method used to teach machines to learn
 from datasets automatically without being specifically programmed
 (\textcite{mahesh_machine_2018}; \textcite{sarker_machine_2021}). We can
-divide machine learning into two main groups: supervised and
+divide machine learning methods into two main groups: supervised and
 unsupervised.
 
 Unsupervised learning analyzes unlabeled datasets without the need for
@@ -447,22 +471,22 @@ bootstrap aggregating \autocite{schonlau_random_2020}.
 Almost every step of analysis described in previous sections was
 performed with use of R \autocite{R-base} - an open-source programming
 language designed mainly for statistical computing and visualizing data.
-We used RStudio \autocite{rstudio_team_rstudio_2020} as an integrated
+I used RStudio \autocite{rstudio_team_rstudio_2020} as an integrated
 development environment (IDE) created for R. Apart from base R
-functionalities, we used a number of packages created by R community. We
+functionalities, I used a number of packages created by R community. We
 used \emph{terra} package \autocite{R-terra} to perform raster data
 operations and \emph{sf} \autocite{R-sf} to manipulate and process
-vector data. To conduct machine learning steps of our analysis, we used
+vector data. To conduct machine learning steps of the analysis, we used
 whole environment of various machine learning packages called
 \emph{mlr3} \autocite{R-mlr3}. Random forest algorithm used by
 \emph{mlr3} framework is part of \emph{ranger} package
-\autocite{R-ranger} . We also used \emph{dplyr} \autocite{R-dplyr} and
+\autocite{R-ranger} . I also used \emph{dplyr} \autocite{R-dplyr} and
 \emph{tidyr} packages \autocite{R-tidyr} to clean and process tabular
 data. \emph{DALEX} \autocite{R-DALEX} and \emph{DALEXtra}
 \autocite{R-DALEXtra} packages provided various functionalities enabling
-us to estimate variable importance and visualize these results with the
+me to estimate variable importance and visualize these results with the
 help of \emph{ggplot2} package \autocite{R-ggplot2}. Package called
-\emph{gstat} \autocite{R-gstat} helped us to interpolate variable
+\emph{gstat} \autocite{R-gstat} helped to interpolate variable
 importance values from points to continuous raster layer. In addition,
 \emph{future} package \autocite{R-future} was used to enable
 multi-threading of some computationally intensive tasks.

@@ -64,11 +64,11 @@ Surveyor not only assign land cover and land use classes to points, but they als
 If there are more than one land cover/land use types at the point, observer can also assign a secondary class for every LUCAS point.
 
 Majority of the training points used for the classification model were points from the second phase of LUCAS survey, also called LUCAS Primary Data.
-We downloaded a total of 4,153 points for the study area.
+I downloaded a total of 4,153 points for the study area.
 Pre-processing step included omitting records with missing data, excluding artificial linear land cover classes (e.g. roads or railways) and excluding points that were surveyed more than 500 meters from their theoretical location.
 In the next step, detailed land cover classes were aggregated into eight main groups of land cover types.
 Two of them - grassland and shrubland were additionally aggregated into one land cover class.
-Then, we filtered some of the classes according to the percentage of land coverage or percentage of impervious surface coverage (Table [-@tbl-tabela2]).
+Then, I filtered some of the classes according to the percentage of land coverage or percentage of impervious surface coverage (Table [-@tbl-tabela2]).
 
 ```{r tabela2, echo=FALSE}
 #| label: tbl-tabela2
@@ -94,10 +94,10 @@ df |>
   kableExtra::row_spec(1:(nrow(df) - 1), extra_latex_after = "\\hline")
 ```
 
-For the least frequent classes in the LUCAS Primary Data dataset - bare land, artificial land and water bodies - we also added points classified during the first phase of LUCAS survey (Figure [-@fig-rycina2]).
+For the least frequent classes in the LUCAS Primary Data dataset - bare land, artificial land and water bodies - I also added points classified during the first phase of LUCAS survey (Figure [-@fig-rycina2]).
 This step was necessary to ensure that every land cover class is represented by enough number of points.
 It was not possible only for wetlands class, because of lack of such category in the first phase classification.
-At the end of the pre-processing, we were left with 3,778 training points [@oliver_buck_analysis_2015].
+At the end of the pre-processing, dataset was left with 3,778 training points [@oliver_buck_analysis_2015].
 
 ```{r}
 #| label: fig-rycina2
@@ -110,8 +110,8 @@ knitr::include_graphics("figures/lucas_data.png")
 
 After extracting values from Landsat ARD raster, LUCAS points were also filtered using quality flag provided.
 Only points with clear-sky quality flag were taken into account during the process of model training.
-We also excluded water bodies points in which NDWI was lower than 0.
-These two conditions excluded over 400 points in total.
+Moreover, water bodies points in which NDWI was lower than 0 were also excluded.
+These two conditions eliminated over 400 points in total.
 
 Training set obtained after pre-processing can be seen in Figure [-@fig-rycina3].
 Spatial distribution of data points was fairly even and due to the structure of LUCAS data set, every point was located at least 2 kilometers from another one.

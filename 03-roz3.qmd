@@ -5,12 +5,47 @@ Each of these steps was performed using R programming language [@R-base].
 Final visualisations were created in QGIS software [@qgis_development_team_qgis_2009].
 Both programming environment and GIS software used in this process are open-source.
 
-ADD WORKFLOW CHART
+```{dot}
+//| label: fig-rycina41
+//| echo: false
+//| fig-cap: "Graphviz flowchart"
+//| out-width: "100%"
+//| out-height: 200px
+graph G {
+  layout=neato
+  run -- intr;
+  intr -- runbl;
+  runbl -- run;
+  run -- kernel;
+  kernel -- zombie;
+  kernel -- sleep;
+  kernel -- runmem;
+  sleep -- swap;
+  swap -- runswap;
+  runswap -- new;
+  runswap -- runmem;
+  new -- runmem;
+  sleep -- runmem;
+}
+```
+
+```{mermaid}
+%%| label: fig-rycina42
+%%| echo: false
+%%| fig-cap: "Mermaid flowchart"
+%%| out-width: "100%"
+%%| out-height: 200px
+flowchart LR
+  A[Hard edge] --> B(Round edge)
+  B --> C{Decision}
+  C --> D[Result one]
+  C --> E[Result two]
+```
 
 ## Machine learning {#sec-ml}
 
 Machine learning is a computation method used to teach machines to learn from datasets automatically without being specifically programmed (@mahesh_machine_2018; @sarker_machine_2021).
-We can divide machine learning into two main groups: supervised and unsupervised.
+We can divide machine learning methods into two main groups: supervised and unsupervised.
 
 Unsupervised learning analyzes unlabeled datasets without the need for human intervention.
 This is widely used for extracting generative features, identifying meaningful trends and structures, grouping results and exploratory purposes [@sarker_machine_2021].
@@ -55,14 +90,14 @@ This process is known as bagging or bootstrap aggregating [@schonlau_random_2020
 ## R language environment {#sec-r}
 
 Almost every step of analysis described in previous sections was performed with use of R [@R-base] - an open-source programming language designed mainly for statistical computing and visualizing data.
-We used RStudio [@rstudio_team_rstudio_2020] as an integrated development environment (IDE) created for R.
-Apart from base R functionalities, we used a number of packages created by R community.
+I used RStudio [@rstudio_team_rstudio_2020] as an integrated development environment (IDE) created for R.
+Apart from base R functionalities, I used a number of packages created by R community.
 We used *terra* package [@R-terra] to perform raster data operations and *sf* [@R-sf] to manipulate and process vector data.
-To conduct machine learning steps of our analysis, we used whole environment of various machine learning packages called *mlr3* [@R-mlr3].
+To conduct machine learning steps of the analysis, we used whole environment of various machine learning packages called *mlr3* [@R-mlr3].
 Random forest algorithm used by *mlr3* framework is part of *ranger* package [@R-ranger] .
-We also used *dplyr* [@R-dplyr] and *tidyr* packages [@R-tidyr] to clean and process tabular data.
-*DALEX* [@R-DALEX] and *DALEXtra* [@R-DALEXtra] packages provided various functionalities enabling us to estimate variable importance and visualize these results with the help of *ggplot2* package [@R-ggplot2].
-Package called *gstat* [@R-gstat] helped us to interpolate variable importance values from points to continuous raster layer.
+I also used *dplyr* [@R-dplyr] and *tidyr* packages [@R-tidyr] to clean and process tabular data.
+*DALEX* [@R-DALEX] and *DALEXtra* [@R-DALEXtra] packages provided various functionalities enabling me to estimate variable importance and visualize these results with the help of *ggplot2* package [@R-ggplot2].
+Package called *gstat* [@R-gstat] helped to interpolate variable importance values from points to continuous raster layer.
 In addition, *future* package [@R-future] was used to enable multi-threading of some computationally intensive tasks.
 
 ------------------------------------------------------------------------
