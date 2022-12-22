@@ -12,7 +12,7 @@ year: "2023"
 
 book:
   output-file: "tomaszmatuszek"
-  number-sections: true
+  #number-sections: true
   chapters:
     - index.qmd
     - 01-roz1.qmd

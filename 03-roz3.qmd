@@ -3,43 +3,22 @@
 Workflow of the study consisted of several stages: preprocessing of source data (described in Chapter [-@sec-data]), creating training dataset, model's parameters tuning, land cover map prediction, model quality assessment and evaluating the impact of thermal band on the model's results.
 Each of these steps was performed using R programming language [@R-base].
 Final visualisations were created in QGIS software [@qgis_development_team_qgis_2009].
-Both programming environment and GIS software used in this process are open-source.
-
-```{dot}
-//| label: fig-rycina41
-//| echo: false
-//| fig-cap: "Graphviz flowchart"
-//| out-width: "100%"
-//| out-height: 200px
-graph G {
-  layout=neato
-  run -- intr;
-  intr -- runbl;
-  runbl -- run;
-  run -- kernel;
-  kernel -- zombie;
-  kernel -- sleep;
-  kernel -- runmem;
-  sleep -- swap;
-  swap -- runswap;
-  runswap -- new;
-  runswap -- runmem;
-  new -- runmem;
-  sleep -- runmem;
-}
-```
+Both programming environment and GIS software used in this process are open-source. (Figure [-@fig-rycina4])
 
 ```{mermaid}
-%%| label: fig-rycina42
+%%| label: fig-rycina4
 %%| echo: false
 %%| fig-cap: "Mermaid flowchart"
-%%| out-width: "100%"
-%%| out-height: 200px
 flowchart LR
   A[Hard edge] --> B(Round edge)
   B --> C{Decision}
   C --> D[Result one]
   C --> E[Result two]
+  F[Hard edge] --> G(Round edge)
+  F --> B
+  G --> H{Decision}
+  H --> I[Result one]
+  H --> J[Result two]
 ```
 
 ## Machine learning {#sec-ml}
