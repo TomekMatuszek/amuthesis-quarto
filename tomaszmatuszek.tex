@@ -156,16 +156,45 @@ operatora \texttt{{[}-@sec{]}}.
 
 \bookmarksetup{startatroot}
 
-\hypertarget{sec-data}{%
-\chapter{Source data}\label{sec-data}}
+\hypertarget{sec-data-methods}{%
+\chapter{Materials and methods}\label{sec-data-methods}}
+
+Workflow of the study consisted of several stages: preprocessing of
+source data (described in Sections \ref{sec-sat} and
+\ref{sec-landcover}), creating training dataset, model's parameters
+tuning, land cover map prediction, model quality assessment and
+evaluating the impact of thermal band on the model's results (Figure
+\ref{fig-rycina4}). Each of these steps was performed using R
+programming language \autocite{R-base}. Final visualisations were
+created in QGIS software \autocite{qgis_development_team_qgis_2009}.
+Both programming environment and GIS software used in this process are
+open-source.
+
+\begin{figure}
+
+{\centering 
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=5.74in,height=3.15in]{./02-roz2_files/figure-latex/mermaid-figure-1.png}
+
+}
+
+\end{figure}
+
+}
+
+\caption{\label{fig-rycina4}Mermaid flowchart}
+
+\end{figure}
 
 Landsat ARD dataset, provided by GLAD laboratory at the Univeristy of
-Maryland, was used in this study. Central-Western Poland was chosen as a
-training area for which satellite imagery and land cover data were
-downloaded (Figure \ref{fig-rycina1}). Training points were obtained
-from LUCAS dataset created by Eurostat
-\autocite{dandrimont_harmonised_2020}. This data was pre-processed and
-then used to train the model and validate its performance.
+Maryland, was used as a source of multi-spectral satellite imagery.
+Training points were obtained from LUCAS dataset created by Eurostat
+\autocite{dandrimont_harmonised_2020}. Both data sets were downloaded
+for central-western part of Poland which was chosen as training area
+(Figure \ref{fig-rycina1}). This data was pre-processed and then used to
+train the model and validate its performance.
 
 \begin{figure}[t]
 
@@ -351,39 +380,6 @@ points after pre-processing}
 
 \end{figure}
 
-\bookmarksetup{startatroot}
-
-\hypertarget{sec-methods}{%
-\chapter{Methods}\label{sec-methods}}
-
-\begin{figure}
-
-{\centering 
-
-\begin{figure}[H]
-
-{\centering \includegraphics[width=5.74in,height=3.15in]{./03-roz3_files/figure-latex/mermaid-figure-1.png}
-
-}
-
-\end{figure}
-
-}
-
-\caption{\label{fig-rycina4}Mermaid flowchart}
-
-\end{figure}
-
-Workflow of the study consisted of several stages: preprocessing of
-source data (described in Chapter \ref{sec-data}), creating training
-dataset, model's parameters tuning, land cover map prediction, model
-quality assessment and evaluating the impact of thermal band on the
-model's results. Each of these steps was performed using R programming
-language \autocite{R-base}. Final visualisations were created in QGIS
-software \autocite{qgis_development_team_qgis_2009}. Both programming
-environment and GIS software used in this process are open-source.
-(Figure \ref{fig-rycina4})
-
 \hypertarget{sec-ml}{%
 \section{Machine learning}\label{sec-ml}}
 
@@ -485,8 +481,6 @@ help of \emph{ggplot2} package \autocite{R-ggplot2}. Package called
 importance values from points to continuous raster layer. In addition,
 \emph{future} package \autocite{R-future} was used to enable
 multi-threading of some computationally intensive tasks.
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \bookmarksetup{startatroot}
 

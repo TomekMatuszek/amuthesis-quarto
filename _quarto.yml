@@ -17,7 +17,7 @@ book:
     - index.qmd
     - 01-roz1.qmd
     - 02-roz2.qmd
-    - 03-roz3.qmd
+    #- 03-roz3.qmd
     - 04-roz4.qmd
     - 05-roz5.qmd
     - 06-roz6.qmd
