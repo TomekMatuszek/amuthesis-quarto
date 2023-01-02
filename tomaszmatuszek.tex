@@ -438,37 +438,32 @@ bootstrap aggregating \autocite{schonlau_random_2020}.
 
 Random Forest algorithm takes several hyper-parameters as an input in
 order to specify how much should it fit to training data or how long
-computation should take. These parameters can be fine-tuned to find
-values that give the best model accuracy. I chose three hyper-parameters
-for tuning: number of trees, maximum depth of the forest and minimal
-size of each node in decision tree. Then, 10 models with different
-hyper-parameter values where created and trained. I used overall
-accuracy achieved by each classifier to rank their performance and
-choose parameters that best train the model. Parameters' search spaces
-and tuning results can be found in Table \ref{tbl-tabela3}.
+computation should take. Optimizing these parameters is crucial for
+tree-based machine learning models \autocite{yang_hyperparameter_2020}.
+These parameters can be fine-tuned to find values that give the best
+model accuracy. I chose three hyper-parameters for tuning: number of
+trees, maximum depth of the forest and minimal size of each node in
+decision tree. Then, 10 models with different hyper-parameter values
+chosen randomly from specified search space were created and trained. I
+used overall accuracy achieved by each classifier to rank their
+performance and choose parameters that best train the model. Parameters'
+search spaces and tuning results can be found in Table
+\ref{tbl-tabela3}.
 
 \hypertarget{tbl-tabela3}{}
 \begin{table}
 \caption{\label{tbl-tabela3}Tuned parameters of RF model }\tabularnewline
 
 \centering
-\begin{tabular}{|>{}l|>{}l|>{}l|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{2cm}|}
+\begin{tabular}{|>{}l|>{}l|>{}l|}
 \toprule
-\textbf{ID} & \textbf{LC class} & \textbf{LUCAS Grid} & \textbf{LUCAS Primary Data} & \textbf{Filters}\\
+\textbf{Hyper-parameter} & \textbf{Search space} & \textbf{Optimal value}\\
 \midrule
-\cellcolor[HTML]{e8ef5f}{\textbf{1}} & arable land & - & B00 (Cropland) & <30\% IMP\\
+number of trees & 50-400 & 272\\
 \hline
-\cellcolor[HTML]{80dc59}{\textbf{2}} & grasslands & - & E00 (Grassland), D00 (Shrubland) & >50\% HRB; <30\% IMP\\
+maximum depth & 10-40 & 20\\
 \hline
-\cellcolor[HTML]{11a723}{\textbf{3}} & forests & - & C00 (Woodland) & >50\% TC; <20\% IMP\\
-\hline
-\cellcolor[HTML]{b7b7b7}{\textbf{4}} & bare land & 6 (Bare surface) & F00 (Bare land) & -\\
-\hline
-\cellcolor[HTML]{ea001f}{\textbf{5}} & artificial land & 7 (Artificial areas) & A00 (Artificial land) & >70\% IMP\\
-\hline
-\cellcolor[HTML]{56a4f3}{\textbf{6}} & water bodies & 8 (Inland water) & G00 (Water areas) & -\\
-\hline
-\cellcolor[HTML]{7a338c}{\textbf{7}} & wetlands & - & H00 (Wetlands) & -\\
+min. node size & 1-10 & 1\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -485,6 +480,19 @@ and tuning results can be found in Table \ref{tbl-tabela3}.
   idea of nested resampling
 \item
   spatial cross-validation and its purpose
+\end{itemize}
+
+\hypertarget{measuring-overall-variable-importance-and-its-spatial-distribution}{%
+\section{Measuring overall variable importance and its spatial
+distribution}\label{measuring-overall-variable-importance-and-its-spatial-distribution}}
+
+\begin{itemize}
+\item
+  calculating variable importance using DALEXtra package
+\item
+  calculating thermal band importance on aggregated raster
+\item
+  interpolating thermal band importance from training points
 \end{itemize}
 
 \hypertarget{sec-r}{%
