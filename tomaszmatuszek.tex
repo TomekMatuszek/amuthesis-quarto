@@ -317,7 +317,7 @@ of land coverage or percentage of impervious surface coverage (Table
 surface, HRB - herbaceous plants cover, TC - tree cover }\tabularnewline
 
 \centering
-\begin{tabular}{>{}l|>{}l|>{}l|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{2cm}|}
+\begin{tabular}{|>{}l|>{}l|>{}l|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{2cm}|}
 \toprule
 \textbf{ID} & \textbf{LC class} & \textbf{LUCAS Grid} & \textbf{LUCAS Primary Data} & \textbf{Filters}\\
 \midrule
@@ -421,7 +421,7 @@ consists of a specified number of decision trees, which are based on
 series of splitting rules.
 
 Decision tree aims to partition the dataset into smaller, more
-homogeneous groups \autocite{kuhn_applied_2013}. This process creates
+homogeneous groups \autocite{kuhn_applied_2013}. This process creates a
 set of rules by dividing dataset into several categories. Each rule in
 the decision tree is specified by a feature (variable used to split) and
 a threshold (value of a feature dividing dataset)
@@ -436,11 +436,42 @@ bootstrap aggregating \autocite{schonlau_random_2020}.
 \hypertarget{sec-tuning}{%
 \subsection{Parameter tuning}\label{sec-tuning}}
 
-\begin{itemize}
-\tightlist
-\item
-  what is tuning of model's parameters
-\end{itemize}
+Random Forest algorithm takes several hyper-parameters as an input in
+order to specify how much should it fit to training data or how long
+computation should take. These parameters can be fine-tuned to find
+values that give the best model accuracy. I chose three hyper-parameters
+for tuning: number of trees, maximum depth of the forest and minimal
+size of each node in decision tree. Then, 10 models with different
+hyper-parameter values where created and trained. I used overall
+accuracy achieved by each classifier to rank their performance and
+choose parameters that best train the model. Parameters' search spaces
+and tuning results can be found in Table \ref{tbl-tabela3}.
+
+\hypertarget{tbl-tabela3}{}
+\begin{table}
+\caption{\label{tbl-tabela3}Tuned parameters of RF model }\tabularnewline
+
+\centering
+\begin{tabular}{|>{}l|>{}l|>{}l|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{2cm}|}
+\toprule
+\textbf{ID} & \textbf{LC class} & \textbf{LUCAS Grid} & \textbf{LUCAS Primary Data} & \textbf{Filters}\\
+\midrule
+\cellcolor[HTML]{e8ef5f}{\textbf{1}} & arable land & - & B00 (Cropland) & <30\% IMP\\
+\hline
+\cellcolor[HTML]{80dc59}{\textbf{2}} & grasslands & - & E00 (Grassland), D00 (Shrubland) & >50\% HRB; <30\% IMP\\
+\hline
+\cellcolor[HTML]{11a723}{\textbf{3}} & forests & - & C00 (Woodland) & >50\% TC; <20\% IMP\\
+\hline
+\cellcolor[HTML]{b7b7b7}{\textbf{4}} & bare land & 6 (Bare surface) & F00 (Bare land) & -\\
+\hline
+\cellcolor[HTML]{ea001f}{\textbf{5}} & artificial land & 7 (Artificial areas) & A00 (Artificial land) & >70\% IMP\\
+\hline
+\cellcolor[HTML]{56a4f3}{\textbf{6}} & water bodies & 8 (Inland water) & G00 (Water areas) & -\\
+\hline
+\cellcolor[HTML]{7a338c}{\textbf{7}} & wetlands & - & H00 (Wetlands) & -\\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \hypertarget{sec-resampling}{%
 \subsection{Model quality assessment}\label{sec-resampling}}
