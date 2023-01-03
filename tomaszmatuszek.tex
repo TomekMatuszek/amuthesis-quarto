@@ -440,9 +440,9 @@ Random Forest algorithm takes several hyper-parameters as an input in
 order to specify how much should it fit to training data or how long
 computation should take. Optimizing these parameters is crucial for
 tree-based machine learning models \autocite{yang_hyperparameter_2020}.
-These parameters can be fine-tuned to find values that give the best
-model accuracy. I chose three hyper-parameters for tuning: number of
-trees, maximum depth of the forest and minimal size of each node in
+Model's hyper-parameters can be fine-tuned to find values that give the
+best model accuracy. I chose three hyper-parameters for tuning: number
+of trees, maximum depth of the forest and minimal size of each node in
 decision tree. Then, 10 models with different hyper-parameter values
 chosen randomly from specified search space were created and trained. I
 used overall accuracy achieved by each classifier to rank their
@@ -459,17 +459,49 @@ search spaces and tuning results can be found in Table
 \toprule
 \textbf{Hyper-parameter} & \textbf{Search space} & \textbf{Optimal value}\\
 \midrule
-number of trees & 50-400 & 272\\
+number of trees & 50 - 400 & 272\\
 \hline
-maximum depth & 10-40 & 20\\
+maximum depth & 10 - 40 & 20\\
 \hline
-min. node size & 1-10 & 1\\
+min. node size & 1 - 10 & 1\\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \hypertarget{sec-resampling}{%
 \subsection{Model quality assessment}\label{sec-resampling}}
+
+Accuracy of the model was assessed with the help of four performance
+measures: overall accuracy, Kappa coefficient, as well as producer's and
+user's accuracy. I estimated values of these indices with the help of
+resampling technique called spatial cross-validation.
+
+In \emph{n}-fold cross-validation, every data point is used in both
+training and testing set. Whole dataset is randomly divided into
+\emph{n} equal parts (\emph{folds}). Then, machine learning model is
+independently trained \emph{n} times and in each run, different part of
+the dataset is used as validation set while remaining \emph{n - 1} parts
+are used to train the model. This way, every data point is used in
+testing set only once but it is also used in training process
+\autocite{jiao_performance_2016}. Usually, whole cross-validation
+procedure is repeated several times to get higher number of unique
+dataset splits and receive more reliable average values of the overall
+accuracy \autocite{varga_validation_2021}. Such approach is a compromise
+which enables possibility of using whole dataset in the training process
+of the final model without a need of acquiring independent testing set.
+
+Since this study is based on geographic data, Tobler's ``first law of
+geography'' needs to be taken into account. Tobler stated that
+``everything is related to everything else, but near things are more
+related than distant things''. CITATION? In order to prevent test points
+from being related to training points, I applied spatial
+cross-validation approach. This method is different than regular
+cross-validation only in the partitioning part - instead of randomly
+dividing dataset into groups, location of data points is used together
+with k-means clustering in order to create spatially disjoint folds
+\autocite{lovelace_geocomputation_2019}. FIGURE? Thanks to this
+partitioning method, spatial-bias can be significantly reduced which
+leads to more reliable performance estimation.
 
 \begin{itemize}
 \item
@@ -482,9 +514,9 @@ min. node size & 1-10 & 1\\
   spatial cross-validation and its purpose
 \end{itemize}
 
-\hypertarget{measuring-overall-variable-importance-and-its-spatial-distribution}{%
-\section{Measuring overall variable importance and its spatial
-distribution}\label{measuring-overall-variable-importance-and-its-spatial-distribution}}
+\hypertarget{variable-importance-and-its-spatial-distribution}{%
+\section{Variable importance and its spatial
+distribution}\label{variable-importance-and-its-spatial-distribution}}
 
 \begin{itemize}
 \item

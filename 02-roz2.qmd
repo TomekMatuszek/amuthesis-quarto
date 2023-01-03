@@ -227,6 +227,22 @@ df |>
 
 ### Model quality assessment {#sec-resampling}
 
+Accuracy of the model was assessed with the help of four performance measures: overall accuracy, Kappa coefficient, as well as producer's and user's accuracy.
+I estimated values of these indices with the help of resampling technique called spatial cross-validation.
+
+In *n*-fold cross-validation, every data point is used in both training and testing set.
+Whole dataset is randomly divided into *n* equal parts (*folds*).
+Then, machine learning model is independently trained *n* times and in each run, different part of the dataset is used as validation set while remaining *n - 1* parts are used to train the model.
+This way, every data point is used in testing set only once but it is also used in training process [@jiao_performance_2016].
+Usually, whole cross-validation procedure is repeated several times to get higher number of unique dataset splits and receive more reliable average values of the overall accuracy [@varga_validation_2021].
+Such approach is a compromise which enables possibility of using whole dataset in the training process of the final model without a need of acquiring independent testing set.
+
+Since this study is based on geographic data, Tobler's "first law of geography" needs to be taken into account.
+Tobler stated that "everything is related to everything else, but near things are more related than distant things". CITATION?
+In order to prevent test points from being related to training points, I applied spatial cross-validation approach.
+This method is different than regular cross-validation only in the partitioning step - instead of randomly dividing dataset into groups, location of data points is used together with k-means clustering in order to create spatially disjoint folds [@lovelace_geocomputation_2019]. FIGURE?
+Thanks to this partitioning method, spatial-bias can be significantly reduced which leads to more reliable performance estimation.
+
 -   measures and indices of classification model quality
 
 -   idea of resampling
