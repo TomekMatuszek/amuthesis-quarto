@@ -472,9 +472,23 @@ min. node size & 1 - 10 & 1\\
 \subsection{Model quality assessment}\label{sec-resampling}}
 
 Accuracy of the model was assessed with the help of four performance
-measures: overall accuracy, Kappa coefficient, as well as producer's and
-user's accuracy. I estimated values of these indices with the help of
-resampling technique called spatial cross-validation.
+measures:
+
+\begin{itemize}
+\item
+  overall accuracy
+\item
+  Kappa coefficient
+\item
+  producer's accuracy
+\item
+  user's accuracy
+\end{itemize}
+
+SHORT DESCRIPTIONS OF MEASURES!!
+
+I estimated values of these indices with the help of resampling
+technique called spatial cross-validation (CV).
 
 In \emph{n}-fold cross-validation, every data point is used in both
 training and testing set. Whole dataset is randomly divided into
@@ -491,28 +505,33 @@ which enables possibility of using whole dataset in the training process
 of the final model without a need of acquiring independent testing set.
 
 Since this study is based on geographic data, Tobler's ``first law of
-geography'' needs to be taken into account. Tobler stated that
-``everything is related to everything else, but near things are more
-related than distant things''. CITATION? In order to prevent test points
-from being related to training points, I applied spatial
-cross-validation approach. This method is different than regular
-cross-validation only in the partitioning part - instead of randomly
+geography'' and spatial autocorrelation need to be taken into account.
+Tobler stated that ``everything is related to everything else, but near
+things are more related than distant things''. CITATION? In order to
+prevent test points from being related to training points, I applied
+spatial cross-validation approach which aims to prevent the model to
+over-fit to the training data. This method is different than regular
+cross-validation only in the partitioning step - instead of randomly
 dividing dataset into groups, location of data points is used together
-with k-means clustering in order to create spatially disjoint folds
-\autocite{lovelace_geocomputation_2019}. FIGURE? Thanks to this
-partitioning method, spatial-bias can be significantly reduced which
-leads to more reliable performance estimation.
+with k-means clustering \autocite{brenning_spatial_2012} in order to
+create spatially disjoint folds \autocite{lovelace_geocomputation_2019}.
+FIGURE? Thanks to this partitioning method, spatial-bias can be
+significantly reduced which leads to more reliable performance
+estimation.
 
-\begin{itemize}
-\item
-  measures and indices of classification model quality
-\item
-  idea of resampling
-\item
-  idea of nested resampling
-\item
-  spatial cross-validation and its purpose
-\end{itemize}
+With the aim to possibly accurately set values of model's
+hyperparameters, I performed nested spatial cross-validation. This
+method is an extension of previously described approach, but with tuning
+added to the process. Each fold created in the spatial CV is further
+divided into next \emph{k} folds which comprise the tuning level of the
+process. Then, another cross-validation is performed on these folds in
+order to determine performance of randomly sampled hyperparameter
+values. The best of 10 hyperparameter combinations is chosen to train
+the model on outer fold on performance estimation level
+\autocite{schratz_hyperparameter_2019}. Whole process is then repeated
+on every of \emph{n} outer folds which leads to most accurate
+performance measurement as well as defining the best hyperparameter
+setting. FIGURE?
 
 \hypertarget{variable-importance-and-its-spatial-distribution}{%
 \section{Variable importance and its spatial
