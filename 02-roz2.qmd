@@ -167,7 +167,7 @@ knitr::include_graphics("figures/lucas_distribution.png")
 
 ## Machine learning {#sec-ml}
 
-Machine learning is a computation method used to teach machines to learn from datasets automatically without being specifically programmed (@mahesh_machine_2018; @sarker_machine_2021).
+Machine learning is a computation method used to teach machines to learn from datasets automatically, without being specifically programmed (@mahesh_machine_2018; @sarker_machine_2021).
 We can divide machine learning methods into two main groups: supervised and unsupervised.
 
 Unsupervised learning analyzes unlabeled datasets without the need for human intervention.
@@ -178,7 +178,7 @@ REF NEEDED
 
 Supervised learning uses labeled training data and a collection of training examples, which are used by an algorithm to find relationships between different variables used to describe training data.
 It is carried out when certain goals are identified to be accomplished from a certain set of inputs.
-There are two types of supervised learning tasks: classification (seperating data) and regression (fitting data) [@sarker_machine_2021].
+There are two types of supervised learning tasks: classification (separating data) and regression (fitting data) [@sarker_machine_2021].
 
 In this study, supervised classification algorithm called Random Forest (RF) was used [@breiman_random_2001].
 
@@ -195,6 +195,7 @@ Each rule in the decision tree is specified by a feature (variable used to split
 Random forest algorithm is characterized by using many decision trees at the same time and receiving results by applying majority voting system based on outputs of all decision trees [@kuhn_applied_2013].
 Each tree in the forest has slightly different input data - a subset of data is sampled with replacement to get different result in every tree.
 This process is known as bagging or bootstrap aggregating [@schonlau_random_2020].
+Moreover, algorithm is allowed to use only subset (randomly sampled) of available variables which reduces correlation between trees [@sohil_introduction_2022].
 
 ### Parameter tuning {#sec-tuning}
 
@@ -243,10 +244,10 @@ I estimated values of these indices with the help of resampling technique called
 
 In *n*-fold cross-validation, every data point is used in both training and testing set.
 Whole dataset is randomly divided into *n* equal parts (*folds*).
-Then, machine learning model is independently trained *n* times and in each run, different part of the dataset is used as validation set while remaining *n - 1* parts are used to train the model.
-This way, every data point is used in testing set only once but it is also used in training process [@jiao_performance_2016].
-Usually, whole cross-validation procedure is repeated several times to get higher number of unique dataset splits and receive more reliable average values of the overall accuracy [@varga_validation_2021].
-Such approach is a compromise which enables possibility of using whole dataset in the training process of the final model without a need of acquiring independent testing set.
+Then, machine learning model is independently trained *n* times and in each run, different part of the dataset is used as validation set while remaining *n - 1* parts are used to fit the model.
+This way, every data point is used in testing set only once and is used to train the model in the remaining runs [@jiao_performance_2016].
+Usually, whole cross-validation procedure is repeated several times to get higher number of unique dataset splits and to receive more reliable average values of the overall accuracy [@varga_validation_2021].
+Such approach is a compromise which enables possibility of using a whole dataset in the training process of the final model without a need of acquiring independent testing set.
 
 Since this study is based on geographic data, Tobler's "first law of geography" and spatial autocorrelation need to be taken into account.
 Tobler stated that "everything is related to everything else, but near things are more related than distant things".
@@ -254,10 +255,10 @@ CITATION?
 In order to prevent test points from being related to training points, I applied spatial cross-validation approach which aims to prevent the model to over-fit to the training data.
 This method is different than regular cross-validation only in the partitioning step - instead of randomly dividing dataset into groups, location of data points is used together with k-means clustering [@brenning_spatial_2012] in order to create spatially disjoint folds [@lovelace_geocomputation_2019].
 FIGURE?
-Thanks to this partitioning method, spatial-bias can be significantly reduced which leads to more reliable performance estimation.
+Thanks to this partitioning method, spatial bias can be significantly reduced which leads to more reliable performance estimation.
 
-With the aim to possibly accurately set values of model's hyperparameters, I performed nested spatial cross-validation.
-This method is an extension of previously described approach, but with tuning added to the process.
+With the aim to determine values of model's hyperparameters as accurately as possible, I performed nested spatial cross-validation.
+This method is an extension of previously described approach, but with hyperparameter tuning added to the process.
 Each fold created in the spatial CV is further divided into next *k* folds which comprise the tuning level of the process.
 Then, another cross-validation is performed on these folds in order to determine performance of randomly sampled hyperparameter values.
 The best of 10 hyperparameter combinations is chosen to train the model on outer fold on performance estimation level [@schratz_hyperparameter_2019].

@@ -384,7 +384,7 @@ points after pre-processing}
 \section{Machine learning}\label{sec-ml}}
 
 Machine learning is a computation method used to teach machines to learn
-from datasets automatically without being specifically programmed
+from datasets automatically, without being specifically programmed
 (\textcite{mahesh_machine_2018}; \textcite{sarker_machine_2021}). We can
 divide machine learning methods into two main groups: supervised and
 unsupervised.
@@ -402,7 +402,7 @@ training examples, which are used by an algorithm to find relationships
 between different variables used to describe training data. It is
 carried out when certain goals are identified to be accomplished from a
 certain set of inputs. There are two types of supervised learning tasks:
-classification (seperating data) and regression (fitting data)
+classification (separating data) and regression (fitting data)
 \autocite{sarker_machine_2021}.
 
 In this study, supervised classification algorithm called Random Forest
@@ -431,7 +431,10 @@ applying majority voting system based on outputs of all decision trees
 \autocite{kuhn_applied_2013}. Each tree in the forest has slightly
 different input data - a subset of data is sampled with replacement to
 get different result in every tree. This process is known as bagging or
-bootstrap aggregating \autocite{schonlau_random_2020}.
+bootstrap aggregating \autocite{schonlau_random_2020}. Moreover,
+algorithm is allowed to use only subset (randomly sampled) of available
+variables which reduces correlation between trees
+\autocite{sohil_introduction_2022}.
 
 \hypertarget{sec-tuning}{%
 \subsection{Parameter tuning}\label{sec-tuning}}
@@ -495,14 +498,15 @@ training and testing set. Whole dataset is randomly divided into
 \emph{n} equal parts (\emph{folds}). Then, machine learning model is
 independently trained \emph{n} times and in each run, different part of
 the dataset is used as validation set while remaining \emph{n - 1} parts
-are used to train the model. This way, every data point is used in
-testing set only once but it is also used in training process
+are used to fit the model. This way, every data point is used in testing
+set only once and is used to train the model in the remaining runs
 \autocite{jiao_performance_2016}. Usually, whole cross-validation
 procedure is repeated several times to get higher number of unique
-dataset splits and receive more reliable average values of the overall
-accuracy \autocite{varga_validation_2021}. Such approach is a compromise
-which enables possibility of using whole dataset in the training process
-of the final model without a need of acquiring independent testing set.
+dataset splits and to receive more reliable average values of the
+overall accuracy \autocite{varga_validation_2021}. Such approach is a
+compromise which enables possibility of using a whole dataset in the
+training process of the final model without a need of acquiring
+independent testing set.
 
 Since this study is based on geographic data, Tobler's ``first law of
 geography'' and spatial autocorrelation need to be taken into account.
@@ -515,23 +519,23 @@ cross-validation only in the partitioning step - instead of randomly
 dividing dataset into groups, location of data points is used together
 with k-means clustering \autocite{brenning_spatial_2012} in order to
 create spatially disjoint folds \autocite{lovelace_geocomputation_2019}.
-FIGURE? Thanks to this partitioning method, spatial-bias can be
+FIGURE? Thanks to this partitioning method, spatial bias can be
 significantly reduced which leads to more reliable performance
 estimation.
 
-With the aim to possibly accurately set values of model's
-hyperparameters, I performed nested spatial cross-validation. This
-method is an extension of previously described approach, but with tuning
-added to the process. Each fold created in the spatial CV is further
-divided into next \emph{k} folds which comprise the tuning level of the
-process. Then, another cross-validation is performed on these folds in
-order to determine performance of randomly sampled hyperparameter
-values. The best of 10 hyperparameter combinations is chosen to train
-the model on outer fold on performance estimation level
-\autocite{schratz_hyperparameter_2019}. Whole process is then repeated
-on every of \emph{n} outer folds which leads to most accurate
-performance measurement as well as defining the best hyperparameter
-setting. FIGURE?
+With the aim to determine values of model's hyperparameters as
+accurately as possible, I performed nested spatial cross-validation.
+This method is an extension of previously described approach, but with
+hyperparameter tuning added to the process. Each fold created in the
+spatial CV is further divided into next \emph{k} folds which comprise
+the tuning level of the process. Then, another cross-validation is
+performed on these folds in order to determine performance of randomly
+sampled hyperparameter values. The best of 10 hyperparameter
+combinations is chosen to train the model on outer fold on performance
+estimation level \autocite{schratz_hyperparameter_2019}. Whole process
+is then repeated on every of \emph{n} outer folds which leads to most
+accurate performance measurement as well as defining the best
+hyperparameter setting. FIGURE?
 
 \hypertarget{variable-importance-and-its-spatial-distribution}{%
 \section{Variable importance and its spatial
