@@ -230,15 +230,15 @@ df |>
 
 Accuracy of the model was assessed using four performance measures:
 
--   overall accuracy
+-   overall accuracy - ratio of number of correct predictions to the total number of input points
 
--   Kappa coefficient
+-   Kappa coefficient - how well the classification performed as compared to randomly assigning values
 
--   producer's accuracy
+-   recall (producer's accuracy) - how often are real features on the ground correctly shown on the classified map
 
--   user's accuracy
+-   precision (user's accuracy) - how often the class on the map will actually be present on the ground
 
-SHORT DESCRIPTIONS OF MEASURES!!
+-   F1-score - harmonic mean between precision and recall, measures if classifier both classifies data correctly and does not miss a significant number of points
 
 Values of these indices were estimated with the help of resampling technique called spatial cross-validation (CV).
 
@@ -265,6 +265,11 @@ Whole process is then repeated on every of *n* outer folds which leads to most a
 FIGURE?
 
 ## Variable importance and its spatial distribution
+
+Importance of model variables can be measured on two levels: dataset and instance level [@biecek_explanatory_2021].
+On the dataset level, we can measure change in model's accuracy depending on presence of one specific variable.
+This gives basic knowledge about this variable's impact on model predictions.
+Assessing importance on instance level helps to understand impact of variables for one specific data point.
 
 -   calculating variable importance using DALEXtra package
 
