@@ -264,14 +264,53 @@ The best of 10 (????) hyperparameter combinations is chosen to train the model o
 Whole process is then repeated on every of *n* outer folds which leads to most accurate performance measurement as well as defining the best hyperparameter setting.
 FIGURE?
 
-## Variable importance and its spatial distribution
+## Variable importance and its spatial distribution {#sec-importance}
+
+Quantifying importance of model's variables is a part of evaluating its results.
+This method can be used in model simplification and exploration, domain-knowledge-based validation or knowledge generation [@biecek_explanatory_2021].
+This study is focused on the latter purpose since my aim was to check if thermal information has an impact on land-cover classification.
 
 Importance of model variables can be measured on two levels: dataset and instance level [@biecek_explanatory_2021].
-On the dataset level, we can measure change in model's accuracy depending on presence of one specific variable.
+On the dataset level, we can measure change in model's accuracy depending on presence of one specific variable (Section [-@sec-importance-dataset]).
 This gives basic knowledge about this variable's impact on model predictions.
-Assessing importance on instance level helps to understand impact of variables for one specific data point.
+Assessing importance on instance level helps to understand impact of variables for one specific data point (Section [-@sec-importance-instance]).
+Moreover, instance-level importance can be utilized to interpolate variable importance values into continuous raster data (Section [-@sec-importance-interpolation]).
 
--   calculating variable importance using DALEXtra package
+### Dataset level {#sec-importance-dataset}
+
+Measuring variable importance on dataset level requires evaluating model twice: once with original data and once with permuted variables of analysed variable.
+The main idea behind this action is to measure difference between models' performance.
+Breiman [-@breiman_random_2001] assumes that if variable is important, then it is expected to lower model's performance after permuting its values.
+In this study, I chose cross entropy as a measure of model's performance thus considering its change as a measure of variable importance.
+
+### Instance level {#sec-importance-instance}
+
+Second method to measure variable importance in machine learning model is instance level evaluation.
+It helps to find out how much each variable contributed to classification result for particular observation [@biecek_explanatory_2021].
+One way of calculating variable impact on observation result is creating break-down plot (Figure [-@fig-rycina3]).
+Its main idea is to estimate contribution of variable by measuring change in model's predictions while fixing the values of consecutive variables to values recorded for the chosen observation [@biecek_explanatory_2021].
+After fixing the value of variable for whole dataset, change in model's prediction is calculated.
+This value indicates variable impact on chosen observation.
+
+```{r}
+#| label: fig-rycina4
+#| echo: false
+#| fig-cap: "Example of break-down plot that visualises variables' impact on chosen observation"
+#| out-width: "100%"
+#| out-height: 400px
+knitr::include_graphics("figures/importance.png")
+```
+
+However, above method is highly dependent on variable ordering and interactions between these variables [@biecek_explanatory_2021].
+To address this issue, I applied another approach based on averaging values from multiple break-down plots, each one with different ordering of the variables.
+This method originates from "Shapley values" [@shapley_value_1953] and was applied to machine learning by Štrumbelj and Kononenko [-@strumbelj_efficient_2010].
+Main idea of this approach is to apply 10 different variable orderings, create a break-down plot for each of them and calculate the mean value of contribution for each variable.
+Thanks to this method, the influence of variable ordering can be mostly removed [@biecek_explanatory_2021].
+
+Eventually, Shapley values provide possibilty to measure contribution of each variable in every observation in the training set.
+Such result enables us to add spatial context to the variable importance, which is further described in Section [-@sec-importance-interpolation].
+
+### Interpolating variable importance {#sec-importance-interpolation}
 
 -   calculating thermal band importance on aggregated raster
 
