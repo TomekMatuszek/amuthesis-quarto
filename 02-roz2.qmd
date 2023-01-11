@@ -1,7 +1,8 @@
 # Materials and methods {#sec-data-methods}
 
-Workflow of the study consisted of several stages: preprocessing of source data (described in Sections [-@sec-sat] and [-@sec-landcover]), creating training dataset, model's parameters tuning ([@sec-tuning]), land cover map prediction, model quality assessment ([@sec-resampling]) and evaluating the impact of thermal band on the model's results ([@sec-importance]).
-Visual representation of the workflow can be reviewed on [@fig-rycina4].
+Workflow of the study consisted of several stages: preprocessing of source data (described in Sections [-@sec-sat] and [-@sec-landcover]), creating training dataset, model's parameters tuning ([@sec-tuning]), land cover map prediction, model quality assessment ([@sec-resampling]) and evaluating the impact of the thermal band on the model's results ([@sec-importance]).
+Visual representation of the workflow is shown in [@fig-rycina4].
+
 Each of these steps was performed using R programming language [@R-base].
 Final visualisations were created in QGIS software [@qgis_development_team_qgis_2009].
 Both programming environment and GIS software used in this process are open-source.
@@ -43,13 +44,13 @@ flowchart TD
 
 Landsat ARD dataset, provided by GLAD laboratory at the Univeristy of Maryland, was used as a source of multi-spectral satellite imagery.
 Training points were obtained from LUCAS dataset created by Eurostat [@dandrimont_harmonised_2020].
-Both data sets were downloaded for central-western part of Poland which was chosen as training area ([@fig-rycina1]).
-This data was pre-processed and then used to train the model and validate its performance.
+Both datasets were downloaded for central-western part of Poland which was chosen as training area ([@fig-rycina1]).
+This data was preprocessed and then used to train the model and validate its performance.
 
 ```{r}
 #| label: fig-rycina1
 #| echo: false
-#| fig-cap: "Training area"
+#| fig-cap: "Area covered by downloaded satellite imagery"
 #| out-width: "100%"
 #| out-height: 400px
 knitr::include_graphics("figures/study_area.png")
@@ -57,13 +58,13 @@ knitr::include_graphics("figures/study_area.png")
 
 ## Satellite imagery {#sec-sat}
 
-Satellite imagery from GLAD Landsat ARD is available in 16-day interval composites and is divided into 1° x 1° tiles.
-Processing of original Landsat images performed by GLAD team included converting spectral bands to top-of-atmosphere (TOA) reflectance, converting thermal band to brightness temperature (BT) in Kelvins, scaling the values of all bands as well as adding quality flag for every pixel [@potapov_landsat_2020].
+Satellite imagery from GLAD Landsat ARD product is available in 16-day interval composites and is divided into 1° x 1° tiles.
+Processing of original Landsat images performed by GLAD team included converting spectral bands to top-of-atmosphere (TOA) reflectance, converting thermal band to brightness temperature (BT) in Kelvins, scaling the values of all bands, as well as, adding quality flag for every pixel [@potapov_landsat_2020].
 
 Satellite images for eight 1° x 1° tiles, covering the study area (Figure [-@fig-rycina1]), were downloaded using GLAD Tools v1.1 and PERL programming language.
 These images are from 10th interval of the year 2018, so downloaded mosaics consist of images created between 24.05.2018 and 8.06.2018.
 All downloaded images were merged and reprojected from WGS84 coordinate reference system (EPSG:4326) to UTM zone 33N (EPSG:32633).
-Every band was also resampled from 0.00025° resolution (corresponding to 27.83 m on equator) to 30 meters resolution.
+Every band was also resampled from its original 0.00025° resolution (corresponding to 27.83 m on the equator) to 30 meters.
 
 In addition, four spectral indices were derived: Normalized Difference Vegetation Index (NDVI), Modified Normalized Difference Water Index (MNDWI), Normalized Difference Moisture Index (NDMI) and Modified Bare soil Index (MBI).
 Formulas used to calculate these indices can be found in [@tbl-tabela1].
@@ -91,20 +92,20 @@ df |>
 ## Land cover data {#sec-landcover}
 
 Data collected during LUCAS survey performed by Eurostat was chosen as land cover training set.
-At the moment of writing, it is the most accurate and comprehensive dataset containing information about land use and land cover [@pflugmacher_mapping_2019] due to the fact, that every point was either manually photo-interpreted or assessed during *in-situ* visit.
+At the moment of writing, it is the most accurate and comprehensive dataset containing information about land use and land cover [@pflugmacher_mapping_2019] due to the fact that every point was either manually photo-interpreted or assessed during an *in-situ* visit.
 
 LUCAS survey consists of two phases.
-First phase is based on grid of points with 2km spacing covering whole territory of the European Union (which equals to more than 1 million points).
+The first phase is based on a grid of points with 2km spacing covering whole territory of the European Union (which equals to more than 1 million points).
 Each point of the grid is visually interpreted using ortho-photos or satellite images, and classified into one of seven major land-cover classes.
 These classes are: arable land, permanent crops, grassland, wooded areas/shrub land, bare land, artificial land and water.
 In the second phase, a subsample of grid points is selected and then visited by Eurostat surveyors.
 They classify each point according to full LUCAS land cover and land use classification.
-The survey takes place in the spring and summer in order to observe chosen places in high vegetation season [@dandrimont_harmonised_2020].
+The survey takes place in the spring and summer in order to observe chosen places in their high vegetation season [@dandrimont_harmonised_2020].
 
-Surveyor not only assign land cover and land use classes to points, but they also add auxillary information such as plant species present at the site, percentage of land coverage for a chosen class, height of the trees and their maturity, as well as information about water management and irrigation.
+Surveyor not only assign land cover and land use classes to points, but they also add auxillary information such as plant species present at the site, percentage of land coverage of a chosen class, height of the trees and their maturity, as well as information about local water management and irrigation.
 If there are more than one land cover/land use types at the point, observer can also assign a secondary class for every LUCAS point.
 
-Majority of the training points used for the classification model were points from the second phase of LUCAS survey, also called LUCAS Primary Data.
+Majority of the training points used in the classification model were from the second phase of LUCAS survey, also called LUCAS Primary Data.
 I downloaded a total of 4,153 points for the study area.
 Pre-processing step included omitting records with missing data, excluding artificial linear land cover classes (e.g. roads or railways) and excluding points that were surveyed more than 500 meters from their theoretical location.
 In the next step, detailed land cover classes were aggregated into eight main groups of land cover types.
@@ -138,7 +139,7 @@ df |>
 For the least frequent classes in the LUCAS Primary Data dataset - bare land, artificial land and water bodies - I also added points classified during the first phase of LUCAS survey ([@fig-rycina2]).
 This step was necessary to ensure that every land cover class is represented by enough number of points.
 It was not possible only for wetlands class, because of lack of such category in the first phase classification.
-At the end of the pre-processing, dataset was left with 3,778 training points [@oliver_buck_analysis_2015].
+At the end of the pre-processing, dataset had 3,778 training points [@oliver_buck_analysis_2015].
 
 ```{r}
 #| label: fig-rycina2
@@ -150,12 +151,12 @@ knitr::include_graphics("figures/lucas_data.png")
 ```
 
 After extracting values from Landsat ARD raster, LUCAS points were also filtered using quality flag provided.
-Only points with clear-sky quality flag were taken into account during the process of model training.
+Only points with clear-sky quality flag were taken into account during the model training.
 Moreover, water bodies points in which NDWI was lower than 0 were also excluded.
 These two conditions eliminated over 400 points in total.
 
 Training set obtained after pre-processing can be seen in [@fig-rycina3].
-Spatial distribution of data points was fairly even and due to the structure of LUCAS data set, every point was located at least 2 kilometers from another one.
+Spatial distribution of data points was fairly even and due to the structure of LUCAS data set, every point was located 2 kilometers or further from the next one.
 
 ```{r}
 #| label: fig-rycina3
@@ -168,16 +169,16 @@ knitr::include_graphics("figures/lucas_distribution.png")
 
 ## Machine learning {#sec-ml}
 
-Machine learning is a computation method used to teach machines to learn from datasets automatically, without being specifically programmed (@mahesh_machine_2018; @sarker_machine_2021).
+Machine learning is a computation method used to teach machines from datasets automatically, without being specifically programmed (@mahesh_machine_2018; @sarker_machine_2021).
 We can divide machine learning methods into two main groups: supervised and unsupervised.
 
 Unsupervised learning analyzes unlabeled datasets without the need for human intervention.
 This is widely used for extracting generative features, identifying meaningful trends and structures, grouping results and exploratory purposes [@sarker_machine_2021].
-This type of machine learning discovers hidden patterns or data groupings (clusters) which is used in exploratory analysis or objects segmentation.
+This type of machine learning discovers hidden patterns or data groupings (clusters) which is used in exploration analysis or objects segmentation.
 
-Supervised learning uses labeled training data and a collection of training examples, which are used by an algorithm to find relationships between different variables used to describe training data.
+Supervised learning uses labeled training data and a collection of training examples, which are used by an algorithm to find relationships between different variables.
 It is carried out when certain goals are identified to be accomplished from a certain set of inputs.
-There are two types of supervised learning tasks: classification (separating data) and regression (fitting data) [@sarker_machine_2021].
+There are two main types of supervised learning tasks: classification (separating data) and regression (fitting data) [@sarker_machine_2021].
 
 In this study, supervised classification algorithm called Random Forest (RF) was used [@breiman_random_2001].
 
@@ -198,12 +199,12 @@ Moreover, algorithm is allowed to use only subset (randomly sampled) of availabl
 
 ### Parameter tuning {#sec-tuning}
 
-Random Forest algorithm takes several hyper-parameters as an input in order to specify how much should it fit to training data or how long computation should take.
+Random Forest algorithm takes several hyperparameters as an input in order to specify how much should it fit to training data.
 Optimizing these parameters is crucial for tree-based machine learning models [@yang_hyperparameter_2020].
 Model's hyper-parameters can be fine-tuned to find values that give the best model accuracy.
 I chose three hyper-parameters for tuning: number of trees, maximum depth of the forest and minimal size of each node in decision tree.
 Then, 10 models with different hyper-parameter values chosen randomly from specified search space were created and trained.
-I used overall accuracy achieved by each classifier to rank their performance and choose parameters that best train the model.
+I used overall accuracy achieved by each classifier to rank their performance and choose parameters that train the model the best.
 Parameters' search spaces and tuning results can be found in [@tbl-tabela3].
 
 ```{r tabela3, echo=FALSE}
@@ -229,28 +230,28 @@ df |>
 
 Accuracy of the model was assessed using five performance measures:
 
--   overall accuracy - ratio of number of correct predictions to the total number of input points
+-   Overall accuracy: ratio of number of correct predictions to the total number of input points
 
--   Kappa coefficient - how well the classification performed as compared to randomly assigning values
+-   Kappa coefficient: how well the classification performed as compared to randomly assigning values
 
--   recall (producer's accuracy) - how often are real features on the ground correctly shown on the classified map
+-   Recall (producer's accuracy): how often are real features on the ground correctly shown on the classified map
 
--   precision (user's accuracy) - how often the class on the map will actually be present on the ground
+-   Precision (user's accuracy): how often the class on the map will actually be present on the ground
 
--   F1-score - harmonic mean between precision and recall, measures if classifier both classifies data correctly and does not miss a significant number of points
+-   F1-score: harmonic mean between precision and recall, measures if classifier both classifies data correctly and does not miss a significant number of points
 
 Values of these indices were estimated with the help of resampling technique called spatial cross-validation (CV).
 
 In *k*-fold cross-validation, every data point is used in both training and testing set.
 Whole dataset is randomly divided into *k* equal parts (*folds*).
 Then, machine learning model is independently trained *k* times and in each run, different part of the dataset is used as validation set while remaining *k - 1* parts are used to fit the model.
-This way, every data point is used in testing set only once and is used to train the model in the remaining runs [@jiao_performance_2016].
+This way, every data point is used in the testing set only once and is used to train the model in the remaining runs [@jiao_performance_2016].
 Usually, whole cross-validation procedure is repeated several times to get higher number of unique dataset splits and to receive more reliable average values of the overall accuracy [@varga_validation_2021].
 Such approach is a compromise which enables possibility of using a whole dataset in the training process of the final model without a need of acquiring independent testing set.
 
-Since this study is based on geographic data, Tobler's "first law of geography" and spatial autocorrelation need to be taken into account.
-Tobler stated that "everything is related to everything else, but near things are more related than distant things" [@tobler_computer_1970].
-In order to prevent testing points from being related to training points, I applied spatial cross-validation approach which aims to prevent the model to over-fit to the training data.
+Since this study is based on geographic data, spatial autocorrelation needs to be taken into account.
+As Tobler stated: "Everything is related to everything else, but near things are more related than distant things" [@tobler_computer_1970].
+In order to prevent testing points from being related to training points, I applied spatial cross-validation approach which aims to prevent the model to overfit to the training data.
 This method is different than regular cross-validation only in the partitioning step - instead of randomly dividing dataset into groups, location of data points is used together with k-means clustering [@brenning_spatial_2012] in order to create spatially disjoint folds [@lovelace_geocomputation_2019].
 Thanks to this partitioning method, spatial bias can be significantly reduced which leads to more reliable performance estimation.
 Example of such approach can be seen on [@fig-rycina7].
@@ -258,7 +259,7 @@ Example of such approach can be seen on [@fig-rycina7].
 ```{r}
 #| label: fig-rycina7
 #| echo: false
-#| fig-cap: "Comparison of random and spatial partitioning of dataset for cross-validation [@lovelace_geocomputation_2019]"
+#| fig-cap: "Comparison of random and spatial partitioning of dataset for cross-validation on external example data (Source: @lovelace_geocomputation_2019)"
 #| out-width: "100%"
 #| out-height: 400px
 knitr::include_graphics("figures/spatial_partitioning.png")
@@ -275,35 +276,35 @@ FIGURE?
 ## Variable importance and its spatial distribution {#sec-importance}
 
 Quantifying importance of model's variables is a part of evaluating its results.
-This method can be used in model simplification and exploration, domain-knowledge-based validation or knowledge generation [@biecek_explanatory_2021].
+It can be used for model simplification and exploration, domain-knowledge-based validation or knowledge generation [@biecek_explanatory_2021].
 This study was focused on the latter purpose since its aim was to check if thermal information has an impact on land-cover classification.
 
-Importance of model variables can be measured on two levels: dataset and instance level [@biecek_explanatory_2021].
-On the dataset level, we can measure change in model's accuracy depending on presence of one chosen variable ([@sec-importance-dataset]).
+Importance of model variables can be measured on two levels: dataset level and instance level [@biecek_explanatory_2021].
+On the dataset level, we can measure change in model's accuracy depending on the presence of one chosen variable ([@sec-importance-dataset]).
 This gives basic knowledge about this variable's impact on model predictions.
-Assessing importance on instance level helps to understand impact of variables for one specific data point ([@sec-importance-instance]).
-Moreover, instance-level importance can be utilized to interpolate variable importance values into continuous raster data ([@sec-importance-distribution]).
+Assessing importance on the instance level helps to understand an impact of variables for one specific data point ([@sec-importance-instance]).
+Moreover, the instance level importance can be utilized to interpolate variable importance values from points into continuous raster data ([@sec-importance-distribution]).
 
 ### Dataset level {#sec-importance-dataset}
 
-Measuring variable importance on dataset level requires evaluating model twice: once with original data and once with permuted values of analysed variable.
+Measuring variable importance on the dataset level requires evaluating model twice: once with original data and once with permuted values of the analysed variable.
 The main idea behind this action is to measure difference between models' performance.
-Breiman [-@breiman_random_2001] assumes that if variable is important, then it is expected to lower model's performance after permuting its values.
+Breiman [-@breiman_random_2001] assumes that if a variable is important, then it is expected to lower model's performance after permuting its values.
 In this study, I chose cross entropy as a measure of model's performance thus considering its change as a measure of variable importance.
 
 ### Instance level {#sec-importance-instance}
 
-Another way to measure variable importance in machine learning model is instance level evaluation.
-It helps to find out how much each variable contributed to classification result for particular observation [@biecek_explanatory_2021].
-One way of calculating variable impact on observation result is creating break-down plot ([@fig-rycina5]).
-Its main idea is to estimate contribution of variable by measuring change in model's predictions while fixing the values of consecutive variables to values recorded for the chosen observation [@biecek_explanatory_2021].
+Another way to measure variable importance in machine learning models is the instance level evaluation.
+It helps to find out how much each variable contributed to the classification result for a particular observation [@biecek_explanatory_2021].
+One way of calculating variable impact on the observation result is creating break-down plot ([@fig-rycina5]).
+Its main idea is to estimate contribution of variable by measuring the change in model's predictions while fixing the values of consecutive variables to values recorded for the chosen observation [@biecek_explanatory_2021].
 After fixing the value of variable for whole dataset, change in model's prediction is calculated.
-This value indicates variable impact on chosen observation.
+This value indicates variable impact on a chosen observation.
 
 ```{r}
 #| label: fig-rycina5
 #| echo: false
-#| fig-cap: "Example of break-down plot that visualises variables' impact on chosen observation"
+#| fig-cap: "Example of a break-down plot that visualises variables' impact on chosen observation"
 #| out-width: "70%"
 #| out-height: 500px
 knitr::include_graphics("figures/break-down_plot.png")
@@ -311,7 +312,7 @@ knitr::include_graphics("figures/break-down_plot.png")
 
 However, above method is highly dependent on variable ordering and interactions between these variables [@biecek_explanatory_2021].
 To address this issue, I applied another approach based on averaging values from multiple break-down plots, each one with different ordering of the variables.
-This method originates from "Shapley values" [@shapley_value_1953] and was applied to machine learning by Štrumbelj and Kononenko [-@strumbelj_efficient_2010].
+This method originates from "Shapley values" [@shapley_value_1953] and was adapted to machine learning by Štrumbelj and Kononenko [-@strumbelj_efficient_2010].
 Main idea of this approach is to apply several different variable orderings, create a break-down plot for each of them and calculate the mean value of contribution for each variable ([@fig-rycina6]).
 Thanks to this method, the influence of variable ordering can be mostly removed [@biecek_explanatory_2021].
 
@@ -324,35 +325,35 @@ Thanks to this method, the influence of variable ordering can be mostly removed 
 knitr::include_graphics("figures/shapley_values.png")
 ```
 
-Eventually, Shapley values provide possibilty to measure contribution of each variable in every observation in the training set.
+Eventually, Shapley values provide a possibilty to measure contribution of each variable in every observation in the training set.
 Such result enables us to add spatial context to the variable importance, which is further described in Section [-@sec-importance-distribution].
 
 ### Spatial distribution {#sec-importance-distribution}
 
 In order to estimate spatial distribution of variable importance values, I applied two different approaches.
-First of them is based on raster aggregation - resampling of satellite imagery from 30 m to 1,5 km resolution.
-Lowering the resolution of the data and averaging bands' values highly decreases amount of time that computation takes, as well as helps to discover more general trends and patterns rather than local ones.
+First of them is based on the raster aggregation - resampling of satellite imagery from 30 m to 1.5 km resolution.
+Lowering the resolution of the data and averaging bands' values highly decreases computational time, as well as helps to discover more general trends and patterns rather than local ones.
 After resampling, Shapley values are calculated for every raster cell and variable importance value is quantified.
 
-Second approach utilizes LUCAS training points used during a model training together with spatial interpolation techniques.
+The second approach utilizes LUCAS training points used during a model training together with spatial interpolation techniques.
 First, Shapley values are calculated for every point and importance of variable is assigned to them.
-This step is followed by spatial interpolation of variable importance values from points to continuous raster layer with the help of Inverse Distance Weighting (IDW) interpolation.
+This step is followed by spatial interpolation of variable importance values from points to continuous raster layer with the help of the Inverse Distance Weighting (IDW) interpolation method.
 
 Both approaches have their pros and cons.
-Raster aggregation method is spatially more consistent, but averaging of spectral values may not entirely represent objects from the ground.
+Raster aggregation method is spatially more consistent, but averaging of spectral values may not entirely represent objects on the ground.
 On the other hand, point interpolation method is very accurate for places near LUCAS points location, but values for more distant objects may not be as reliable.
 
 ## R language environment {#sec-r}
 
 Almost every step of analysis described in previous sections was performed with use of R [@R-base] - an open-source programming language designed mainly for statistical computing and visualizing data.
-I used RStudio [@rstudio_team_rstudio_2020] as an integrated development environment (IDE) created for R.
-Apart from base R functionalities, a number of packages created by R community were implemented into workflow.
+I used RStudio [@rstudio_team_rstudio_2020] as an integrated development environment (IDE).
+Apart from base R functionalities, a number of packages created by the R community were implemented into workflow.
 I used *terra* package [@R-terra] to perform raster data operations and *sf* [@R-sf] to manipulate and process vector data.
-To conduct machine learning steps of the analysis, I used whole environment of various machine learning packages called *mlr3* [@R-mlr3].
-Random forest algorithm used by *mlr3* framework is part of *ranger* package [@R-ranger].
+To conduct machine learning steps of the analysis, I used an environment of various machine learning packages called *mlr3* [@R-mlr3].
+Random forest algorithm used by *mlr3* framework is part of the *ranger* package [@R-ranger].
 I also used *dplyr* [@R-dplyr] and *tidyr* packages [@R-tidyr] to clean and process tabular data.
 *DALEX* [@R-DALEX] and *DALEXtra* [@R-DALEXtra] packages provided various functionalities enabling me to estimate variable importance and visualize these results with the help of *ggplot2* package [@R-ggplot2].
-Package called *gstat* [@R-gstat] helped to interpolate variable importance values from points to continuous raster layer.
+Package called *gstat* [@R-gstat] helped to interpolate variable importance values from points to a continuous raster layer.
 In addition, *future* package [@R-future] was used to enable multi-threading of some computationally intensive tasks.
 
 ```{r}
