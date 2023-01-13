@@ -594,13 +594,19 @@ importance values from points into continuous raster data
 
 Measuring variable importance on the dataset level requires evaluating
 model twice: once with original data and once with permuted values of
-the analysed variable. The main idea behind this action is to measure
+the considered variable. The main idea behind this action is to measure
 difference between models' performance. Breiman
 \autocite*{breiman_random_2001} assumes that if a variable is important,
 then it is expected to lower model's performance after permuting its
-values. In this study, I chose cross entropy as a measure of model's
-performance thus considering its change as a measure of variable
-importance.
+values. For this purpose, cross entropy was used as a loss function thus
+its change was considered as a measure of variable importance
+\autocite{biecek_explanatory_2021}. In order to measure each variable's
+importance, twelve seperate models were created: one with original data
+and eleven modified models, each one with different variable's values
+permuted. Comparison of these eleven models and original model made
+possible quantifying impact of every variable on original model's
+results. This value is treated as overall variable importance on the
+dataset level.
 
 \hypertarget{sec-importance-instance}{%
 \subsection{Instance level}\label{sec-importance-instance}}
