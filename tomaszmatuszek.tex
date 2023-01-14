@@ -166,7 +166,7 @@ tuning (Section~\ref{sec-tuning}), land cover map prediction, model
 quality assessment (Section~\ref{sec-resampling}) and evaluating the
 impact of the thermal band on the model's results
 (Section~\ref{sec-importance}). Visual representation of the workflow is
-shown in Figure~\ref{fig-rycina4}.
+shown in Figure~\ref{fig-rycina1}.
 
 Each of these steps was performed using R programming language
 \autocite{R-base}. Final visualisations were created in QGIS software
@@ -187,7 +187,7 @@ and GIS software used in this process are open-source.
 
 }
 
-\caption{\label{fig-rycina4}General workflow of the study}
+\caption{\label{fig-rycina1}General workflow of the study}
 
 \end{figure}
 
@@ -196,7 +196,7 @@ Maryland, was used as a source of multi-spectral satellite imagery.
 Training points were obtained from LUCAS dataset created by Eurostat
 \autocite{dandrimont_harmonised_2020}. Both datasets were downloaded for
 central-western part of Poland which was chosen as training area
-(Figure~\ref{fig-rycina1}). This data was preprocessed and then used to
+(Figure~\ref{fig-rycina2}). This data was preprocessed and then used to
 train the model and validate its performance.
 
 \begin{figure}[t]
@@ -205,7 +205,7 @@ train the model and validate its performance.
 
 }
 
-\caption{\label{fig-rycina1}Area covered by downloaded satellite
+\caption{\label{fig-rycina2}Area covered by downloaded satellite
 imagery}
 
 \end{figure}
@@ -347,7 +347,7 @@ surface, HRB - herbaceous plants cover, TC - tree cover }\tabularnewline
 
 For the least frequent classes in the LUCAS Primary Data dataset - bare
 land, artificial land and water bodies - I also added points classified
-during the first phase of LUCAS survey (Figure~\ref{fig-rycina2}). This
+during the first phase of LUCAS survey (Figure~\ref{fig-rycina3}). This
 step was necessary to ensure that every land cover class is represented
 by enough number of points. It was not possible only for wetlands class,
 because of lack of such category in the first phase classification. At
@@ -360,7 +360,7 @@ the end of the pre-processing, dataset had 3,778 training points
 
 }
 
-\caption{\label{fig-rycina2}Distribution of points by land cover class
+\caption{\label{fig-rycina3}Distribution of points by land cover class
 after pre-processing}
 
 \end{figure}
@@ -372,7 +372,7 @@ bodies points in which NDWI was lower than 0 were also excluded. These
 two conditions eliminated over 400 points in total.
 
 Training set obtained after pre-processing can be seen in
-Figure~\ref{fig-rycina3}. Spatial distribution of data points was fairly
+Figure~\ref{fig-rycina4}. Spatial distribution of data points was fairly
 even and due to the structure of LUCAS data set, every point was located
 2 kilometers or further from the next one.
 
@@ -382,7 +382,7 @@ even and due to the structure of LUCAS data set, every point was located
 
 }
 
-\caption{\label{fig-rycina3}Spatial distribution of LUCAS training
+\caption{\label{fig-rycina4}Spatial distribution of LUCAS training
 points after pre-processing}
 
 \end{figure}
@@ -538,7 +538,7 @@ with k-means clustering \autocite{brenning_spatial_2012} in order to
 create spatially disjoint folds \autocite{lovelace_geocomputation_2019}.
 Thanks to this partitioning method, spatial bias can be significantly
 reduced which leads to more reliable performance estimation. Example of
-such approach can be seen on Figure~\ref{fig-rycina7}.
+such approach can be seen on Figure~\ref{fig-rycina5}.
 
 \begin{figure}[t]
 
@@ -546,7 +546,7 @@ such approach can be seen on Figure~\ref{fig-rycina7}.
 
 }
 
-\caption{\label{fig-rycina7}Comparison of random and spatial
+\caption{\label{fig-rycina5}Comparison of random and spatial
 partitioning of dataset for cross-validation on external example data
 (Source: \textcite{lovelace_geocomputation_2019})}
 
@@ -610,7 +610,7 @@ dataset level.
 
 There is also more visual method to explore variable importance on
 dataset level. It is based on interpreting partial-dependence (PD)
-profiles of variables (Figure~\ref{fig-rycina40}). Such type of plot
+profiles of variables (Figure~\ref{fig-rycina6}). Such type of plot
 shows how does probability of choosing certain class changes as a
 function of the selected variable \autocite{biecek_explanatory_2021}.
 Values for PD profile are calculated by averaging Ceteris-paribus
@@ -627,7 +627,7 @@ detect such dependence.
 
 }
 
-\caption{\label{fig-rycina40}Example variable profile for near-infrared
+\caption{\label{fig-rycina6}Example variable profile for near-infrared
 band (B5).}
 
 \end{figure}
@@ -640,7 +640,7 @@ the instance level evaluation. It helps to find out how much each
 variable contributed to the classification result for a particular
 observation \autocite{biecek_explanatory_2021}. One way of calculating
 variable impact on the observation result is creating break-down plot
-(Figure~\ref{fig-rycina5}). Its main idea is to estimate contribution of
+(Figure~\ref{fig-rycina7}). Its main idea is to estimate contribution of
 variable by measuring the change in model's predictions while fixing the
 values of consecutive variables to values recorded for the chosen
 observation \autocite{biecek_explanatory_2021}. After fixing the value
@@ -654,7 +654,7 @@ observation.
 
 }
 
-\caption{\label{fig-rycina5}Example of a break-down plot that visualises
+\caption{\label{fig-rycina7}Example of a break-down plot that visualises
 variables' impact on chosen observation}
 
 \end{figure}
@@ -668,7 +668,7 @@ of the variables. This method originates from ``Shapley values''
 Štrumbelj and Kononenko \autocite*{strumbelj_efficient_2010}. Main idea
 of this approach is to apply several different variable orderings,
 create a break-down plot for each of them and calculate the mean value
-of contribution for each variable (Figure~\ref{fig-rycina6}). Thanks to
+of contribution for each variable (Figure~\ref{fig-rycina8}). Thanks to
 this method, the influence of variable ordering can be mostly removed
 \autocite{biecek_explanatory_2021}.
 
@@ -678,7 +678,7 @@ this method, the influence of variable ordering can be mostly removed
 
 }
 
-\caption{\label{fig-rycina6}Example plot of Shapley Additive
+\caption{\label{fig-rycina8}Example plot of Shapley Additive
 Explanations}
 
 \end{figure}
@@ -756,7 +756,7 @@ multi-threading of some computationally intensive tasks.
 
 }
 
-\caption{\label{fig-rycina8}Land cover map of Poznań metropolitan area
+\caption{\label{fig-rycina9}Land cover map of Poznań metropolitan area
 created during this study.}
 
 \end{figure}
@@ -773,7 +773,7 @@ created during this study.}
 
 }
 
-\caption{\label{fig-rycina9}Comparison of created land cover map with
+\caption{\label{fig-rycina10}Comparison of created land cover map with
 RGB imagery.}
 
 \end{figure}
@@ -790,7 +790,7 @@ RGB imagery.}
 
 }
 
-\caption{\label{fig-rycina10}Probability of chosen land cover class
+\caption{\label{fig-rycina11}Probability of chosen land cover class
 being present on the ground. This can be treated as confidence of model
 on its results.}
 
@@ -917,7 +917,7 @@ wetlands & 0.8 & 0.80\\
 
 }
 
-\caption{\label{fig-rycina11}Variable profile for near-infrared band
+\caption{\label{fig-rycina12}Variable profile for near-infrared band
 (B5).}
 
 \end{figure}
@@ -928,7 +928,7 @@ wetlands & 0.8 & 0.80\\
 
 }
 
-\caption{\label{fig-rycina12}Variable profile for thermal band (B10)}
+\caption{\label{fig-rycina13}Variable profile for thermal band (B10)}
 
 \end{figure}
 
@@ -949,7 +949,7 @@ importance}\label{sec-imp-spat}}
 
 }
 
-\caption{\label{fig-rycina13}Thermal band importance calculated for
+\caption{\label{fig-rycina14}Thermal band importance calculated for
 raster cells aggregated to 1,5 km resolution.}
 
 \end{figure}
@@ -960,7 +960,7 @@ raster cells aggregated to 1,5 km resolution.}
 
 }
 
-\caption{\label{fig-rycina14}Thermal band importance interpolated from
+\caption{\label{fig-rycina15}Thermal band importance interpolated from
 values on LUCAS points locations.}
 
 \end{figure}

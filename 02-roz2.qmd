@@ -1,7 +1,7 @@
 # Materials and methods {#sec-data-methods}
 
 Workflow of the study consisted of several stages: preprocessing of source data (described in Sections [-@sec-sat] and [-@sec-landcover]), creating training dataset, model's parameters tuning ([@sec-tuning]), land cover map prediction, model quality assessment ([@sec-resampling]) and evaluating the impact of the thermal band on the model's results ([@sec-importance]).
-Visual representation of the workflow is shown in [@fig-rycina4].
+Visual representation of the workflow is shown in [@fig-rycina1].
 
 Each of these steps was performed using R programming language [@R-base].
 Final visualisations were created in QGIS software [@qgis_development_team_qgis_2009].
@@ -9,7 +9,7 @@ Both programming environment and GIS software used in this process are open-sour
 <!-- &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp-->
 
 ```{mermaid}
-%%| label: fig-rycina4
+%%| label: fig-rycina1
 %%| echo: false
 %%| fig-cap: "General workflow of the study"
 %%| fig-width: 4
@@ -44,11 +44,11 @@ flowchart TD
 
 Landsat ARD dataset, provided by GLAD laboratory at the Univeristy of Maryland, was used as a source of multi-spectral satellite imagery.
 Training points were obtained from LUCAS dataset created by Eurostat [@dandrimont_harmonised_2020].
-Both datasets were downloaded for central-western part of Poland which was chosen as training area ([@fig-rycina1]).
+Both datasets were downloaded for central-western part of Poland which was chosen as training area ([@fig-rycina2]).
 This data was preprocessed and then used to train the model and validate its performance.
 
 ```{r}
-#| label: fig-rycina1
+#| label: fig-rycina2
 #| echo: false
 #| fig-cap: "Area covered by downloaded satellite imagery"
 #| out-width: "564px"
@@ -137,13 +137,13 @@ df |>
   kableExtra::kable_classic(full_width = FALSE)
 ```
 
-For the least frequent classes in the LUCAS Primary Data dataset - bare land, artificial land and water bodies - I also added points classified during the first phase of LUCAS survey ([@fig-rycina2]).
+For the least frequent classes in the LUCAS Primary Data dataset - bare land, artificial land and water bodies - I also added points classified during the first phase of LUCAS survey ([@fig-rycina3]).
 This step was necessary to ensure that every land cover class is represented by enough number of points.
 It was not possible only for wetlands class, because of lack of such category in the first phase classification.
 At the end of the pre-processing, dataset had 3,778 training points [@oliver_buck_analysis_2015].
 
 ```{r}
-#| label: fig-rycina2
+#| label: fig-rycina3
 #| echo: false
 #| fig-cap: "Distribution of points by land cover class after pre-processing"
 #| out-width: "552px"
@@ -156,11 +156,11 @@ Only points with clear-sky quality flag were taken into account during the model
 Moreover, water bodies points in which NDWI was lower than 0 were also excluded.
 These two conditions eliminated over 400 points in total.
 
-Training set obtained after pre-processing can be seen in [@fig-rycina3].
+Training set obtained after pre-processing can be seen in [@fig-rycina4].
 Spatial distribution of data points was fairly even and due to the structure of LUCAS data set, every point was located 2 kilometers or further from the next one.
 
 ```{r}
-#| label: fig-rycina3
+#| label: fig-rycina4
 #| echo: false
 #| fig-cap: "Spatial distribution of LUCAS training points after pre-processing"
 #| out-width: "564px"
@@ -261,10 +261,10 @@ As Tobler stated: "Everything is related to everything else, but near things are
 In order to prevent testing points from being related to training points, I applied spatial cross-validation approach which aims to prevent the model to overfit to the training data.
 This method is different than regular cross-validation only in the partitioning step - instead of randomly dividing dataset into groups, location of data points is used together with k-means clustering [@brenning_spatial_2012] in order to create spatially disjoint folds [@lovelace_geocomputation_2019].
 Thanks to this partitioning method, spatial bias can be significantly reduced which leads to more reliable performance estimation.
-Example of such approach can be seen on [@fig-rycina7].
+Example of such approach can be seen on [@fig-rycina5].
 
 ```{r}
-#| label: fig-rycina7
+#| label: fig-rycina5
 #| echo: false
 #| fig-cap: "Comparison of random and spatial partitioning of dataset for cross-validation on external example data (Source: @lovelace_geocomputation_2019)"
 #| out-width: "570px"
@@ -303,14 +303,14 @@ Comparison of these eleven models and original model made possible quantifying i
 This value is treated as overall variable importance on the dataset level.
 
 There is also more visual method to explore variable importance on dataset level.
-It is based on interpreting partial-dependence (PD) profiles of variables ([@fig-rycina40]).
+It is based on interpreting partial-dependence (PD) profiles of variables ([@fig-rycina6]).
 Such type of plot shows how does probability of choosing certain class changes as a function of the selected variable [@biecek_explanatory_2021].
 Values for PD profile are calculated by averaging Ceteris-paribus profiles created for every observation in the dataset.
 This approach is an easy and intuitive way to understand variables' impact on model results.
 If probability values of choosing certain class do not change along with changes of variable's value, we can assume that this variable does not have big impact on model predictions or that our model did not detect such dependence.
 
 ```{r}
-#| label: fig-rycina40
+#| label: fig-rycina6
 #| echo: false
 #| fig-cap: "Example variable profile for near-infrared band (B5)."
 #| out-width: "567px"
@@ -322,13 +322,13 @@ knitr::include_graphics("figures/profB5.png")
 
 Another way to measure variable importance in machine learning models is the instance level evaluation.
 It helps to find out how much each variable contributed to the classification result for a particular observation [@biecek_explanatory_2021].
-One way of calculating variable impact on the observation result is creating break-down plot ([@fig-rycina5]).
+One way of calculating variable impact on the observation result is creating break-down plot ([@fig-rycina7]).
 Its main idea is to estimate contribution of variable by measuring the change in model's predictions while fixing the values of consecutive variables to values recorded for the chosen observation [@biecek_explanatory_2021].
 After fixing the value of variable for whole dataset, change in model's prediction is calculated.
 This value indicates variable impact on a chosen observation.
 
 ```{r}
-#| label: fig-rycina5
+#| label: fig-rycina7
 #| echo: false
 #| fig-cap: "Example of a break-down plot that visualises variables' impact on chosen observation"
 #| out-width: "70%"
@@ -339,11 +339,11 @@ knitr::include_graphics("figures/break-down_plot.png")
 However, above method is highly dependent on variable ordering and interactions between these variables [@biecek_explanatory_2021].
 To address this issue, I applied another approach based on averaging values from multiple break-down plots, each one with different ordering of the variables.
 This method originates from "Shapley values" [@shapley_value_1953] and was adapted to machine learning by Štrumbelj and Kononenko [-@strumbelj_efficient_2010].
-Main idea of this approach is to apply several different variable orderings, create a break-down plot for each of them and calculate the mean value of contribution for each variable ([@fig-rycina6]).
+Main idea of this approach is to apply several different variable orderings, create a break-down plot for each of them and calculate the mean value of contribution for each variable ([@fig-rycina8]).
 Thanks to this method, the influence of variable ordering can be mostly removed [@biecek_explanatory_2021].
 
 ```{r}
-#| label: fig-rycina6
+#| label: fig-rycina8
 #| echo: false
 #| fig-cap: "Example plot of Shapley Additive Explanations"
 #| out-width: "70%"

@@ -1,34 +1,49 @@
-# Result of the model - land cover map {#sec-results-map}
+# Assessing model quality {#sec-results-eval}
 
--   land cover map of Poznań metropolitan area
+Table with quality indices:
 
-```{r}
-#| label: fig-rycina8
+-   overall accuracy (OA) / classification error (CE)
+
+-   producer's and user's accuracy (PA, UA) / precission and recall
+
+-   F1-score
+
+-   Kappa coefficient
+
+```{r tabela3, echo=FALSE}
+#| label: tbl-tabela4
 #| echo: false
-#| fig-cap: "Land cover map of Poznań metropolitan area created during this study."
-#| out-width: "564px"
-#| out-height: 400px
-knitr::include_graphics("figures/result_map.png")
+#| tbl-cap: "Measures of overall model accuracy calculated during cross-validation/resampling process."
+df = data.frame(
+  measure = c("overall accuracy", "Kappa coefficient", "precission", "recall", "F1-score"),
+  average_value = c(0.75, 0.70, 0.8, 0.78, 0.79)
+)
+colnames(df) = c("Measure", "Avg. value")
+df |>
+  knitr::kable(format = "latex", booktabs = TRUE, linesep = "") |> 
+  kableExtra::row_spec(0, bold = TRUE, extra_css = "border-left: 1px solid grey; border-right: 1px solid grey") |>
+  kableExtra::column_spec(1, border_left = TRUE) |>
+  kableExtra::column_spec(2, border_left = TRUE, border_right = TRUE) |>
+  kableExtra::kable_classic(full_width = FALSE) |>
+  kableExtra::row_spec(1:(nrow(df) - 1), extra_latex_after = "\\hline")
 ```
 
--   comparison of land cover map and RGB satellite imagery
-
-```{r}
-#| label: fig-rycina9
+```{r tabela3, echo=FALSE}
+#| label: tbl-tabela5
 #| echo: false
-#| fig-cap: "Comparison of created land cover map with RGB imagery."
-#| out-width: "564px"
-#| out-height: 400px
-knitr::include_graphics("figures/result_map.png")
-```
-
--   probability map of model results
-
-```{r}
-#| label: fig-rycina10
-#| echo: false
-#| fig-cap: "Probability of chosen land cover class being present on the ground. This can be treated as confidence of model on its results."
-#| out-width: "564px"
-#| out-height: 400px
-knitr::include_graphics("figures/result_map.png")
+#| tbl-cap: "Accuracy measures by land cover class."
+df = data.frame(
+  class = c("arable land", "grasslands", "forests", "bare land", "artificial land", "water bodies", "wetlands"),
+  precision = c(0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8),
+  recall = c(0.75, 0.70, 0.8, 0.78, 0.79, 0.8, 0.8),
+  f1score = c(0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8)
+)
+colnames(df) = c("Land cover class", "Precision (producer's accuracy)", "Recall (user's accuracy)", "F1-score")
+df |>
+  knitr::kable(format = "latex", booktabs = TRUE, linesep = "") |> 
+  kableExtra::row_spec(0, bold = TRUE, extra_css = "border-left: 1px solid grey; border-right: 1px solid grey") |>
+  kableExtra::column_spec(1:3, border_left = TRUE) |>
+  kableExtra::column_spec(4, border_left = TRUE, border_right = TRUE) |>
+  kableExtra::kable_classic(full_width = FALSE) |>
+  kableExtra::row_spec(1:(nrow(df) - 1), extra_latex_after = "\\hline")
 ```

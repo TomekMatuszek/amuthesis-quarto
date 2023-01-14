@@ -1,90 +1,34 @@
-# Methods {#sec-methods}
+# Result of the model - land cover map {#sec-results-map}
 
-```{mermaid}
-%%| label: fig-rycina4
-%%| echo: false
-%%| fig-cap: "Mermaid flowchart"
-flowchart LR
-  A[Hard edge] --> B(Round edge)
-  B --> C{Decision}
-  C --> D[Result one]
-  C --> E[Result two]
-  F[Hard edge] --> G(Round edge)
-  F --> B
-  G --> H{Decision}
-  H --> I[Result one]
-  H --> J[Result two]
-```
-
-Workflow of the study consisted of several stages: preprocessing of source data (described in Chapter [-@sec-data]), creating training dataset, model's parameters tuning, land cover map prediction, model quality assessment and evaluating the impact of thermal band on the model's results.
-Each of these steps was performed using R programming language [@R-base].
-Final visualisations were created in QGIS software [@qgis_development_team_qgis_2009].
-Both programming environment and GIS software used in this process are open-source. (Figure [-@fig-rycina4])
-
-## Machine learning {#sec-ml}
-
-Machine learning is a computation method used to teach machines to learn from datasets automatically without being specifically programmed (@mahesh_machine_2018; @sarker_machine_2021).
-We can divide machine learning methods into two main groups: supervised and unsupervised.
-
-Unsupervised learning analyzes unlabeled datasets without the need for human intervention.
-This is widely used for extracting generative features, identifying meaningful trends and structures, grouping results and exploratory purposes [@sarker_machine_2021].
-This type of machine learning discovers hidden patterns or data groupings (clusters) which is used in exploratory analysis or objects segmentation.
-The most common unsupervised learning algorithm is clustering.
-REF NEEDED
-
-Supervised learning uses labeled training data and a collection of training examples, which are used by an algorithm to find relationships between different variables used to describe training data.
-It is carried out when certain goals are identified to be accomplished from a certain set of inputs.
-There are two types of supervised learning tasks: classification (seperating data) and regression (fitting data) [@sarker_machine_2021].
-
-In this study, supervised classification algorithm called Random Forest (RF) was used [@breiman_random_2001].
-
-### Random forest algorithm {#sec-rf}
-
-I chose Random Forest as an algorithm used in this study.
-It is a very popular machine learning tool thanks to its high interpretability and relatively high accuracy [@qi_random_2012].
-Other advantages of this algorithm is its ability to handle missing values, wide spectrum of accepted variable types (continuous, binary, categorical) and ease of modelling high-dimensional data [@qi_random_2012].
-Random Forest consists of a specified number of decision trees, which are based on series of splitting rules.
-
-Decision tree aims to partition the dataset into smaller, more homogeneous groups [@kuhn_applied_2013].
-This process creates set of rules by dividing dataset into several categories.
-Each rule in the decision tree is specified by a feature (variable used to split) and a threshold (value of a feature dividing dataset) [@sekulic_random_2020].
-Random forest algorithm is characterized by using many decision trees at the same time and receiving results by applying majority voting system based on outputs of all decision trees [@kuhn_applied_2013].
-Each tree in the forest has slightly different input data - a subset of data is sampled with replacement to get different result in every tree.
-This process is known as bagging or bootstrap aggregating [@schonlau_random_2020].
-
-### Parameter tuning {#sec-tuning}
-
--   what is tuning of model's parameters
-
-### Model quality assessment {#sec-resampling}
-
--   measures and indices of classification model quality
-
--   idea of resampling
-
--   idea of nested resampling
-
--   spatial cross-validation and its purpose
-
-## R language environment {#sec-r}
-
-Almost every step of analysis described in previous sections was performed with use of R [@R-base] - an open-source programming language designed mainly for statistical computing and visualizing data.
-I used RStudio [@rstudio_team_rstudio_2020] as an integrated development environment (IDE) created for R.
-Apart from base R functionalities, I used a number of packages created by R community.
-We used *terra* package [@R-terra] to perform raster data operations and *sf* [@R-sf] to manipulate and process vector data.
-To conduct machine learning steps of the analysis, we used whole environment of various machine learning packages called *mlr3* [@R-mlr3].
-Random forest algorithm used by *mlr3* framework is part of *ranger* package [@R-ranger] .
-I also used *dplyr* [@R-dplyr] and *tidyr* packages [@R-tidyr] to clean and process tabular data.
-*DALEX* [@R-DALEX] and *DALEXtra* [@R-DALEXtra] packages provided various functionalities enabling me to estimate variable importance and visualize these results with the help of *ggplot2* package [@R-ggplot2].
-Package called *gstat* [@R-gstat] helped to interpolate variable importance values from points to continuous raster layer.
-In addition, *future* package [@R-future] was used to enable multi-threading of some computationally intensive tasks.
-
-------------------------------------------------------------------------
+-   land cover map of Poznań metropolitan area
 
 ```{r}
-#| label: pakietbib
+#| label: fig-rycina9
 #| echo: false
-#| warning: false
-pakiety = c("base", "kableExtra", "terra", "sf", "mlr3", "ranger", "ggplot2", "dplyr", "tidyr", "DALEX", "DALEXtra", "future", "gstat")
-knitr::write_bib(pakiety, "packages.bib", width = 60)
+#| fig-cap: "Land cover map of Poznań metropolitan area created during this study."
+#| out-width: "564px"
+#| out-height: 400px
+knitr::include_graphics("figures/result_map.png")
+```
+
+-   comparison of land cover map and RGB satellite imagery
+
+```{r}
+#| label: fig-rycina10
+#| echo: false
+#| fig-cap: "Comparison of created land cover map with RGB imagery."
+#| out-width: "564px"
+#| out-height: 400px
+knitr::include_graphics("figures/result_map.png")
+```
+
+-   probability map of model results
+
+```{r}
+#| label: fig-rycina11
+#| echo: false
+#| fig-cap: "Probability of chosen land cover class being present on the ground. This can be treated as confidence of model on its results."
+#| out-width: "564px"
+#| out-height: 400px
+knitr::include_graphics("figures/result_map.png")
 ```
