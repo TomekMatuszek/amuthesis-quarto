@@ -302,6 +302,22 @@ In order to measure each variable's importance, twelve seperate models were crea
 Comparison of these eleven models and original model made possible quantifying impact of every variable on original model's results.
 This value is treated as overall variable importance on the dataset level.
 
+There is also more visual method to explore variable importance on dataset level.
+It is based on interpreting partial-dependence (PD) profiles of variables ([@fig-rycina40]).
+Such type of plot shows how does probability of choosing certain class changes as a function of the selected variable [@biecek_explanatory_2021].
+Values for PD profile are calculated by averaging Ceteris-paribus profiles created for every observation in the dataset.
+This approach is an easy and intuitive way to understand variables' impact on model results.
+If probability values of choosing certain class do not change along with changes of variable's value, we can assume that this variable does not have big impact on model predictions or that our model did not detect such dependence.
+
+```{r}
+#| label: fig-rycina40
+#| echo: false
+#| fig-cap: "Example variable profile for near-infrared band (B5)."
+#| out-width: "567px"
+#| out-height: 300px
+knitr::include_graphics("figures/profB5.png")
+```
+
 ### Instance level {#sec-importance-instance}
 
 Another way to measure variable importance in machine learning models is the instance level evaluation.

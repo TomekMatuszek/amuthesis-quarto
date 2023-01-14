@@ -608,6 +608,30 @@ possible quantifying impact of every variable on original model's
 results. This value is treated as overall variable importance on the
 dataset level.
 
+There is also more visual method to explore variable importance on
+dataset level. It is based on interpreting partial-dependence (PD)
+profiles of variables (Figure~\ref{fig-rycina40}). Such type of plot
+shows how does probability of choosing certain class changes as a
+function of the selected variable \autocite{biecek_explanatory_2021}.
+Values for PD profile are calculated by averaging Ceteris-paribus
+profiles created for every observation in the dataset. This approach is
+an easy and intuitive way to understand variables' impact on model
+results. If probability values of choosing certain class do not change
+along with changes of variable's value, we can assume that this variable
+does not have big impact on model predictions or that our model did not
+detect such dependence.
+
+\begin{figure}[t]
+
+{\centering \includegraphics[width=5.90625in,height=3.125in]{./figures/profB5.png}
+
+}
+
+\caption{\label{fig-rycina40}Example variable profile for near-infrared
+band (B5).}
+
+\end{figure}
+
 \hypertarget{sec-importance-instance}{%
 \subsection{Instance level}\label{sec-importance-instance}}
 
@@ -721,41 +745,56 @@ multi-threading of some computationally intensive tasks.
 \chapter{Result of the model - land cover map}\label{sec-results-map}}
 
 \begin{itemize}
+\tightlist
 \item
   land cover map of Poznań metropolitan area
+\end{itemize}
+
+\begin{figure}[t]
+
+{\centering \includegraphics[width=5.875in,height=4.16667in]{./figures/result_map.png}
+
+}
+
+\caption{\label{fig-rycina8}Land cover map of Poznań metropolitan area
+created during this study.}
+
+\end{figure}
+
+\begin{itemize}
+\tightlist
 \item
   comparison of land cover map and RGB satellite imagery
+\end{itemize}
+
+\begin{figure}[t]
+
+{\centering \includegraphics[width=5.875in,height=4.16667in]{./figures/result_map.png}
+
+}
+
+\caption{\label{fig-rycina9}Comparison of created land cover map with
+RGB imagery.}
+
+\end{figure}
+
+\begin{itemize}
+\tightlist
 \item
   probability map of model results
 \end{itemize}
 
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+\begin{figure}[t]
 
-Część \textbf{Wyniki} może składać się z jednego lub więcej rozdziałów.
-Każdy z tych rozdziałów powinien mieć tytuł adekwatny do swojej treści.
+{\centering \includegraphics[width=5.875in,height=4.16667in]{./figures/result_map.png}
 
-Rozdziały wynikowe powinny korzystać z wiedzy opisanej w poprzednich
-rozdziałach (Rozdziały \textbf{?@sec-lit}, \textbf{?@sec-dane},
-\textbf{?@sec-metody}). W przypadku prac analitycznych, ich treść
-powinna przedstawiać kolejne etapy eksploracji i analizy danych. W
-przypadku prac technicznych, treść tych rozdziałów powinna opisywać
-stworzone narzędzia, a następnie pokazywać ich zastosowanie/a.
+}
 
-W przypadku prac technicznych warto pokazywać fragmenty napisanego
-rozwiązania lub jego wywołania używając bloków kodu.
+\caption{\label{fig-rycina10}Probability of chosen land cover class
+being present on the ground. This can be treated as confidence of model
+on its results.}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{moja\_funkcja }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(x)\{}
-  \FunctionTok{cat}\NormalTok{(x, }\StringTok{"rządzi!"}\NormalTok{)}
-\NormalTok{\}}
-\FunctionTok{moja\_funkcja}\NormalTok{(}\StringTok{"Autor tej pracy"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-Autor tej pracy rządzi!
-\end{verbatim}
+\end{figure}
 
 \bookmarksetup{startatroot}
 
@@ -775,33 +814,54 @@ Table with quality indices:
   Kappa coefficient
 \end{itemize}
 
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+\hypertarget{tbl-tabela4}{}
+\begin{table}
+\caption{\label{tbl-tabela4}Measures of overall model accuracy calculated during
+cross-validation/resampling process. }\tabularnewline
 
-Część \textbf{Wyniki} może składać się z jednego lub więcej rozdziałów.
-Każdy z tych rozdziałów powinien mieć tytuł adekwatny do swojej treści.
+\centering
+\begin{tabular}{|>{}l|>{}r|}
+\toprule
+\textbf{Measure} & \textbf{Avg. value}\\
+\midrule
+overall accuracy & 0.75\\
+\hline
+Kappa coefficient & 0.70\\
+\hline
+precission & 0.80\\
+\hline
+recall & 0.78\\
+\hline
+F1-score & 0.79\\
+\bottomrule
+\end{tabular}
+\end{table}
 
-Rozdziały wynikowe powinny korzystać z wiedzy opisanej w poprzednich
-rozdziałach (Rozdziały \textbf{?@sec-lit}, \textbf{?@sec-dane},
-\textbf{?@sec-metody}). W przypadku prac analitycznych, ich treść
-powinna przedstawiać kolejne etapy eksploracji i analizy danych. W
-przypadku prac technicznych, treść tych rozdziałów powinna opisywać
-stworzone narzędzia, a następnie pokazywać ich zastosowanie/a.
+\hypertarget{tbl-tabela5}{}
+\begin{table}
+\caption{\label{tbl-tabela5}Accuracy measures by land cover class. }\tabularnewline
 
-W przypadku prac technicznych warto pokazywać fragmenty napisanego
-rozwiązania lub jego wywołania używając bloków kodu.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{moja\_funkcja }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(x)\{}
-  \FunctionTok{cat}\NormalTok{(x, }\StringTok{"rządzi!"}\NormalTok{)}
-\NormalTok{\}}
-\FunctionTok{moja\_funkcja}\NormalTok{(}\StringTok{"Autor tej pracy"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-Autor tej pracy rządzi!
-\end{verbatim}
+\centering
+\begin{tabular}{|>{}l|>{}r|>{}r|>{}r|}
+\toprule
+\textbf{Land cover class} & \textbf{Precision (producer's accuracy)} & \textbf{Recall (user's accuracy)} & \textbf{F1-score}\\
+\midrule
+arable land & 0.8 & 0.75 & 0.8\\
+\hline
+grasslands & 0.8 & 0.70 & 0.8\\
+\hline
+forests & 0.8 & 0.80 & 0.8\\
+\hline
+bare land & 0.8 & 0.78 & 0.8\\
+\hline
+artificial land & 0.8 & 0.79 & 0.8\\
+\hline
+water bodies & 0.8 & 0.80 & 0.8\\
+\hline
+wetlands & 0.8 & 0.80 & 0.8\\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \bookmarksetup{startatroot}
 
@@ -816,51 +876,101 @@ results}\label{sec-results-therm}}
 \item
   mean temperature for every predicted land cover class
 \item
-  variable importance plots, variable profiles
-\item
   mean importance of thermal band on each land cover class
 \end{itemize}
+
+\hypertarget{tbl-tabela6}{}
+\begin{table}
+\caption{\label{tbl-tabela6}Mean value and importance of thermal band, by land cover class. }\tabularnewline
+
+\centering
+\begin{tabular}{|>{}l|>{}r|>{}r|}
+\toprule
+\textbf{Land cover class} & \textbf{Avg. value} & \textbf{Avg. importance}\\
+\midrule
+arable land & 0.8 & 0.75\\
+\hline
+grasslands & 0.8 & 0.70\\
+\hline
+forests & 0.8 & 0.80\\
+\hline
+bare land & 0.8 & 0.78\\
+\hline
+artificial land & 0.8 & 0.79\\
+\hline
+water bodies & 0.8 & 0.80\\
+\hline
+wetlands & 0.8 & 0.80\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{itemize}
+\tightlist
+\item
+  variable importance plots, variable profiles
+\end{itemize}
+
+\begin{figure}[t]
+
+{\centering \includegraphics[width=5.90625in,height=3.125in]{./figures/profB5.png}
+
+}
+
+\caption{\label{fig-rycina11}Variable profile for near-infrared band
+(B5).}
+
+\end{figure}
+
+\begin{figure}[t]
+
+{\centering \includegraphics[width=5.90625in,height=3.125in]{./figures/profB10.png}
+
+}
+
+\caption{\label{fig-rycina12}Variable profile for thermal band (B10)}
+
+\end{figure}
 
 \hypertarget{sec-imp-spat}{%
 \section{Spatial distribution of thermal band's
 importance}\label{sec-imp-spat}}
 
 \begin{itemize}
+\tightlist
 \item
   thermal band importance map (two methods: raster aggregation and
   interpolation of importance in LUCAS points)
-\item
-  difference raster map between prediction with and without thermal band
-  included, transition matrix
 \end{itemize}
 
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+\begin{figure}[t]
 
-Część \textbf{Wyniki} może składać się z jednego lub więcej rozdziałów.
-Każdy z tych rozdziałów powinien mieć tytuł adekwatny do swojej treści.
+{\centering \includegraphics[width=5.875in,height=4.16667in]{./figures/B10_importance-spatial.png}
 
-Rozdziały wynikowe powinny korzystać z wiedzy opisanej w poprzednich
-rozdziałach (Rozdziały \textbf{?@sec-lit}, \textbf{?@sec-dane},
-\textbf{?@sec-metody}). W przypadku prac analitycznych, ich treść
-powinna przedstawiać kolejne etapy eksploracji i analizy danych. W
-przypadku prac technicznych, treść tych rozdziałów powinna opisywać
-stworzone narzędzia, a następnie pokazywać ich zastosowanie/a.
+}
 
-W przypadku prac technicznych warto pokazywać fragmenty napisanego
-rozwiązania lub jego wywołania używając bloków kodu.
+\caption{\label{fig-rycina13}Thermal band importance calculated for
+raster cells aggregated to 1,5 km resolution.}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{moja\_funkcja }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(x)\{}
-  \FunctionTok{cat}\NormalTok{(x, }\StringTok{"rządzi!"}\NormalTok{)}
-\NormalTok{\}}
-\FunctionTok{moja\_funkcja}\NormalTok{(}\StringTok{"Autor tej pracy"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\end{figure}
 
-\begin{verbatim}
-Autor tej pracy rządzi!
-\end{verbatim}
+\begin{figure}[t]
+
+{\centering \includegraphics[width=5.875in,height=4.16667in]{./figures/B10_importance-spatial.png}
+
+}
+
+\caption{\label{fig-rycina14}Thermal band importance interpolated from
+values on LUCAS points locations.}
+
+\end{figure}
+
+\begin{itemize}
+\tightlist
+\item
+  difference raster map between prediction with and without thermal band
+  included, transition matrix (?)
+\end{itemize}
 
 \bookmarksetup{startatroot}
 

@@ -4,30 +4,67 @@
 
 -   mean temperature for every predicted land cover class
 
+-   mean importance of thermal band on each land cover class
+
+```{r tabela3, echo=FALSE}
+#| label: tbl-tabela6
+#| echo: false
+#| tbl-cap: "Mean value and importance of thermal band, by land cover class."
+df = data.frame(
+  class = c("arable land", "grasslands", "forests", "bare land", "artificial land", "water bodies", "wetlands"),
+  value = c(0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8),
+  imp = c(0.75, 0.70, 0.8, 0.78, 0.79, 0.8, 0.8)
+)
+colnames(df) = c("Land cover class", "Avg. value", "Avg. importance")
+df |>
+  knitr::kable(format = "latex", booktabs = TRUE, linesep = "") |> 
+  kableExtra::row_spec(0, bold = TRUE, extra_css = "border-left: 1px solid grey; border-right: 1px solid grey") |>
+  kableExtra::column_spec(1:2, border_left = TRUE) |>
+  kableExtra::column_spec(3, border_left = TRUE, border_right = TRUE) |>
+  kableExtra::kable_classic(full_width = FALSE) |>
+  kableExtra::row_spec(1:(nrow(df) - 1), extra_latex_after = "\\hline")
+```
+
 -   variable importance plots, variable profiles
 
--   mean importance of thermal band on each land cover class
+```{r}
+#| label: fig-rycina11
+#| echo: false
+#| fig-cap: "Variable profile for near-infrared band (B5)."
+#| out-width: "567px"
+#| out-height: 300px
+knitr::include_graphics("figures/profB5.png")
+```
+
+```{r}
+#| label: fig-rycina12
+#| echo: false
+#| fig-cap: "Variable profile for thermal band (B10)"
+#| out-width: "567px"
+#| out-height: 300px
+knitr::include_graphics("figures/profB10.png")
+```
 
 ## Spatial distribution of thermal band's importance {#sec-imp-spat}
 
 -   thermal band importance map (two methods: raster aggregation and interpolation of importance in LUCAS points)
 
--   difference raster map between prediction with and without thermal band included, transition matrix
-
-------------------------------------------------------------------------
-
-Część **Wyniki** może składać się z jednego lub więcej rozdziałów.
-Każdy z tych rozdziałów powinien mieć tytuł adekwatny do swojej treści.
-
-Rozdziały wynikowe powinny korzystać z wiedzy opisanej w poprzednich rozdziałach (Rozdziały [-@sec-lit], [-@sec-dane], [-@sec-metody]).
-W przypadku prac analitycznych, ich treść powinna przedstawiać kolejne etapy eksploracji i analizy danych.
-W przypadku prac technicznych, treść tych rozdziałów powinna opisywać stworzone narzędzia, a następnie pokazywać ich zastosowanie/a.
-
-W przypadku prac technicznych warto pokazywać fragmenty napisanego rozwiązania lub jego wywołania używając bloków kodu.
+```{r}
+#| label: fig-rycina13
+#| echo: false
+#| fig-cap: "Thermal band importance calculated for raster cells aggregated to 1,5 km resolution."
+#| out-width: "564px"
+#| out-height: 400px
+knitr::include_graphics("figures/B10_importance-spatial.png")
+```
 
 ```{r}
-moja_funkcja = function(x){
-  cat(x, "rządzi!")
-}
-moja_funkcja("Autor tej pracy")
+#| label: fig-rycina14
+#| echo: false
+#| fig-cap: "Thermal band importance interpolated from values on LUCAS points locations."
+#| out-width: "564px"
+#| out-height: 400px
+knitr::include_graphics("figures/B10_importance-spatial.png")
 ```
+
+-   difference raster map between prediction with and without thermal band included, transition matrix (?)

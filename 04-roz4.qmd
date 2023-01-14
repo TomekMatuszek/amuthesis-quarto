@@ -2,24 +2,33 @@
 
 -   land cover map of Poznań metropolitan area
 
+```{r}
+#| label: fig-rycina8
+#| echo: false
+#| fig-cap: "Land cover map of Poznań metropolitan area created during this study."
+#| out-width: "564px"
+#| out-height: 400px
+knitr::include_graphics("figures/result_map.png")
+```
+
 -   comparison of land cover map and RGB satellite imagery
+
+```{r}
+#| label: fig-rycina9
+#| echo: false
+#| fig-cap: "Comparison of created land cover map with RGB imagery."
+#| out-width: "564px"
+#| out-height: 400px
+knitr::include_graphics("figures/result_map.png")
+```
 
 -   probability map of model results
 
-------------------------------------------------------------------------
-
-Część **Wyniki** może składać się z jednego lub więcej rozdziałów.
-Każdy z tych rozdziałów powinien mieć tytuł adekwatny do swojej treści.
-
-Rozdziały wynikowe powinny korzystać z wiedzy opisanej w poprzednich rozdziałach (Rozdziały [-@sec-lit], [-@sec-dane], [-@sec-metody]).
-W przypadku prac analitycznych, ich treść powinna przedstawiać kolejne etapy eksploracji i analizy danych.
-W przypadku prac technicznych, treść tych rozdziałów powinna opisywać stworzone narzędzia, a następnie pokazywać ich zastosowanie/a.
-
-W przypadku prac technicznych warto pokazywać fragmenty napisanego rozwiązania lub jego wywołania używając bloków kodu.
-
 ```{r}
-moja_funkcja = function(x){
-  cat(x, "rządzi!")
-}
-moja_funkcja("Autor tej pracy")
+#| label: fig-rycina10
+#| echo: false
+#| fig-cap: "Probability of chosen land cover class being present on the ground. This can be treated as confidence of model on its results."
+#| out-width: "564px"
+#| out-height: 400px
+knitr::include_graphics("figures/result_map.png")
 ```
