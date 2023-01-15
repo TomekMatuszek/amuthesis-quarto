@@ -742,13 +742,22 @@ multi-threading of some computationally intensive tasks.
 \bookmarksetup{startatroot}
 
 \hypertarget{sec-results-map}{%
-\chapter{Result of the model - land cover map}\label{sec-results-map}}
+\chapter{Result land cover map}\label{sec-results-map}}
 
-\begin{itemize}
-\tightlist
-\item
-  land cover map of Poznań metropolitan area
-\end{itemize}
+Main product of created model is land cover map of Poznań metropolitan
+area (Figure~\ref{fig-rycina9}). Moreover, model calculated
+probabilities of choosing each class for every pixel of raster layer.
+With the help of this information, probability map showing model's
+confidence in its choice of land cover class was created
+(Figure~\ref{fig-rycina11}). Value of each pixel reflects the highest
+probability assigned to one of seven land cover classes, which was the
+output class chosen by the model.
+
+After a visual analysis of result map in Figure~\ref{fig-rycina9}, some
+conclusions about its general accuracy can be made. Overall
+distributions of main land cover classes such as urban areas (artificial
+land), forests, arable land and waterbodies, seem to be correctly
+recognized.
 
 \begin{figure}[t]
 
@@ -761,12 +770,6 @@ created during this study.}
 
 \end{figure}
 
-\begin{itemize}
-\tightlist
-\item
-  comparison of land cover map and RGB satellite imagery
-\end{itemize}
-
 \begin{figure}[t]
 
 {\centering \includegraphics[width=5.875in,height=4.16667in]{./figures/result_map.png}
@@ -777,12 +780,6 @@ created during this study.}
 RGB imagery.}
 
 \end{figure}
-
-\begin{itemize}
-\tightlist
-\item
-  probability map of model results
-\end{itemize}
 
 \begin{figure}[t]
 
@@ -807,7 +804,7 @@ Table with quality indices:
 \item
   overall accuracy (OA) / classification error (CE)
 \item
-  producer's and user's accuracy (PA, UA) / precission and recall
+  producer's and user's accuracy (PA, UA) / recall and precision
 \item
   F1-score
 \item
@@ -828,9 +825,9 @@ overall accuracy & 0.75\\
 \hline
 Kappa coefficient & 0.70\\
 \hline
-precission & 0.80\\
+precission (UA) & 0.80\\
 \hline
-recall & 0.78\\
+recall (PA) & 0.78\\
 \hline
 F1-score & 0.79\\
 \bottomrule
@@ -844,7 +841,7 @@ F1-score & 0.79\\
 \centering
 \begin{tabular}{|>{}l|>{}r|>{}r|>{}r|}
 \toprule
-\textbf{Land cover class} & \textbf{Precision (producer's accuracy)} & \textbf{Recall (user's accuracy)} & \textbf{F1-score}\\
+\textbf{Land cover class} & \textbf{Recall (producer's accuracy)} & \textbf{Precision (user's accuracy)} & \textbf{F1-score}\\
 \midrule
 arable land & 0.8 & 0.75 & 0.8\\
 \hline
@@ -866,8 +863,7 @@ wetlands & 0.8 & 0.80 & 0.8\\
 \bookmarksetup{startatroot}
 
 \hypertarget{sec-results-therm}{%
-\chapter{Evaluation of thermal band's impact on prediction
-results}\label{sec-results-therm}}
+\chapter{Evaluation of thermal band's impact}\label{sec-results-therm}}
 
 \hypertarget{sec-imp-overall}{%
 \section{Overall importance of thermal band}\label{sec-imp-overall}}

@@ -1,4 +1,4 @@
-# Evaluation of thermal band's impact on prediction results {#sec-results-therm}
+# Evaluation of thermal band's impact {#sec-results-therm}
 
 ## Overall importance of thermal band {#sec-imp-overall}
 

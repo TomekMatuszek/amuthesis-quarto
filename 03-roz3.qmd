@@ -1,6 +1,12 @@
-# Result of the model - land cover map {#sec-results-map}
+# Result land cover map {#sec-results-map}
 
--   land cover map of Poznań metropolitan area
+Main product of created model is land cover map of Poznań metropolitan area ([@fig-rycina9]).
+Moreover, model calculated probabilities of choosing each class for every pixel of raster layer.
+With the help of this information, probability map showing model's confidence in its choice of land cover class was created ([@fig-rycina11]).
+Value of each pixel reflects the highest probability assigned to one of seven land cover classes, which was the output class chosen by the model.
+
+After a visual analysis of result map in @fig-rycina9, some conclusions about its general accuracy can be made.
+Overall distributions of main land cover classes such as urban areas (artificial land), forests, arable land and waterbodies, seem to be correctly recognized.
 
 ```{r}
 #| label: fig-rycina9
@@ -11,8 +17,6 @@
 knitr::include_graphics("figures/result_map.png")
 ```
 
--   comparison of land cover map and RGB satellite imagery
-
 ```{r}
 #| label: fig-rycina10
 #| echo: false
@@ -21,8 +25,6 @@ knitr::include_graphics("figures/result_map.png")
 #| out-height: 400px
 knitr::include_graphics("figures/result_map.png")
 ```
-
--   probability map of model results
 
 ```{r}
 #| label: fig-rycina11
