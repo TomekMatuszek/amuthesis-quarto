@@ -4,7 +4,7 @@ Table with quality indices:
 
 -   overall accuracy (OA) / classification error (CE)
 
--   producer's and user's accuracy (PA, UA) / precission and recall
+-   producer's and user's accuracy (PA, UA) / recall and precision
 
 -   F1-score
 
@@ -15,7 +15,7 @@ Table with quality indices:
 #| echo: false
 #| tbl-cap: "Measures of overall model accuracy calculated during cross-validation/resampling process."
 df = data.frame(
-  measure = c("overall accuracy", "Kappa coefficient", "precission", "recall", "F1-score"),
+  measure = c("overall accuracy", "Kappa coefficient", "precission (UA)", "recall (PA)", "F1-score"),
   average_value = c(0.75, 0.70, 0.8, 0.78, 0.79)
 )
 colnames(df) = c("Measure", "Avg. value")
@@ -38,7 +38,7 @@ df = data.frame(
   recall = c(0.75, 0.70, 0.8, 0.78, 0.79, 0.8, 0.8),
   f1score = c(0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8)
 )
-colnames(df) = c("Land cover class", "Precision (producer's accuracy)", "Recall (user's accuracy)", "F1-score")
+colnames(df) = c("Land cover class", "Recall (producer's accuracy)", "Precision (user's accuracy)", "F1-score")
 df |>
   knitr::kable(format = "latex", booktabs = TRUE, linesep = "") |> 
   kableExtra::row_spec(0, bold = TRUE, extra_css = "border-left: 1px solid grey; border-right: 1px solid grey") |>
