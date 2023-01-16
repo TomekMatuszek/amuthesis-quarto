@@ -14,7 +14,7 @@ Overall distributions of main land cover classes such as urban areas (artificial
 #| fig-cap: "Land cover map of Poznań metropolitan area created during this study."
 #| out-width: "564px"
 #| out-height: 400px
-knitr::include_graphics("figures/result_map.png")
+knitr::include_graphics("figures/result_map-lc.png")
 ```
 
 ```{r}
@@ -32,5 +32,5 @@ knitr::include_graphics("figures/result_map.png")
 #| fig-cap: "Probability of chosen land cover class being present on the ground. This can be treated as confidence of model on its results."
 #| out-width: "564px"
 #| out-height: 400px
-knitr::include_graphics("figures/result_map.png")
+knitr::include_graphics("figures/result-map-prob.png")
 ```

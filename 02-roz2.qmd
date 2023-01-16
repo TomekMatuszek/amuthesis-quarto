@@ -313,7 +313,7 @@ If probability values of choosing certain class do not change along with changes
 #| label: fig-rycina6
 #| echo: false
 #| fig-cap: "Example variable profile for near-infrared band (B5)."
-#| out-width: "567px"
+#| out-width: "540px"
 #| out-height: 300px
 knitr::include_graphics("figures/profB5.png")
 ```
