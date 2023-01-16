@@ -781,6 +781,15 @@ RGB imagery.}
 
 \end{figure}
 
+Analysis model's confidence derived from probability map
+(Figure~\ref{fig-rycina11}) showed visible spatial autocorrelation of
+this measure. In order to derive mean values of confidence for every
+land cover class, zonal statistics were calculated. Highest values of
+confidence were recorded for forests (0.86) and waterbodies (0.92). As
+of urban areas and arable land, model's confidence was lower at mean
+level of 0.64 and 0.71 respectively. The model was least confident in
+recognizing bare land (0.44), wetlands (0.46) and grassland (0.57).
+
 \begin{figure}[t]
 
 {\centering \includegraphics[width=5.875in,height=4.16667in]{./figures/result-map-prob.png}
@@ -798,19 +807,6 @@ on its results.}
 \hypertarget{sec-results-eval}{%
 \chapter{Assessing model quality}\label{sec-results-eval}}
 
-Table with quality indices:
-
-\begin{itemize}
-\item
-  overall accuracy (OA) / classification error (CE)
-\item
-  producer's and user's accuracy (PA, UA) / recall and precision
-\item
-  F1-score
-\item
-  Kappa coefficient
-\end{itemize}
-
 \hypertarget{tbl-tabela4}{}
 \begin{table}
 \caption{\label{tbl-tabela4}Measures of overall model accuracy calculated during
@@ -819,17 +815,17 @@ cross-validation/resampling process. }\tabularnewline
 \centering
 \begin{tabular}{|>{}l|>{}r|}
 \toprule
-\textbf{Measure} & \textbf{Avg. value}\\
+\textbf{Measure} & \textbf{Average value}\\
 \midrule
-overall accuracy & 0.75\\
+overall accuracy & 0.752\\
 \hline
-Kappa coefficient & 0.70\\
+Kappa coefficient & 0.652\\
 \hline
-precission (UA) & 0.80\\
+precission (user's accuracy) & 0.742\\
 \hline
-recall (PA) & 0.78\\
+recall (producer's accuracy) & 0.751\\
 \hline
-F1-score & 0.79\\
+weighted F1-score & 0.743\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -843,19 +839,19 @@ F1-score & 0.79\\
 \toprule
 \textbf{Land cover class} & \textbf{Recall (producer's accuracy)} & \textbf{Precision (user's accuracy)} & \textbf{F1-score}\\
 \midrule
-arable land & 0.8 & 0.75 & 0.8\\
+arable land & 0.732 & 0.828 & 0.777\\
 \hline
-grasslands & 0.8 & 0.70 & 0.8\\
+grasslands & 0.612 & 0.613 & 0.612\\
 \hline
-forests & 0.8 & 0.80 & 0.8\\
+forests & 0.886 & 0.892 & 0.889\\
 \hline
-bare land & 0.8 & 0.78 & 0.8\\
+bare land & 0.320 & 0.194 & 0.242\\
 \hline
-artificial land & 0.8 & 0.79 & 0.8\\
+artificial land & 0.656 & 0.493 & 0.563\\
 \hline
-water bodies & 0.8 & 0.80 & 0.8\\
+water bodies & 0.971 & 1.000 & 0.985\\
 \hline
-wetlands & 0.8 & 0.80 & 0.8\\
+wetlands & 0.394 & 0.121 & 0.185\\
 \bottomrule
 \end{tabular}
 \end{table}
