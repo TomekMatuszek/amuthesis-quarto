@@ -331,8 +331,8 @@ This value indicates variable impact on a chosen observation.
 #| label: fig-rycina7
 #| echo: false
 #| fig-cap: "Example of a break-down plot that visualises variables' impact on chosen observation"
-#| out-width: "70%"
-#| out-height: 500px
+#| out-width: "400px"
+#| out-height: 428px
 knitr::include_graphics("figures/break-down_plot.png")
 ```
 
@@ -346,8 +346,8 @@ Thanks to this method, the influence of variable ordering can be mostly removed 
 #| label: fig-rycina8
 #| echo: false
 #| fig-cap: "Example plot of Shapley Additive Explanations"
-#| out-width: "70%"
-#| out-height: 500px
+#| out-width: "400px"
+#| out-height: 428px
 knitr::include_graphics("figures/shapley_values.png")
 ```
 
