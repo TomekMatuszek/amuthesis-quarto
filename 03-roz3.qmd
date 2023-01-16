@@ -26,7 +26,7 @@ knitr::include_graphics("figures/result_map-lc.png")
 knitr::include_graphics("figures/result_map.png")
 ```
 
-Analysis model's confidence derived from probability map ([@fig-rycina11]) showed visible spatial autocorrelation of this measure.
+Analysis of model's confidence derived from probability map ([@fig-rycina11]) showed visible spatial autocorrelation of this measure.
 In order to derive mean values of confidence for every land cover class, zonal statistics were calculated.
 Highest values of confidence were recorded for forests (0.86) and waterbodies (0.92).
 As of urban areas and arable land, model's confidence was lower at mean level of 0.64 and 0.71 respectively.

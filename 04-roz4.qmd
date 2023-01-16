@@ -1,11 +1,23 @@
 # Assessing model quality {#sec-results-eval}
 
+As mentioned in [@sec-resampling], in order to evaluate model performance nested *k*-fold cross-validation was performed.
+This resulted with 2500 models created both on performance estimation level and hyperparameter tuning level.
+Results of these models were then evaluated and quality measures were calculated.
+In [@tbl-tabela4], overall quality measures such as accuracy and Kappa coefficient are presented.
+Moreover, I calculated weighted precision, recall and F1-score.
+Weights for these calculations were based on number of observations from each land cover class.
+Original precision, recall and F1-score values by land cover type are shown in [@tbl-tabela5].
+
+In general, model achieved accuracy level of 0.752 with Kappa coefficient of 0.652.
+These values are rather average and model indeed needs some improvements.
+On the other hand, this performance is probably enough to assess thermal band's importance ([@sec-results-therm]), which is the main goal of this study.
+
 ```{r tabela3, echo=FALSE}
 #| label: tbl-tabela4
 #| echo: false
 #| tbl-cap: "Measures of overall model accuracy calculated during cross-validation/resampling process."
 df = data.frame(
-  measure = c("overall accuracy", "Kappa coefficient", "precission (user's accuracy)", "recall (producer's accuracy)", "weighted F1-score"),
+  measure = c("overall accuracy", "Kappa coefficient", "precision (user's accuracy)", "recall (producer's accuracy)", "weighted F1-score"),
   average_value = c(0.752, 0.652, 0.742, 0.751, 0.743)
 )
 colnames(df) = c("Measure", "Average value")
@@ -17,6 +29,16 @@ df |>
   kableExtra::kable_classic(full_width = FALSE) |>
   kableExtra::row_spec(1:(nrow(df) - 1), extra_latex_after = "\\hline")
 ```
+
+A deeper analysis of performance measures by land cover class ([@tbl-tabela5]) shows that precision and recall values for certain type are similar.
+This means that model did not have any specific problem either with too many false positive (FP) or false negative (FN) predictions.
+It was just not that good in general.
+Model performed very poorly in terms of correctly classifying observations of wetlands class but it is quite common issue across many studies (for example: @malinowski_automated_2020).
+Also bare land class had low values of model quality with F1-score of 0.242.
+The main problem concerning these land cover classes is that there was probably not enough training points for each of them.
+On the other hand, two largest classes in terms of number of observations - arable land and forests - were classified much more accurately, with F1-score of 0.777 and 0.889 respectively.
+Land cover type with the highest values of precision and recall, despite of low number of observations, was waterbodies class.
+Model performed very good for this class probably because of its distinct spectral characteristics and easily distinguishable borders.
 
 ```{r tabela3, echo=FALSE}
 #| label: tbl-tabela5
