@@ -17,13 +17,22 @@ Overall distributions of main land cover classes such as urban areas (artificial
 knitr::include_graphics("figures/result_map-lc.png")
 ```
 
+In order to investigate model's predictive accuracy in local scale, six arbitrary chosen sites were examined more closely ([@fig-rycina10]).
+Visual analysis of these sites showed that model correctly recognizes most of land cover patterns present on the ground.
+There were several bigger problems and mistakes in its predictions though.
+For instance, there are many examples of single pixels in the artificial area being classified as arable land (especially in sites 1, 2 and 6).
+Urban areas are generally more fragmented on map than in reality.
+Moreover, some cropland areas were incorrectly classified as grassland (sites 4, 5 and 6).
+Another problem occurred in classification of river surface - its shape on result land cover map was not continuous and water was often misclassified as wetland (sites 1 and 5).
+On the other hand, the model has managed to correctly recognize wetlands in sites 2 and 4, despite the fact that no training point of wetlands class was nearby.
+
 ```{r}
 #| label: fig-rycina10
 #| echo: false
-#| fig-cap: "Comparison of created land cover map with RGB imagery."
-#| out-width: "564px"
-#| out-height: 400px
-knitr::include_graphics("figures/result_map.png")
+#| fig-cap: "Comparison of created land cover map (b) with GLAD satellite imagery (a) and ortophotomap from polish Geoportal (c)."
+#| out-width: "500px"
+#| out-height: 870px
+knitr::include_graphics("figures/comparison.png")
 ```
 
 Analysis of model's confidence derived from probability map ([@fig-rycina11]) showed visible spatial autocorrelation of this measure.

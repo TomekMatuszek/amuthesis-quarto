@@ -770,14 +770,31 @@ created during this study.}
 
 \end{figure}
 
+In order to investigate model's predictive accuracy in local scale, six
+arbitrary chosen sites were examined more closely
+(Figure~\ref{fig-rycina10}). Visual analysis of these sites showed that
+model correctly recognizes most of land cover patterns present on the
+ground. There were several bigger problems and mistakes in its
+predictions though. For instance, there are many examples of single
+pixels in the artificial area being classified as arable land
+(especially in sites 1, 2 and 6). Urban areas are generally more
+fragmented on map than in reality. Moreover, some cropland areas were
+incorrectly classified as grassland (sites 4, 5 and 6). Another problem
+occurred in classification of river surface - its shape on result land
+cover map was not continuous and water was often misclassified as
+wetland (sites 1 and 5). On the other hand, the model has managed to
+correctly recognize wetlands in sites 2 and 4, despite the fact that no
+training point of wetlands class was nearby.
+
 \begin{figure}[t]
 
-{\centering \includegraphics[width=5.875in,height=4.16667in]{./figures/result_map.png}
+{\centering \includegraphics[width=5.20833in,height=9.0625in]{./figures/comparison.png}
 
 }
 
-\caption{\label{fig-rycina10}Comparison of created land cover map with
-RGB imagery.}
+\caption{\label{fig-rycina10}Comparison of created land cover map (b)
+with GLAD satellite imagery (a) and ortophotomap from polish Geoportal
+(c).}
 
 \end{figure}
 
