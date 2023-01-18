@@ -1,10 +1,55 @@
-# Evaluation of thermal band's impact {#sec-results-therm}
+# Assessing thermal band's impact {#sec-results-therm}
+
+Since the aim of this study was to evaluate thermal band's impact on model results, the last part of my analysis covered this topic.
+As described in [@sec-importance], variable importance can be assessed both on dataset and instance (observation) level.
+The latter was used to estimate spatial distribution of thermal band's importance in order to present the results on the map.
 
 ## Overall importance of thermal band {#sec-imp-overall}
 
--   mean temperature for every predicted land cover class
+As a very basic way to check thermal band's importance on model's results, I implemented benchmarking methods with the help of functions provided by *mlr3* framework.
+Two datasets (tasks) were created: one with thermal band included and one without this variable.
+Other models' parameters were the same.
+Then, 5-fold spatial cross-validation with 10 repetitions were performed on models created from both datasets in order to estimate their predictive abilities.
+Differences between them were very narrow, but visible - model with thermal band included achieved higher accuracy of approximately 0.4 perc. points and higher Kappa of approx. 0.006.
+Moreover, distribution of accuracy values in the boxplot changed visibly, with higher values for model with thermal band included ([@fig-rycina12]).
+In the end, however, these differences are rather small and we can not state that thermal band had strong impact on model's predictions.
 
--   mean importance of thermal band on each land cover class
+```{r}
+#| label: fig-rycina12
+#| echo: false
+#| fig-cap: "Accuracy distributions for 50 models with and without thermal band included"
+#| out-width: "540px"
+#| out-height: 300px
+knitr::include_graphics("figures/model_comparison.png")
+```
+
+In the next step of evaluation of thermal information importance, overall measures were derived.
+Again, it turned out that thermal band variable had little impact on the model's results.
+With cross-entropy loss value of 50, it was the least important variable in the dataset.
+Importance values of all variables are shown in [@fig-rycina13].
+
+```{r}
+#| label: fig-rycina13
+#| echo: false
+#| fig-cap: "Overall variable importance expressed as cross-entropy loss"
+#| out-width: "540px"
+#| out-height: 300px
+knitr::include_graphics("figures/importance.png")
+```
+
+After evaluating variable importance on dataset level, instance level calculations were performed.
+Shapley values for each of 166 LUCAS points in Poznań metropolitan area were computed and thermal band's importance was derived.
+This made possible to calculate average thermal band's importance for each of seven land cover classes.
+In addition, mean value of temperature for each class was computed in order to give better insight into differences between them.
+Results of these computations are shown in [@tbl-tabela6].
+However, it must be emphasized that 166 points was rather small number, especially for less numerous classes such as wetlands.
+
+[@tbl-tabela6] presents variations of thermal band's importance across land cover types.
+It was significantly higher for artificial land and wetlands.
+Average value for wetlands is not very reliable though, because there were only 3 such points in studied area - one of them having much higher value of importance than the other two.
+Due to this issue, median value of importance was calculated too.
+In this case, value for wetlands was much lower, but importance value for artificial areas was nearly the same.
+Distributions of importance values can be examined in larger detail in [@fig-rycina14].
 
 ```{r tabela3, echo=FALSE}
 #| label: tbl-tabela6
@@ -12,23 +57,31 @@
 #| tbl-cap: "Mean value and importance of thermal band, by land cover class."
 df = data.frame(
   class = c("arable land", "grasslands", "forests", "bare land", "artificial land", "water bodies", "wetlands"),
-  value = c(0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8),
-  imp = c(0.75, 0.70, 0.8, 0.78, 0.79, 0.8, 0.8)
+  value = c(20.5, 20.5, 16.0, 21.1, 21.9, 13.8, 15.0),
+  mean_imp = c(2.21, 2.03, 2.19, 1.86, 4.60, 0.84, 4.88),
+  median_imp = c(1.89, 1.56, 1.91, 1.93, 4.56, 0.79, 1.63)
 )
-colnames(df) = c("Land cover class", "Avg. value", "Avg. importance")
+colnames(df) = c("Land cover class", "Mean temp. [°C]", "Average importance", "Median importance")
 df |>
   knitr::kable(format = "latex", booktabs = TRUE, linesep = "") |> 
   kableExtra::row_spec(0, bold = TRUE, extra_css = "border-left: 1px solid grey; border-right: 1px solid grey") |>
-  kableExtra::column_spec(1:2, border_left = TRUE) |>
-  kableExtra::column_spec(3, border_left = TRUE, border_right = TRUE) |>
+  kableExtra::column_spec(1:3, border_left = TRUE) |>
+  kableExtra::column_spec(4, border_left = TRUE, border_right = TRUE) |>
   kableExtra::kable_classic(full_width = FALSE) |>
   kableExtra::row_spec(1:(nrow(df) - 1), extra_latex_after = "\\hline")
 ```
 
--   variable importance plots, variable profiles
+```{r}
+#| label: fig-rycina14
+#| echo: false
+#| fig-cap: "Distributions of thermal band's importance by land cover class. Small dots show exact values of each LUCAS point."
+#| out-width: "428px"
+#| out-height: 400px
+knitr::include_graphics("figures/importance_classes.png")
+```
 
 ```{r}
-#| label: fig-rycina12
+#| label: fig-rycina15
 #| echo: false
 #| fig-cap: "Variable profile for near-infrared band (B5)."
 #| out-width: "567px"
@@ -37,7 +90,7 @@ knitr::include_graphics("figures/profB5.png")
 ```
 
 ```{r}
-#| label: fig-rycina13
+#| label: fig-rycina16
 #| echo: false
 #| fig-cap: "Variable profile for thermal band (B10)"
 #| out-width: "567px"
@@ -50,7 +103,7 @@ knitr::include_graphics("figures/profB10.png")
 -   thermal band importance map (two methods: raster aggregation and interpolation of importance in LUCAS points)
 
 ```{r}
-#| label: fig-rycina14
+#| label: fig-rycina17
 #| echo: false
 #| fig-cap: "Thermal band importance calculated for raster cells aggregated to 1,5 km resolution."
 #| out-width: "564px"
@@ -59,7 +112,7 @@ knitr::include_graphics("figures/B10_importance-spatial.png")
 ```
 
 ```{r}
-#| label: fig-rycina15
+#| label: fig-rycina18
 #| echo: false
 #| fig-cap: "Thermal band importance interpolated from values on LUCAS points locations."
 #| out-width: "564px"

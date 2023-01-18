@@ -1,8 +1,10 @@
 # Assessing model quality {#sec-results-eval}
 
-As mentioned in [@sec-resampling], in order to evaluate model performance nested *k*-fold cross-validation was performed.
+As mentioned in [@sec-resampling], in order to evaluate model performance nested *k*-fold spatial cross-validation was performed.
+I chose approach with 5 folds and 10 repetitions of partitioning.
+Hyperparameter tuning level of nested resampling also used 5 folds and 10 evaluations.
 This resulted with 2500 models created both on performance estimation level and hyperparameter tuning level.
-Results of these models were then evaluated and quality measures were calculated.
+Results of these models were then evaluated and quality measures were computed.
 In [@tbl-tabela4], overall quality measures such as accuracy and Kappa coefficient are presented.
 Moreover, I calculated weighted precision, recall and F1-score.
 Weights for these calculations were based on number of observations from each land cover class.
@@ -10,7 +12,7 @@ Original precision, recall and F1-score values by land cover type are shown in [
 
 In general, model achieved accuracy level of 0.752 with Kappa coefficient of 0.652.
 These values are rather average and model indeed needs some improvements.
-On the other hand, this performance is probably enough to assess thermal band's importance ([@sec-results-therm]), which is the main goal of this study.
+On the other hand, this performance is enough to assess thermal band's importance ([@sec-results-therm]), which is the main goal of this study.
 
 ```{r tabela3, echo=FALSE}
 #| label: tbl-tabela4
