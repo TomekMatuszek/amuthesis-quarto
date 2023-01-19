@@ -80,22 +80,29 @@ df |>
 knitr::include_graphics("figures/importance_classes.png")
 ```
 
-```{r}
-#| label: fig-rycina15
-#| echo: false
-#| fig-cap: "Variable profile for near-infrared band (B5)."
-#| out-width: "567px"
-#| out-height: 300px
-knitr::include_graphics("figures/profB5.png")
-```
+In the last step of evaluating thermal band's importance for our model, I created partial-dependence (PD) profiles for this variable ([@fig-rycina15]) and compared it with PD profile for near-infrared band (B5) presented in [@fig-rycina16].
+Thanks to this method, I checked how probability for choosing certain class changed with increasing values of analysed variables.
+Probabilities do not drastically change with temperature (thermal band's value) increase, there are only small fluctuations for several classes.
+This allows us to conclude that thermal band might not have significant impact on model's results.
+In contrast, in [@fig-rycina16] with B5 variable profile, there are clearly visible trends for nearly every class.
+Probabilities change significantly along with changes in near-infrared values, thus suggesting that this variable has greater impact on model's predictions than thermal band.
 
 ```{r}
-#| label: fig-rycina16
+#| label: fig-rycina15
 #| echo: false
 #| fig-cap: "Variable profile for thermal band (B10)"
 #| out-width: "567px"
 #| out-height: 300px
 knitr::include_graphics("figures/profB10.png")
+```
+
+```{r}
+#| label: fig-rycina16
+#| echo: false
+#| fig-cap: "Variable profile for near-infrared band (B5)."
+#| out-width: "567px"
+#| out-height: 300px
+knitr::include_graphics("figures/profB5.png")
 ```
 
 ## Spatial distribution of thermal band's importance {#sec-imp-spat}

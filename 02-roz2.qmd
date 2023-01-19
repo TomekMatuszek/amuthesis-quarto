@@ -4,7 +4,7 @@ Workflow of the study consisted of several stages: preprocessing of source data 
 Visual representation of the workflow is shown in [@fig-rycina1].
 
 Each of these steps was performed using R programming language [@R-base].
-Final visualisations were created in QGIS software [@qgis_development_team_qgis_2009].
+Final visualizations were created in QGIS software [@qgis_development_team_qgis_2009].
 Both programming environment and GIS software used in this process are open-source.
 <!-- &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp-->
 

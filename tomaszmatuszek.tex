@@ -169,7 +169,7 @@ impact of the thermal band on the model's results
 shown in Figure~\ref{fig-rycina1}.
 
 Each of these steps was performed using R programming language
-\autocite{R-base}. Final visualisations were created in QGIS software
+\autocite{R-base}. Final visualizations were created in QGIS software
 \autocite{qgis_development_team_qgis_2009}. Both programming environment
 and GIS software used in this process are open-source.
 
@@ -996,7 +996,7 @@ examined in larger detail in Figure~\ref{fig-rycina14}.
 \caption{\label{tbl-tabela6}Mean value and importance of thermal band, by land cover class. }\tabularnewline
 
 \centering
-\begin{tabular}{|>{}l|>{}r|>{}r|r}
+\begin{tabular}{|>{}l|>{}r|>{}r|>{}r|}
 \toprule
 \textbf{Land cover class} & \textbf{Mean temp. [°C]} & \textbf{Average importance} & \textbf{Median importance}\\
 \midrule
@@ -1028,22 +1028,20 @@ by land cover class. Small dots show exact values of each LUCAS point.}
 
 \end{figure}
 
-\begin{itemize}
-\tightlist
-\item
-  variable importance plots, variable profiles
-\end{itemize}
-
-\begin{figure}[t]
-
-{\centering \includegraphics[width=5.90625in,height=3.125in]{./figures/profB5.png}
-
-}
-
-\caption{\label{fig-rycina15}Variable profile for near-infrared band
-(B5).}
-
-\end{figure}
+In the last step of evaluating thermal band's importance for our model,
+I created partial-dependence (PD) profiles for this variable
+(Figure~\ref{fig-rycina15}) and compared it with PD profile for
+near-infrared band (B5) presented in Figure~\ref{fig-rycina16}. Thanks
+to this method, I checked how probability for choosing certain class
+changed with increasing values of analysed variables. Probabilities do
+not drastically change with temperature (thermal band's value) increase,
+there are only small fluctuations for several classes. This allows us to
+conclude that thermal band might not have significant impact on model's
+results. In contrast, in Figure~\ref{fig-rycina16} with B5 variable
+profile, there are clearly visible trends for nearly every class.
+Probabilities change significantly along with changes in near-infrared
+values, thus suggesting that this variable has greater impact on model's
+predictions than thermal band.
 
 \begin{figure}[t]
 
@@ -1051,7 +1049,18 @@ by land cover class. Small dots show exact values of each LUCAS point.}
 
 }
 
-\caption{\label{fig-rycina16}Variable profile for thermal band (B10)}
+\caption{\label{fig-rycina15}Variable profile for thermal band (B10)}
+
+\end{figure}
+
+\begin{figure}[t]
+
+{\centering \includegraphics[width=5.90625in,height=3.125in]{./figures/profB5.png}
+
+}
+
+\caption{\label{fig-rycina16}Variable profile for near-infrared band
+(B5).}
 
 \end{figure}
 
