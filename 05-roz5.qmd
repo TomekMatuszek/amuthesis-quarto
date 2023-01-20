@@ -107,24 +107,30 @@ knitr::include_graphics("figures/profB5.png")
 
 ## Spatial distribution of thermal band's importance {#sec-imp-spat}
 
--   thermal band importance map (two methods: raster aggregation and interpolation of importance in LUCAS points)
+Variable importance values computed for LUCAS points in [@sec-imp-overall] were used to interpolate them into continuous raster layer using IDW interpolation method.
+This step created opportunity to examine approximate spatial distribution of thermal band's importance across Poznań metropolitan area ([@fig-rycina17]).
 
 ```{r}
 #| label: fig-rycina17
 #| echo: false
-#| fig-cap: "Thermal band importance calculated for raster cells aggregated to 1,5 km resolution."
+#| fig-cap: "Thermal band importance interpolated from values on LUCAS points locations."
 #| out-width: "564px"
 #| out-height: 400px
-knitr::include_graphics("figures/B10_importance-spatial.png")
+knitr::include_graphics("figures/B10_importance-spatial-ENG.png")
 ```
+
+Moreover, alternative approach involving raster aggregation was implemented.
+In this method, original satellite data was aggregated (resampled) to 1,5 km resolution in order to make analysis more general and shorten the computation time.
+After aggregation, thermal band's importance was calculated for every raster cell.
+Result of these calculations, as well as aggregated raster in RGB composition, are shown in [@fig-rycina18].
+In general, there is similar distribution of thermal band's importance like in [@fig-rycina17], however this approach does not require interpolation of values from points which may be misleading, especially in places far away from LUCAS points.
+On the other hand, spectral values were averaged for every 1,5 km cell so these mean values may not represent accurately features on the ground.
 
 ```{r}
 #| label: fig-rycina18
 #| echo: false
-#| fig-cap: "Thermal band importance interpolated from values on LUCAS points locations."
+#| fig-cap: "Thermal band importance calculated for raster cells aggregated to 1,5 km resolution."
 #| out-width: "564px"
 #| out-height: 400px
-knitr::include_graphics("figures/B10_importance-spatial.png")
+knitr::include_graphics("figures/B10_importance-spatial-ENG2.png")
 ```
-
--   difference raster map between prediction with and without thermal band included, transition matrix (?)

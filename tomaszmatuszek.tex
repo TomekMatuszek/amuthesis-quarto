@@ -1068,41 +1068,47 @@ predictions than thermal band.
 \section{Spatial distribution of thermal band's
 importance}\label{sec-imp-spat}}
 
-\begin{itemize}
-\tightlist
-\item
-  thermal band importance map (two methods: raster aggregation and
-  interpolation of importance in LUCAS points)
-\end{itemize}
+Variable importance values computed for LUCAS points in
+Section~\ref{sec-imp-overall} were used to interpolate them into
+continuous raster layer using IDW interpolation method. This step
+created opportunity to examine approximate spatial distribution of
+thermal band's importance across Poznań metropolitan area
+(Figure~\ref{fig-rycina17}).
 
 \begin{figure}[t]
 
-{\centering \includegraphics[width=5.875in,height=4.16667in]{./figures/B10_importance-spatial.png}
+{\centering \includegraphics[width=5.875in,height=4.16667in]{./figures/B10_importance-spatial-ENG.png}
 
 }
 
-\caption{\label{fig-rycina17}Thermal band importance calculated for
-raster cells aggregated to 1,5 km resolution.}
-
-\end{figure}
-
-\begin{figure}[t]
-
-{\centering \includegraphics[width=5.875in,height=4.16667in]{./figures/B10_importance-spatial.png}
-
-}
-
-\caption{\label{fig-rycina18}Thermal band importance interpolated from
+\caption{\label{fig-rycina17}Thermal band importance interpolated from
 values on LUCAS points locations.}
 
 \end{figure}
 
-\begin{itemize}
-\tightlist
-\item
-  difference raster map between prediction with and without thermal band
-  included, transition matrix (?)
-\end{itemize}
+Moreover, alternative approach involving raster aggregation was
+implemented. In this method, original satellite data was aggregated
+(resampled) to 1,5 km resolution in order to make analysis more general
+and shorten the computation time. After aggregation, thermal band's
+importance was calculated for every raster cell. Result of these
+calculations, as well as aggregated raster in RGB composition, are shown
+in Figure~\ref{fig-rycina18}. In general, there is similar distribution
+of thermal band's importance like in Figure~\ref{fig-rycina17}, however
+this approach does not require interpolation of values from points which
+may be misleading, especially in places far away from LUCAS points. On
+the other hand, spectral values were averaged for every 1,5 km cell so
+these mean values may not represent accurately features on the ground.
+
+\begin{figure}[t]
+
+{\centering \includegraphics[width=5.875in,height=4.16667in]{./figures/B10_importance-spatial-ENG2.png}
+
+}
+
+\caption{\label{fig-rycina18}Thermal band importance calculated for
+raster cells aggregated to 1,5 km resolution.}
+
+\end{figure}
 
 \bookmarksetup{startatroot}
 
