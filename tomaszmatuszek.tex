@@ -199,7 +199,7 @@ central-western part of Poland which was chosen as training area
 (Figure~\ref{fig-rycina2}). This data was preprocessed and then used to
 train the model and validate its performance.
 
-\begin{figure}[t]
+\begin{figure}[H]
 
 {\centering \includegraphics[width=5.875in,height=4.16667in]{./figures/study_area.png}
 
@@ -354,7 +354,7 @@ because of lack of such category in the first phase classification. At
 the end of the pre-processing, dataset had 3,778 training points
 \autocite{oliver_buck_analysis_2015}.
 
-\begin{figure}[t]
+\begin{figure}[H]
 
 {\centering \includegraphics[width=5.75in,height=3.125in]{./figures/lucas_data.png}
 
@@ -376,7 +376,7 @@ Figure~\ref{fig-rycina4}. Spatial distribution of data points was fairly
 even and due to the structure of LUCAS data set, every point was located
 2 kilometers or further from the next one.
 
-\begin{figure}[t]
+\begin{figure}[H]
 
 {\centering \includegraphics[width=5.875in,height=4.16667in]{./figures/lucas_distribution.png}
 
@@ -540,7 +540,7 @@ Thanks to this partitioning method, spatial bias can be significantly
 reduced which leads to more reliable performance estimation. Example of
 such approach can be seen on Figure~\ref{fig-rycina5}.
 
-\begin{figure}[t]
+\begin{figure}[H]
 
 {\centering \includegraphics[width=5.9375in,height=3.64583in]{./figures/spatial_partitioning.png}
 
@@ -621,7 +621,7 @@ along with changes of variable's value, we can assume that this variable
 does not have big impact on model predictions or that our model did not
 detect such dependence.
 
-\begin{figure}[t]
+\begin{figure}[H]
 
 {\centering \includegraphics[width=5.625in,height=3.125in]{./figures/profB5.png}
 
@@ -648,7 +648,7 @@ of variable for whole dataset, change in model's prediction is
 calculated. This value indicates variable impact on a chosen
 observation.
 
-\begin{figure}[t]
+\begin{figure}[H]
 
 {\centering \includegraphics[width=4.16667in,height=4.45833in]{./figures/break-down_plot.png}
 
@@ -672,7 +672,7 @@ of contribution for each variable (Figure~\ref{fig-rycina8}). Thanks to
 this method, the influence of variable ordering can be mostly removed
 \autocite{biecek_explanatory_2021}.
 
-\begin{figure}[t]
+\begin{figure}[H]
 
 {\centering \includegraphics[width=4.16667in,height=4.45833in]{./figures/shapley_values.png}
 
@@ -742,24 +742,22 @@ multi-threading of some computationally intensive tasks.
 \bookmarksetup{startatroot}
 
 \hypertarget{sec-results-map}{%
-\chapter{Result land cover map}\label{sec-results-map}}
+\chapter{Land cover map}\label{sec-results-map}}
 
-Main product of created model is land cover map of Poznań metropolitan
-area (Figure~\ref{fig-rycina9}). Moreover, model calculated
-probabilities of choosing each class for every pixel of raster layer.
-With the help of this information, probability map showing model's
-confidence in its choice of land cover class was created
+The main product of created model is a land cover map of Poznań
+metropolitan area (Figure~\ref{fig-rycina9}). Moreover, created model
+contains probabilities of choosing each class for every pixel of the
+raster layer. With the help of this information, a probability map
+showing model's confidence in its choice of land cover class was created
 (Figure~\ref{fig-rycina11}). Value of each pixel reflects the highest
-probability assigned to one of seven land cover classes, which was the
-output class chosen by the model.
+probability assigned to one of seven land cover classes.
 
-After a visual analysis of result map in Figure~\ref{fig-rycina9}, some
-conclusions about its general accuracy can be made. Overall
-distributions of main land cover classes such as urban areas (artificial
-land), forests, arable land and waterbodies, seem to be correctly
-recognized.
+After a visual analysis of Figure~\ref{fig-rycina9}, some conclusions
+about its general accuracy can be made. Overall distributions of main
+land cover classes such as urban areas (artificial land), forests,
+arable land and waterbodies, seem to be correctly recognized.
 
-\begin{figure}[t]
+\begin{figure}[H]
 
 {\centering \includegraphics[width=5.875in,height=4.16667in]{./figures/result_map-lc.png}
 
@@ -770,52 +768,54 @@ created during this study.}
 
 \end{figure}
 
-In order to investigate model's predictive accuracy in local scale, six
-arbitrary chosen sites were examined more closely
-(Figure~\ref{fig-rycina10}). Visual analysis of these sites showed that
-model correctly recognizes most of land cover patterns present on the
-ground. There were several bigger problems and mistakes in its
-predictions though. For instance, there are many examples of single
-pixels in the artificial area being classified as arable land
-(especially in sites 1, 2 and 6). Urban areas are generally more
-fragmented on map than in reality. Moreover, some cropland areas were
-incorrectly classified as grassland (sites 4, 5 and 6). Another problem
-occurred in classification of river surface - its shape on result land
-cover map was not continuous and water was often misclassified as
-wetland (sites 1 and 5). On the other hand, the model has managed to
-correctly recognize wetlands in sites 2 and 4, despite the fact that no
-training point of wetlands class was nearby.
+In order to investigate model's predictive accuracy on a local scale,
+six arbitrary chosen sites were examined more closely
+(Figure~\ref{fig-rycina10}). Locations of sites were chosen to present
+different landscape patterns on the studied map, as well as point out
+more common mistakes made by the model. Visual analysis of these sites
+showed that the model correctly recognizes most of land cover patterns
+present on the ground. At the same time, there were several bigger
+problems and mistakes in its predictions. For instance, there are many
+examples of single pixels in the artificial area being classified as
+arable land (especially in sites 1, 2 and 6). Urban areas are generally
+more fragmented on the created map than in reality. Moreover, some
+cropland areas were incorrectly classified as grassland (sites 4, 5 and
+6). Another problem occurred in the classification of a river surface -
+its shape on the land cover map was not continuous and water was often
+misclassified as wetland (sites 1 and 5). On the other hand, the model
+has managed to correctly recognize wetlands in sites 2 and 4, despite
+the fact that no training point of wetlands class was located nearby.
 
-\begin{figure}[t]
+\begin{figure}[H]
 
 {\centering \includegraphics[width=5.20833in,height=9.0625in]{./figures/comparison.png}
 
 }
 
-\caption{\label{fig-rycina10}Comparison of created land cover map (b)
-with GLAD satellite imagery (a) and ortophotomap from polish Geoportal
-(c).}
+\caption{\label{fig-rycina10}Comparison of the created land cover map
+(b) with GLAD satellite imagery (a) and ortophotomap from Polish
+Geoportal (c).}
 
 \end{figure}
 
-Analysis of model's confidence derived from probability map
-(Figure~\ref{fig-rycina11}) showed visible spatial autocorrelation of
-this measure. In order to derive mean values of confidence for every
-land cover class, zonal statistics were calculated. Highest values of
-confidence were recorded for forests (0.86) and waterbodies (0.92). As
-of urban areas and arable land, model's confidence was lower at mean
-level of 0.64 and 0.71 respectively. The model was least confident in
-recognizing bare land (0.44), wetlands (0.46) and grassland (0.57).
+Analysis of the model's confidence derived from the probability map
+(Figure~\ref{fig-rycina11}) showed visible spatial autocorrelation. In
+order to derive mean values of confidence for every land cover class,
+zonal statistics were calculated. Highest values of confidence were
+recorded for forests (0.86) and waterbodies (0.92). For urban areas and
+arable land, model's confidence was lower at mean level of 0.64 and
+0.71, respectively. The model was least confident in recognizing bare
+land (0.44), wetlands (0.46) and grassland (0.57).
 
-\begin{figure}[t]
+\begin{figure}[H]
 
 {\centering \includegraphics[width=5.875in,height=4.16667in]{./figures/result-map-prob.png}
 
 }
 
-\caption{\label{fig-rycina11}Probability of chosen land cover class
-being present on the ground. This can be treated as confidence of model
-on its results.}
+\caption{\label{fig-rycina11}Probability of a chosen land cover class
+being present on the ground. This can be treated as a confidence of the
+model on its results.}
 
 \end{figure}
 
@@ -826,17 +826,16 @@ on its results.}
 
 As mentioned in Section~\ref{sec-resampling}, in order to evaluate model
 performance nested \emph{k}-fold spatial cross-validation was performed.
-I chose approach with 5 folds and 10 repetitions of partitioning.
-Hyperparameter tuning level of nested resampling also used 5 folds and
-10 evaluations. This resulted with 2500 models created both on
-performance estimation level and hyperparameter tuning level. Results of
-these models were then evaluated and quality measures were computed. In
-Table~\ref{tbl-tabela4}, overall quality measures such as accuracy and
-Kappa coefficient are presented. Moreover, I calculated weighted
-precision, recall and F1-score. Weights for these calculations were
-based on number of observations from each land cover class. Original
-precision, recall and F1-score values by land cover type are shown in
-Table~\ref{tbl-tabela5}.
+I chose approach with 5 folds and 10 repetitions. Hyperparameter tuning
+level of nested resampling also used 5 folds and 10 evaluations. This
+resulted in 2500 models created both for performance estimation and
+hyperparameter tuning. Results of these models were then evaluated and
+quality measures were computed. In Table~\ref{tbl-tabela4}, overall
+quality measures, such as, accuracy and Kappa coefficient are presented.
+Moreover, I calculated weighted precision, recall and F1-score. Weights
+for these calculations were based on number of observations from each
+land cover class. Original precision, recall and F1-score values by land
+cover type are shown in Table~\ref{tbl-tabela5}.
 
 In general, model achieved accuracy level of 0.752 with Kappa
 coefficient of 0.652. These values are rather average and model indeed
@@ -867,23 +866,24 @@ weighted F1-score & 0.743\\
 \end{tabular}
 \end{table}
 
-A deeper analysis of performance measures by land cover class
-(Table~\ref{tbl-tabela5}) shows that precision and recall values for
-certain type are similar. This means that model did not have any
+An in-depth analysis of performance measures by land cover class shows
+that precision and recall values for certain type are similar
+(Table~\ref{tbl-tabela5}). This means that model did not have any
 specific problem either with too many false positive (FP) or false
-negative (FN) predictions. It was just not that good in general. Model
-performed very poorly in terms of correctly classifying observations of
-wetlands class but it is quite common issue across many studies (for
-example: \textcite{malinowski_automated_2020}). Also bare land class had
-low values of model quality with F1-score of 0.242. The main problem
-concerning these land cover classes is that there was probably not
-enough training points for each of them. On the other hand, two largest
-classes in terms of number of observations - arable land and forests -
-were classified much more accurately, with F1-score of 0.777 and 0.889
-respectively. Land cover type with the highest values of precision and
-recall, despite of low number of observations, was waterbodies class.
-Model performed very good for this class probably because of its
-distinct spectral characteristics and easily distinguishable borders.
+negative (FN) predictions. It was just not that good for some classes.
+Model performed very poorly in terms of correctly classifying
+observations of wetlands class but it is quite common issue across many
+studies (for example, \textcite{malinowski_automated_2020}). Also bare
+land class had low values of model quality with F1-score of 0.242. The
+main problem concerning these land cover classes is that there was
+probably not enough training points for each of them in the study area.
+On the other hand, two largest classes in terms of number of
+observations - arable land and forests - were classified much more
+accurately, with F1-score of 0.777 and 0.889 respectively. Land cover
+type with the highest values of precision and recall, despite of low
+number of observations, was waterbodies class. Model performed very good
+for this class probably because of its distinct spectral characteristics
+and easily distinguishable borders.
 
 \hypertarget{tbl-tabela5}{}
 \begin{table}
@@ -941,7 +941,7 @@ included (Figure~\ref{fig-rycina12}). In the end, however, these
 differences are rather small and we can not state that thermal band had
 strong impact on model's predictions.
 
-\begin{figure}[t]
+\begin{figure}[H]
 
 {\centering \includegraphics[width=5.625in,height=3.125in]{./figures/model_comparison.png}
 
@@ -959,7 +959,7 @@ loss value of 50, it was the least important variable in the dataset.
 Importance values of all variables are shown in
 Figure~\ref{fig-rycina13}.
 
-\begin{figure}[t]
+\begin{figure}[H]
 
 {\centering \includegraphics[width=5.625in,height=3.125in]{./figures/importance.png}
 
@@ -1017,7 +1017,7 @@ wetlands & 15.0 & 4.88 & 1.63\\
 \end{tabular}
 \end{table}
 
-\begin{figure}[t]
+\begin{figure}[H]
 
 {\centering \includegraphics[width=4.45833in,height=4.16667in]{./figures/importance_classes.png}
 
@@ -1043,7 +1043,7 @@ Probabilities change significantly along with changes in near-infrared
 values, thus suggesting that this variable has greater impact on model's
 predictions than thermal band.
 
-\begin{figure}[t]
+\begin{figure}[H]
 
 {\centering \includegraphics[width=5.90625in,height=3.125in]{./figures/profB10.png}
 
@@ -1053,7 +1053,7 @@ predictions than thermal band.
 
 \end{figure}
 
-\begin{figure}[t]
+\begin{figure}[H]
 
 {\centering \includegraphics[width=5.90625in,height=3.125in]{./figures/profB5.png}
 
@@ -1075,7 +1075,7 @@ created opportunity to examine approximate spatial distribution of
 thermal band's importance across Poznań metropolitan area
 (Figure~\ref{fig-rycina17}).
 
-\begin{figure}[t]
+\begin{figure}[H]
 
 {\centering \includegraphics[width=5.875in,height=4.16667in]{./figures/B10_importance-spatial-ENG.png}
 
@@ -1099,7 +1099,7 @@ may be misleading, especially in places far away from LUCAS points. On
 the other hand, spectral values were averaged for every 1,5 km cell so
 these mean values may not represent accurately features on the ground.
 
-\begin{figure}[t]
+\begin{figure}[H]
 
 {\centering \includegraphics[width=5.875in,height=4.16667in]{./figures/B10_importance-spatial-ENG2.png}
 

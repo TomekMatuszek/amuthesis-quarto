@@ -1,11 +1,11 @@
-# Result land cover map {#sec-results-map}
+# Land cover map {#sec-results-map}
 
-Main product of created model is land cover map of Poznań metropolitan area ([@fig-rycina9]).
-Moreover, model calculated probabilities of choosing each class for every pixel of raster layer.
-With the help of this information, probability map showing model's confidence in its choice of land cover class was created ([@fig-rycina11]).
-Value of each pixel reflects the highest probability assigned to one of seven land cover classes, which was the output class chosen by the model.
+The main product of created model is a land cover map of Poznań metropolitan area ([@fig-rycina9]).
+Moreover, created model contains probabilities of choosing each class for every pixel of the raster layer.
+With the help of this information, a probability map showing model's confidence in its choice of land cover class was created ([@fig-rycina11]).
+Value of each pixel reflects the highest probability assigned to one of seven land cover classes.
 
-After a visual analysis of result map in @fig-rycina9, some conclusions about its general accuracy can be made.
+After a visual analysis of @fig-rycina9, some conclusions about its general accuracy can be made.
 Overall distributions of main land cover classes such as urban areas (artificial land), forests, arable land and waterbodies, seem to be correctly recognized.
 
 ```{r}
@@ -17,34 +17,35 @@ Overall distributions of main land cover classes such as urban areas (artificial
 knitr::include_graphics("figures/result_map-lc.png")
 ```
 
-In order to investigate model's predictive accuracy in local scale, six arbitrary chosen sites were examined more closely ([@fig-rycina10]).
-Visual analysis of these sites showed that model correctly recognizes most of land cover patterns present on the ground.
-There were several bigger problems and mistakes in its predictions though.
+In order to investigate model's predictive accuracy on a local scale, six arbitrary chosen sites were examined more closely ([@fig-rycina10]).
+Locations of sites were chosen to present different landscape patterns on the studied map, as well as point out more common mistakes made by the model.
+Visual analysis of these sites showed that the model correctly recognizes most of land cover patterns present on the ground.
+At the same time, there were several bigger problems and mistakes in its predictions.
 For instance, there are many examples of single pixels in the artificial area being classified as arable land (especially in sites 1, 2 and 6).
-Urban areas are generally more fragmented on map than in reality.
+Urban areas are generally more fragmented on the created map than in reality.
 Moreover, some cropland areas were incorrectly classified as grassland (sites 4, 5 and 6).
-Another problem occurred in classification of river surface - its shape on result land cover map was not continuous and water was often misclassified as wetland (sites 1 and 5).
-On the other hand, the model has managed to correctly recognize wetlands in sites 2 and 4, despite the fact that no training point of wetlands class was nearby.
+Another problem occurred in the classification of a river surface - its shape on the land cover map was not continuous and water was often misclassified as wetland (sites 1 and 5).
+On the other hand, the model has managed to correctly recognize wetlands in sites 2 and 4, despite the fact that no training point of wetlands class was located nearby.
 
 ```{r}
 #| label: fig-rycina10
 #| echo: false
-#| fig-cap: "Comparison of created land cover map (b) with GLAD satellite imagery (a) and ortophotomap from polish Geoportal (c)."
+#| fig-cap: "Comparison of the created land cover map (b) with GLAD satellite imagery (a) and ortophotomap from Polish Geoportal (c)."
 #| out-width: "500px"
 #| out-height: 870px
 knitr::include_graphics("figures/comparison.png")
 ```
 
-Analysis of model's confidence derived from probability map ([@fig-rycina11]) showed visible spatial autocorrelation of this measure.
+Analysis of the model's confidence derived from the probability map ([@fig-rycina11]) showed visible spatial autocorrelation.
 In order to derive mean values of confidence for every land cover class, zonal statistics were calculated.
 Highest values of confidence were recorded for forests (0.86) and waterbodies (0.92).
-As of urban areas and arable land, model's confidence was lower at mean level of 0.64 and 0.71 respectively.
+For urban areas and arable land, model's confidence was lower at mean level of 0.64 and 0.71, respectively.
 The model was least confident in recognizing bare land (0.44), wetlands (0.46) and grassland (0.57).
 
 ```{r}
 #| label: fig-rycina11
 #| echo: false
-#| fig-cap: "Probability of chosen land cover class being present on the ground. This can be treated as confidence of model on its results."
+#| fig-cap: "Probability of a chosen land cover class being present on the ground. This can be treated as a confidence of the model on its results."
 #| out-width: "564px"
 #| out-height: 400px
 knitr::include_graphics("figures/result-map-prob.png")
