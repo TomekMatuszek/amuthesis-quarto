@@ -916,7 +916,7 @@ wetlands & 0.394 & 0.121 & 0.185\\
 \bookmarksetup{startatroot}
 
 \hypertarget{sec-results-therm}{%
-\chapter{Assessing thermal band's impact}\label{sec-results-therm}}
+\chapter{Evaluating thermal band's impact}\label{sec-results-therm}}
 
 Since the aim of this study was to evaluate thermal band's impact on
 model results, the last part of my analysis covered this topic. As
@@ -928,16 +928,17 @@ in order to present the results on the map.
 Before moving to thermal band's importance assessment, I explored
 Landsat dataset more carefully in order to determine correlated
 variables and interactions between them (Figure~\ref{fig-rycina19}).
-Some bands are highly correlated - especially bands from visible
-spectrum and SWIR bands. This may suggest that these variables depend on
-other variable's values \autocite{biecek_explanatory_2021}, thus absence
-of one variable might not lower model's performance because other
-variable can fill this information gap. On the other hand, feature
-selection performed with the help of \emph{mlr3} framework discovered
-that including all variables still proves to achieve the best model
-performance. Moreover, implemented methods of assessing variable
-importance (described in Section~\ref{sec-importance}) are designed to
-minimize impact of interactions between variables.
+Creating correlation plot revealed, that some bands are highly
+correlated - especially these from visible spectrum and SWIR bands. This
+may suggest that these variables depend on the other variable's values
+\autocite{biecek_explanatory_2021}, thus absence of one variable might
+not lower model's performance because other variable can fill this
+information gap. On the other hand, feature selection performed with the
+help of \emph{mlr3} framework has shown that including all variables
+still proves to achieve the best model performance. Moreover,
+implemented methods of assessing variable importance (described in
+Section~\ref{sec-importance}) are designed to minimize impact of
+interactions between variables.
 
 \begin{figure}[H]
 
@@ -951,7 +952,7 @@ with the help of \emph{corrplot} package.}
 \end{figure}
 
 \hypertarget{sec-imp-overall}{%
-\section{Overall importance of thermal band}\label{sec-imp-overall}}
+\section{Measuring importance of thermal band}\label{sec-imp-overall}}
 
 As a very basic way to check thermal band's importance on model's
 results, I implemented benchmarking methods with the help of functions
@@ -982,7 +983,7 @@ and without thermal band included}
 In the next step of thermal information importance evaluation, overall
 measures were derived. Again, it turned out that thermal band variable
 had little impact on the model's results. With cross-entropy loss value
-of 50, it was the least important variable in the dataset. Importance
+of 23, it was the least important variable in the dataset. Importance
 values of all variables are shown in Figure~\ref{fig-rycina13}.
 
 \begin{figure}[H]
@@ -1007,15 +1008,15 @@ shown in Table~\ref{tbl-tabela6}. However, it must be emphasized that
 166 points was rather small number, especially for less numerous classes
 such as wetlands.
 
-Table~\ref{tbl-tabela6} presents variations of thermal band's importance
-across land cover types. It was significantly higher for artificial land
-and wetlands. Average value for wetlands is not very reliable though,
-because there were only 3 such points in studied area - one of them
-having much higher value of importance than the other two. Due to this
-issue, median value of importance was calculated too. In this case,
-value for wetlands was much lower, but importance value for artificial
-areas was nearly the same. Distributions of importance values can be
-examined in larger detail in Figure~\ref{fig-rycina14}.
+Table~\ref{tbl-tabela6} presents differences of thermal band's
+importance across land cover types. It was significantly higher for
+artificial land and wetlands. Average value for wetlands is not very
+reliable though, because there were only 3 such points in studied area -
+one of them having much higher value of importance than the other two.
+Due to this issue, median value of importance was calculated too. In
+this case, value for wetlands was much lower, but importance value for
+artificial areas was nearly the same. Distributions of importance values
+can be examined in larger detail in Figure~\ref{fig-rycina14}.
 
 \hypertarget{tbl-tabela6}{}
 \begin{table}
@@ -1058,16 +1059,17 @@ In the last step of evaluating thermal band's importance for our model,
 I created partial-dependence (PD) profiles for this variable
 (Figure~\ref{fig-rycina15}) and compared it with PD profile for
 near-infrared band (B5) presented in Figure~\ref{fig-rycina16}. Thanks
-to this method, I checked how probability for choosing certain class
-changed with increasing values of analysed variables. Probabilities do
-not drastically change with temperature (thermal band's value) increase,
-there are only small fluctuations for several classes. This allows us to
-conclude that thermal band might not have significant impact on model's
-results. In contrast, in Figure~\ref{fig-rycina16} with B5 variable
-profile, there are clearly visible trends for nearly every class.
-Probabilities change significantly along with changes in near-infrared
-values, thus suggesting that this variable has greater impact on model's
-predictions than thermal band.
+to PD plots, I checked how probability for choosing certain class
+changed with increasing values of analysed variables while keeping other
+features at their average values. Probabilities do not drastically
+change with temperature (thermal band's value) increase, there are only
+small fluctuations for several classes. This allows us to conclude that
+thermal band might not have significant impact on model's results. In
+contrast, in Figure~\ref{fig-rycina16} with B5 variable profile, there
+are clearly visible trends for nearly every class. Probabilities change
+significantly along with changes of near-infrared values, thus
+suggesting that this variable has greater impact on model's predictions
+than thermal band.
 
 \begin{figure}[H]
 
@@ -1137,7 +1139,7 @@ raster cells aggregated to 1,5 km resolution.}
 \end{figure}
 
 Correlation of thermal band's importance with artificial land class is
-visible on two maps. In both of them, high importance values are
+visible on both maps. In each case, high importance values are
 concentrated mainly in urban areas, especially in Poznań as it is the
 biggest city in the study area. For smaller towns, there is also higher
 thermal band's impact on model's results for these areas but because of
