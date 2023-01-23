@@ -59,10 +59,10 @@ knitr::include_graphics("figures/study_area.png")
 ## Satellite imagery {#sec-sat}
 
 Satellite imagery from GLAD Landsat ARD product is available in 16-day interval composites and is divided into 1° x 1° tiles.
-Processing of original Landsat images performed by GLAD team included converting spectral bands to top-of-atmosphere (TOA) reflectance, converting thermal band to brightness temperature (BT) in Kelvins, scaling the values of all bands, as well as, adding quality flag for every pixel [@potapov_landsat_2020].
+Processing of original Landsat images performed by GLAD team included converting spectral bands to top-of-atmosphere (TOA) reflectance, converting thermal band to brightness temperature (BT) in Kelvins, scaling the values of all bands, as well as, adding quality flag (QF) for every pixel [@potapov_landsat_2020].
 
 Satellite images for eight 1° x 1° tiles, covering the study area (Figure [-@fig-rycina1]), were downloaded using GLAD Tools v1.1 and PERL programming language.
-These images are from 10th interval of the year 2018, so downloaded mosaics consist of images created between 24.05.2018 and 8.06.2018.
+These images are from 10th interval of the year 2018, so downloaded mosaics consist of images acquired between 24.05.2018 and 8.06.2018.
 All downloaded images were merged and reprojected from WGS84 coordinate reference system (EPSG:4326) to UTM zone 33N (EPSG:32633).
 Every band was also resampled from its original 0.00025° resolution (corresponding to 27.83 m on the equator) to 30 meters.
 
@@ -95,7 +95,7 @@ Data collected during LUCAS survey performed by Eurostat was chosen as land cove
 At the moment of writing, it is the most accurate and comprehensive dataset containing information about land use and land cover [@pflugmacher_mapping_2019] due to the fact that every point was either manually photo-interpreted or assessed during an *in-situ* visit.
 
 LUCAS survey consists of two phases.
-The first phase is based on a grid of points with 2km spacing covering whole territory of the European Union (which equals to more than 1 million points).
+The first phase is based on a grid of points with 2 km spacing covering whole territory of the European Union (which equals to more than 1 million points).
 Each point of the grid is visually interpreted using ortho-photos or satellite images, and classified into one of seven major land-cover classes.
 These classes are: arable land, permanent crops, grassland, wooded areas/shrub land, bare land, artificial land and water.
 In the second phase, a subsample of grid points is selected and then visited by Eurostat surveyors.
@@ -196,7 +196,7 @@ Each rule in the decision tree is specified by a feature (variable used to split
 Random forest algorithm is characterized by using many decision trees at the same time and receiving results by applying majority voting system based on outputs of all decision trees [@kuhn_applied_2013].
 Each tree in the forest has slightly different input data - a subset of data is sampled with replacement to get different result in every tree.
 This process is known as bagging or bootstrap aggregating [@schonlau_random_2020].
-Moreover, algorithm is allowed to use only subset (randomly sampled) of available variables which reduces correlation between trees [@sohil_introduction_2022].
+Moreover, algorithm is allowed to use only subset (randomly sampled) of available variables in every split which reduces correlation between trees [@sohil_introduction_2022].
 
 ### Model quality assessment and fine-tuning {#sec-resampling}
 
@@ -212,7 +212,7 @@ Accuracy of the model was assessed using five performance measures:
 
 -   F1-score: harmonic mean between precision and recall, measures if classifier both classifies data correctly and does not miss a significant number of points
 
-Every above metric, except Kappa coefficient, take values from 0 to 1.
+Every above metric, except Kappa coefficient, takes values from 0 to 1.
 Value of 0 means poor model performance and value of 1 means high quality of the model.
 As for Kappa coefficient, values range from -1 to 1.
 Values below 0 mean worse agreement between raters than random chance and values above 0 (up to 1) mean model performing better than random.
@@ -225,7 +225,7 @@ Whole dataset is randomly divided into *k* equal parts (*folds*).
 Then, machine learning model is independently trained *k* times and in each run, different part of the dataset is used as validation set while remaining *k - 1* parts are used to fit the model.
 This way, every data point is used in the testing set only once and is used to train the model in the remaining runs [@jiao_performance_2016].
 Usually, whole cross-validation procedure is repeated several times to get higher number of unique dataset splits and to receive more reliable average values of the overall accuracy [@varga_validation_2021].
-Such approach is a compromise which enables possibility of using a whole dataset in the training process of the final model without a need of acquiring independent testing set.
+Such approach is a compromise which enables possibility of using a whole dataset in the training process of the final model without a need of acquiring independent testing set in order to measure model's performance.
 
 Since this study is based on geographic data, spatial autocorrelation needs to be taken into account.
 As Tobler stated: "Everything is related to everything else, but near things are more related than distant things" [@tobler_computer_1970].
@@ -252,7 +252,7 @@ This method is an extension of previously described approach, with hyperparamete
 Each fold created in the spatial CV is further divided into next *n* folds which comprise the tuning level of the process.
 Then, another *n*-fold cross-validation is performed on these folds in order to determine performance of randomly sampled hyperparameter values.
 The best hyperparameter combination is chosen to train the model on outer fold on performance estimation level [@schratz_hyperparameter_2019].
-Whole process is then repeated on every of *k* outer folds which leads to most accurate performance measurement as well as defining the best hyperparameter setting.
+Whole process is then repeated on every of *k* outer folds which leads to the most accurate performance measurement as well as defining the best hyperparameter setting.
 
 I chose three hyper-parameters for tuning: number of trees, maximum depth of the forest and minimal size of each node in decision tree.
 I used overall accuracy achieved by each classifier to rank their performance and choose parameters that train the model the best.
@@ -282,19 +282,19 @@ df |>
 
 Quantifying importance of model's variables is a part of evaluating its results.
 It can be used for model simplification and exploration, domain-knowledge-based validation or knowledge generation [@biecek_explanatory_2021].
-This study was focused on the latter purpose since its aim was to check if thermal information has an impact on land-cover classification.
+This study was focused on the latter purpose since its aim was to check if thermal information has a significant impact on land-cover classification.
 
 Importance of model variables can be measured on two levels: dataset level and instance level [@biecek_explanatory_2021].
 On the dataset level, we can measure change in model's accuracy depending on the presence of one chosen variable ([@sec-importance-dataset]).
 This gives basic knowledge about this variable's impact on model predictions.
-Assessing importance on the instance level helps to understand an impact of variables for one specific data point ([@sec-importance-instance]).
+Assessing importance on the instance (observation) level helps to understand an impact of variables for one specific data point ([@sec-importance-instance]).
 Moreover, the instance level importance can be utilized to interpolate variable importance values from points into continuous raster data ([@sec-importance-distribution]).
 
 ### Dataset level {#sec-importance-dataset}
 
 Measuring variable importance on the dataset level requires evaluating model twice: once with original data and once with permuted values of the considered variable.
 The main idea behind this action is to measure difference between models' performance.
-Breiman [-@breiman_random_2001] assumes that if a variable is important, then it is expected to lower model's performance after permuting its values.
+Breiman [-@breiman_random_2001] assumes that if a variable is important, then model's performance is expected to lower after permuting this variable's values.
 For this purpose, cross entropy was used as a loss function thus its change was considered as a measure of variable importance [@biecek_explanatory_2021].
 In order to measure each variable's importance, twelve seperate models were created: one with original data and eleven modified models, each one with different variable's values permuted.
 Comparison of these eleven models and original model made possible quantifying impact of every variable on original model's results.
@@ -319,7 +319,7 @@ knitr::include_graphics("figures/profB5.png")
 ### Instance level {#sec-importance-instance}
 
 Another way to measure variable importance in machine learning models is the instance level evaluation.
-It helps to find out how much each variable contributed to the classification result for a particular observation [@biecek_explanatory_2021].
+It helps to find out how much each variable contributed to the model's outcome for a particular observation [@biecek_explanatory_2021].
 One way of calculating variable impact on the observation result is creating break-down plot ([@fig-rycina7]).
 Its main idea is to estimate contribution of variable by measuring the change in model's predictions while fixing the values of consecutive variables to values recorded for the chosen observation [@biecek_explanatory_2021].
 After fixing the value of variable for whole dataset, change in model's prediction is calculated.
@@ -357,7 +357,7 @@ Such result enables us to add spatial context to the variable importance, which 
 In order to estimate spatial distribution of variable importance values, I applied two different approaches.
 First of them is based on the raster aggregation - resampling of satellite imagery from 30 m to 1.5 km resolution.
 Lowering the resolution of the data and averaging bands' values highly decreases computational time, as well as helps to discover more general trends and patterns rather than local ones.
-After resampling, Shapley values are calculated for every raster cell and variable importance value is quantified.
+After resampling, Shapley values are calculated for every raster cell and variable importance is measured.
 
 The second approach utilizes LUCAS training points used during a model training together with spatial interpolation techniques.
 First, Shapley values are calculated for every point and importance of variable is assigned to them.
@@ -369,7 +369,7 @@ On the other hand, point interpolation method is very accurate for places near L
 
 ## R language environment {#sec-r}
 
-Almost every step of analysis described in previous sections was performed with use of R [@R-base] - an open-source programming language designed mainly for statistical computing and visualizing data.
+Almost every step of analysis described in previous sections was performed with the use of R [@R-base] - an open-source programming language designed mainly for statistical computing and visualizing data.
 I used RStudio [@rstudio_team_rstudio_2020] as an integrated development environment (IDE).
 Apart from base R functionalities, a number of packages created by the R community were implemented into workflow.
 I used *terra* package [@R-terra] to perform raster data operations and *sf* [@R-sf] to manipulate and process vector data.

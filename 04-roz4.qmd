@@ -2,8 +2,8 @@
 
 As mentioned in [@sec-resampling], in order to evaluate model performance nested *k*-fold spatial cross-validation was performed.
 I chose approach with 5 folds and 10 repetitions.
-Hyperparameter tuning level of nested resampling also used 5 folds and 10 evaluations.
-This resulted in 2500 models created both for performance estimation and hyperparameter tuning.
+Hyperparameter tuning level of nested resampling used 5 folds to evaluate 10 different hyperparameter combinations.
+This resulted in total of 2500 models created both for performance estimation and hyperparameter tuning.
 Results of these models were then evaluated and quality measures were computed.
 In [@tbl-tabela4], overall quality measures, such as, accuracy and Kappa coefficient are presented.
 Moreover, I calculated weighted precision, recall and F1-score.

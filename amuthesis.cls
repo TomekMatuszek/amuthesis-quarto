@@ -220,7 +220,7 @@
         \degreetitle{} written\\
         in the Institute of Geoecology and Geoinformation\\
         under the supervision of\\
-        dr. hab. Jakub Nowosad
+        dr hab. Jakub Nowosad
     \end{flushright}
     \vfill
     \begin{center}

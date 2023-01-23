@@ -7,7 +7,7 @@ The latter was used to estimate spatial distribution of thermal band's importanc
 Before moving to thermal band's importance assessment, I explored Landsat dataset more carefully in order to determine correlated variables and interactions between them ([@fig-rycina19]).
 Creating correlation plot revealed, that some bands are highly correlated - especially these from visible spectrum and SWIR bands.
 This may suggest that these variables depend on the other variable's values [@biecek_explanatory_2021], thus absence of one variable might not lower model's performance because other variable can fill this information gap.
-On the other hand, feature selection performed with the help of *mlr3* framework has shown that including all variables still proves to achieve the best model performance.
+On the other hand, feature selection performed with the help of *mlr3* framework [@R-mlr3] has shown that including all variables still proves to achieve the best model performance.
 Moreover, implemented methods of assessing variable importance (described in [@sec-importance]) are designed to minimize impact of interactions between variables.
 
 ```{r}
@@ -21,7 +21,7 @@ knitr::include_graphics("figures/corrplot.png")
 
 ## Measuring importance of thermal band {#sec-imp-overall}
 
-As a very basic way to check thermal band's importance on model's results, I implemented benchmarking methods with the help of functions provided by *mlr3* framework.
+As a very basic way to check thermal band's importance on model's results, I implemented benchmarking methods with the help of functions provided by *mlr3* framework [@R-mlr3].
 Two datasets (*tasks*) were created: one with thermal band included and one without this variable.
 Other hyperparameters of models were the same.
 Then, 5-fold spatial cross-validation with 10 repetitions were performed on models created from both datasets in order to estimate their predictive abilities.
