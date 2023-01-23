@@ -1,6 +1,6 @@
 # Materials and methods {#sec-data-methods}
 
-Workflow of the study consisted of several stages: preprocessing of source data (described in Sections [-@sec-sat] and [-@sec-landcover]), creating training dataset, model's parameters tuning ([@sec-tuning]), land cover map prediction, model quality assessment ([@sec-resampling]) and evaluating the impact of the thermal band on the model's results ([@sec-importance]).
+Workflow of the study consisted of several stages: preprocessing of source data (described in Sections [-@sec-sat] and [-@sec-landcover]), creating training dataset, model's parameters tuning and quality assessment ([@sec-resampling]), land cover map prediction and evaluating the impact of the thermal band on the model's results ([@sec-importance]).
 Visual representation of the workflow is shown in [@fig-rycina1].
 
 Each of these steps was performed using R programming language [@R-base].
@@ -14,24 +14,24 @@ Both programming environment and GIS software used in this process are open-sour
 %%| fig-cap: "General workflow of the study"
 %%| fig-width: 4
 flowchart TD
-  A[/Download GLAD data/] ---> B[clipping and resampling]
-  D[/Download LUCAS data/] --> E[reclassification]
-  subgraph source data processing&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+  A[/Downloading GLAD data/] ---> B[merging and reprojecting]
+  D[/Downloading LUCAS data/] --> E[reclassification]
+  subgraph source data processing&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
   B --> C[calculating spectral indices]
   E --> F[merging LUCAS Grid and Primary Data]
-  F --> G[filtering based on aux. info]
-  C --> H[extracting spectral values]
+  F --> G[filtering based on auxillary info]
+  C --> H[extracting spectral values of LUCAS points]
   G --> H
   H --> I[filtering based on NDWI and QF]
   end
-  subgraph machine learning&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+  subgraph machine learning&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
   I --> J[creating ML dataset/task]
-  J --> K[tuning of parameters]
-  J --> L[nested resampling]
+  J --> L[nested spatial cross-validation]
+  L --> K[applying fine-tuned hyperparameters]
   K --> N[model training]
   N --> O[prediction]
   end
-  L ----> M[\model quality assessment\]
+  L -----> M[\model quality assessment\]
   O --> P[\land cover map\]
   subgraph analysing variable importance&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
   N ----> R[calculating variable importance]
@@ -198,36 +198,7 @@ Each tree in the forest has slightly different input data - a subset of data is 
 This process is known as bagging or bootstrap aggregating [@schonlau_random_2020].
 Moreover, algorithm is allowed to use only subset (randomly sampled) of available variables which reduces correlation between trees [@sohil_introduction_2022].
 
-### Parameter tuning {#sec-tuning}
-
-Random Forest algorithm takes several hyperparameters as an input in order to specify how much should it fit to training data.
-Optimizing these parameters is crucial for tree-based machine learning models [@yang_hyperparameter_2020].
-Model's hyper-parameters can be fine-tuned to find values that give the best model accuracy.
-I chose three hyper-parameters for tuning: number of trees, maximum depth of the forest and minimal size of each node in decision tree.
-Then, 10 models with different hyper-parameter values chosen randomly from specified search space were created and trained.
-I used overall accuracy achieved by each classifier to rank their performance and choose parameters that train the model the best.
-Parameters' search spaces and tuning results can be found in [@tbl-tabela3].
-
-```{r tabela3, echo=FALSE}
-#| label: tbl-tabela3
-#| echo: false
-#| tbl-cap: "Tuned parameters of RF model"
-df = data.frame(
-  parameter = c("number of trees", "maximum depth", "min. node size"),
-  search_space = c("50 - 400", "10 - 40", "1 - 10"),
-  choice = c("272", "20", "1")
-)
-colnames(df) = c("Hyper-parameter", "Search space", "Optimal value")
-df |>
-  knitr::kable(format = "latex", booktabs = TRUE, linesep = "") |> 
-  kableExtra::row_spec(0, bold = TRUE, extra_css = "border-left: 1px solid grey; border-right: 1px solid grey") |>
-  kableExtra::column_spec(1:2, border_left = TRUE) |>
-  kableExtra::column_spec(3, border_left = TRUE, border_right = TRUE) |>
-  kableExtra::kable_classic(full_width = FALSE) |>
-  kableExtra::row_spec(1:(nrow(df) - 1), extra_latex_after = "\\hline")
-```
-
-### Model quality assessment {#sec-resampling}
+### Model quality assessment and fine-tuning {#sec-resampling}
 
 Accuracy of the model was assessed using five performance measures:
 
@@ -261,7 +232,7 @@ As Tobler stated: "Everything is related to everything else, but near things are
 In order to prevent testing points from being related to training points, I applied spatial cross-validation approach which aims to prevent the model to overfit to the training data.
 This method is different than regular cross-validation only in the partitioning step - instead of randomly dividing dataset into groups, location of data points is used together with k-means clustering [@brenning_spatial_2012] in order to create spatially disjoint folds [@lovelace_geocomputation_2019].
 Thanks to this partitioning method, spatial bias can be significantly reduced which leads to more reliable performance estimation.
-Example of such approach can be seen on [@fig-rycina5].
+Example of such approach can be seen in [@fig-rycina5].
 
 ```{r}
 #| label: fig-rycina5
@@ -272,13 +243,40 @@ Example of such approach can be seen on [@fig-rycina5].
 knitr::include_graphics("figures/spatial_partitioning.png")
 ```
 
+Random Forest algorithm takes several hyperparameters as an input in order to specify how much should it fit to training data.
+Optimizing these parameters is crucial for tree-based machine learning models [@yang_hyperparameter_2020].
+Model's hyperparameters can be fine-tuned to find values that give the best model accuracy.
+
 With the aim to determine values of model's hyperparameters as accurately as possible, I performed nested spatial cross-validation.
 This method is an extension of previously described approach, with hyperparameter tuning added to the process.
 Each fold created in the spatial CV is further divided into next *n* folds which comprise the tuning level of the process.
-Then, another cross-validation is performed on these folds in order to determine performance of randomly sampled hyperparameter values.
+Then, another *n*-fold cross-validation is performed on these folds in order to determine performance of randomly sampled hyperparameter values.
 The best hyperparameter combination is chosen to train the model on outer fold on performance estimation level [@schratz_hyperparameter_2019].
 Whole process is then repeated on every of *k* outer folds which leads to most accurate performance measurement as well as defining the best hyperparameter setting.
-FIGURE?
+
+I chose three hyper-parameters for tuning: number of trees, maximum depth of the forest and minimal size of each node in decision tree.
+I used overall accuracy achieved by each classifier to rank their performance and choose parameters that train the model the best.
+On tuning level of every fold in spatial CV process, I examined 10 random configurations of hyperparameters and assessed their performance by applying 5-fold inner resampling.
+Parameters' search spaces and tuning result received from nested cross-validation can be found in [@tbl-tabela3].
+
+```{r tabela3, echo=FALSE}
+#| label: tbl-tabela3
+#| echo: false
+#| tbl-cap: "Parameters of RF model optimized during nested spatial cross-validation."
+df = data.frame(
+  parameter = c("number of trees", "maximum depth", "min. node size"),
+  search_space = c("50 - 400", "10 - 40", "1 - 10"),
+  choice = c("127/188", "40/40", "5/1")
+)
+colnames(df) = c("Hyper-parameter", "Search space", "Optimal value")
+df |>
+  knitr::kable(format = "latex", booktabs = TRUE, linesep = "") |> 
+  kableExtra::row_spec(0, bold = TRUE, extra_css = "border-left: 1px solid grey; border-right: 1px solid grey") |>
+  kableExtra::column_spec(1:2, border_left = TRUE) |>
+  kableExtra::column_spec(3, border_left = TRUE, border_right = TRUE) |>
+  kableExtra::kable_classic(full_width = FALSE) |>
+  kableExtra::row_spec(1:(nrow(df) - 1), extra_latex_after = "\\hline")
+```
 
 ## Variable importance and its spatial distribution {#sec-importance}
 

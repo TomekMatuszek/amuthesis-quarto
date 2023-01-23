@@ -162,11 +162,10 @@ operatora \texttt{{[}-@sec{]}}.
 Workflow of the study consisted of several stages: preprocessing of
 source data (described in Sections \ref{sec-sat} and
 \ref{sec-landcover}), creating training dataset, model's parameters
-tuning (Section~\ref{sec-tuning}), land cover map prediction, model
-quality assessment (Section~\ref{sec-resampling}) and evaluating the
-impact of the thermal band on the model's results
-(Section~\ref{sec-importance}). Visual representation of the workflow is
-shown in Figure~\ref{fig-rycina1}.
+tuning and quality assessment (Section~\ref{sec-resampling}), land cover
+map prediction and evaluating the impact of the thermal band on the
+model's results (Section~\ref{sec-importance}). Visual representation of
+the workflow is shown in Figure~\ref{fig-rycina1}.
 
 Each of these steps was performed using R programming language
 \autocite{R-base}. Final visualizations were created in QGIS software
@@ -179,7 +178,7 @@ and GIS software used in this process are open-source.
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=4in,height=8.26in]{./02-roz2_files/figure-latex/mermaid-figure-1.png}
+{\centering \includegraphics[width=4in,height=8.46in]{./02-roz2_files/figure-latex/mermaid-figure-1.png}
 
 }
 
@@ -441,42 +440,9 @@ algorithm is allowed to use only subset (randomly sampled) of available
 variables which reduces correlation between trees
 \autocite{sohil_introduction_2022}.
 
-\hypertarget{sec-tuning}{%
-\subsection{Parameter tuning}\label{sec-tuning}}
-
-Random Forest algorithm takes several hyperparameters as an input in
-order to specify how much should it fit to training data. Optimizing
-these parameters is crucial for tree-based machine learning models
-\autocite{yang_hyperparameter_2020}. Model's hyper-parameters can be
-fine-tuned to find values that give the best model accuracy. I chose
-three hyper-parameters for tuning: number of trees, maximum depth of the
-forest and minimal size of each node in decision tree. Then, 10 models
-with different hyper-parameter values chosen randomly from specified
-search space were created and trained. I used overall accuracy achieved
-by each classifier to rank their performance and choose parameters that
-train the model the best. Parameters' search spaces and tuning results
-can be found in Table~\ref{tbl-tabela3}.
-
-\hypertarget{tbl-tabela3}{}
-\begin{table}
-\caption{\label{tbl-tabela3}Tuned parameters of RF model }\tabularnewline
-
-\centering
-\begin{tabular}{|>{}l|>{}l|>{}l|}
-\toprule
-\textbf{Hyper-parameter} & \textbf{Search space} & \textbf{Optimal value}\\
-\midrule
-number of trees & 50 - 400 & 272\\
-\hline
-maximum depth & 10 - 40 & 20\\
-\hline
-min. node size & 1 - 10 & 1\\
-\bottomrule
-\end{tabular}
-\end{table}
-
 \hypertarget{sec-resampling}{%
-\subsection{Model quality assessment}\label{sec-resampling}}
+\subsection{Model quality assessment and
+fine-tuning}\label{sec-resampling}}
 
 Accuracy of the model was assessed using five performance measures:
 
@@ -538,7 +504,7 @@ with k-means clustering \autocite{brenning_spatial_2012} in order to
 create spatially disjoint folds \autocite{lovelace_geocomputation_2019}.
 Thanks to this partitioning method, spatial bias can be significantly
 reduced which leads to more reliable performance estimation. Example of
-such approach can be seen on Figure~\ref{fig-rycina5}.
+such approach can be seen in Figure~\ref{fig-rycina5}.
 
 \begin{figure}[H]
 
@@ -552,19 +518,53 @@ partitioning of dataset for cross-validation on external example data
 
 \end{figure}
 
+Random Forest algorithm takes several hyperparameters as an input in
+order to specify how much should it fit to training data. Optimizing
+these parameters is crucial for tree-based machine learning models
+\autocite{yang_hyperparameter_2020}. Model's hyperparameters can be
+fine-tuned to find values that give the best model accuracy.
+
 With the aim to determine values of model's hyperparameters as
 accurately as possible, I performed nested spatial cross-validation.
 This method is an extension of previously described approach, with
 hyperparameter tuning added to the process. Each fold created in the
 spatial CV is further divided into next \emph{n} folds which comprise
-the tuning level of the process. Then, another cross-validation is
-performed on these folds in order to determine performance of randomly
-sampled hyperparameter values. The best hyperparameter combination is
-chosen to train the model on outer fold on performance estimation level
-\autocite{schratz_hyperparameter_2019}. Whole process is then repeated
-on every of \emph{k} outer folds which leads to most accurate
-performance measurement as well as defining the best hyperparameter
-setting. FIGURE?
+the tuning level of the process. Then, another \emph{n}-fold
+cross-validation is performed on these folds in order to determine
+performance of randomly sampled hyperparameter values. The best
+hyperparameter combination is chosen to train the model on outer fold on
+performance estimation level \autocite{schratz_hyperparameter_2019}.
+Whole process is then repeated on every of \emph{k} outer folds which
+leads to most accurate performance measurement as well as defining the
+best hyperparameter setting.
+
+I chose three hyper-parameters for tuning: number of trees, maximum
+depth of the forest and minimal size of each node in decision tree. I
+used overall accuracy achieved by each classifier to rank their
+performance and choose parameters that train the model the best. On
+tuning level of every fold in spatial CV process, I examined 10 random
+configurations of hyperparameters and assessed their performance by
+applying 5-fold inner resampling. Parameters' search spaces and tuning
+result received from nested cross-validation can be found in
+Table~\ref{tbl-tabela3}.
+
+\hypertarget{tbl-tabela3}{}
+\begin{table}
+\caption{\label{tbl-tabela3}Parameters of RF model optimized during nested spatial cross-validation. }\tabularnewline
+
+\centering
+\begin{tabular}{|>{}l|>{}l|>{}l|}
+\toprule
+\textbf{Hyper-parameter} & \textbf{Search space} & \textbf{Optimal value}\\
+\midrule
+number of trees & 50 - 400 & 127/188\\
+\hline
+maximum depth & 10 - 40 & 40/40\\
+\hline
+min. node size & 1 - 10 & 5/1\\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \hypertarget{sec-importance}{%
 \section{Variable importance and its spatial
@@ -733,11 +733,13 @@ I used an environment of various machine learning packages called
 data. \emph{DALEX} \autocite{R-DALEX} and \emph{DALEXtra}
 \autocite{R-DALEXtra} packages provided various functionalities enabling
 me to estimate variable importance and visualize these results with the
-help of \emph{ggplot2} package \autocite{R-ggplot2}. Package called
-\emph{gstat} \autocite{R-gstat} helped to interpolate variable
-importance values from points to a continuous raster layer. In addition,
-\emph{future} package \autocite{R-future} was used to enable
-multi-threading of some computationally intensive tasks.
+help of \emph{ggplot2} package \autocite{R-ggplot2}. Moreover,
+\emph{corrplot} package was used to calculate and visualize correlation
+matrix of Landsat data. Package called \emph{gstat} \autocite{R-gstat}
+helped to interpolate variable importance values from points to a
+continuous raster layer. In addition, \emph{future} package
+\autocite{R-future} was used to enable multi-threading of some
+computationally intensive tasks.
 
 \bookmarksetup{startatroot}
 
@@ -916,9 +918,26 @@ wetlands & 0.394 & 0.121 & 0.185\\
 \hypertarget{sec-results-therm}{%
 \chapter{Assessing thermal band's impact}\label{sec-results-therm}}
 
+Since the aim of this study was to evaluate thermal band's impact on
+model results, the last part of my analysis covered this topic. As
+described in Section~\ref{sec-importance}, variable importance can be
+assessed both on dataset and instance (observation) level. The latter
+was used to estimate spatial distribution of thermal band's importance
+in order to present the results on the map.
+
 Before moving to thermal band's importance assessment, I explored
 Landsat dataset more carefully in order to determine correlated
-variables and interactions between them.
+variables and interactions between them (Figure~\ref{fig-rycina19}).
+Some bands are highly correlated - especially bands from visible
+spectrum and SWIR bands. This may suggest that these variables depend on
+other variable's values \autocite{biecek_explanatory_2021}, thus absence
+of one variable might not lower model's performance because other
+variable can fill this information gap. On the other hand, feature
+selection performed with the help of \emph{mlr3} framework discovered
+that including all variables still proves to achieve the best model
+performance. Moreover, implemented methods of assessing variable
+importance (described in Section~\ref{sec-importance}) are designed to
+minimize impact of interactions between variables.
 
 \begin{figure}[H]
 
@@ -926,16 +945,10 @@ variables and interactions between them.
 
 }
 
-\caption{\label{fig-rycina19}Correlation matrix of Landsat bands.}
+\caption{\label{fig-rycina19}Correlation matrix of Landsat bands created
+with the help of \emph{corrplot} package.}
 
 \end{figure}
-
-Since the aim of this study was to evaluate thermal band's impact on
-model results, the last part of my analysis covered this topic. As
-described in Section~\ref{sec-importance}, variable importance can be
-assessed both on dataset and instance (observation) level. The latter
-was used to estimate spatial distribution of thermal band's importance
-in order to present the results on the map.
 
 \hypertarget{sec-imp-overall}{%
 \section{Overall importance of thermal band}\label{sec-imp-overall}}
@@ -966,12 +979,11 @@ and without thermal band included}
 
 \end{figure}
 
-In the next step of evaluation of thermal information importance,
-overall measures were derived. Again, it turned out that thermal band
-variable had little impact on the model's results. With cross-entropy
-loss value of 50, it was the least important variable in the dataset.
-Importance values of all variables are shown in
-Figure~\ref{fig-rycina13}.
+In the next step of thermal information importance evaluation, overall
+measures were derived. Again, it turned out that thermal band variable
+had little impact on the model's results. With cross-entropy loss value
+of 50, it was the least important variable in the dataset. Importance
+values of all variables are shown in Figure~\ref{fig-rycina13}.
 
 \begin{figure}[H]
 
@@ -1100,7 +1112,7 @@ values on LUCAS points locations.}
 
 \end{figure}
 
-Moreover, alternative approach involving raster aggregation was
+Moreover, alternative approach involving raster aggregation was also
 implemented. In this method, original satellite data was aggregated
 (resampled) to 1,5 km resolution in order to make analysis more general
 and shorten the computation time. After aggregation, thermal band's
@@ -1123,6 +1135,13 @@ these mean values may not represent accurately features on the ground.
 raster cells aggregated to 1,5 km resolution.}
 
 \end{figure}
+
+Correlation of thermal band's importance with artificial land class is
+visible on two maps. In both of them, high importance values are
+concentrated mainly in urban areas, especially in Poznań as it is the
+biggest city in the study area. For smaller towns, there is also higher
+thermal band's impact on model's results for these areas but because of
+their small size, it is sometimes harder to capture.
 
 \bookmarksetup{startatroot}
 
