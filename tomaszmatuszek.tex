@@ -770,7 +770,7 @@ created during this study.}
 
 In order to investigate model's predictive accuracy on a local scale,
 six arbitrary chosen sites were examined more closely
-(Figure~\ref{fig-rycina10}). Locations of sites were chosen to present
+(Figure~\ref{fig-rycina10}). Locations of sites were selected to present
 different landscape patterns on the studied map, as well as point out
 more common mistakes made by the model. Visual analysis of these sites
 showed that the model correctly recognizes most of land cover patterns
@@ -916,6 +916,20 @@ wetlands & 0.394 & 0.121 & 0.185\\
 \hypertarget{sec-results-therm}{%
 \chapter{Assessing thermal band's impact}\label{sec-results-therm}}
 
+Before moving to thermal band's importance assessment, I explored
+Landsat dataset more carefully in order to determine correlated
+variables and interactions between them.
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=4.45833in,height=4.16667in]{./figures/corrplot.png}
+
+}
+
+\caption{\label{fig-rycina19}Correlation matrix of Landsat bands.}
+
+\end{figure}
+
 Since the aim of this study was to evaluate thermal band's impact on
 model results, the last part of my analysis covered this topic. As
 described in Section~\ref{sec-importance}, variable importance can be
@@ -928,18 +942,18 @@ in order to present the results on the map.
 
 As a very basic way to check thermal band's importance on model's
 results, I implemented benchmarking methods with the help of functions
-provided by \emph{mlr3} framework. Two datasets (tasks) were created:
-one with thermal band included and one without this variable. Other
-models' parameters were the same. Then, 5-fold spatial cross-validation
-with 10 repetitions were performed on models created from both datasets
-in order to estimate their predictive abilities. Differences between
-them were very narrow, but visible - model with thermal band included
-achieved higher accuracy of approximately 0.4 perc. points and higher
-Kappa of approx. 0.006. Moreover, distribution of accuracy values in the
-boxplot changed visibly, with higher values for model with thermal band
-included (Figure~\ref{fig-rycina12}). In the end, however, these
-differences are rather small and we can not state that thermal band had
-strong impact on model's predictions.
+provided by \emph{mlr3} framework. Two datasets (\emph{tasks}) were
+created: one with thermal band included and one without this variable.
+Other hyperparameters of models were the same. Then, 5-fold spatial
+cross-validation with 10 repetitions were performed on models created
+from both datasets in order to estimate their predictive abilities.
+Differences between them were very narrow, but visible - model with
+thermal band included achieved higher accuracy of approximately 0.4
+perc. points and higher Kappa of approx. 0.006. Moreover, distribution
+of accuracy values in the boxplot changed visibly, with higher values
+for model with thermal band included (Figure~\ref{fig-rycina12}). In the
+end, however, these differences are rather small and we can not state
+that thermal band had strong impact on model's predictions.
 
 \begin{figure}[H]
 

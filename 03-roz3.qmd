@@ -18,7 +18,7 @@ knitr::include_graphics("figures/result_map-lc.png")
 ```
 
 In order to investigate model's predictive accuracy on a local scale, six arbitrary chosen sites were examined more closely ([@fig-rycina10]).
-Locations of sites were chosen to present different landscape patterns on the studied map, as well as point out more common mistakes made by the model.
+Locations of sites were selected to present different landscape patterns on the studied map, as well as point out more common mistakes made by the model.
 Visual analysis of these sites showed that the model correctly recognizes most of land cover patterns present on the ground.
 At the same time, there were several bigger problems and mistakes in its predictions.
 For instance, there are many examples of single pixels in the artificial area being classified as arable land (especially in sites 1, 2 and 6).

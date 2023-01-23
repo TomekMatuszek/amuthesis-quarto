@@ -379,6 +379,7 @@ To conduct machine learning steps of the analysis, I used an environment of vari
 Random forest algorithm used by *mlr3* framework is part of the *ranger* package [@R-ranger].
 I also used *dplyr* [@R-dplyr] and *tidyr* packages [@R-tidyr] to clean and process tabular data.
 *DALEX* [@R-DALEX] and *DALEXtra* [@R-DALEXtra] packages provided various functionalities enabling me to estimate variable importance and visualize these results with the help of *ggplot2* package [@R-ggplot2].
+Moreover, *corrplot* package was used to calculate and visualize correlation matrix of Landsat data.
 Package called *gstat* [@R-gstat] helped to interpolate variable importance values from points to a continuous raster layer.
 In addition, *future* package [@R-future] was used to enable multi-threading of some computationally intensive tasks.
 
