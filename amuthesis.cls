@@ -202,7 +202,7 @@
     \thispagestyle{empty}%
     % \null\vskip1cm%
     \vspace*{-2cm}
-    \centerline{\includegraphics[width=19cm]{figures/uam-logo}}
+    \centerline{\includegraphics[width=19cm]{figures/uam-logo-EN}}
     \begin{center}
     \textbf{Field of studies: \major{}}\\
     \textbf{Album ID: \albumid{}}
