@@ -6,7 +6,6 @@ Visual representation of the workflow is shown in [@fig-rycina1].
 Each of these steps was performed using R programming language [@R-base].
 Final visualizations were created in QGIS software [@qgis_development_team_qgis_2009].
 Both programming environment and GIS software used in this process are open-source.
-<!-- &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp-->
 
 ```{mermaid}
 %%| label: fig-rycina1
@@ -185,7 +184,7 @@ In this study, supervised classification algorithm called Random Forest (RF) was
 
 ### Random forest algorithm {#sec-rf}
 
-I chose Random Forest as an algorithm used in this study.
+I chose Random Forest as an algorithm used in this study, since it is considered to be the best classification algorithm for land cover mapping [@talukdar_land-use_2020].
 It is a very popular machine learning tool thanks to its high interpretability and relatively high accuracy [@qi_random_2012].
 Other advantages of this algorithm is its ability to handle missing values, wide spectrum of accepted variable types (continuous, binary, categorical) and ease of modelling high-dimensional data [@qi_random_2012].
 Random Forest consists of a specified number of decision trees, which are based on series of splitting rules.

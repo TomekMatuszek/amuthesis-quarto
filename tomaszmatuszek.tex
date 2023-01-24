@@ -99,60 +99,54 @@ Keywords: (as stated before)
 \hypertarget{sec-intro}{%
 \chapter{Introduction}\label{sec-intro}}
 
-\begin{itemize}
-\item
-  applications and relevance of land cover maps
-\item
-  machine learning and supervised classification of satellite images as
-  a tool for creating land cover maps
-\item
-  pointing out that thermal band if often omitted in land cover
-  classification models, exact impact of thermal factor isn't fully
-  clear
-\item
-  goal of the thesis is to create land cover map of Poznań metropolitan
-  area and measure the impact of thermal band on the model results
-\end{itemize}
+Land cover is a physical characteristic of Earth's surface describing
+distribution of vegetation, water, soil and other features on the ground
+\autocite{rawat_monitoring_2015}. The production of accurate land cover
+maps is crucial for conducting spatial analyses, studying environmental
+changes \autocite{reis_analyzing_2008} and evaluating urban development
+\autocite{hashem_change_2015}. Land cover information is also useful for
+general circulation models (GCM) development
+\autocite{running_ecosystem_2008} and has been selected as one of the
+most essential climate variables that contribute to describing Earth's
+environment and climate \autocite{bojinski_concept_2014}.
 
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+The main method of creating land cover maps is based on remote-sensing
+methods and multispectral satellite data. Two most popular,
+free-of-charge sources of satellite imagery are Landsat programme (run
+by NASA and USGS) and Sentinel programme (conducted by ESA). These
+datasets are usually utilized to create the classification model based
+on machine learning techniques, which gained popularity in recent years
+\autocite{maxwell_implementation_2018}. Supervised machine learning
+model, that was used in this study, analyzes training set containing
+labels of land cover classes and tries to learn how to recognize them.
 
-Wprowadzenie powinno mieć charakter opisu od ogółu do szczegółu (np.
-trzy-pięć paragrafów). Pierwszy paragraf powinien być najbardziej
-ogólny, a kolejne powinny przybliżać czytelnika do problemu.
-Przedostatni paragraf powinien określić jaki jest problem (są problemy),
-który praca ma rozwiązać i dlaczego jest to (są one) ważne.
+Over the past few years, there were several attempts to automate
+creation of land cover maps (\textcite{malinowski_automated_2020},
+\textcite{witjes_spatiotemporal_2021}). Automated workflow, however,
+requires high understanding of every step of machine learning process
+and appropriate choice of explanatory variables. Spectral bands and
+indices are the most commonly used variables. However, some satellites
+like Landsat 8, have a thermal sensor as well, which measures land
+surface temperature (LST) of Earth. There is significant interaction
+between LST and extent of urban and impervious areas
+\autocite{dutta_changing_2019}, thus we can assume that this variable
+might be influential on the classification model results. Thermal band's
+impact on model results is described in several studies, for example:
+\textcite{rodriguez-galiano_incorporating_2012},
+\textcite{zhao_exploring_2019}, \textcite{sun_improvement_2015}.
+However, despite adding completely new information compared to spectral
+bands, thermal band is noticeably more often omitted in classification
+models, probably due to its coarser resolution which has to be
+downscaled \autocite{rodriguez-galiano_incorporating_2012}. Because of
+this, its impact on model's results is not clear enough and needs
+further research focused on that topic.
 
-Wprowadzenie powinno być zakończone stwierdzeniem celu pracy. Dodatkowo
-tutaj może znaleźć się również krótki opis co zostało zrealizowane w
-pracy.
-
-Pisząc ten rozdział proszę pomyśleć o osobach, które zupełnie nie znają
-opisywanej tematyki. Należy tutaj krok po kroku wyjaśnić podstawowe
-koncepcje, istotność problemu, wyniki poprzednich podobnych badań, itd.
-Ten rozdział obejmuje tylko kwestie, które już zostały wykonane przez
-inne osoby - nowe wyniki mają swoje miejsce w rozdziale
-\textbf{?@sec-wyniki}.
-
-Każda kwestia opisana w tym rozdziale powinna być cytowana. Dodatnie
-cytowania odbywa się poprzez uzupełnienie pliku \texttt{thesis.bib}
-zapisem w formacie BibTeX, a następnie dodanie nazwy referencji
-poprzedzonej znakiem \texttt{@}. Przykładowo, zacytowanie książki
-Geocomputation with R odbywa się poprzez
-\autocite{lovelace_geocomputation_2019}.
-
-W przypadku, gdy cytowanie zostało poprawnie wpisane oraz istnieje w
-pliku \texttt{thesis.bib} to bibliografia powinna się automatycznie
-wygenerować na końcu pracy.
-
-W przypadku, gdy praca dyplomowa opisuje konkretny obszar to można po
-tym rozdziale stworzyć kolejny rozdział opisujący ``obszar badań''.
-
-Ten i kolejne rozdziału moją mieć także podrozdziały. Tworzenie
-podrozdziałów polega na stworzeniu nowej linii rozpoczynającej się od
-znaków \texttt{\#\#} a następnie tytułu podrozdziału. Dodatkowo w
-postaci \texttt{\{\#sec-\}} można dodać skrót nazwy
-rozdziału/podrozdziału umożliwiający odnoszenie się do niego używając
-operatora \texttt{{[}-@sec{]}}.
+The main goal of this study is to evaluate thermal band's impact on
+classification model, study its spatial distribution and try to give
+broader knowledge of how it should be used. Random Forest model will be
+trained on dataset for Poland and land cover map of Poznań metropolitan
+area will be created. Then, both machine learning model and result map
+will be used to measure thermal band's impact on classification results.
 
 \bookmarksetup{startatroot}
 
@@ -415,14 +409,16 @@ In this study, supervised classification algorithm called Random Forest
 \hypertarget{sec-rf}{%
 \subsection{Random forest algorithm}\label{sec-rf}}
 
-I chose Random Forest as an algorithm used in this study. It is a very
-popular machine learning tool thanks to its high interpretability and
-relatively high accuracy \autocite{qi_random_2012}. Other advantages of
-this algorithm is its ability to handle missing values, wide spectrum of
-accepted variable types (continuous, binary, categorical) and ease of
-modelling high-dimensional data \autocite{qi_random_2012}. Random Forest
-consists of a specified number of decision trees, which are based on
-series of splitting rules.
+I chose Random Forest as an algorithm used in this study, since it is
+considered to be the best classification algorithm for land cover
+mapping \autocite{talukdar_land-use_2020}. It is a very popular machine
+learning tool thanks to its high interpretability and relatively high
+accuracy \autocite{qi_random_2012}. Other advantages of this algorithm
+is its ability to handle missing values, wide spectrum of accepted
+variable types (continuous, binary, categorical) and ease of modelling
+high-dimensional data \autocite{qi_random_2012}. Random Forest consists
+of a specified number of decision trees, which are based on series of
+splitting rules.
 
 Decision tree aims to partition the dataset into smaller, more
 homogeneous groups \autocite{kuhn_applied_2013}. This process creates a
