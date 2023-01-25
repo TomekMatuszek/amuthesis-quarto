@@ -1,19 +1,17 @@
 # Conclusion {#conclusion}
 
--   land cover map of Poznań metropolitan area was created, impact of thermal band on classification results was measured
+This study showed that thermal band's impact on model's result is not very strong overall and quantifying its importance needs more in-depth approach.
+Result land cover map was created from imagery of only one 16-day interval and its accuracy was rather average, especially when compared with state-of-the-art works in this field (@malinowski_automated_2020, @witjes_spatiotemporal_2021).
+On the other hand, obtained results were accurate enough to apply methods of measuring variable importance and to make some conclusions from findings of this analysis.
 
--   despite thermal band having low overall impact on model results, there is a strong spatial auto-correlation for its importance
+Variable importance was evaluated using several methods such as permutation-based computation, break-down plots, Shapley values and partial-dependence profiles.
+All these approaches gave similar results - thermal band had low impact on general results of the created model.
+However, more in-depth analysis revealed that land surface temperature had significantly greater impact on predicting one specific land cover class - artificial land.
+After adding spatial context to importance values, it became clear that thermal band was more influential in classifying urban areas, although there was mainly correlation with land cover type.
+Clear spatial-autocorrelation was not detected, probably because of too sparsely distributed training points.
+These findings suggest that thermal band may become increasingly important in studies covering development of cities and urban areas.
+More accurate land cover maps will help in better management of metropolitan areas' growth and in quantifying impact of urbanization on natural environment more precisely.
 
--   land surface temperature was especially significant for land cover classification of urban areas, it helped in identify built-up areas
-
--   it may mean that thermal band will become increasingly important in studies on urban sprawl and suburbanisation
-
--   better land cover maps will help in better management of metropolitan areas growth and quantifying impact of urbanisation on natural environment more precisely
-
-------------------------------------------------------------------------
-
-Podsumowanie pracy jest w pewnym sensie znacznie rozbudowanym abstraktem.
-Należy wyliczyć i opisać osiągnięcia uzyskane w pracy dyplomowej.
-Tutaj jednak (w przeciwieństwie do np. rozdziału [-@sec-wprowadzenie]) należy przechodzić od szczegółu do ogółu - co zostało stworzone/określone, jak zostało to zrobione, jakie ma to konsekwencje, itd.
-
-Ten rozdział powinien też zawierać opis kwestii, których nie udało się rozwiązać w pracy dyplomowej (i dlaczego się nie udało) oraz pomysły na przyszłe ulepszenie uzyskanych wyników lub dalsze badania.
+However, further research should to be carried out on bigger area and for bigger number of satellite images.
+It is crucial to extend this study to include spatio-temporal aspect of imagery, in order to investigate thermal band's impact on model predictions throughout different vegetation seasons.
+Moreover, areas from different climate regions should also be examined with emphasis on thermal band importance issue.
