@@ -144,7 +144,7 @@ On the other hand, spectral values were averaged for every 1,5 km cell so these 
 ```{r}
 #| label: fig-rycina18
 #| echo: false
-#| fig-cap: "Thermal band importance calculated for raster cells aggregated to 1,5 km resolution."
+#| fig-cap: "Thermal band importance calculated for raster cells aggregated to 1,5 km resolution. Small map in right-bottom corner shows averaged spectral values in RGB composition."
 #| out-width: "564px"
 #| out-height: 400px
 knitr::include_graphics("figures/B10_importance-spatial-ENG2.png")

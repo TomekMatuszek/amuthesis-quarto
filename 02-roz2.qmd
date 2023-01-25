@@ -145,7 +145,7 @@ At the end of the pre-processing, dataset had 3,778 training points [@oliver_buc
 #| label: fig-rycina3
 #| echo: false
 #| fig-cap: "Distribution of points by land cover class after pre-processing"
-#| out-width: "552px"
+#| out-width: "533px"
 #| out-height: 300px
 knitr::include_graphics("figures/lucas_data.png")
 ```
