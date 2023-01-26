@@ -12,11 +12,11 @@ Supervised machine learning model, that was used in this study, analyzes trainin
 Over the past few years, there were several attempts to automate creation of land cover maps (@malinowski_automated_2020, @witjes_spatiotemporal_2021).
 Automated workflow, however, requires high understanding of every step of machine learning process and appropriate choice of explanatory variables.
 Spectral bands and indices are the most commonly used variables.
-However, some satellites like Landsat 8, have a thermal sensor as well, which measures land surface temperature (LST) of Earth.
+However, some satellites like Landsat 8, have a thermal sensor as well, which measures land surface temperature (LST) of the Earth.
 There is significant interaction between LST and extent of urban and impervious areas [@dutta_changing_2019], thus we can assume that this variable might be influential on the classification model results.
 Thermal band's impact on model results is described in several studies, for example: @rodriguez-galiano_incorporating_2012, @zhao_exploring_2019, @sun_improvement_2015.
-However, despite adding completely new information compared to spectral bands, thermal band is noticeably more often omitted in classification models, probably due to its coarser resolution which has to be downscaled [@rodriguez-galiano_incorporating_2012].
-Because of this, its impact on model's results is not clear enough and needs further research focused on that topic.
+However, despite adding completely new information compared to spectral bands, thermal band is noticeably more often omitted in classification models, probably due to its coarser resolution [@rodriguez-galiano_incorporating_2012].
+Because of this, its impact on model predictions is not clear enough and needs further research focused on that topic.
 
 The main goal of this study is to evaluate thermal band's impact on classification model, study its spatial distribution and try to give broader knowledge of how it should be used.
 Random Forest model will be trained on dataset for Poland and land cover map of Poznań metropolitan area will be created.

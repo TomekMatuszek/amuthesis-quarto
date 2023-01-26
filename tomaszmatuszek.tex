@@ -159,7 +159,7 @@ requires high understanding of every step of machine learning process
 and appropriate choice of explanatory variables. Spectral bands and
 indices are the most commonly used variables. However, some satellites
 like Landsat 8, have a thermal sensor as well, which measures land
-surface temperature (LST) of Earth. There is significant interaction
+surface temperature (LST) of the Earth. There is significant interaction
 between LST and extent of urban and impervious areas
 \autocite{dutta_changing_2019}, thus we can assume that this variable
 might be influential on the classification model results. Thermal band's
@@ -168,10 +168,10 @@ impact on model results is described in several studies, for example:
 \textcite{zhao_exploring_2019}, \textcite{sun_improvement_2015}.
 However, despite adding completely new information compared to spectral
 bands, thermal band is noticeably more often omitted in classification
-models, probably due to its coarser resolution which has to be
-downscaled \autocite{rodriguez-galiano_incorporating_2012}. Because of
-this, its impact on model's results is not clear enough and needs
-further research focused on that topic.
+models, probably due to its coarser resolution
+\autocite{rodriguez-galiano_incorporating_2012}. Because of this, its
+impact on model predictions is not clear enough and needs further
+research focused on that topic.
 
 The main goal of this study is to evaluate thermal band's impact on
 classification model, study its spatial distribution and try to give
@@ -187,11 +187,11 @@ will be used to measure thermal band's impact on classification results.
 
 Workflow of the study consisted of several stages: preprocessing of
 source data (described in Sections \ref{sec-sat} and
-\ref{sec-landcover}), creating training dataset, model's parameters
-tuning and quality assessment (Section~\ref{sec-resampling}), land cover
-map prediction and evaluating the impact of the thermal band on the
-model's results (Section~\ref{sec-importance}). Visual representation of
-the workflow is shown in Figure~\ref{fig-rycina1}.
+\ref{sec-landcover}), creating training dataset, model parameters tuning
+and quality assessment (Section~\ref{sec-resampling}), land cover map
+prediction and evaluating the impact of the thermal band on the model
+results (Section~\ref{sec-importance}). Visual representation of the
+workflow is shown in Figure~\ref{fig-rycina1}.
 
 Each of these steps was performed using R programming language
 \autocite{R-base}. Final visualizations were created in QGIS software
@@ -251,7 +251,7 @@ Satellite images for eight 1° x 1° tiles, covering the study area
 PERL programming language. These images are from 10th interval of the
 year 2018, so downloaded mosaics consist of images acquired between
 24.05.2018 and 8.06.2018. All downloaded images were merged and
-reprojected from WGS84 coordinate reference system (EPSG:4326) to UTM
+reprojected from WGS 84 coordinate reference system (EPSG:4326) to UTM
 zone 33N (EPSG:32633). Every band was also resampled from its original
 0.00025° resolution (corresponding to 27.83 m on the equator) to 30
 meters.
@@ -264,7 +264,7 @@ in Table~\ref{tbl-tabela1}.
 
 \hypertarget{tbl-tabela1}{}
 \begin{table}
-\caption{\label{tbl-tabela1}Formulas of spectral indices dervied from Landsat data }\tabularnewline
+\caption{\label{tbl-tabela1}Formulas of spectral indices derived from Landsat data }\tabularnewline
 
 \centering
 \begin{tabular}{|>{\raggedright\arraybackslash}p{4cm}|>{}l|>{}l|}
@@ -299,27 +299,27 @@ Modified Bare Surface Index & MBI & (B6 - B7 - B5) / (B6 + B7 + B5) + 0.5\\
 \hypertarget{sec-landcover}{%
 \section{Land cover data}\label{sec-landcover}}
 
-Data collected during LUCAS survey performed by Eurostat was chosen as
-land cover training set. At the moment of writing, it is the most
-accurate and comprehensive dataset containing information about land use
-and land cover \autocite{pflugmacher_mapping_2019} due to the fact that
-every point was either manually photo-interpreted or assessed during an
-\emph{in-situ} visit.
+Data collected during LUCAS field survey performed by Eurostat was
+chosen as land cover training set. At the moment of writing, it is the
+most accurate and comprehensive dataset containing information about
+land use and land cover \autocite{pflugmacher_mapping_2019} due to the
+fact that every point was either manually photo-interpreted or assessed
+during an \emph{in-situ} visit.
 
-LUCAS survey consists of two phases. The first phase is based on a grid
-of points with 2 km spacing covering whole territory of the European
-Union (which equals to more than 1 million points). Each point of the
-grid is visually interpreted using ortho-photos or satellite images, and
-classified into one of seven major land-cover classes. These classes
-are: arable land, permanent crops, grassland, wooded areas/shrub land,
-bare land, artificial land and water. In the second phase, a subsample
-of grid points is selected and then visited by Eurostat surveyors. They
-classify each point according to full LUCAS land cover and land use
-classification. The survey takes place in the spring and summer in order
-to observe chosen places in their high vegetation season
+LUCAS field survey consists of two phases. The first phase is based on a
+grid of points with 2 km spacing covering whole territory of the
+European Union (which equals to more than 1 million points). Each point
+of the grid is visually interpreted using ortho-photos or satellite
+images, and classified into one of seven major land-cover classes. These
+classes are: arable land, permanent crops, grassland, wooded areas/shrub
+land, bare land, artificial land and water. In the second phase, a
+subsample of grid points is selected and then visited by Eurostat
+surveyors. They classify each point according to full LUCAS land cover
+and land use classification. The survey takes place in the spring and
+summer in order to observe chosen places in their high vegetation season
 \autocite{dandrimont_harmonised_2020}.
 
-Surveyor not only assign land cover and land use classes to points, but
+Surveyors not only assign land cover and land use classes to points, but
 they also add auxillary information such as plant species present at the
 site, percentage of land coverage of a chosen class, height of the trees
 and their maturity, as well as information about local water management
@@ -480,7 +480,7 @@ Accuracy of the model was assessed using five performance measures:
   number of input points
 \item
   Kappa coefficient: how well the classification performed as compared
-  to randomly assigning values
+  to assigning values randomly
 \item
   Recall (producer's accuracy): how often are real features on the
   ground correctly shown on the classified map
@@ -569,8 +569,8 @@ the best hyperparameter setting.
 I chose three hyper-parameters for tuning: number of trees, maximum
 depth of the forest and minimal size of each node in decision tree. I
 used overall accuracy achieved by each classifier to rank their
-performance and choose parameters that train the model the best. On
-tuning level of every fold in spatial CV process, I examined 10 random
+performance and choose parameters that train the model best. On tuning
+level of every fold in spatial CV process, I examined 10 random
 configurations of hyperparameters and assessed their performance by
 applying 5-fold inner resampling. Parameters' search spaces and tuning
 result received from nested cross-validation can be found in
@@ -578,7 +578,8 @@ Table~\ref{tbl-tabela3}.
 
 \hypertarget{tbl-tabela3}{}
 \begin{table}
-\caption{\label{tbl-tabela3}Parameters of RF model optimized during nested spatial cross-validation. }\tabularnewline
+\caption{\label{tbl-tabela3}Hyperparameters of RF model optimized during nested spatial
+cross-validation. }\tabularnewline
 
 \centering
 \begin{tabular}{|>{}l|>{}l|>{}l|}
@@ -603,18 +604,18 @@ results. It can be used for model simplification and exploration,
 domain-knowledge-based validation or knowledge generation
 \autocite{biecek_explanatory_2021}. This study was focused on the latter
 purpose since its aim was to check if thermal information has a
-significant impact on land-cover classification.
+significant impact on land cover classification.
 
 Importance of model variables can be measured on two levels: dataset
 level and instance level \autocite{biecek_explanatory_2021}. On the
-dataset level, we can measure change in model's accuracy depending on
-the presence of one chosen variable
-(Section~\ref{sec-importance-dataset}). This gives basic knowledge about
-this variable's impact on model predictions. Assessing importance on the
-instance (observation) level helps to understand an impact of variables
-for one specific data point (Section~\ref{sec-importance-instance}).
-Moreover, the instance level importance can be utilized to interpolate
-variable importance values from points into continuous raster data
+dataset level, we can measure change in model accuracy depending on the
+presence of one chosen variable (Section~\ref{sec-importance-dataset}).
+This gives basic knowledge about this variable's impact on model
+predictions. Assessing importance on the instance (observation) level
+helps to understand an impact of variables for one specific data point
+(Section~\ref{sec-importance-instance}). Moreover, the instance level
+importance can be utilized to interpolate variable importance values
+from points into continuous raster data
 (Section~\ref{sec-importance-distribution}).
 
 \hypertarget{sec-importance-dataset}{%
@@ -633,7 +634,7 @@ variable's importance, twelve seperate models were created: one with
 original data and eleven modified models, each one with different
 variable's values permuted. Comparison of these eleven models and
 original model made possible quantifying impact of every variable on
-original model's results. This value is treated as overall variable
+original model results. This value is treated as overall variable
 importance on the dataset level.
 
 There is also more visual method to explore variable importance on
@@ -655,8 +656,8 @@ detect such dependence.
 
 }
 
-\caption{\label{fig-rycina6}Example variable profile for near-infrared
-band (B5).}
+\caption{\label{fig-rycina6}Example partial-dependence profile for
+near-infrared band (B5).}
 
 \end{figure}
 
@@ -669,12 +670,11 @@ variable contributed to the model's outcome for a particular observation
 \autocite{biecek_explanatory_2021}. One way of calculating variable
 impact on the observation result is creating break-down plot
 (Figure~\ref{fig-rycina7}). Its main idea is to estimate contribution of
-variable by measuring the change in model's predictions while fixing the
+variable by measuring the change in model predictions while fixing the
 values of consecutive variables to values recorded for the chosen
 observation \autocite{biecek_explanatory_2021}. After fixing the value
-of variable for whole dataset, change in model's prediction is
-calculated. This value indicates variable impact on a chosen
-observation.
+of variable for whole dataset, change in model prediction is calculated.
+This value indicates variable impact on a chosen observation.
 
 \begin{figure}[H]
 
@@ -722,7 +722,7 @@ further described in Section \ref{sec-importance-distribution}.
 In order to estimate spatial distribution of variable importance values,
 I applied two different approaches. First of them is based on the raster
 aggregation - resampling of satellite imagery from 30 m to 1.5 km
-resolution. Lowering the resolution of the data and averaging bands'
+resolution. Lowering the resolution of the data and averaging band
 values highly decreases computational time, as well as helps to discover
 more general trends and patterns rather than local ones. After
 resampling, Shapley values are calculated for every raster cell and
@@ -808,13 +808,14 @@ present on the ground. At the same time, there were several bigger
 problems and mistakes in its predictions. For instance, there are many
 examples of single pixels in the artificial area being classified as
 arable land (especially in sites 1, 2 and 6). Urban areas are generally
-more fragmented on the created map than in reality. Moreover, some
-cropland areas were incorrectly classified as grassland (sites 4, 5 and
-6). Another problem occurred in the classification of a river surface -
-its shape on the land cover map was not continuous and water was often
-misclassified as wetland (sites 1 and 5). On the other hand, the model
-has managed to correctly recognize wetlands in sites 2 and 4, despite
-the fact that no training point of wetlands class was located nearby.
+more fragmented on the created map than they are in reality. Moreover,
+some cropland areas were incorrectly classified as grassland (sites 4, 5
+and 6). Another problem occurred in the classification of a river
+surface - its shape on the land cover map was not continuous and water
+was often misclassified as wetland (sites 1 and 5). On the other hand,
+the model has managed to correctly recognize wetlands in sites 2 and 4,
+despite the fact that no training point of wetlands class was located
+nearby.
 
 \begin{figure}[H]
 
@@ -983,21 +984,21 @@ with the help of \emph{corrplot} package.}
 \hypertarget{sec-imp-overall}{%
 \section{Measuring importance of thermal band}\label{sec-imp-overall}}
 
-As a very basic way to check thermal band's importance on model's
-results, I implemented benchmarking methods with the help of functions
-provided by \emph{mlr3} framework \autocite{R-mlr3}. Two datasets
-(\emph{tasks}) were created: one with thermal band included and one
-without this variable. Other hyperparameters of models were the same.
-Then, 5-fold spatial cross-validation with 10 repetitions were performed
-on models created from both datasets in order to estimate their
-predictive abilities. Differences between them were very narrow, but
-visible - model with thermal band included achieved higher accuracy of
-approximately 0.4 perc. points and higher Kappa of approx. 0.006.
-Moreover, distribution of accuracy values in the boxplot changed
-visibly, with higher values for model with thermal band included
-(Figure~\ref{fig-rycina12}). In the end, however, these differences are
-rather small and we can not state that thermal band had strong impact on
-model's predictions.
+As a very basic way to check thermal band's importance on model results,
+I implemented benchmarking methods with the help of functions provided
+by \emph{mlr3} framework \autocite{R-mlr3}. Two datasets (\emph{tasks})
+were created: one with thermal band included and one without this
+variable. Other hyperparameters of models were the same. Then, 5-fold
+spatial cross-validation with 10 repetitions were performed on models
+created from both datasets in order to estimate their predictive
+abilities. Differences between them were very narrow, but visible -
+model with thermal band included achieved higher average accuracy of
+approximately 0.4 perc. points and higher average Kappa of approx.
+0.006. Moreover, distribution of accuracy values in the boxplot changed
+visibly, with higher median accuracy for model with thermal band
+included (Figure~\ref{fig-rycina12}). In the end, however, these
+differences are rather small and we can not state that thermal band had
+strong impact on model predictions.
 
 \begin{figure}[H]
 
@@ -1012,8 +1013,8 @@ and without thermal band included}
 
 In the next step of thermal information importance evaluation, overall
 measures were derived. Again, it turned out that thermal band variable
-had little impact on the model's results. With cross-entropy loss value
-of 23, it was the least important variable in the dataset. Importance
+had little impact on the model results. With cross-entropy loss value of
+23, it was the least important variable in the dataset. Importance
 values of all variables are shown in Figure~\ref{fig-rycina13}.
 
 \begin{figure}[H]
@@ -1094,11 +1095,11 @@ changed with increasing values of analysed variables while keeping other
 features at their average values. Probabilities do not drastically
 change with temperature (thermal band's value) increase, there are only
 small fluctuations for several classes. This allows us to conclude that
-thermal band might not have significant impact on model's results. In
+thermal band might not have significant impact on model results. In
 contrast, in Figure~\ref{fig-rycina16} with B5 variable profile, there
 are clearly visible trends for nearly every class. Probabilities change
 significantly along with changes of near-infrared values, thus
-suggesting that this variable has greater impact on model's predictions
+suggesting that this variable has greater impact on model predictions
 than thermal band.
 
 \begin{figure}[H]
@@ -1173,7 +1174,7 @@ Correlation of thermal band's importance with artificial land class is
 visible on both maps. In each case, high importance values are
 concentrated mainly in urban areas, especially in Poznań as it is the
 biggest city in the study area. For smaller towns, there is also higher
-thermal band's impact on model's results for these areas but because of
+thermal band's impact on model results for these areas but because of
 their small size, it is sometimes harder to capture.
 
 \bookmarksetup{startatroot}
@@ -1181,11 +1182,11 @@ their small size, it is sometimes harder to capture.
 \hypertarget{conclusion}{%
 \chapter{Conclusion}\label{conclusion}}
 
-This study showed that thermal band's impact on model's result is not
-very strong overall and quantifying its importance needs more in-depth
-approach. Result land cover map was created from imagery of only one
-16-day interval and its accuracy was rather average, especially when
-compared with state-of-the-art works in this field
+This study showed that thermal band's impact on machine learning model
+results is not very strong overall and quantifying its importance needs
+more in-depth approach. Result land cover map was created from imagery
+of only one 16-day interval and its accuracy was rather average,
+especially when compared with state-of-the-art works in this field
 (\textcite{malinowski_automated_2020},
 \textcite{witjes_spatiotemporal_2021}). On the other hand, obtained
 results were accurate enough to apply methods of measuring variable
@@ -1204,12 +1205,12 @@ cover type. Clear spatial-autocorrelation was not detected, probably
 because of too sparsely distributed training points. These findings
 suggest that thermal band may become increasingly important in studies
 covering development of cities and urban areas. More accurate land cover
-maps will help in better management of metropolitan areas' growth and in
-quantifying impact of urbanization on natural environment more
+maps will help in better management of growth of metropolitan areas and
+in quantifying impact of urbanization on natural environment more
 precisely.
 
 However, further research should to be carried out on bigger area and
-for bigger number of satellite images. It is crucial to extend this
+for larger number of satellite images. It is crucial to extend this
 study to include spatio-temporal aspect of imagery, in order to
 investigate thermal band's impact on model predictions throughout
 different vegetation seasons. Moreover, areas from different climate

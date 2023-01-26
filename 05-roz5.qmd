@@ -21,13 +21,13 @@ knitr::include_graphics("figures/corrplot.png")
 
 ## Measuring importance of thermal band {#sec-imp-overall}
 
-As a very basic way to check thermal band's importance on model's results, I implemented benchmarking methods with the help of functions provided by *mlr3* framework [@R-mlr3].
+As a very basic way to check thermal band's importance on model results, I implemented benchmarking methods with the help of functions provided by *mlr3* framework [@R-mlr3].
 Two datasets (*tasks*) were created: one with thermal band included and one without this variable.
 Other hyperparameters of models were the same.
 Then, 5-fold spatial cross-validation with 10 repetitions were performed on models created from both datasets in order to estimate their predictive abilities.
-Differences between them were very narrow, but visible - model with thermal band included achieved higher accuracy of approximately 0.4 perc. points and higher Kappa of approx. 0.006.
-Moreover, distribution of accuracy values in the boxplot changed visibly, with higher values for model with thermal band included ([@fig-rycina12]).
-In the end, however, these differences are rather small and we can not state that thermal band had strong impact on model's predictions.
+Differences between them were very narrow, but visible - model with thermal band included achieved higher average accuracy of approximately 0.4 perc. points and higher average Kappa of approx. 0.006.
+Moreover, distribution of accuracy values in the boxplot changed visibly, with higher median accuracy for model with thermal band included ([@fig-rycina12]).
+In the end, however, these differences are rather small and we can not state that thermal band had strong impact on model predictions.
 
 ```{r}
 #| label: fig-rycina12
@@ -39,7 +39,7 @@ knitr::include_graphics("figures/model_comparison.png")
 ```
 
 In the next step of thermal information importance evaluation, overall measures were derived.
-Again, it turned out that thermal band variable had little impact on the model's results.
+Again, it turned out that thermal band variable had little impact on the model results.
 With cross-entropy loss value of 23, it was the least important variable in the dataset.
 Importance values of all variables are shown in [@fig-rycina13].
 
@@ -98,9 +98,9 @@ knitr::include_graphics("figures/importance_classes.png")
 In the last step of evaluating thermal band's importance for our model, I created partial-dependence (PD) profiles for this variable ([@fig-rycina15]) and compared it with PD profile for near-infrared band (B5) presented in [@fig-rycina16].
 Thanks to PD plots, I checked how probability for choosing certain class changed with increasing values of analysed variables while keeping other features at their average values.
 Probabilities do not drastically change with temperature (thermal band's value) increase, there are only small fluctuations for several classes.
-This allows us to conclude that thermal band might not have significant impact on model's results.
+This allows us to conclude that thermal band might not have significant impact on model results.
 In contrast, in [@fig-rycina16] with B5 variable profile, there are clearly visible trends for nearly every class.
-Probabilities change significantly along with changes of near-infrared values, thus suggesting that this variable has greater impact on model's predictions than thermal band.
+Probabilities change significantly along with changes of near-infrared values, thus suggesting that this variable has greater impact on model predictions than thermal band.
 
 ```{r}
 #| label: fig-rycina15
@@ -152,4 +152,4 @@ knitr::include_graphics("figures/B10_importance-spatial-ENG2.png")
 
 Correlation of thermal band's importance with artificial land class is visible on both maps.
 In each case, high importance values are concentrated mainly in urban areas, especially in Poznań as it is the biggest city in the study area.
-For smaller towns, there is also higher thermal band's impact on model's results for these areas but because of their small size, it is sometimes harder to capture.
+For smaller towns, there is also higher thermal band's impact on model results for these areas but because of their small size, it is sometimes harder to capture.

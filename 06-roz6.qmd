@@ -1,6 +1,6 @@
 # Conclusion {#conclusion}
 
-This study showed that thermal band's impact on model's result is not very strong overall and quantifying its importance needs more in-depth approach.
+This study showed that thermal band's impact on machine learning model results is not very strong overall and quantifying its importance needs more in-depth approach.
 Result land cover map was created from imagery of only one 16-day interval and its accuracy was rather average, especially when compared with state-of-the-art works in this field (@malinowski_automated_2020, @witjes_spatiotemporal_2021).
 On the other hand, obtained results were accurate enough to apply methods of measuring variable importance and to make some conclusions from findings of this analysis.
 
@@ -10,8 +10,8 @@ However, more in-depth analysis revealed that land surface temperature had signi
 After adding spatial context to importance values, it became clear that thermal band was more influential in classifying urban areas, although there was mainly correlation with land cover type.
 Clear spatial-autocorrelation was not detected, probably because of too sparsely distributed training points.
 These findings suggest that thermal band may become increasingly important in studies covering development of cities and urban areas.
-More accurate land cover maps will help in better management of metropolitan areas' growth and in quantifying impact of urbanization on natural environment more precisely.
+More accurate land cover maps will help in better management of growth of metropolitan areas and in quantifying impact of urbanization on natural environment more precisely.
 
-However, further research should to be carried out on bigger area and for bigger number of satellite images.
+However, further research should to be carried out on bigger area and for larger number of satellite images.
 It is crucial to extend this study to include spatio-temporal aspect of imagery, in order to investigate thermal band's impact on model predictions throughout different vegetation seasons.
 Moreover, areas from different climate regions should also be examined with emphasis on thermal band importance issue.

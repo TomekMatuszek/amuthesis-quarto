@@ -22,7 +22,7 @@ Locations of sites were selected to present different landscape patterns on the 
 Visual analysis of these sites showed that the model correctly recognizes most of land cover patterns present on the ground.
 At the same time, there were several bigger problems and mistakes in its predictions.
 For instance, there are many examples of single pixels in the artificial area being classified as arable land (especially in sites 1, 2 and 6).
-Urban areas are generally more fragmented on the created map than in reality.
+Urban areas are generally more fragmented on the created map than they are in reality.
 Moreover, some cropland areas were incorrectly classified as grassland (sites 4, 5 and 6).
 Another problem occurred in the classification of a river surface - its shape on the land cover map was not continuous and water was often misclassified as wetland (sites 1 and 5).
 On the other hand, the model has managed to correctly recognize wetlands in sites 2 and 4, despite the fact that no training point of wetlands class was located nearby.

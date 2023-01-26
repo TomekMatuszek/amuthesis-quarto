@@ -1,6 +1,6 @@
 # Materials and methods {#sec-data-methods}
 
-Workflow of the study consisted of several stages: preprocessing of source data (described in Sections [-@sec-sat] and [-@sec-landcover]), creating training dataset, model's parameters tuning and quality assessment ([@sec-resampling]), land cover map prediction and evaluating the impact of the thermal band on the model's results ([@sec-importance]).
+Workflow of the study consisted of several stages: preprocessing of source data (described in Sections [-@sec-sat] and [-@sec-landcover]), creating training dataset, model parameters tuning and quality assessment ([@sec-resampling]), land cover map prediction and evaluating the impact of the thermal band on the model results ([@sec-importance]).
 Visual representation of the workflow is shown in [@fig-rycina1].
 
 Each of these steps was performed using R programming language [@R-base].
@@ -62,7 +62,7 @@ Processing of original Landsat images performed by GLAD team included converting
 
 Satellite images for eight 1° x 1° tiles, covering the study area (Figure [-@fig-rycina1]), were downloaded using GLAD Tools v1.1 and PERL programming language.
 These images are from 10th interval of the year 2018, so downloaded mosaics consist of images acquired between 24.05.2018 and 8.06.2018.
-All downloaded images were merged and reprojected from WGS84 coordinate reference system (EPSG:4326) to UTM zone 33N (EPSG:32633).
+All downloaded images were merged and reprojected from WGS 84 coordinate reference system (EPSG:4326) to UTM zone 33N (EPSG:32633).
 Every band was also resampled from its original 0.00025° resolution (corresponding to 27.83 m on the equator) to 30 meters.
 
 In addition, four spectral indices were derived: Normalized Difference Vegetation Index (NDVI), Modified Normalized Difference Water Index (MNDWI), Normalized Difference Moisture Index (NDMI) and Modified Bare soil Index (MBI).
@@ -71,7 +71,7 @@ Formulas used to calculate these indices can be found in [@tbl-tabela1].
 ```{r tabela1, echo=FALSE}
 #| label: tbl-tabela1
 #| echo: false
-#| tbl-cap: "Formulas of spectral indices dervied from Landsat data"
+#| tbl-cap: "Formulas of spectral indices derived from Landsat data"
 df = data.frame(
   a = c("Blue", "Green", "Red", "Near Infrared", "Short-wave Infrared 1", "Short-wave Infrared 2", "Thermal", "Normalized Difference Vegetation Index", "Modified Normalized Difference Water Index", "Normalized Difference Moisture Index", "Modified Bare Surface Index"),
   b = c("B2", "B3", "B4", "B5 (NIR)", "B6 (SWIR1)", "B7 (SWIR2)", "B10 (TIRS1)", "NDVI", "MNDWI", "NDMI", "MBI"),
@@ -90,10 +90,10 @@ df |>
 
 ## Land cover data {#sec-landcover}
 
-Data collected during LUCAS survey performed by Eurostat was chosen as land cover training set.
+Data collected during LUCAS field survey performed by Eurostat was chosen as land cover training set.
 At the moment of writing, it is the most accurate and comprehensive dataset containing information about land use and land cover [@pflugmacher_mapping_2019] due to the fact that every point was either manually photo-interpreted or assessed during an *in-situ* visit.
 
-LUCAS survey consists of two phases.
+LUCAS field survey consists of two phases.
 The first phase is based on a grid of points with 2 km spacing covering whole territory of the European Union (which equals to more than 1 million points).
 Each point of the grid is visually interpreted using ortho-photos or satellite images, and classified into one of seven major land-cover classes.
 These classes are: arable land, permanent crops, grassland, wooded areas/shrub land, bare land, artificial land and water.
@@ -101,7 +101,7 @@ In the second phase, a subsample of grid points is selected and then visited by 
 They classify each point according to full LUCAS land cover and land use classification.
 The survey takes place in the spring and summer in order to observe chosen places in their high vegetation season [@dandrimont_harmonised_2020].
 
-Surveyor not only assign land cover and land use classes to points, but they also add auxillary information such as plant species present at the site, percentage of land coverage of a chosen class, height of the trees and their maturity, as well as information about local water management and irrigation.
+Surveyors not only assign land cover and land use classes to points, but they also add auxillary information such as plant species present at the site, percentage of land coverage of a chosen class, height of the trees and their maturity, as well as information about local water management and irrigation.
 If there are more than one land cover/land use types at the point, observer can also assign a secondary class for every LUCAS point.
 
 Majority of the training points used in the classification model were from the second phase of LUCAS survey, also called LUCAS Primary Data.
@@ -203,7 +203,7 @@ Accuracy of the model was assessed using five performance measures:
 
 -   Overall accuracy: ratio of number of correct predictions to the total number of input points
 
--   Kappa coefficient: how well the classification performed as compared to randomly assigning values
+-   Kappa coefficient: how well the classification performed as compared to assigning values randomly
 
 -   Recall (producer's accuracy): how often are real features on the ground correctly shown on the classified map
 
@@ -254,14 +254,14 @@ The best hyperparameter combination is chosen to train the model on outer fold o
 Whole process is then repeated on every of *k* outer folds which leads to the most accurate performance measurement as well as defining the best hyperparameter setting.
 
 I chose three hyper-parameters for tuning: number of trees, maximum depth of the forest and minimal size of each node in decision tree.
-I used overall accuracy achieved by each classifier to rank their performance and choose parameters that train the model the best.
+I used overall accuracy achieved by each classifier to rank their performance and choose parameters that train the model best.
 On tuning level of every fold in spatial CV process, I examined 10 random configurations of hyperparameters and assessed their performance by applying 5-fold inner resampling.
 Parameters' search spaces and tuning result received from nested cross-validation can be found in [@tbl-tabela3].
 
 ```{r tabela3, echo=FALSE}
 #| label: tbl-tabela3
 #| echo: false
-#| tbl-cap: "Parameters of RF model optimized during nested spatial cross-validation."
+#| tbl-cap: "Hyperparameters of RF model optimized during nested spatial cross-validation."
 df = data.frame(
   parameter = c("number of trees", "maximum depth", "min. node size"),
   search_space = c("50 - 400", "10 - 40", "1 - 10"),
@@ -281,10 +281,10 @@ df |>
 
 Quantifying importance of model's variables is a part of evaluating its results.
 It can be used for model simplification and exploration, domain-knowledge-based validation or knowledge generation [@biecek_explanatory_2021].
-This study was focused on the latter purpose since its aim was to check if thermal information has a significant impact on land-cover classification.
+This study was focused on the latter purpose since its aim was to check if thermal information has a significant impact on land cover classification.
 
 Importance of model variables can be measured on two levels: dataset level and instance level [@biecek_explanatory_2021].
-On the dataset level, we can measure change in model's accuracy depending on the presence of one chosen variable ([@sec-importance-dataset]).
+On the dataset level, we can measure change in model accuracy depending on the presence of one chosen variable ([@sec-importance-dataset]).
 This gives basic knowledge about this variable's impact on model predictions.
 Assessing importance on the instance (observation) level helps to understand an impact of variables for one specific data point ([@sec-importance-instance]).
 Moreover, the instance level importance can be utilized to interpolate variable importance values from points into continuous raster data ([@sec-importance-distribution]).
@@ -296,7 +296,7 @@ The main idea behind this action is to measure difference between models' perfor
 Breiman [-@breiman_random_2001] assumes that if a variable is important, then model's performance is expected to lower after permuting this variable's values.
 For this purpose, cross entropy was used as a loss function thus its change was considered as a measure of variable importance [@biecek_explanatory_2021].
 In order to measure each variable's importance, twelve seperate models were created: one with original data and eleven modified models, each one with different variable's values permuted.
-Comparison of these eleven models and original model made possible quantifying impact of every variable on original model's results.
+Comparison of these eleven models and original model made possible quantifying impact of every variable on original model results.
 This value is treated as overall variable importance on the dataset level.
 
 There is also more visual method to explore variable importance on dataset level.
@@ -309,7 +309,7 @@ If probability values of choosing certain class do not change along with changes
 ```{r}
 #| label: fig-rycina6
 #| echo: false
-#| fig-cap: "Example variable profile for near-infrared band (B5)."
+#| fig-cap: "Example partial-dependence profile for near-infrared band (B5)."
 #| out-width: "540px"
 #| out-height: 300px
 knitr::include_graphics("figures/profB5.png")
@@ -320,8 +320,8 @@ knitr::include_graphics("figures/profB5.png")
 Another way to measure variable importance in machine learning models is the instance level evaluation.
 It helps to find out how much each variable contributed to the model's outcome for a particular observation [@biecek_explanatory_2021].
 One way of calculating variable impact on the observation result is creating break-down plot ([@fig-rycina7]).
-Its main idea is to estimate contribution of variable by measuring the change in model's predictions while fixing the values of consecutive variables to values recorded for the chosen observation [@biecek_explanatory_2021].
-After fixing the value of variable for whole dataset, change in model's prediction is calculated.
+Its main idea is to estimate contribution of variable by measuring the change in model predictions while fixing the values of consecutive variables to values recorded for the chosen observation [@biecek_explanatory_2021].
+After fixing the value of variable for whole dataset, change in model prediction is calculated.
 This value indicates variable impact on a chosen observation.
 
 ```{r}
@@ -355,7 +355,7 @@ Such result enables us to add spatial context to the variable importance, which 
 
 In order to estimate spatial distribution of variable importance values, I applied two different approaches.
 First of them is based on the raster aggregation - resampling of satellite imagery from 30 m to 1.5 km resolution.
-Lowering the resolution of the data and averaging bands' values highly decreases computational time, as well as helps to discover more general trends and patterns rather than local ones.
+Lowering the resolution of the data and averaging band values highly decreases computational time, as well as helps to discover more general trends and patterns rather than local ones.
 After resampling, Shapley values are calculated for every raster cell and variable importance is measured.
 
 The second approach utilizes LUCAS training points used during a model training together with spatial interpolation techniques.
