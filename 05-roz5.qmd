@@ -13,7 +13,7 @@ Moreover, implemented methods of assessing variable importance (described in [@s
 ```{r}
 #| label: fig-rycina19
 #| echo: false
-#| fig-cap: "Correlation matrix of Landsat bands created with the help of *corrplot* package."
+#| fig-cap: "Correlation matrix of Landsat bands created with the help of corrplot package."
 #| out-width: "428px"
 #| out-height: 400px
 knitr::include_graphics("figures/corrplot.png")
@@ -73,8 +73,8 @@ Distributions of importance values can be examined in larger detail in [@fig-ryc
 df = data.frame(
   class = c("arable land", "grasslands", "forests", "bare land", "artificial land", "water bodies", "wetlands"),
   value = c(20.5, 20.5, 16.0, 21.1, 21.9, 13.8, 15.0),
-  mean_imp = c(2.21, 2.03, 2.19, 1.86, 4.60, 0.84, 4.88),
-  median_imp = c(1.89, 1.56, 1.91, 1.93, 4.56, 0.79, 1.63)
+  mean_imp = c(0.022, 0.02, 0.022, 0.019, 0.046, 0.008, 0.049),
+  median_imp = c(0.019, 0.016, 0.019, 0.019, 0.046, 0.008, 0.016)
 )
 colnames(df) = c("Land cover class", "Mean temp. [°C]", "Average importance", "Median importance")
 df |>
@@ -95,7 +95,22 @@ df |>
 knitr::include_graphics("figures/importance_classes.png")
 ```
 
-In the last step of evaluating thermal band's importance for our model, I created partial-dependence (PD) profiles for this variable ([@fig-rycina15]) and compared it with PD profile for near-infrared band (B5) presented in [@fig-rycina16].
+In addition, mean importance values for every land cover class are shown in @fig-rycina14a.
+With the help of this chart, some comparisons between land cover classes and variables can be made.
+Thermal band's importance for prediction of artificial land turns out not to be the highest among other variables.
+Some bands have higher influence on predicting this land cover type.
+On the other hand, thermal band is one of four bands, which impact for predicting artificial land was higher than average.
+
+```{r}
+#| label: fig-rycina14a
+#| echo: false
+#| fig-cap: "Comparison of variable importance values by land cover class and variable. Grey bars show average value of importance of a variable."
+#| out-width: "531px"
+#| out-height: 300px
+knitr::include_graphics("figures/importance_comparison.png")
+```
+
+In the last step of evaluating thermal band's importance for the model, I created partial-dependence (PD) profiles for this variable ([@fig-rycina15]) and compared it with PD profile for near-infrared band (B5) presented in [@fig-rycina16].
 Thanks to PD plots, I checked how probability for choosing certain class changed with increasing values of analysed variables while keeping other features at their average values.
 Probabilities do not drastically change with temperature (thermal band's value) increase, there are only small fluctuations for several classes.
 This allows us to conclude that thermal band might not have significant impact on model results.
@@ -105,7 +120,7 @@ Probabilities change significantly along with changes of near-infrared values, t
 ```{r}
 #| label: fig-rycina15
 #| echo: false
-#| fig-cap: "Variable profile for thermal band (B10)"
+#| fig-cap: "Partial-dependence profile for thermal band (B10)"
 #| out-width: "567px"
 #| out-height: 300px
 knitr::include_graphics("figures/profB10.png")
@@ -114,7 +129,7 @@ knitr::include_graphics("figures/profB10.png")
 ```{r}
 #| label: fig-rycina16
 #| echo: false
-#| fig-cap: "Variable profile for near-infrared band (B5)."
+#| fig-cap: "Partial-dependence profile for near-infrared band (B5)."
 #| out-width: "567px"
 #| out-height: 300px
 knitr::include_graphics("figures/profB5.png")
