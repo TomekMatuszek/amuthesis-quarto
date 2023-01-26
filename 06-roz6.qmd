@@ -6,7 +6,7 @@ On the other hand, obtained results were accurate enough to apply methods of mea
 
 Variable importance was evaluated using several methods such as permutation-based computation, break-down plots, Shapley values and partial-dependence profiles.
 All these approaches gave similar results - thermal band had low impact on general results of the created model.
-However, more in-depth analysis revealed that land surface temperature had significantly greater impact on predicting one specific land cover class - artificial land.
+However, more in-depth analysis revealed that land surface temperature had significantly greater impact on predicting artificial land than any other land cover class.
 After adding spatial context to importance values, it became clear that thermal band was more influential in classifying urban areas, although there was mainly correlation with land cover type.
 Clear spatial-autocorrelation was not detected, probably because of too sparsely distributed training points.
 These findings suggest that thermal band may become increasingly important in studies covering development of cities and urban areas.

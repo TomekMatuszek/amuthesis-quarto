@@ -17,7 +17,7 @@ On the other hand, this performance is enough to assess thermal band's importanc
 ```{r tabela3, echo=FALSE}
 #| label: tbl-tabela4
 #| echo: false
-#| tbl-cap: "Measures of overall model accuracy calculated during cross-validation/resampling process."
+#| tbl-cap: "Overall performance measures calculated during cross-validation/resampling process."
 df = data.frame(
   measure = c("overall accuracy", "Kappa coefficient", "precision (user's accuracy)", "recall (producer's accuracy)", "weighted F1-score"),
   average_value = c(0.752, 0.652, 0.742, 0.751, 0.743)
@@ -45,7 +45,7 @@ Model performed very good for this class probably because of its distinct spectr
 ```{r tabela3, echo=FALSE}
 #| label: tbl-tabela5
 #| echo: false
-#| tbl-cap: "Accuracy measures by land cover class."
+#| tbl-cap: "Performance measures by land cover class."
 df = data.frame(
   class = c("arable land", "grasslands", "forests", "bare land", "artificial land", "water bodies", "wetlands"),
   precision = c(0.732, 0.612, 0.886, 0.320, 0.656, 0.971, 0.394),

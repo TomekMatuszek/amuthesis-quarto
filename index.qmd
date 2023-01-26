@@ -26,8 +26,8 @@ In recent days, the most popular method to create such maps is usage of machine 
 Researchers still investigate different variables and approaches in strive to achieve highest possible accuracy of their predictions.
 The goal of this study was to evaluate importance of thermal band acquired from Landsat 8 programme.
 LUCAS land cover reference dataset was used to fit the Random Forest model.
-Apart from training the model, several machine learning techniques such as hyperparameter tuning, spatial nested cross-validation and benchmarking were performed in order to achieve possibly high and accurate performance measures.
-Moreover, thermal band's importance on model's results was investigated.
+Apart from training the model, several machine learning techniques such as hyperparameter tuning, nested spatial cross-validation and benchmarking were performed in order to achieve possibly high and accurate performance measures.
+Moreover, thermal band's importance on model results was investigated.
 Analysis of variable importance showed that impact of land surface temperature was not very high, but indeed visible.
 Moreover, I discovered that thermal band had significantly higher impact on model prediction when classifying artificial land.
 These findings suggest that thermal information may be influential in mapping development of urban areas.

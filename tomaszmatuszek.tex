@@ -107,9 +107,9 @@ predictions. The goal of this study was to evaluate importance of
 thermal band acquired from Landsat 8 programme. LUCAS land cover
 reference dataset was used to fit the Random Forest model. Apart from
 training the model, several machine learning techniques such as
-hyperparameter tuning, spatial nested cross-validation and benchmarking
+hyperparameter tuning, nested spatial cross-validation and benchmarking
 were performed in order to achieve possibly high and accurate
-performance measures. Moreover, thermal band's importance on model's
+performance measures. Moreover, thermal band's importance on model
 results was investigated. Analysis of variable importance showed that
 impact of land surface temperature was not very high, but indeed
 visible. Moreover, I discovered that thermal band had significantly
@@ -355,7 +355,7 @@ surface, HRB - herbaceous plants cover, TC - tree cover }\tabularnewline
 \midrule
 \cellcolor[HTML]{e8ef5f}{\textbf{1}} & arable land & - & B00 (Cropland) & <30\% IMP\\
 \hline
-\cellcolor[HTML]{80dc59}{\textbf{2}} & grasslands & - & E00 (Grassland), D00 (Shrubland) & >50\% HRB; <30\% IMP\\
+\cellcolor[HTML]{80dc59}{\textbf{2}} & grassland & - & E00 (Grassland), D00 (Shrubland) & >50\% HRB; <30\% IMP\\
 \hline
 \cellcolor[HTML]{11a723}{\textbf{3}} & forests & - & C00 (Woodland) & >50\% TC; <20\% IMP\\
 \hline
@@ -586,11 +586,11 @@ cross-validation. }\tabularnewline
 \toprule
 \textbf{Hyper-parameter} & \textbf{Search space} & \textbf{Optimal value}\\
 \midrule
-number of trees & 50 - 400 & 127/188\\
+number of trees & 50 - 400 & 186\\
 \hline
-maximum depth & 10 - 40 & 40/40\\
+maximum depth & 10 - 40 & 99\\
 \hline
-min. node size & 1 - 10 & 5/1\\
+min. node size & 1 - 10 & 2\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -877,7 +877,7 @@ which is the main goal of this study.
 
 \hypertarget{tbl-tabela4}{}
 \begin{table}
-\caption{\label{tbl-tabela4}Measures of overall model accuracy calculated during
+\caption{\label{tbl-tabela4}Overall performance measures calculated during
 cross-validation/resampling process. }\tabularnewline
 
 \centering
@@ -919,7 +919,7 @@ and easily distinguishable borders.
 
 \hypertarget{tbl-tabela5}{}
 \begin{table}
-\caption{\label{tbl-tabela5}Accuracy measures by land cover class. }\tabularnewline
+\caption{\label{tbl-tabela5}Performance measures by land cover class. }\tabularnewline
 
 \centering
 \begin{tabular}{|>{}l|>{}r|>{}r|>{}r|}
@@ -977,7 +977,7 @@ impact of interactions between variables.
 }
 
 \caption{\label{fig-rycina19}Correlation matrix of Landsat bands created
-with the help of \emph{corrplot} package.}
+with the help of corrplot package.}
 
 \end{figure}
 
@@ -1058,19 +1058,19 @@ can be examined in larger detail in Figure~\ref{fig-rycina14}.
 \toprule
 \textbf{Land cover class} & \textbf{Mean temp. [°C]} & \textbf{Average importance} & \textbf{Median importance}\\
 \midrule
-arable land & 20.5 & 2.21 & 1.89\\
+arable land & 20.5 & 0.022 & 0.019\\
 \hline
-grasslands & 20.5 & 2.03 & 1.56\\
+grasslands & 20.5 & 0.020 & 0.016\\
 \hline
-forests & 16.0 & 2.19 & 1.91\\
+forests & 16.0 & 0.022 & 0.019\\
 \hline
-bare land & 21.1 & 1.86 & 1.93\\
+bare land & 21.1 & 0.019 & 0.019\\
 \hline
-artificial land & 21.9 & 4.60 & 4.56\\
+artificial land & 21.9 & 0.046 & 0.046\\
 \hline
-water bodies & 13.8 & 0.84 & 0.79\\
+water bodies & 13.8 & 0.008 & 0.008\\
 \hline
-wetlands & 15.0 & 4.88 & 1.63\\
+wetlands & 15.0 & 0.049 & 0.016\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -1086,7 +1086,28 @@ by land cover class. Small dots show exact values of each LUCAS point.}
 
 \end{figure}
 
-In the last step of evaluating thermal band's importance for our model,
+In addition, mean importance values for every land cover class are shown
+in Figure~\ref{fig-rycina14a}. With the help of this chart, some
+comparisons between land cover classes and variables can be made.
+Thermal band's importance for prediction of artificial land turns out
+not to be the highest among other variables. Some bands have higher
+influence on predicting this land cover type. On the other hand, thermal
+band is one of four bands, which impact for predicting artificial land
+was higher than average.
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=5.53125in,height=3.125in]{./figures/importance_comparison.png}
+
+}
+
+\caption{\label{fig-rycina14a}Comparison of variable importance values
+by land cover class and variable. Grey bars show average value of
+importance of a variable.}
+
+\end{figure}
+
+In the last step of evaluating thermal band's importance for the model,
 I created partial-dependence (PD) profiles for this variable
 (Figure~\ref{fig-rycina15}) and compared it with PD profile for
 near-infrared band (B5) presented in Figure~\ref{fig-rycina16}. Thanks
@@ -1108,7 +1129,8 @@ than thermal band.
 
 }
 
-\caption{\label{fig-rycina15}Variable profile for thermal band (B10)}
+\caption{\label{fig-rycina15}Partial-dependence profile for thermal band
+(B10)}
 
 \end{figure}
 
@@ -1118,8 +1140,8 @@ than thermal band.
 
 }
 
-\caption{\label{fig-rycina16}Variable profile for near-infrared band
-(B5).}
+\caption{\label{fig-rycina16}Partial-dependence profile for
+near-infrared band (B5).}
 
 \end{figure}
 
@@ -1197,8 +1219,8 @@ permutation-based computation, break-down plots, Shapley values and
 partial-dependence profiles. All these approaches gave similar results -
 thermal band had low impact on general results of the created model.
 However, more in-depth analysis revealed that land surface temperature
-had significantly greater impact on predicting one specific land cover
-class - artificial land. After adding spatial context to importance
+had significantly greater impact on predicting artificial land than any
+other land cover class. After adding spatial context to importance
 values, it became clear that thermal band was more influential in
 classifying urban areas, although there was mainly correlation with land
 cover type. Clear spatial-autocorrelation was not detected, probably
