@@ -1,11 +1,10 @@
 # Evaluating thermal band's impact {#sec-results-therm}
 
-Since the aim of this study was to evaluate thermal band's impact on model results, the last part of my analysis covered this topic.
 As described in [@sec-importance], variable importance can be assessed both on dataset and instance (observation) level.
 The latter was used to estimate spatial distribution of thermal band's importance in order to present the results on the map.
 
 Before moving to thermal band's importance assessment, I explored Landsat dataset more carefully in order to determine correlated variables and interactions between them ([@fig-rycina19]).
-Creating correlation plot revealed, that some bands are highly correlated - especially these from visible spectrum and SWIR bands.
+Creating correlation plot revealed that some bands are highly correlated - especially these from visible spectrum and SWIR bands.
 This may suggest that these variables depend on the other variable's values [@biecek_explanatory_2021], thus absence of one variable might not lower model's performance because other variable can fill this information gap.
 On the other hand, feature selection performed with the help of *mlr3* framework [@R-mlr3] has shown that including all variables still proves to achieve the best model performance.
 Moreover, implemented methods of assessing variable importance (described in [@sec-importance]) are designed to minimize impact of interactions between variables.
@@ -99,7 +98,7 @@ In addition, mean importance values for every land cover class are shown in @fig
 With the help of this chart, some comparisons between land cover classes and variables can be made.
 Thermal band's importance for prediction of artificial land turns out not to be the highest among other variables.
 Some bands have higher influence on predicting this land cover type.
-On the other hand, thermal band is one of four bands, which impact for predicting artificial land was higher than average.
+On the other hand, thermal band is one of four bands, which impact for predicting artificial land was higher than the average.
 
 ```{r}
 #| label: fig-rycina14a
@@ -114,8 +113,8 @@ In the last step of evaluating thermal band's importance for the model, I create
 Thanks to PD plots, I checked how probability for choosing certain class changed with increasing values of analysed variables while keeping other features at their average values.
 Probabilities do not drastically change with temperature (thermal band's value) increase, there are only small fluctuations for several classes.
 This allows us to conclude that thermal band might not have significant impact on model results.
-In contrast, in [@fig-rycina16] with B5 variable profile, there are clearly visible trends for nearly every class.
-Probabilities change significantly along with changes of near-infrared values, thus suggesting that this variable has greater impact on model predictions than thermal band.
+In contrast, B5 variable profile has clearly visible trends for nearly every class ([@fig-rycina16]).
+Probabilities change significantly along with changes of near-infrared values, thus suggesting that this variable has greater impact on the model predictions than thermal band.
 
 ```{r}
 #| label: fig-rycina15
@@ -129,7 +128,7 @@ knitr::include_graphics("figures/profB10.png")
 ```{r}
 #| label: fig-rycina16
 #| echo: false
-#| fig-cap: "Partial-dependence profile for near-infrared band (B5)."
+#| fig-cap: "Partial-dependence profile for near-infrared band (B5)"
 #| out-width: "567px"
 #| out-height: 300px
 knitr::include_graphics("figures/profB5.png")
@@ -138,12 +137,12 @@ knitr::include_graphics("figures/profB5.png")
 ## Spatial distribution of thermal band's importance {#sec-imp-spat}
 
 Variable importance values computed for LUCAS points in [@sec-imp-overall] were used to interpolate them into continuous raster layer using IDW interpolation method.
-This step created opportunity to examine approximate spatial distribution of thermal band's importance across Poznań metropolitan area ([@fig-rycina17]).
+This step created an opportunity to examine approximate spatial distribution of thermal band's importance across Poznań metropolitan area ([@fig-rycina17]).
 
 ```{r}
 #| label: fig-rycina17
 #| echo: false
-#| fig-cap: "Thermal band importance interpolated from values on LUCAS points locations."
+#| fig-cap: "Thermal band importance interpolated from values on LUCAS points locations"
 #| out-width: "564px"
 #| out-height: 400px
 knitr::include_graphics("figures/B10_importance-spatial-ENG.png")
@@ -167,4 +166,4 @@ knitr::include_graphics("figures/B10_importance-spatial-ENG2.png")
 
 Correlation of thermal band's importance with artificial land class is visible on both maps.
 In each case, high importance values are concentrated mainly in urban areas, especially in Poznań as it is the biggest city in the study area.
-For smaller towns, there is also higher thermal band's impact on model results for these areas but because of their small size, it is sometimes harder to capture.
+Also in smaller towns there is higher thermal band's impact on model results, but because of their size, it is often harder to detect.

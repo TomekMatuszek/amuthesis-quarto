@@ -75,49 +75,53 @@ supervised land cover classification results},
 Dokładne mapy pokrycia terenu mają kluczowe znaczenie w wielu
 dziedzinach geografii, urbanistyki i badań środowiskowych. W ostatnich
 latach najpopularniejszą metodą tworzenia takich map jest wykorzystanie
-technik uczenia maszynowego oraz zobrazowań satelitarnych. Naukowcy
-wciąż badają różne zastosowanie różnych zmiennych i podejść, dążąc do
-osiągnięcia jak najwyższej skuteczności swoich modeli. Celem niniejszej
+zobrazowań satelitarnych oraz technik uczenia maszynowego. Naukowcy
+wciąż badają zastosowanie różnych zmiennych i podejść, dążąc do
+osiągnięcia jak najwyższej dokładności swoich modeli. Celem niniejszej
 pracy była ocena znaczenia kanału termalnego pozyskanego z satelity
-Landsat 8. Do stworzenia modelu lasu losowego wykorzystano zbiór danych
-o pokryciu terenu pozyskanego w ramach programu LUCAS. Poza treningiem
-modelu, w celu uzyskania możliwie wysokiej i dokładnej oceny jakości
-modelu, zastosowano techniki uczenia maszynowego takie jak optymalizacja
-parametrów, kroswalidacja przestrzenna oraz benchmarking. Ponadto,
-zbadano znaczenie kanału termalnego na wyniki modelu. Analiza istotności
-zmiennych wykazała, że wpływ temperatury nie był wysoki, ale jednak
-widoczny. Co więcej zauważono, że kanał termalny miał znacząco większy
-wpływ na wyniki modelu dla klasyfikacji obszarów zabudowanych. Wyniki te
-sugerują, że informacja termiczna może mieć wpływ na lepsze mapowanie
-rozwoju obszarów miejskich. Jednakże aby dokładniej określić wpływ
-kanału termalnego, potrzebne są dalsze badania obejmujące analizę
+Landsat 8 w tworzeniu map pokrycia terenu. Do stworzenia modelu lasu
+losowego wykorzystano zbiór danych o pokryciu terenu pozyskanego w
+ramach programu LUCAS. Poza treningiem modelu, w celu uzyskania możliwie
+wysokiej jakości modelu i dokładnej jego oceny, zastosowano techniki
+uczenia maszynowego, takie jak optymalizacja parametrów, kroswalidacja
+przestrzenna oraz benchmarking. Ponadto, zbadano znaczenie kanału
+termalnego na wyniki modelu. Analiza istotności zmiennych wykazała, że
+wpływ temperatury nie był wysoki, ale jednak widoczny. Co więcej
+zauważono, że kanał termalny miał znacząco większy wpływ na wyniki
+modelu dla klasyfikacji obszarów zabudowanych. Wyniki te sugerują, że
+informacja termiczna może mieć wpływ na lepsze mapowanie rozwoju
+obszarów miejskich. Jednakże aby dokładniej określić wpływ kanału
+termalnego, potrzebne są dalsze badania obejmujące analizę
 przestrzenno-czasową dla większej liczby obszarów badawczych.
 
 Słowa kluczowe: uczenie maszynowe, teledetekcja, istotność zmiennych,
 temperatura powierzchni
 
+\newpage
+
 \textbf{Abstract}
 
 Accurate land cover maps are crucial in many fields of geography, urban
-planning and environmental studies. In recent days, the most popular
-method to create such maps is usage of machine learning techniques and
+planning and environmental studies. Currently, the most popular method
+to create such maps is the usage of machine learning techniques and
 satellite imagery. Researchers still investigate different variables and
-approaches in strive to achieve highest possible accuracy of their
+approaches in strive to achieve the highest possible accuracy of their
 predictions. The goal of this study was to evaluate importance of
-thermal band acquired from Landsat 8 programme. LUCAS land cover
-reference dataset was used to fit the Random Forest model. Apart from
-training the model, several machine learning techniques such as
-hyperparameter tuning, nested spatial cross-validation and benchmarking
-were performed in order to achieve possibly high and accurate
-performance measures. Moreover, thermal band's importance on model
-results was investigated. Analysis of variable importance showed that
-impact of land surface temperature was not very high, but indeed
-visible. Moreover, I discovered that thermal band had significantly
-higher impact on model prediction when classifying artificial land.
-These findings suggest that thermal information may be influential in
-mapping development of urban areas. However, further studies involving
-spatio-temporal analysis for more study areas are needed to quantify
-thermal band's impact more precisely.
+thermal band acquired from Landsat 8 programme for land cover mapping.
+LUCAS land cover reference dataset was used to fit the Random Forest
+model. Apart from training the model, several machine learning
+techniques such as hyperparameter tuning, nested spatial
+cross-validation and benchmarking were performed in order to achieve
+possibly high and accurate performance measures. Moreover, thermal
+band's importance on model results was investigated. Analysis the of
+variable importance showed that impact of the land surface temperature
+was not very high, but indeed visible. Moreover, I discovered that
+thermal band had significantly higher impact on the model prediction
+when classifying artificial land. These findings suggest that thermal
+information may be influential in the mapping development of urban
+areas. However, further studies involving spatio-temporal analysis for
+more study areas are needed to quantify thermal band's impact more
+precisely.
 
 Keywords: machine learning, remote sensing, variable importance, land
 surface temperature
@@ -137,48 +141,51 @@ distribution of vegetation, water, soil and other features on the ground
 maps is crucial for conducting spatial analyses, studying environmental
 changes \autocite{reis_analyzing_2008} and evaluating urban development
 \autocite{hashem_change_2015}. Land cover information is also useful for
-general circulation models (GCM) development
+the general circulation models (GCM) development
 \autocite{running_ecosystem_2008} and has been selected as one of the
-most essential climate variables that contribute to describing Earth's
+most essential variables that contribute to describing Earth's
 environment and climate \autocite{bojinski_concept_2014}.
 
-The main method of creating land cover maps is based on remote-sensing
-methods and multispectral satellite data. Two most popular,
+The main method of creating land cover maps is based on multispectral
+satellite data and remote-sensing methods. The two most popular,
 free-of-charge sources of satellite imagery are Landsat programme (run
 by NASA and USGS) and Sentinel programme (conducted by ESA). These
-datasets are usually utilized to create the classification model based
-on machine learning techniques, which gained popularity in recent years
-\autocite{maxwell_implementation_2018}. Supervised machine learning
-model, that was used in this study, analyzes training set containing
-labels of land cover classes and tries to learn how to recognize them.
+datasets are usually utilized to create classification models based on
+machine learning techniques, which gained popularity in the recent years
+\autocite{maxwell_implementation_2018}. A supervised machine learning
+model, including the one used in this study, analyzes training set
+containing labels of land cover classes and tries to learn how to
+recognize them.
 
 Over the past few years, there were several attempts to automate
-creation of land cover maps (\textcite{malinowski_automated_2020},
-\textcite{witjes_spatiotemporal_2021}). Automated workflow, however,
-requires high understanding of every step of machine learning process
-and appropriate choice of explanatory variables. Spectral bands and
-indices are the most commonly used variables. However, some satellites
-like Landsat 8, have a thermal sensor as well, which measures land
-surface temperature (LST) of the Earth. There is significant interaction
-between LST and extent of urban and impervious areas
-\autocite{dutta_changing_2019}, thus we can assume that this variable
-might be influential on the classification model results. Thermal band's
-impact on model results is described in several studies, for example:
+creation of land cover maps
+\autocite{malinowski_automated_2020,witjes_spatiotemporal_2021}. An
+automated workflow, however, requires high understanding of every step
+of machine learning process and appropriate choice of explanatory
+variables. Spectral bands and spectral indices are the most commonly
+used variables. However, some satellites like Landsat 8, have a thermal
+sensor as well, which measures land surface temperature (LST) of the
+Earth. There is a significant interaction between LST and extent of
+urban and impervious areas \autocite{dutta_changing_2019}, thus we can
+assume that this variable might be influential on the classification
+model results. Thermal band's impact on the model results is described
+in several studies, for example,
 \textcite{rodriguez-galiano_incorporating_2012},
 \textcite{zhao_exploring_2019}, \textcite{sun_improvement_2015}.
 However, despite adding completely new information compared to spectral
-bands, thermal band is noticeably more often omitted in classification
-models, probably due to its coarser resolution
+bands, the thermal band is noticeably more often omitted in
+classification models, probably due to its coarser resolution
 \autocite{rodriguez-galiano_incorporating_2012}. Because of this, its
 impact on model predictions is not clear enough and needs further
-research focused on that topic.
+research.
 
-The main goal of this study is to evaluate thermal band's impact on
+The main goal of this study is to evaluate thermal band's impact on a
 classification model, study its spatial distribution and try to give
 broader knowledge of how it should be used. Random Forest model will be
-trained on dataset for Poland and land cover map of Poznań metropolitan
-area will be created. Then, both machine learning model and result map
-will be used to measure thermal band's impact on classification results.
+trained on a dataset for Poland and a land cover map of Poznań
+metropolitan area will be created. Then, both the machine learning model
+and the result map will be used to measure thermal band's impact on the
+classification results.
 
 \bookmarksetup{startatroot}
 
@@ -194,7 +201,7 @@ results (Section~\ref{sec-importance}). Visual representation of the
 workflow is shown in Figure~\ref{fig-rycina1}.
 
 Each of these steps was performed using R programming language
-\autocite{R-base}. Final visualizations were created in QGIS software
+\autocite{R-base} and final visualizations were created in QGIS software
 \autocite{qgis_development_team_qgis_2009}. Both programming environment
 and GIS software used in this process are open-source.
 
@@ -217,12 +224,13 @@ and GIS software used in this process are open-source.
 \end{figure}
 
 Landsat ARD dataset, provided by GLAD laboratory at the Univeristy of
-Maryland, was used as a source of multi-spectral satellite imagery.
-Training points were obtained from LUCAS dataset created by Eurostat
-\autocite{dandrimont_harmonised_2020}. Both datasets were downloaded for
-central-western part of Poland which was chosen as training area
-(Figure~\ref{fig-rycina2}). This data was preprocessed and then used to
-train the model and validate its performance.
+Maryland, was used as a source of multi-spectral satellite imagery
+\autocite{potapov_landsat_2020}. Training points were obtained from
+LUCAS dataset created by Eurostat \autocite{dandrimont_harmonised_2020}.
+Both datasets were downloaded for central-western part of Poland which
+was chosen as the training area (Figure~\ref{fig-rycina2}). This data
+was preprocessed and then used to train the model and validate its
+performance.
 
 \begin{figure}[H]
 
@@ -230,7 +238,7 @@ train the model and validate its performance.
 
 }
 
-\caption{\label{fig-rycina2}Area covered by downloaded satellite
+\caption{\label{fig-rycina2}Area covered by the downloaded satellite
 imagery}
 
 \end{figure}
@@ -240,21 +248,21 @@ imagery}
 
 Satellite imagery from GLAD Landsat ARD product is available in 16-day
 interval composites and is divided into 1° x 1° tiles. Processing of
-original Landsat images performed by GLAD team included converting
-spectral bands to top-of-atmosphere (TOA) reflectance, converting
-thermal band to brightness temperature (BT) in Kelvins, scaling the
-values of all bands, as well as, adding quality flag (QF) for every
-pixel \autocite{potapov_landsat_2020}.
+original Landsat images performed by the GLAD team included converting
+spectral bands' information to top-of-atmosphere (TOA) reflectance,
+converting thermal band values to brightness temperature (BT) in
+Kelvins, scaling the values of all bands, as well as, adding quality
+flag (QF) for every pixel \autocite{potapov_landsat_2020}.
 
-Satellite images for eight 1° x 1° tiles, covering the study area
-(Figure \ref{fig-rycina1}), were downloaded using GLAD Tools v1.1 and
-PERL programming language. These images are from 10th interval of the
+Satellite images for eight 1° x 1° tiles, covering the study area, were
+downloaded using GLAD Tools v1.1 and PERL programming language
+(Figure~\ref{fig-rycina1}). These images are from 10th interval of the
 year 2018, so downloaded mosaics consist of images acquired between
 24.05.2018 and 8.06.2018. All downloaded images were merged and
-reprojected from WGS 84 coordinate reference system (EPSG:4326) to UTM
-zone 33N (EPSG:32633). Every band was also resampled from its original
-0.00025° resolution (corresponding to 27.83 m on the equator) to 30
-meters.
+reprojected from the WGS 84 coordinate reference system (EPSG:4326) to
+UTM zone 33N (EPSG:32633). Every band was also resampled from its
+original 0.00025° resolution (corresponding to 27.83 m on the equator)
+to 30 meters.
 
 In addition, four spectral indices were derived: Normalized Difference
 Vegetation Index (NDVI), Modified Normalized Difference Water Index
@@ -299,8 +307,8 @@ Modified Bare Surface Index & MBI & (B6 - B7 - B5) / (B6 + B7 + B5) + 0.5\\
 \hypertarget{sec-landcover}{%
 \section{Land cover data}\label{sec-landcover}}
 
-Data collected during LUCAS field survey performed by Eurostat was
-chosen as land cover training set. At the moment of writing, it is the
+Data collected during the LUCAS field survey performed by Eurostat was
+chosen as a land cover training set. At the moment of writing, it is the
 most accurate and comprehensive dataset containing information about
 land use and land cover \autocite{pflugmacher_mapping_2019} due to the
 fact that every point was either manually photo-interpreted or assessed
@@ -312,36 +320,37 @@ European Union (which equals to more than 1 million points). Each point
 of the grid is visually interpreted using ortho-photos or satellite
 images, and classified into one of seven major land-cover classes. These
 classes are: arable land, permanent crops, grassland, wooded areas/shrub
-land, bare land, artificial land and water. In the second phase, a
-subsample of grid points is selected and then visited by Eurostat
-surveyors. They classify each point according to full LUCAS land cover
-and land use classification. The survey takes place in the spring and
-summer in order to observe chosen places in their high vegetation season
+land, bare land, artificial land and water
+\autocite{oliver_buck_analysis_2015}. In the second phase, a subsample
+of grid points is selected and then visited by Eurostat surveyors. They
+classify each point according to full LUCAS land cover and land use
+classification. The survey takes place in the spring and summer in order
+to observe chosen places in their high vegetation season
 \autocite{dandrimont_harmonised_2020}.
 
 Surveyors not only assign land cover and land use classes to points, but
 they also add auxillary information such as plant species present at the
 site, percentage of land coverage of a chosen class, height of the trees
 and their maturity, as well as information about local water management
-and irrigation. If there are more than one land cover/land use types at
-the point, observer can also assign a secondary class for every LUCAS
-point.
+and irrigation{]}. If there are more than one land cover/land use types
+at the point, observer can also assign a secondary class for every LUCAS
+point \autocite{oliver_buck_analysis_2015}.
 
-Majority of the training points used in the classification model were
-from the second phase of LUCAS survey, also called LUCAS Primary Data. I
-downloaded a total of 4,153 points for the study area. Pre-processing
-step included omitting records with missing data, excluding artificial
-linear land cover classes (e.g.~roads or railways) and excluding points
-that were surveyed more than 500 meters from their theoretical location.
-In the next step, detailed land cover classes were aggregated into eight
-main groups of land cover types. Two of them - grassland and shrubland
-were additionally aggregated into one land cover class due to their
-spectral and descriptive similarity. Then, I filtered some of the points
-according to the percentage of land cover class coverage or percentage
-of impervious surface coverage (Table~\ref{tbl-tabela2}). This step
-reduced number of unreliable training points with mixed land cover,
-e.g.~points with assigned class covering less than 50\% of surface
-around it.
+The majority of the training points used in the classification model
+were from the second phase of LUCAS survey, also called LUCAS Primary
+Data. I downloaded a total of 4,153 points for the study area. The
+pre-processing step included omitting records with missing data,
+excluding artificial linear land cover classes (e.g.~roads or railways)
+and excluding points that were surveyed more than 500 meters from their
+theoretical location. In the next step, detailed land cover classes were
+aggregated into eight main groups of land cover types. Two of them -
+grassland and shrubland were additionally aggregated into one land cover
+class due to their spectral and descriptive similarity. Then, I filtered
+some of the points according to the percentage of land cover class
+coverage or percentage of impervious surface coverage
+(Table~\ref{tbl-tabela2}). This step reduced number of unreliable
+training points with mixed land cover, e.g.~points with assigned class
+covering less than 50\% of surface around it.
 
 \hypertarget{tbl-tabela2}{}
 \begin{table}
@@ -374,10 +383,9 @@ For the least frequent classes in the LUCAS Primary Data dataset - bare
 land, artificial land and water bodies - I also added points classified
 during the first phase of LUCAS survey (Figure~\ref{fig-rycina3}). This
 step was necessary to ensure that every land cover class is represented
-by enough number of points. It was not possible only for wetlands class,
-because of lack of such category in the first phase classification. At
-the end of the pre-processing, dataset had 3,778 training points
-\autocite{oliver_buck_analysis_2015}.
+by enough points. It was not possible only for the wetlands class,
+because of the lack of such category in the first phase classification.
+At the end of the pre-processing, dataset had 3,778 training points.
 
 \begin{figure}[H]
 
@@ -391,12 +399,12 @@ after pre-processing}
 \end{figure}
 
 After extracting values from Landsat ARD raster, LUCAS points were also
-filtered using quality flag provided. Only points with clear-sky quality
-flag were taken into account during the model training. Moreover, water
-bodies points in which NDWI was lower than 0 were also excluded. These
-two conditions eliminated over 400 points in total.
+filtered using the quality flag provided. Only points with the clear-sky
+quality flag were taken into account during the model training.
+Moreover, water bodies points in which NDWI was lower than 0 were also
+excluded. These two conditions eliminated 404 points in total.
 
-Training set obtained after pre-processing can be seen in
+The training set obtained after pre-processing can be seen in
 Figure~\ref{fig-rycina4}. Spatial distribution of data points was fairly
 even and due to the structure of LUCAS data set, every point was located
 2 kilometers or further from the next one.
@@ -417,8 +425,8 @@ points after pre-processing}
 
 Machine learning is a computation method used to teach machines from
 datasets automatically, without being specifically programmed
-(\textcite{mahesh_machine_2018}; \textcite{sarker_machine_2021}). We can
-divide machine learning methods into two main groups: supervised and
+\autocite{mahesh_machine_2018,sarker_machine_2021}. We can divide
+machine learning methods into two main groups: supervised and
 unsupervised.
 
 Unsupervised learning analyzes unlabeled datasets without the need for
@@ -452,21 +460,21 @@ high-dimensional data \autocite{qi_random_2012}. Random Forest consists
 of a specified number of decision trees, which are based on series of
 splitting rules.
 
-Decision tree aims to partition the dataset into smaller, more
+A decision tree aims to partition the dataset into smaller, more
 homogeneous groups \autocite{kuhn_applied_2013}. This process creates a
 set of rules by dividing dataset into several categories. Each rule in
 the decision tree is specified by a feature (variable used to split) and
 a threshold (value of a feature dividing dataset)
-\autocite{sekulic_random_2020}. Random forest algorithm is characterized
+\autocite{sekulic_random_2020}. Random Forest algorithm is characterized
 by using many decision trees at the same time and receiving results by
 applying majority voting system based on outputs of all decision trees
 \autocite{kuhn_applied_2013}. Each tree in the forest has slightly
 different input data - a subset of data is sampled with replacement to
 get different result in every tree. This process is known as bagging or
 bootstrap aggregating \autocite{schonlau_random_2020}. Moreover,
-algorithm is allowed to use only subset (randomly sampled) of available
-variables in every split which reduces correlation between trees
-\autocite{sohil_introduction_2022}.
+algorithm is allowed to use only a subset (randomly sampled) of
+available variables in every split which reduces correlation between
+trees \autocite{sohil_introduction_2022}.
 
 \hypertarget{sec-resampling}{%
 \subsection{Model quality assessment and
@@ -496,11 +504,13 @@ Accuracy of the model was assessed using five performance measures:
 Every above metric, except Kappa coefficient, takes values from 0 to 1.
 Value of 0 means poor model performance and value of 1 means high
 quality of the model. As for Kappa coefficient, values range from -1 to
-1. Values below 0 mean worse agreement between raters than random chance
-and values above 0 (up to 1) mean model performing better than random.
+1. Values below 0 mean worse agreement between data distributions than
+random chance and values above 0 (up to 1) mean model performing better
+than random.
 
 Values of these indices were estimated with the help of resampling
-technique called spatial cross-validation (CV). It is a type of
+technique called spatial cross-validation (CV)
+\autocite{lovelace_geocomputation_2019}. It is a type of
 cross-validation that divides dataset into folds and also considers
 spatial aspect of the data.
 
@@ -508,16 +518,17 @@ In \emph{k}-fold cross-validation, every data point is used in both
 training and testing set. Whole dataset is randomly divided into
 \emph{k} equal parts (\emph{folds}). Then, machine learning model is
 independently trained \emph{k} times and in each run, different part of
-the dataset is used as validation set while remaining \emph{k - 1} parts
-are used to fit the model. This way, every data point is used in the
-testing set only once and is used to train the model in the remaining
-runs \autocite{jiao_performance_2016}. Usually, whole cross-validation
-procedure is repeated several times to get higher number of unique
-dataset splits and to receive more reliable average values of the
-overall accuracy \autocite{varga_validation_2021}. Such approach is a
-compromise which enables possibility of using a whole dataset in the
-training process of the final model without a need of acquiring
-independent testing set in order to measure model's performance.
+the dataset is used as validation set, while remaining \emph{k - 1}
+parts are used to fit the model. This way, every data point is used in
+the testing set only once and is used to train the model in the
+remaining runs \autocite{jiao_performance_2016}. Usually, whole
+cross-validation procedure is repeated several times to get higher
+number of unique dataset splits and to receive more reliable average
+values of the overall accuracy \autocite{varga_validation_2021}. Such
+approach is a compromise which enables possibility of using a whole
+dataset in the training process of the final model without a need of
+acquiring independent testing set in order to measure model's
+performance.
 
 Since this study is based on geographic data, spatial autocorrelation
 needs to be taken into account. As Tobler stated: ``Everything is
@@ -542,7 +553,7 @@ such approach can be seen in Figure~\ref{fig-rycina5}.
 
 \caption{\label{fig-rycina5}Comparison of random and spatial
 partitioning of dataset for cross-validation on external example data
-(Source: \textcite{lovelace_geocomputation_2019})}
+(Source: Lovelace et al. \autocite*{lovelace_geocomputation_2019})}
 
 \end{figure}
 
@@ -560,8 +571,8 @@ spatial CV is further divided into next \emph{n} folds which comprise
 the tuning level of the process. Then, another \emph{n}-fold
 cross-validation is performed on these folds in order to determine
 performance of randomly sampled hyperparameter values. The best
-hyperparameter combination is chosen to train the model on outer fold on
-performance estimation level \autocite{schratz_hyperparameter_2019}.
+hyperparameter combination is chosen to train the model on outer fold
+(performance estimation level) \autocite{schratz_hyperparameter_2019}.
 Whole process is then repeated on every of \emph{k} outer folds which
 leads to the most accurate performance measurement as well as defining
 the best hyperparameter setting.
@@ -569,8 +580,8 @@ the best hyperparameter setting.
 I chose three hyper-parameters for tuning: number of trees, maximum
 depth of the forest and minimal size of each node in decision tree. I
 used overall accuracy achieved by each classifier to rank their
-performance and choose parameters that train the model best. On tuning
-level of every fold in spatial CV process, I examined 10 random
+performance and choose parameters that train the model best. On the
+tuning level of every fold in spatial CV process, I examined 10 random
 configurations of hyperparameters and assessed their performance by
 applying 5-fold inner resampling. Parameters' search spaces and tuning
 result received from nested cross-validation can be found in
@@ -632,23 +643,23 @@ function thus its change was considered as a measure of variable
 importance \autocite{biecek_explanatory_2021}. In order to measure each
 variable's importance, twelve seperate models were created: one with
 original data and eleven modified models, each one with different
-variable's values permuted. Comparison of these eleven models and
-original model made possible quantifying impact of every variable on
-original model results. This value is treated as overall variable
+variable's values permuted. Comparison of these eleven models and the
+original model made possible quantifying impact of every variable on the
+original model results. This value is treated as an overall variable
 importance on the dataset level.
 
-There is also more visual method to explore variable importance on
-dataset level. It is based on interpreting partial-dependence (PD)
-profiles of variables (Figure~\ref{fig-rycina6}). Such type of plot
-shows how does probability of choosing certain class changes as a
-function of the selected variable \autocite{biecek_explanatory_2021}.
-Values for PD profile are calculated by averaging Ceteris-paribus
-profiles created for every observation in the dataset. This approach is
-an easy and intuitive way to understand variables' impact on model
-results. If probability values of choosing certain class do not change
-along with changes of variable's value, we can assume that this variable
-does not have big impact on model predictions or that our model did not
-detect such dependence.
+There is also a visual method to explore variable importance on dataset
+level. It is based on interpreting partial-dependence (PD) profiles of
+variables (Figure~\ref{fig-rycina6}). Such plot shows how does
+probability of choosing certain class changes as a function of the
+selected variable \autocite{biecek_explanatory_2021}. Values for PD
+profile are calculated by averaging Ceteris-paribus profiles created for
+every observation in the dataset. This approach is an easy and intuitive
+way to understand variables' impact on model results. If probability
+values of choosing certain class do not change along with the changes of
+variable's value, we can assume that this variable does not have big
+impact on model predictions or that our model did not detect such
+dependence.
 
 \begin{figure}[H]
 
@@ -668,17 +679,17 @@ Another way to measure variable importance in machine learning models is
 the instance level evaluation. It helps to find out how much each
 variable contributed to the model's outcome for a particular observation
 \autocite{biecek_explanatory_2021}. One way of calculating variable
-impact on the observation result is creating break-down plot
+impact on the observation result is creating a break-down plot
 (Figure~\ref{fig-rycina7}). Its main idea is to estimate contribution of
 variable by measuring the change in model predictions while fixing the
 values of consecutive variables to values recorded for the chosen
 observation \autocite{biecek_explanatory_2021}. After fixing the value
 of variable for whole dataset, change in model prediction is calculated.
-This value indicates variable impact on a chosen observation.
+This value indicates the variable impact on a chosen observation.
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=4.16667in,height=4.45833in]{./figures/break-down_plot.png}
+{\centering \includegraphics[width=5.20833in,height=5.57292in]{./figures/break-down_plot.png}
 
 }
 
@@ -702,7 +713,7 @@ this method, the influence of variable ordering can be mostly removed
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=4.16667in,height=4.45833in]{./figures/shapley_values.png}
+{\centering \includegraphics[width=5.20833in,height=5.57292in]{./figures/shapley_values.png}
 
 }
 
@@ -726,7 +737,7 @@ resolution. Lowering the resolution of the data and averaging band
 values highly decreases computational time, as well as helps to discover
 more general trends and patterns rather than local ones. After
 resampling, Shapley values are calculated for every raster cell and
-variable importance is measured.
+variable importance has measured.
 
 The second approach utilizes LUCAS training points used during a model
 training together with spatial interpolation techniques. First, Shapley
@@ -739,7 +750,7 @@ Both approaches have their pros and cons. Raster aggregation method is
 spatially more consistent, but averaging of spectral values may not
 entirely represent objects on the ground. On the other hand, point
 interpolation method is very accurate for places near LUCAS points
-location, but values for more distant objects may not be as reliable.
+location, but values for more distant areas may not be as reliable.
 
 \hypertarget{sec-r}{%
 \section{R language environment}\label{sec-r}}
@@ -761,12 +772,12 @@ forest algorithm used by \emph{mlr3} framework is part of the
 and process tabular data. \emph{DALEX} \autocite{R-DALEX} and
 \emph{DALEXtra} \autocite{R-DALEXtra} packages provided various
 functionalities enabling me to estimate variable importance and
-visualize these results with the help of \emph{ggplot2} package
-\autocite{R-ggplot2}. Moreover, \emph{corrplot} package was used to
+visualize these results with the help of the \emph{ggplot2} package
+\autocite{R-ggplot2}. Moreover, the \emph{corrplot} package was used to
 calculate and visualize correlation matrix of Landsat data. Package
 called \emph{gstat} \autocite{R-gstat} helped to interpolate variable
 importance values from points to a continuous raster layer. In addition,
-\emph{future} package \autocite{R-future} was used to enable
+the \emph{future} package \autocite{R-future} was used to enable
 multi-threading of some computationally intensive tasks.
 
 \bookmarksetup{startatroot}
@@ -774,11 +785,11 @@ multi-threading of some computationally intensive tasks.
 \hypertarget{sec-results-map}{%
 \chapter{Land cover map}\label{sec-results-map}}
 
-The main product of created model is a land cover map of Poznań
-metropolitan area (Figure~\ref{fig-rycina9}). Moreover, created model
-contains probabilities of choosing each class for every pixel of the
-raster layer. With the help of this information, a probability map
-showing model's confidence in its choice of land cover class was created
+The main product of the model is a land cover map of Poznań metropolitan
+area (Figure~\ref{fig-rycina9}). Moreover, the created model contains
+probabilities of choosing each class for every pixel of the raster
+layer. With the help of this information, a probability map showing
+model's confidence in its choice of land cover class was created
 (Figure~\ref{fig-rycina11}). Value of each pixel reflects the highest
 probability assigned to one of seven land cover classes.
 
@@ -802,7 +813,7 @@ In order to investigate model's predictive accuracy on a local scale,
 six arbitrary chosen sites were examined more closely
 (Figure~\ref{fig-rycina10}). Locations of sites were selected to present
 different landscape patterns on the studied map, as well as point out
-more common mistakes made by the model. Visual analysis of these sites
+some common mistakes made by the model. Visual analysis of these sites
 showed that the model correctly recognizes most of land cover patterns
 present on the ground. At the same time, there were several bigger
 problems and mistakes in its predictions. For instance, there are many
@@ -825,7 +836,7 @@ nearby.
 
 \caption{\label{fig-rycina10}Comparison of the created land cover map
 (b) with GLAD satellite imagery (a) and ortophotomap from Polish
-Geoportal (c).}
+Geoportal (c)}
 
 \end{figure}
 
@@ -869,7 +880,7 @@ were based on number of observations from each land cover class.
 Original precision, recall and F1-score values by land cover type are
 shown in Table~\ref{tbl-tabela5}.
 
-In general, model achieved accuracy level of 0.752 with Kappa
+In general, model achieved accuracy level of 0.752 with the Kappa
 coefficient of 0.652. These values are rather average and model indeed
 needs some improvements. On the other hand, this performance is enough
 to assess thermal band's importance (Chapter~\ref{sec-results-therm}),
@@ -913,9 +924,9 @@ On the other hand, two largest classes in terms of number of
 observations - arable land and forests - were classified much more
 accurately, with F1-score of 0.777 and 0.889 respectively. Land cover
 type with the highest values of precision and recall, despite of low
-number of observations, was waterbodies class. Model performed very good
-for this class probably because of its distinct spectral characteristics
-and easily distinguishable borders.
+number of observations, was the waterbodies class. Model performed very
+good for this class probably because of its distinct spectral
+characteristics and easily distinguishable borders.
 
 \hypertarget{tbl-tabela5}{}
 \begin{table}
@@ -948,9 +959,7 @@ wetlands & 0.394 & 0.121 & 0.185\\
 \hypertarget{sec-results-therm}{%
 \chapter{Evaluating thermal band's impact}\label{sec-results-therm}}
 
-Since the aim of this study was to evaluate thermal band's impact on
-model results, the last part of my analysis covered this topic. As
-described in Section~\ref{sec-importance}, variable importance can be
+As described in Section~\ref{sec-importance}, variable importance can be
 assessed both on dataset and instance (observation) level. The latter
 was used to estimate spatial distribution of thermal band's importance
 in order to present the results on the map.
@@ -958,9 +967,9 @@ in order to present the results on the map.
 Before moving to thermal band's importance assessment, I explored
 Landsat dataset more carefully in order to determine correlated
 variables and interactions between them (Figure~\ref{fig-rycina19}).
-Creating correlation plot revealed, that some bands are highly
-correlated - especially these from visible spectrum and SWIR bands. This
-may suggest that these variables depend on the other variable's values
+Creating correlation plot revealed that some bands are highly correlated
+- especially these from visible spectrum and SWIR bands. This may
+suggest that these variables depend on the other variable's values
 \autocite{biecek_explanatory_2021}, thus absence of one variable might
 not lower model's performance because other variable can fill this
 information gap. On the other hand, feature selection performed with the
@@ -1093,7 +1102,7 @@ Thermal band's importance for prediction of artificial land turns out
 not to be the highest among other variables. Some bands have higher
 influence on predicting this land cover type. On the other hand, thermal
 band is one of four bands, which impact for predicting artificial land
-was higher than average.
+was higher than the average.
 
 \begin{figure}[H]
 
@@ -1117,11 +1126,11 @@ features at their average values. Probabilities do not drastically
 change with temperature (thermal band's value) increase, there are only
 small fluctuations for several classes. This allows us to conclude that
 thermal band might not have significant impact on model results. In
-contrast, in Figure~\ref{fig-rycina16} with B5 variable profile, there
-are clearly visible trends for nearly every class. Probabilities change
+contrast, B5 variable profile has clearly visible trends for nearly
+every class (Figure~\ref{fig-rycina16}). Probabilities change
 significantly along with changes of near-infrared values, thus
-suggesting that this variable has greater impact on model predictions
-than thermal band.
+suggesting that this variable has greater impact on the model
+predictions than thermal band.
 
 \begin{figure}[H]
 
@@ -1141,7 +1150,7 @@ than thermal band.
 }
 
 \caption{\label{fig-rycina16}Partial-dependence profile for
-near-infrared band (B5).}
+near-infrared band (B5)}
 
 \end{figure}
 
@@ -1152,7 +1161,7 @@ importance}\label{sec-imp-spat}}
 Variable importance values computed for LUCAS points in
 Section~\ref{sec-imp-overall} were used to interpolate them into
 continuous raster layer using IDW interpolation method. This step
-created opportunity to examine approximate spatial distribution of
+created an opportunity to examine approximate spatial distribution of
 thermal band's importance across Poznań metropolitan area
 (Figure~\ref{fig-rycina17}).
 
@@ -1163,7 +1172,7 @@ thermal band's importance across Poznań metropolitan area
 }
 
 \caption{\label{fig-rycina17}Thermal band importance interpolated from
-values on LUCAS points locations.}
+values on LUCAS points locations}
 
 \end{figure}
 
@@ -1195,40 +1204,41 @@ corner shows averaged spectral values in RGB composition.}
 Correlation of thermal band's importance with artificial land class is
 visible on both maps. In each case, high importance values are
 concentrated mainly in urban areas, especially in Poznań as it is the
-biggest city in the study area. For smaller towns, there is also higher
-thermal band's impact on model results for these areas but because of
-their small size, it is sometimes harder to capture.
+biggest city in the study area. Also in smaller towns there is higher
+thermal band's impact on model results, but because of their size, it is
+often harder to detect.
 
 \bookmarksetup{startatroot}
 
 \hypertarget{conclusion}{%
-\chapter{Conclusion}\label{conclusion}}
+\chapter{Conclusions}\label{conclusion}}
 
 This study showed that thermal band's impact on machine learning model
 results is not very strong overall and quantifying its importance needs
-more in-depth approach. Result land cover map was created from imagery
-of only one 16-day interval and its accuracy was rather average,
-especially when compared with state-of-the-art works in this field
-(\textcite{malinowski_automated_2020},
-\textcite{witjes_spatiotemporal_2021}). On the other hand, obtained
-results were accurate enough to apply methods of measuring variable
-importance and to make some conclusions from findings of this analysis.
+more in-depth approach. The land cover map was created from imagery of
+only one 16-day interval and its accuracy was rather average, especially
+when compared with state-of-the-art works in this field
+\autocite{malinowski_automated_2020,witjes_spatiotemporal_2021}. On the
+other hand, obtained results were accurate enough to apply methods of
+measuring variable importance and to make some conclusions from findings
+of this analysis.
 
 Variable importance was evaluated using several methods such as
 permutation-based computation, break-down plots, Shapley values and
-partial-dependence profiles. All these approaches gave similar results -
-thermal band had low impact on general results of the created model.
-However, more in-depth analysis revealed that land surface temperature
-had significantly greater impact on predicting artificial land than any
-other land cover class. After adding spatial context to importance
-values, it became clear that thermal band was more influential in
-classifying urban areas, although there was mainly correlation with land
-cover type. Clear spatial-autocorrelation was not detected, probably
-because of too sparsely distributed training points. These findings
-suggest that thermal band may become increasingly important in studies
-covering development of cities and urban areas. More accurate land cover
-maps will help in better management of growth of metropolitan areas and
-in quantifying impact of urbanization on natural environment more
+partial-dependence profiles (Section~\ref{sec-importance}). All these
+approaches gave similar results - thermal band had low impact on general
+results of the created model. However, more in-depth analysis revealed
+that land surface temperature had greater impact on predicting
+artificial land than any other land cover class. After adding spatial
+context to the importance values, it became clear that thermal band was
+more influential in classifying urban areas, although it was mostly
+correlated with land cover type. Clear spatial-autocorrelation of
+thermal band's importance was not detected, probably because of too
+sparsely distributed training points. These findings suggest that
+thermal band may become increasingly important in studies covering the
+development of cities and urban areas. More accurate land cover maps
+will help in better management of growth of metropolitan areas and in
+quantifying impact of urbanization on natural environment more
 precisely.
 
 However, further research should to be carried out on bigger area and
@@ -1236,8 +1246,8 @@ for larger number of satellite images. It is crucial to extend this
 study to include spatio-temporal aspect of imagery, in order to
 investigate thermal band's impact on model predictions throughout
 different vegetation seasons. Moreover, areas from different climate
-regions should also be examined with emphasis on thermal band importance
-issue.
+zones should also be examined with an emphasis on the thermal band
+importance issue.
 
 \printbibliography[heading=bibintoc, title=Bibliography]
 

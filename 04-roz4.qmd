@@ -10,7 +10,7 @@ Moreover, I calculated weighted precision, recall and F1-score.
 Weights for these calculations were based on number of observations from each land cover class.
 Original precision, recall and F1-score values by land cover type are shown in [@tbl-tabela5].
 
-In general, model achieved accuracy level of 0.752 with Kappa coefficient of 0.652.
+In general, model achieved accuracy level of 0.752 with the Kappa coefficient of 0.652.
 These values are rather average and model indeed needs some improvements.
 On the other hand, this performance is enough to assess thermal band's importance ([@sec-results-therm]), which is the main goal of this study.
 
@@ -39,7 +39,7 @@ Model performed very poorly in terms of correctly classifying observations of we
 Also bare land class had low values of model quality with F1-score of 0.242.
 The main problem concerning these land cover classes is that there was probably not enough training points for each of them in the study area.
 On the other hand, two largest classes in terms of number of observations - arable land and forests - were classified much more accurately, with F1-score of 0.777 and 0.889 respectively.
-Land cover type with the highest values of precision and recall, despite of low number of observations, was waterbodies class.
+Land cover type with the highest values of precision and recall, despite of low number of observations, was the waterbodies class.
 Model performed very good for this class probably because of its distinct spectral characteristics and easily distinguishable borders.
 
 ```{r tabela3, echo=FALSE}

@@ -6,11 +6,11 @@
 Możliwa struktura streszczenia to: (1) 1-3 zdania wstępu do problemu (czym się zajmujemy, dlaczego jest to ważne, jakie są problemy/luki do wypełnienia), (2) 1 zdanie opisujące cel pracy, (3) 1-3 zdania przedstawiające użyte materiały (dane) i metody (techniki, narzędzia), (4) 1-3 zdania obrazujące główne wyniki pracy, (5) 1-2 zdania podsumowujące; możliwe jest też określenie dalszych kroków/planów.-->
 
 Dokładne mapy pokrycia terenu mają kluczowe znaczenie w wielu dziedzinach geografii, urbanistyki i badań środowiskowych.
-W ostatnich latach najpopularniejszą metodą tworzenia takich map jest wykorzystanie technik uczenia maszynowego oraz zobrazowań satelitarnych.
-Naukowcy wciąż badają różne zastosowanie różnych zmiennych i podejść, dążąc do osiągnięcia jak najwyższej skuteczności swoich modeli.
-Celem niniejszej pracy była ocena znaczenia kanału termalnego pozyskanego z satelity Landsat 8.
+W ostatnich latach najpopularniejszą metodą tworzenia takich map jest wykorzystanie zobrazowań satelitarnych oraz technik uczenia maszynowego.
+Naukowcy wciąż badają zastosowanie różnych zmiennych i podejść, dążąc do osiągnięcia jak najwyższej dokładności swoich modeli.
+Celem niniejszej pracy była ocena znaczenia kanału termalnego pozyskanego z satelity Landsat 8 w tworzeniu map pokrycia terenu.
 Do stworzenia modelu lasu losowego wykorzystano zbiór danych o pokryciu terenu pozyskanego w ramach programu LUCAS.
-Poza treningiem modelu, w celu uzyskania możliwie wysokiej i dokładnej oceny jakości modelu, zastosowano techniki uczenia maszynowego takie jak optymalizacja parametrów, kroswalidacja przestrzenna oraz benchmarking.
+Poza treningiem modelu, w celu uzyskania możliwie wysokiej jakości modelu i dokładnej jego oceny, zastosowano techniki uczenia maszynowego, takie jak optymalizacja parametrów, kroswalidacja przestrzenna oraz benchmarking.
 Ponadto, zbadano znaczenie kanału termalnego na wyniki modelu.
 Analiza istotności zmiennych wykazała, że wpływ temperatury nie był wysoki, ale jednak widoczny.
 Co więcej zauważono, że kanał termalny miał znacząco większy wpływ na wyniki modelu dla klasyfikacji obszarów zabudowanych.
@@ -19,18 +19,20 @@ Jednakże aby dokładniej określić wpływ kanału termalnego, potrzebne są da
 
 Słowa kluczowe: uczenie maszynowe, teledetekcja, istotność zmiennych, temperatura powierzchni
 
+\newpage
+
 **Abstract**
 
 Accurate land cover maps are crucial in many fields of geography, urban planning and environmental studies.
-In recent days, the most popular method to create such maps is usage of machine learning techniques and satellite imagery.
-Researchers still investigate different variables and approaches in strive to achieve highest possible accuracy of their predictions.
-The goal of this study was to evaluate importance of thermal band acquired from Landsat 8 programme.
+Currently, the most popular method to create such maps is the usage of machine learning techniques and satellite imagery.
+Researchers still investigate different variables and approaches in strive to achieve the highest possible accuracy of their predictions.
+The goal of this study was to evaluate importance of thermal band acquired from Landsat 8 programme for land cover mapping.
 LUCAS land cover reference dataset was used to fit the Random Forest model.
 Apart from training the model, several machine learning techniques such as hyperparameter tuning, nested spatial cross-validation and benchmarking were performed in order to achieve possibly high and accurate performance measures.
 Moreover, thermal band's importance on model results was investigated.
-Analysis of variable importance showed that impact of land surface temperature was not very high, but indeed visible.
-Moreover, I discovered that thermal band had significantly higher impact on model prediction when classifying artificial land.
-These findings suggest that thermal information may be influential in mapping development of urban areas.
+Analysis the of variable importance showed that impact of the land surface temperature was not very high, but indeed visible.
+Moreover, I discovered that thermal band had significantly higher impact on the model prediction when classifying artificial land.
+These findings suggest that thermal information may be influential in the mapping development of urban areas.
 However, further studies involving spatio-temporal analysis for more study areas are needed to quantify thermal band's impact more precisely.
 
 Keywords: machine learning, remote sensing, variable importance, land surface temperature
