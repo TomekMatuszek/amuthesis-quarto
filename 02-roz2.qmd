@@ -64,7 +64,7 @@ These images are from 10th interval of the year 2018, so downloaded mosaics cons
 All downloaded images were merged and reprojected from the WGS 84 coordinate reference system (EPSG:4326) to UTM zone 33N (EPSG:32633).
 Every band was also resampled from its original 0.00025° resolution (corresponding to 27.83 m on the equator) to 30 meters.
 
-In addition, four spectral indices were derived: Normalized Difference Vegetation Index (NDVI), Modified Normalized Difference Water Index (MNDWI), Normalized Difference Moisture Index (NDMI) and Modified Bare soil Index (MBI).
+In addition, four spectral indices were derived: Normalized Difference Vegetation Index (NDVI; @tucker_red_1979), Modified Normalized Difference Water Index (MNDWI; @xu_modification_2006), Normalized Difference Moisture Index (NDMI; @jin_comparison_2005) and Modified Bare soil Index (MBI; @nguyen_modified_2021).
 Formulas used to calculate these indices can be found in [@tbl-tabela1].
 
 ```{r tabela1, echo=FALSE}
@@ -72,7 +72,7 @@ Formulas used to calculate these indices can be found in [@tbl-tabela1].
 #| echo: false
 #| tbl-cap: "Formulas of spectral indices derived from Landsat data"
 df = data.frame(
-  a = c("Blue", "Green", "Red", "Near Infrared", "Short-wave Infrared 1", "Short-wave Infrared 2", "Thermal", "Normalized Difference Vegetation Index", "Modified Normalized Difference Water Index", "Normalized Difference Moisture Index", "Modified Bare Surface Index"),
+  a = c("Blue", "Green", "Red", "Near Infrared", "Short-wave Infrared 1", "Short-wave Infrared 2", "Thermal", "Normalized Difference Vegetation Index", "Modified Normalized Difference Water Index", "Normalized Difference Moisture Index", "Modified Bare Soil Index"),
   b = c("B2", "B3", "B4", "B5 (NIR)", "B6 (SWIR1)", "B7 (SWIR2)", "B10 (TIRS1)", "NDVI", "MNDWI", "NDMI", "MBI"),
   c = c(rep("-", 7), "(B5 -B4) / (B4 + B5)", "(B3 - B6) / (B3 + B6)", "(B5 - B6) / (B5 + B6)", "(B6 - B7 - B5) / (B6 + B7 + B5) + 0.5")
 )
