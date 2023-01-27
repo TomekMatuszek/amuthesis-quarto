@@ -265,10 +265,12 @@ original 0.00025° resolution (corresponding to 27.83 m on the equator)
 to 30 meters.
 
 In addition, four spectral indices were derived: Normalized Difference
-Vegetation Index (NDVI), Modified Normalized Difference Water Index
-(MNDWI), Normalized Difference Moisture Index (NDMI) and Modified Bare
-soil Index (MBI). Formulas used to calculate these indices can be found
-in Table~\ref{tbl-tabela1}.
+Vegetation Index (NDVI; \textcite{tucker_red_1979}), Modified Normalized
+Difference Water Index (MNDWI; \textcite{xu_modification_2006}),
+Normalized Difference Moisture Index (NDMI;
+\textcite{jin_comparison_2005}) and Modified Bare soil Index (MBI;
+\textcite{nguyen_modified_2021}). Formulas used to calculate these
+indices can be found in Table~\ref{tbl-tabela1}.
 
 \hypertarget{tbl-tabela1}{}
 \begin{table}
@@ -299,7 +301,7 @@ Modified Normalized Difference Water Index & MNDWI & (B3 - B6) / (B3 + B6)\\
 \hline
 Normalized Difference Moisture Index & NDMI & (B5 - B6) / (B5 + B6)\\
 \hline
-Modified Bare Surface Index & MBI & (B6 - B7 - B5) / (B6 + B7 + B5) + 0.5\\
+Modified Bare Soil Index & MBI & (B6 - B7 - B5) / (B6 + B7 + B5) + 0.5\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -1101,7 +1103,7 @@ comparisons between land cover classes and variables can be made.
 Thermal band's importance for prediction of artificial land turns out
 not to be the highest among other variables. Some bands have higher
 influence on predicting this land cover type. On the other hand, thermal
-band is one of four bands, which impact for predicting artificial land
+band is one of four bands, whose impact for predicting artificial land
 was higher than the average.
 
 \begin{figure}[H]
@@ -1126,8 +1128,8 @@ features at their average values. Probabilities do not drastically
 change with temperature (thermal band's value) increase, there are only
 small fluctuations for several classes. This allows us to conclude that
 thermal band might not have significant impact on model results. In
-contrast, B5 variable profile has clearly visible trends for nearly
-every class (Figure~\ref{fig-rycina16}). Probabilities change
+contrast, B5 variable profile has clearly visible fluctuations for
+nearly every class (Figure~\ref{fig-rycina16}). Probabilities change
 significantly along with changes of near-infrared values, thus
 suggesting that this variable has greater impact on the model
 predictions than thermal band.
@@ -1179,7 +1181,7 @@ values on LUCAS points locations}
 Moreover, alternative approach involving raster aggregation was also
 implemented. In this method, original satellite data was aggregated
 (resampled) to 1,5 km resolution in order to make analysis more general
-and shorten the computation time. After aggregation, thermal band's
+and to shorten the computation time. After aggregation, thermal band's
 importance was calculated for every raster cell. Result of these
 calculations, as well as aggregated raster in RGB composition, are shown
 in Figure~\ref{fig-rycina18}. In general, there is similar distribution
@@ -1204,7 +1206,7 @@ corner shows averaged spectral values in RGB composition.}
 Correlation of thermal band's importance with artificial land class is
 visible on both maps. In each case, high importance values are
 concentrated mainly in urban areas, especially in Poznań as it is the
-biggest city in the study area. Also in smaller towns there is higher
+biggest city in the study area. Also in smaller towns there is a higher
 thermal band's impact on model results, but because of their size, it is
 often harder to detect.
 
@@ -1229,7 +1231,7 @@ partial-dependence profiles (Section~\ref{sec-importance}). All these
 approaches gave similar outcomes - thermal band had low impact on
 general results of the created model. Inclusion of thermal band
 increased overall performance measures by a very narrow margin, which is
-not as optimistic outcome as results of other studies on this topic
+not as optimistic outcome as in other studies focused on this issue
 \autocite{rodriguez-galiano_incorporating_2012,zhao_exploring_2019,sun_improvement_2015}.
 
 However, more in-depth analysis revealed that land surface temperature
@@ -1250,18 +1252,18 @@ this field.
 
 Findings of this study suggest that thermal band may become increasingly
 important in studies covering the development of cities and urban areas.
-More accurate land cover maps will help in better management of growth
-of metropolitan areas and in quantifying impact of urbanization on
-natural environment more precisely. Nonetheless, further research should
-be carried out on bigger area and for larger number of satellite images.
-It is crucial to extend this study to include spatio-temporal aspect of
+More accurate land cover maps will help in better growth management of
+metropolitan areas and in quantifying impact of urbanization on natural
+environment more precisely. Nonetheless, further research should be
+carried out on bigger area and for larger number of satellite images. It
+is crucial to extend this study to include spatio-temporal aspect of
 imagery, in order to investigate thermal band's impact on model
 predictions throughout different vegetation seasons. Moreover, areas
 from different climate zones should be examined with an emphasis on the
 thermal band importance issue. Newly launched Landsat 9 satellite can
 also provide improvement for thermal band's use for land cover mapping,
-because its Thermal Infrared Sensor (TIRS-2) sensor is expected to make
-better Earth observations than its predecessor - TIRS sensor from
+because its Thermal Infrared Sensor (TIRS-2) is expected to perform
+better in Earth observation than its predecessor - TIRS sensor from
 Landsat 8.
 
 \printbibliography[heading=bibintoc, title=Bibliography]
