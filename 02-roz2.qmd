@@ -235,7 +235,7 @@ Example of such approach can be seen in [@fig-rycina5].
 ```{r}
 #| label: fig-rycina5
 #| echo: false
-#| fig-cap: "Comparison of random and spatial partitioning of dataset for cross-validation on external example data (Source: Lovelace et al. [-@lovelace_geocomputation_2019])"
+#| fig-cap: "Comparison of random and spatial partitioning of dataset for cross-validation on external example data [Source: @lovelace_geocomputation_2019]"
 #| out-width: "570px"
 #| out-height: 350px
 knitr::include_graphics("figures/spatial_partitioning.png")
@@ -260,7 +260,7 @@ Parameters' search spaces and tuning result received from nested cross-validatio
 ```{r tabela3, echo=FALSE}
 #| label: tbl-tabela3
 #| echo: false
-#| tbl-cap: "Hyperparameters of RF model optimized during nested spatial cross-validation."
+#| tbl-cap: "Hyperparameters of RF model optimized during nested spatial cross-validation"
 df = data.frame(
   parameter = c("number of trees", "maximum depth", "min. node size"),
   search_space = c("50 - 400", "10 - 40", "1 - 10"),
@@ -308,7 +308,7 @@ If probability values of choosing certain class do not change along with the cha
 ```{r}
 #| label: fig-rycina6
 #| echo: false
-#| fig-cap: "Example partial-dependence profile for near-infrared band (B5)."
+#| fig-cap: "Example partial-dependence profile for near-infrared band (B5)"
 #| out-width: "540px"
 #| out-height: 300px
 knitr::include_graphics("figures/profB5.png")

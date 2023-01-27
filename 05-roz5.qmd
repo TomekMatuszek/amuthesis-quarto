@@ -12,7 +12,7 @@ Moreover, implemented methods of assessing variable importance (described in [@s
 ```{r}
 #| label: fig-rycina19
 #| echo: false
-#| fig-cap: "Correlation matrix of Landsat bands created with the help of corrplot package."
+#| fig-cap: "Correlation matrix of Landsat bands created with the help of corrplot package"
 #| out-width: "428px"
 #| out-height: 400px
 knitr::include_graphics("figures/corrplot.png")
@@ -68,7 +68,7 @@ Distributions of importance values can be examined in larger detail in [@fig-ryc
 ```{r tabela3, echo=FALSE}
 #| label: tbl-tabela6
 #| echo: false
-#| tbl-cap: "Mean value and importance of thermal band, by land cover class."
+#| tbl-cap: "Mean value and importance of thermal band, by land cover class"
 df = data.frame(
   class = c("arable land", "grasslands", "forests", "bare land", "artificial land", "water bodies", "wetlands"),
   value = c(20.5, 20.5, 16.0, 21.1, 21.9, 13.8, 15.0),

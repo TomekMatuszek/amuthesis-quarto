@@ -5,13 +5,20 @@ The land cover map was created from imagery of only one 16-day interval and its 
 On the other hand, obtained results were accurate enough to apply methods of measuring variable importance and to make some conclusions from findings of this analysis.
 
 Variable importance was evaluated using several methods such as permutation-based computation, break-down plots, Shapley values and partial-dependence profiles ([@sec-importance]).
-All these approaches gave similar results - thermal band had low impact on general results of the created model.
-However, more in-depth analysis revealed that land surface temperature had greater impact on predicting artificial land than any other land cover class.
-After adding spatial context to the importance values, it became clear that thermal band was more influential in classifying urban areas, although it was mostly correlated with land cover type.
-Clear spatial-autocorrelation of thermal band's importance was not detected, probably because of too sparsely distributed training points.
-These findings suggest that thermal band may become increasingly important in studies covering the development of cities and urban areas.
-More accurate land cover maps will help in better management of growth of metropolitan areas and in quantifying impact of urbanization on natural environment more precisely.
+All these approaches gave similar outcomes - thermal band had low impact on general results of the created model.
+Inclusion of thermal band increased overall performance measures by a very narrow margin, which is not as optimistic outcome as results of other studies on this topic [@rodriguez-galiano_incorporating_2012; @zhao_exploring_2019; @sun_improvement_2015].
 
-However, further research should to be carried out on bigger area and for larger number of satellite images.
+However, more in-depth analysis revealed that land surface temperature had greater impact on predicting artificial land than any other land cover class.
+In order to add spatial context to the importance values, two methods of creating variable importance maps were developed.
+The first method applied points interpolation, while the second one used raster aggregation and averaged spectral values.
+After analysis of the created maps, it became clear that thermal band was more influential in classifying urban areas than in rest of the classes, although it was mostly correlated with land cover type.
+Clear spatial-autocorrelation of thermal band's importance was not detected, probably because of too sparsely distributed training points.
+Above method should be further examined and tested, since studying spatial distribution of variable importance could improve our understanding of different variables' impact on machine learning model results or may provide new knowledge in this field.
+
+Findings of this study suggest that thermal band may become increasingly important in studies covering the development of cities and urban areas.
+More accurate land cover maps will help in better management of growth of metropolitan areas and in quantifying impact of urbanization on natural environment more precisely.
+Nonetheless, further research should be carried out on bigger area and for larger number of satellite images.
 It is crucial to extend this study to include spatio-temporal aspect of imagery, in order to investigate thermal band's impact on model predictions throughout different vegetation seasons.
-Moreover, areas from different climate zones should also be examined with an emphasis on the thermal band importance issue.
+Moreover, areas from different climate zones should be examined with an emphasis on the thermal band importance issue.
+Newly launched Landsat 9 satellite can also provide improvement for thermal band's use for land cover mapping, because its Thermal Infrared Sensor (TIRS-2) sensor is expected to make better Earth observations than its predecessor - TIRS sensor from Landsat 8. 
+

@@ -553,7 +553,7 @@ such approach can be seen in Figure~\ref{fig-rycina5}.
 
 \caption{\label{fig-rycina5}Comparison of random and spatial
 partitioning of dataset for cross-validation on external example data
-(Source: Lovelace et al. \autocite*{lovelace_geocomputation_2019})}
+\autocite[Source:][]{lovelace_geocomputation_2019}}
 
 \end{figure}
 
@@ -590,7 +590,7 @@ Table~\ref{tbl-tabela3}.
 \hypertarget{tbl-tabela3}{}
 \begin{table}
 \caption{\label{tbl-tabela3}Hyperparameters of RF model optimized during nested spatial
-cross-validation. }\tabularnewline
+cross-validation }\tabularnewline
 
 \centering
 \begin{tabular}{|>{}l|>{}l|>{}l|}
@@ -668,7 +668,7 @@ dependence.
 }
 
 \caption{\label{fig-rycina6}Example partial-dependence profile for
-near-infrared band (B5).}
+near-infrared band (B5)}
 
 \end{figure}
 
@@ -805,7 +805,7 @@ arable land and waterbodies, seem to be correctly recognized.
 }
 
 \caption{\label{fig-rycina9}Land cover map of Poznań metropolitan area
-created during this study.}
+created during this study}
 
 \end{figure}
 
@@ -889,7 +889,7 @@ which is the main goal of this study.
 \hypertarget{tbl-tabela4}{}
 \begin{table}
 \caption{\label{tbl-tabela4}Overall performance measures calculated during
-cross-validation/resampling process. }\tabularnewline
+cross-validation/resampling process }\tabularnewline
 
 \centering
 \begin{tabular}{|>{}l|>{}r|}
@@ -930,7 +930,7 @@ characteristics and easily distinguishable borders.
 
 \hypertarget{tbl-tabela5}{}
 \begin{table}
-\caption{\label{tbl-tabela5}Performance measures by land cover class. }\tabularnewline
+\caption{\label{tbl-tabela5}Performance measures by land cover class }\tabularnewline
 
 \centering
 \begin{tabular}{|>{}l|>{}r|>{}r|>{}r|}
@@ -986,7 +986,7 @@ impact of interactions between variables.
 }
 
 \caption{\label{fig-rycina19}Correlation matrix of Landsat bands created
-with the help of corrplot package.}
+with the help of corrplot package}
 
 \end{figure}
 
@@ -1060,7 +1060,7 @@ can be examined in larger detail in Figure~\ref{fig-rycina14}.
 
 \hypertarget{tbl-tabela6}{}
 \begin{table}
-\caption{\label{tbl-tabela6}Mean value and importance of thermal band, by land cover class. }\tabularnewline
+\caption{\label{tbl-tabela6}Mean value and importance of thermal band, by land cover class }\tabularnewline
 
 \centering
 \begin{tabular}{|>{}l|>{}r|>{}r|>{}r|}
@@ -1226,28 +1226,43 @@ of this analysis.
 Variable importance was evaluated using several methods such as
 permutation-based computation, break-down plots, Shapley values and
 partial-dependence profiles (Section~\ref{sec-importance}). All these
-approaches gave similar results - thermal band had low impact on general
-results of the created model. However, more in-depth analysis revealed
-that land surface temperature had greater impact on predicting
-artificial land than any other land cover class. After adding spatial
-context to the importance values, it became clear that thermal band was
-more influential in classifying urban areas, although it was mostly
-correlated with land cover type. Clear spatial-autocorrelation of
-thermal band's importance was not detected, probably because of too
-sparsely distributed training points. These findings suggest that
-thermal band may become increasingly important in studies covering the
-development of cities and urban areas. More accurate land cover maps
-will help in better management of growth of metropolitan areas and in
-quantifying impact of urbanization on natural environment more
-precisely.
+approaches gave similar outcomes - thermal band had low impact on
+general results of the created model. Inclusion of thermal band
+increased overall performance measures by a very narrow margin, which is
+not as optimistic outcome as results of other studies on this topic
+\autocite{rodriguez-galiano_incorporating_2012,zhao_exploring_2019,sun_improvement_2015}.
 
-However, further research should to be carried out on bigger area and
-for larger number of satellite images. It is crucial to extend this
-study to include spatio-temporal aspect of imagery, in order to
-investigate thermal band's impact on model predictions throughout
-different vegetation seasons. Moreover, areas from different climate
-zones should also be examined with an emphasis on the thermal band
-importance issue.
+However, more in-depth analysis revealed that land surface temperature
+had greater impact on predicting artificial land than any other land
+cover class. In order to add spatial context to the importance values,
+two methods of creating variable importance maps were developed. The
+first method applied points interpolation, while the second one used
+raster aggregation and averaged spectral values. After analysis of the
+created maps, it became clear that thermal band was more influential in
+classifying urban areas than in rest of the classes, although it was
+mostly correlated with land cover type. Clear spatial-autocorrelation of
+thermal band's importance was not detected, probably because of too
+sparsely distributed training points. Above method should be further
+examined and tested, since studying spatial distribution of variable
+importance could improve our understanding of different variables'
+impact on machine learning model results or may provide new knowledge in
+this field.
+
+Findings of this study suggest that thermal band may become increasingly
+important in studies covering the development of cities and urban areas.
+More accurate land cover maps will help in better management of growth
+of metropolitan areas and in quantifying impact of urbanization on
+natural environment more precisely. Nonetheless, further research should
+be carried out on bigger area and for larger number of satellite images.
+It is crucial to extend this study to include spatio-temporal aspect of
+imagery, in order to investigate thermal band's impact on model
+predictions throughout different vegetation seasons. Moreover, areas
+from different climate zones should be examined with an emphasis on the
+thermal band importance issue. Newly launched Landsat 9 satellite can
+also provide improvement for thermal band's use for land cover mapping,
+because its Thermal Infrared Sensor (TIRS-2) sensor is expected to make
+better Earth observations than its predecessor - TIRS sensor from
+Landsat 8.
 
 \printbibliography[heading=bibintoc, title=Bibliography]
 
