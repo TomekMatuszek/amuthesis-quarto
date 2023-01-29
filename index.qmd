@@ -1,5 +1,23 @@
 # Abstract {.unnumbered}
 
+**Abstract**
+
+Accurate land cover maps are crucial in many fields of geography, urban planning and environmental studies.
+Currently, the most popular method to create such maps is the usage of machine learning techniques and satellite imagery.
+Researchers still investigate different variables and approaches in strive to achieve the highest possible accuracy of their predictions.
+The goal of this study was to evaluate importance of thermal band acquired from Landsat 8 programme for land cover mapping.
+LUCAS land cover reference dataset was used to fit the Random Forest model.
+Apart from training the model, several machine learning techniques such as hyperparameter tuning, nested spatial cross-validation and benchmarking were performed in order to achieve possibly high and accurate performance measures.
+Moreover, thermal band's importance on model results was investigated.
+Analysis the of variable importance showed that impact of the land surface temperature was not very high, but indeed visible.
+Moreover, I discovered that thermal band had significantly higher impact on the model prediction when classifying artificial land.
+These findings suggest that thermal information may be influential in the mapping development of urban areas.
+However, further studies involving spatio-temporal analysis for more study areas are needed to quantify thermal band's impact more precisely.
+
+Keywords: machine learning, remote sensing, variable importance, land surface temperature
+
+\newpage
+
 **Abstrakt**
 
 <!--Streszczenie powinno przedstawiać skrótowo główny problem pracy i jego rozwiązanie.
@@ -18,24 +36,6 @@ Wyniki te sugerują, że informacja termiczna może mieć wpływ na lepsze mapow
 Jednakże aby dokładniej określić wpływ kanału termalnego, potrzebne są dalsze badania obejmujące analizę przestrzenno-czasową dla większej liczby obszarów badawczych.
 
 Słowa kluczowe: uczenie maszynowe, teledetekcja, istotność zmiennych, temperatura powierzchni
-
-\newpage
-
-**Abstract**
-
-Accurate land cover maps are crucial in many fields of geography, urban planning and environmental studies.
-Currently, the most popular method to create such maps is the usage of machine learning techniques and satellite imagery.
-Researchers still investigate different variables and approaches in strive to achieve the highest possible accuracy of their predictions.
-The goal of this study was to evaluate importance of thermal band acquired from Landsat 8 programme for land cover mapping.
-LUCAS land cover reference dataset was used to fit the Random Forest model.
-Apart from training the model, several machine learning techniques such as hyperparameter tuning, nested spatial cross-validation and benchmarking were performed in order to achieve possibly high and accurate performance measures.
-Moreover, thermal band's importance on model results was investigated.
-Analysis the of variable importance showed that impact of the land surface temperature was not very high, but indeed visible.
-Moreover, I discovered that thermal band had significantly higher impact on the model prediction when classifying artificial land.
-These findings suggest that thermal information may be influential in the mapping development of urban areas.
-However, further studies involving spatio-temporal analysis for more study areas are needed to quantify thermal band's impact more precisely.
-
-Keywords: machine learning, remote sensing, variable importance, land surface temperature
 
 \newpage
 
