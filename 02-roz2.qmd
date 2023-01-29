@@ -18,7 +18,7 @@ flowchart TD
   B --> C[calculating spectral indices]
   E --> F[merging LUCAS Grid and Primary Data]
   F --> G[filtering based on auxillary info]
-  C --> H[extracting spectral values of LUCAS points]
+  C --> H[extracting spectral values for LUCAS points]
   G --> H
   H --> I[filtering based on NDWI and QF]
   end
@@ -31,13 +31,16 @@ flowchart TD
   end
   L -----> M[\model quality assessment\]
   O --> P[\land cover map\]
-  subgraph analysing variable importance&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-  N ----> R[calculating variable importance]
+  subgraph analysing variable importance&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+  N ----> R[calculating overall variable importance]
   R --> S[quantifying thermal band's importance<br>for each training point]
   S --> T[spatial interpolation]
+  X[original satellite data] --> Q[raster aggregation]
+  Q --> Z[calculating thermal band's importance<br>for aggregated raster cells]
   end
   T --> U[\map of thermal band's importance\]
-  S ----> W[\B10 importance for each land cover class\]
+  Z --> U
+  S ----> W[\thermal band's importance<br>for each land cover class\]
 ```
 
 Landsat ARD dataset, provided by GLAD laboratory at the Univeristy of Maryland, was used as a source of multi-spectral satellite imagery [@potapov_landsat_2020].
