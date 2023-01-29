@@ -1,6 +1,6 @@
 # Materials and methods {#sec-data-methods}
 
-Workflow of the study consisted of several stages: preprocessing of source data (described in Sections [-@sec-sat] and [-@sec-landcover]), creating training dataset, model parameters tuning and quality assessment ([@sec-resampling]), land cover map prediction and evaluating the impact of the thermal band on the model results ([@sec-importance]).
+Workflow of the study consisted of several stages: preprocessing of source data (described in Sections [-@sec-sat] and [-@sec-landcover]), creating a training dataset, model parameters tuning and model quality assessment ([@sec-resampling]), land cover map prediction and evaluating the impact of the thermal band on the model results ([@sec-importance]).
 Visual representation of the workflow is shown in [@fig-rycina1].
 
 Each of these steps was performed using R programming language [@R-base] and final visualizations were created in QGIS software [@qgis_development_team_qgis_2009].
@@ -35,10 +35,10 @@ flowchart TD
   N ----> R[calculating overall variable importance]
   R --> S[quantifying thermal band's importance<br>for each training point]
   S --> T[spatial interpolation]
-  X[original satellite data] --> Q[raster aggregation]
+  X[/original GLAD satellite data /] --> Q[raster aggregation]
   Q --> Z[calculating thermal band's importance<br>for aggregated raster cells]
   end
-  T --> U[\map of thermal band's importance\]
+  T --> U[\maps of thermal band's importance\]
   Z --> U
   S ----> W[\thermal band's importance<br>for each land cover class\]
 ```
@@ -67,7 +67,7 @@ These images are from 10th interval of the year 2018, so downloaded mosaics cons
 All downloaded images were merged and reprojected from the WGS 84 coordinate reference system (EPSG:4326) to UTM zone 33N (EPSG:32633).
 Every band was also resampled from its original 0.00025° resolution (corresponding to 27.83 m on the equator) to 30 meters.
 
-In addition, four spectral indices were derived: Normalized Difference Vegetation Index (NDVI; @tucker_red_1979), Modified Normalized Difference Water Index (MNDWI; @xu_modification_2006), Normalized Difference Moisture Index (NDMI; @jin_comparison_2005) and Modified Bare soil Index (MBI; @nguyen_modified_2021).
+In addition, four spectral indices were derived: Normalized Difference Vegetation Index [NDVI: @tucker_red_1979], Modified Normalized Difference Water Index [MNDWI: @xu_modification_2006], Normalized Difference Moisture Index [NDMI: @jin_comparison_2005] and Modified Bare soil Index [MBI: @nguyen_modified_2021].
 Formulas used to calculate these indices can be found in [@tbl-tabela1].
 
 ```{r tabela1, echo=FALSE}
@@ -103,7 +103,7 @@ In the second phase, a subsample of grid points is selected and then visited by 
 They classify each point according to full LUCAS land cover and land use classification.
 The survey takes place in the spring and summer in order to observe chosen places in their high vegetation season [@dandrimont_harmonised_2020].
 
-Surveyors not only assign land cover and land use classes to points, but they also add auxillary information such as plant species present at the site, percentage of land coverage of a chosen class, height of the trees and their maturity, as well as information about local water management and irrigation].
+Surveyors not only assign land cover and land use classes to points, but they also add auxillary information such as plant species present at the site, percentage of land coverage of a chosen class, height of the trees and their maturity, as well as information about local water management and irrigation.
 If there are more than one land cover/land use types at the point, observer can also assign a secondary class for every LUCAS point [@oliver_buck_analysis_2015].
 
 The majority of the training points used in the classification model were from the second phase of LUCAS survey, also called LUCAS Primary Data.
@@ -199,6 +199,8 @@ Each tree in the forest has slightly different input data - a subset of data is 
 This process is known as bagging or bootstrap aggregating [@schonlau_random_2020].
 Moreover, algorithm is allowed to use only a subset (randomly sampled) of available variables in every split which reduces correlation between trees [@sohil_introduction_2022].
 
+\newpage
+
 ### Model quality assessment and fine-tuning {#sec-resampling}
 
 Accuracy of the model was assessed using five performance measures:
@@ -215,7 +217,7 @@ Accuracy of the model was assessed using five performance measures:
 
 Every above metric, except Kappa coefficient, takes values from 0 to 1.
 Value of 0 means poor model performance and value of 1 means high quality of the model.
-As for Kappa coefficient, values range from -1 to 1.
+As for Kappa coefficient, its values range from -1 to 1.
 Values below 0 mean worse agreement between data distributions than random chance and values above 0 (up to 1) mean model performing better than random.
 
 Values of these indices were estimated with the help of resampling technique called spatial cross-validation (CV) [@lovelace_geocomputation_2019].
@@ -255,7 +257,7 @@ Then, another *n*-fold cross-validation is performed on these folds in order to 
 The best hyperparameter combination is chosen to train the model on outer fold (performance estimation level) [@schratz_hyperparameter_2019].
 Whole process is then repeated on every of *k* outer folds which leads to the most accurate performance measurement as well as defining the best hyperparameter setting.
 
-I chose three hyper-parameters for tuning: number of trees, maximum depth of the forest and minimal size of each node in decision tree.
+I chose three hyper-parameters for tuning: number of trees, maximum depth of the tree and minimal size of each node in decision tree.
 I used overall accuracy achieved by each classifier to rank their performance and choose parameters that train the model best.
 On the tuning level of every fold in spatial CV process, I examined 10 random configurations of hyperparameters and assessed their performance by applying 5-fold inner resampling.
 Parameters' search spaces and tuning result received from nested cross-validation can be found in [@tbl-tabela3].
@@ -278,6 +280,8 @@ df |>
   kableExtra::kable_classic(full_width = FALSE) |>
   kableExtra::row_spec(1:(nrow(df) - 1), extra_latex_after = "\\hline")
 ```
+
+\newpage
 
 ## Variable importance and its spatial distribution {#sec-importance}
 
@@ -358,7 +362,7 @@ Such result enables us to add spatial context to the variable importance, which 
 In order to estimate spatial distribution of variable importance values, I applied two different approaches.
 First of them is based on the raster aggregation - resampling of satellite imagery from 30 m to 1.5 km resolution.
 Lowering the resolution of the data and averaging band values highly decreases computational time, as well as helps to discover more general trends and patterns rather than local ones.
-After resampling, Shapley values are calculated for every raster cell and variable importance has measured.
+After resampling, Shapley values were calculated for every raster cell and variable importance was measured.
 
 The second approach utilizes LUCAS training points used during a model training together with spatial interpolation techniques.
 First, Shapley values are calculated for every point and importance of variable is assigned to them.
@@ -378,7 +382,7 @@ To conduct machine learning steps of the analysis, I used an environment of vari
 Random forest algorithm used by *mlr3* framework is part of the *ranger* package [@R-ranger].
 I also used *dplyr* [@R-dplyr] and *tidyr* packages [@R-tidyr] to clean and process tabular data.
 *DALEX* [@R-DALEX] and *DALEXtra* [@R-DALEXtra] packages provided various functionalities enabling me to estimate variable importance and visualize these results with the help of the *ggplot2* package [@R-ggplot2].
-Moreover, the *corrplot* package was used to calculate and visualize correlation matrix of Landsat data.
+Moreover, the *corrplot* package was used to calculate and visualize correlation matrix of Landsat data in order to explore dataset in more detail.
 Package called *gstat* [@R-gstat] helped to interpolate variable importance values from points to a continuous raster layer.
 In addition, the *future* package [@R-future] was used to enable multi-threading of some computationally intensive tasks.
 
