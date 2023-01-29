@@ -70,35 +70,6 @@ supervised land cover classification results},
 
 \markboth{Abstract}{Abstract}
 
-\textbf{Abstrakt}
-
-Dokładne mapy pokrycia terenu mają kluczowe znaczenie w wielu
-dziedzinach geografii, urbanistyki i badań środowiskowych. W ostatnich
-latach najpopularniejszą metodą tworzenia takich map jest wykorzystanie
-zobrazowań satelitarnych oraz technik uczenia maszynowego. Naukowcy
-wciąż badają zastosowanie różnych zmiennych i podejść, dążąc do
-osiągnięcia jak najwyższej dokładności swoich modeli. Celem niniejszej
-pracy była ocena znaczenia kanału termalnego pozyskanego z satelity
-Landsat 8 w tworzeniu map pokrycia terenu. Do stworzenia modelu lasu
-losowego wykorzystano zbiór danych o pokryciu terenu pozyskanego w
-ramach programu LUCAS. Poza treningiem modelu, w celu uzyskania możliwie
-wysokiej jakości modelu i dokładnej jego oceny, zastosowano techniki
-uczenia maszynowego, takie jak optymalizacja parametrów, kroswalidacja
-przestrzenna oraz benchmarking. Ponadto, zbadano znaczenie kanału
-termalnego na wyniki modelu. Analiza istotności zmiennych wykazała, że
-wpływ temperatury nie był wysoki, ale jednak widoczny. Co więcej
-zauważono, że kanał termalny miał znacząco większy wpływ na wyniki
-modelu dla klasyfikacji obszarów zabudowanych. Wyniki te sugerują, że
-informacja termiczna może mieć wpływ na lepsze mapowanie rozwoju
-obszarów miejskich. Jednakże aby dokładniej określić wpływ kanału
-termalnego, potrzebne są dalsze badania obejmujące analizę
-przestrzenno-czasową dla większej liczby obszarów badawczych.
-
-Słowa kluczowe: uczenie maszynowe, teledetekcja, istotność zmiennych,
-temperatura powierzchni
-
-\newpage
-
 \textbf{Abstract}
 
 Accurate land cover maps are crucial in many fields of geography, urban
@@ -125,6 +96,35 @@ precisely.
 
 Keywords: machine learning, remote sensing, variable importance, land
 surface temperature
+
+\newpage
+
+\textbf{Abstrakt}
+
+Dokładne mapy pokrycia terenu mają kluczowe znaczenie w wielu
+dziedzinach geografii, urbanistyki i badań środowiskowych. W ostatnich
+latach najpopularniejszą metodą tworzenia takich map jest wykorzystanie
+zobrazowań satelitarnych oraz technik uczenia maszynowego. Naukowcy
+wciąż badają zastosowanie różnych zmiennych i podejść, dążąc do
+osiągnięcia jak najwyższej dokładności swoich modeli. Celem niniejszej
+pracy była ocena znaczenia kanału termalnego pozyskanego z satelity
+Landsat 8 w tworzeniu map pokrycia terenu. Do stworzenia modelu lasu
+losowego wykorzystano zbiór danych o pokryciu terenu pozyskanego w
+ramach programu LUCAS. Poza treningiem modelu, w celu uzyskania możliwie
+wysokiej jakości modelu i dokładnej jego oceny, zastosowano techniki
+uczenia maszynowego, takie jak optymalizacja parametrów, kroswalidacja
+przestrzenna oraz benchmarking. Ponadto, zbadano znaczenie kanału
+termalnego na wyniki modelu. Analiza istotności zmiennych wykazała, że
+wpływ temperatury nie był wysoki, ale jednak widoczny. Co więcej
+zauważono, że kanał termalny miał znacząco większy wpływ na wyniki
+modelu dla klasyfikacji obszarów zabudowanych. Wyniki te sugerują, że
+informacja termiczna może mieć wpływ na lepsze mapowanie rozwoju
+obszarów miejskich. Jednakże aby dokładniej określić wpływ kanału
+termalnego, potrzebne są dalsze badania obejmujące analizę
+przestrzenno-czasową dla większej liczby obszarów badawczych.
+
+Słowa kluczowe: uczenie maszynowe, teledetekcja, istotność zmiennych,
+temperatura powierzchni
 
 \newpage
 
@@ -194,11 +194,11 @@ classification results.
 
 Workflow of the study consisted of several stages: preprocessing of
 source data (described in Sections \ref{sec-sat} and
-\ref{sec-landcover}), creating training dataset, model parameters tuning
-and quality assessment (Section~\ref{sec-resampling}), land cover map
-prediction and evaluating the impact of the thermal band on the model
-results (Section~\ref{sec-importance}). Visual representation of the
-workflow is shown in Figure~\ref{fig-rycina1}.
+\ref{sec-landcover}), creating a training dataset, model parameters
+tuning and model quality assessment (Section~\ref{sec-resampling}), land
+cover map prediction and evaluating the impact of the thermal band on
+the model results (Section~\ref{sec-importance}). Visual representation
+of the workflow is shown in Figure~\ref{fig-rycina1}.
 
 Each of these steps was performed using R programming language
 \autocite{R-base} and final visualizations were created in QGIS software
@@ -211,7 +211,7 @@ and GIS software used in this process are open-source.
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=4in,height=8.48in]{./02-roz2_files/figure-latex/mermaid-figure-1.png}
+{\centering \includegraphics[width=4in,height=8.28in]{./02-roz2_files/figure-latex/mermaid-figure-1.png}
 
 }
 
@@ -265,12 +265,12 @@ original 0.00025° resolution (corresponding to 27.83 m on the equator)
 to 30 meters.
 
 In addition, four spectral indices were derived: Normalized Difference
-Vegetation Index (NDVI; \textcite{tucker_red_1979}), Modified Normalized
-Difference Water Index (MNDWI; \textcite{xu_modification_2006}),
-Normalized Difference Moisture Index (NDMI;
-\textcite{jin_comparison_2005}) and Modified Bare soil Index (MBI;
-\textcite{nguyen_modified_2021}). Formulas used to calculate these
-indices can be found in Table~\ref{tbl-tabela1}.
+Vegetation Index \autocite[NDVI:][]{tucker_red_1979}, Modified
+Normalized Difference Water Index
+\autocite[MNDWI:][]{xu_modification_2006}, Normalized Difference
+Moisture Index \autocite[NDMI:][]{jin_comparison_2005} and Modified Bare
+soil Index \autocite[MBI:][]{nguyen_modified_2021}. Formulas used to
+calculate these indices can be found in Table~\ref{tbl-tabela1}.
 
 \hypertarget{tbl-tabela1}{}
 \begin{table}
@@ -334,8 +334,8 @@ Surveyors not only assign land cover and land use classes to points, but
 they also add auxillary information such as plant species present at the
 site, percentage of land coverage of a chosen class, height of the trees
 and their maturity, as well as information about local water management
-and irrigation{]}. If there are more than one land cover/land use types
-at the point, observer can also assign a secondary class for every LUCAS
+and irrigation. If there are more than one land cover/land use types at
+the point, observer can also assign a secondary class for every LUCAS
 point \autocite{oliver_buck_analysis_2015}.
 
 The majority of the training points used in the classification model
@@ -478,6 +478,8 @@ algorithm is allowed to use only a subset (randomly sampled) of
 available variables in every split which reduces correlation between
 trees \autocite{sohil_introduction_2022}.
 
+\newpage
+
 \hypertarget{sec-resampling}{%
 \subsection{Model quality assessment and
 fine-tuning}\label{sec-resampling}}
@@ -505,10 +507,10 @@ Accuracy of the model was assessed using five performance measures:
 
 Every above metric, except Kappa coefficient, takes values from 0 to 1.
 Value of 0 means poor model performance and value of 1 means high
-quality of the model. As for Kappa coefficient, values range from -1 to
-1. Values below 0 mean worse agreement between data distributions than
-random chance and values above 0 (up to 1) mean model performing better
-than random.
+quality of the model. As for Kappa coefficient, its values range from -1
+to 1. Values below 0 mean worse agreement between data distributions
+than random chance and values above 0 (up to 1) mean model performing
+better than random.
 
 Values of these indices were estimated with the help of resampling
 technique called spatial cross-validation (CV)
@@ -580,14 +582,13 @@ leads to the most accurate performance measurement as well as defining
 the best hyperparameter setting.
 
 I chose three hyper-parameters for tuning: number of trees, maximum
-depth of the forest and minimal size of each node in decision tree. I
-used overall accuracy achieved by each classifier to rank their
-performance and choose parameters that train the model best. On the
-tuning level of every fold in spatial CV process, I examined 10 random
-configurations of hyperparameters and assessed their performance by
-applying 5-fold inner resampling. Parameters' search spaces and tuning
-result received from nested cross-validation can be found in
-Table~\ref{tbl-tabela3}.
+depth of the tree and minimal size of each node in decision tree. I used
+overall accuracy achieved by each classifier to rank their performance
+and choose parameters that train the model best. On the tuning level of
+every fold in spatial CV process, I examined 10 random configurations of
+hyperparameters and assessed their performance by applying 5-fold inner
+resampling. Parameters' search spaces and tuning result received from
+nested cross-validation can be found in Table~\ref{tbl-tabela3}.
 
 \hypertarget{tbl-tabela3}{}
 \begin{table}
@@ -607,6 +608,8 @@ min. node size & 1 - 10 & 2\\
 \bottomrule
 \end{tabular}
 \end{table}
+
+\newpage
 
 \hypertarget{sec-importance}{%
 \section{Variable importance and its spatial
@@ -738,8 +741,8 @@ aggregation - resampling of satellite imagery from 30 m to 1.5 km
 resolution. Lowering the resolution of the data and averaging band
 values highly decreases computational time, as well as helps to discover
 more general trends and patterns rather than local ones. After
-resampling, Shapley values are calculated for every raster cell and
-variable importance has measured.
+resampling, Shapley values were calculated for every raster cell and
+variable importance was measured.
 
 The second approach utilizes LUCAS training points used during a model
 training together with spatial interpolation techniques. First, Shapley
@@ -776,11 +779,12 @@ and process tabular data. \emph{DALEX} \autocite{R-DALEX} and
 functionalities enabling me to estimate variable importance and
 visualize these results with the help of the \emph{ggplot2} package
 \autocite{R-ggplot2}. Moreover, the \emph{corrplot} package was used to
-calculate and visualize correlation matrix of Landsat data. Package
-called \emph{gstat} \autocite{R-gstat} helped to interpolate variable
-importance values from points to a continuous raster layer. In addition,
-the \emph{future} package \autocite{R-future} was used to enable
-multi-threading of some computationally intensive tasks.
+calculate and visualize correlation matrix of Landsat data in order to
+explore dataset in more detail. Package called \emph{gstat}
+\autocite{R-gstat} helped to interpolate variable importance values from
+points to a continuous raster layer. In addition, the \emph{future}
+package \autocite{R-future} was used to enable multi-threading of some
+computationally intensive tasks.
 
 \bookmarksetup{startatroot}
 
@@ -820,8 +824,8 @@ showed that the model correctly recognizes most of land cover patterns
 present on the ground. At the same time, there were several bigger
 problems and mistakes in its predictions. For instance, there are many
 examples of single pixels in the artificial area being classified as
-arable land (especially in sites 1, 2 and 6). Urban areas are generally
-more fragmented on the created map than they are in reality. Moreover,
+arable land (especially in sites 1, 2 and 6). Urban areas on the created
+map are generally more fragmented than they are in reality. Moreover,
 some cropland areas were incorrectly classified as grassland (sites 4, 5
 and 6). Another problem occurred in the classification of a river
 surface - its shape on the land cover map was not continuous and water
@@ -1230,9 +1234,10 @@ permutation-based computation, break-down plots, Shapley values and
 partial-dependence profiles (Section~\ref{sec-importance}). All these
 approaches gave similar outcomes - thermal band had low impact on
 general results of the created model. Inclusion of thermal band
-increased overall performance measures by a very narrow margin, which is
-not as optimistic outcome as in other studies focused on this issue
-\autocite{rodriguez-galiano_incorporating_2012,zhao_exploring_2019,sun_improvement_2015}.
+increased overall performance measures by a very narrow margin (less
+than 1\%), which is not as optimistic outcome as in other studies
+focused on this issue
+\autocite{rodriguez-galiano_incorporating_2012,sun_improvement_2015,zhao_exploring_2019}.
 
 However, more in-depth analysis revealed that land surface temperature
 had greater impact on predicting artificial land than any other land
@@ -1241,18 +1246,19 @@ two methods of creating variable importance maps were developed. The
 first method applied points interpolation, while the second one used
 raster aggregation and averaged spectral values. After analysis of the
 created maps, it became clear that thermal band was more influential in
-classifying urban areas than in rest of the classes, although it was
-mostly correlated with land cover type. Clear spatial-autocorrelation of
-thermal band's importance was not detected, probably because of too
-sparsely distributed training points. Above method should be further
-examined and tested, since studying spatial distribution of variable
-importance could improve our understanding of different variables'
-impact on machine learning model results or may provide new knowledge in
-this field.
+classifying urban areas than for rest of the classes, although its
+importance was mostly correlated with land cover type. Clear
+spatial-autocorrelation of thermal band's importance was not detected,
+probably because of too sparsely distributed training points. Above
+method should be further examined and tested, since studying spatial
+distribution of variable importance could improve our understanding of
+different variables' impact on machine learning model results or may
+provide new knowledge in this topic.
 
-Findings of this study suggest that thermal band may become increasingly
-important in studies covering the development of cities and urban areas.
-More accurate land cover maps will help in better growth management of
+Findings of this study suggest that thermal band could help in mapping
+the development of cities and urban areas. Its inclusion may help
+distinguish artificial land from other similar land cover types. More
+accurate land cover maps will help in better growth management of
 metropolitan areas and in quantifying impact of urbanization on natural
 environment more precisely. Nonetheless, further research should be
 carried out on bigger area and for larger number of satellite images. It
