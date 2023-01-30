@@ -147,8 +147,8 @@ At the end of the pre-processing, dataset had 3,778 training points.
 #| label: fig-rycina3
 #| echo: false
 #| fig-cap: "Distribution of points by land cover class after pre-processing"
-#| out-width: "533px"
-#| out-height: 300px
+#| out-width: "556px"
+#| out-height: 350px
 knitr::include_graphics("figures/lucas_data.png")
 ```
 
@@ -334,8 +334,8 @@ This value indicates the variable impact on a chosen observation.
 #| label: fig-rycina7
 #| echo: false
 #| fig-cap: "Example of a break-down plot that visualises variables' impact on chosen observation"
-#| out-width: "500px"
-#| out-height: 535px
+#| out-width: "436px"
+#| out-height: 450px
 knitr::include_graphics("figures/break-down_plot.png")
 ```
 
@@ -349,8 +349,8 @@ Thanks to this method, the influence of variable ordering can be mostly removed 
 #| label: fig-rycina8
 #| echo: false
 #| fig-cap: "Example plot of Shapley Additive Explanations"
-#| out-width: "500px"
-#| out-height: 535px
+#| out-width: "436px"
+#| out-height: 450px
 knitr::include_graphics("figures/shapley_values.png")
 ```
 

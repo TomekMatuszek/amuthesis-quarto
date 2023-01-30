@@ -13,8 +13,8 @@ Moreover, implemented methods of assessing variable importance (described in [@s
 #| label: fig-rycina19
 #| echo: false
 #| fig-cap: "Correlation matrix of Landsat bands created with the help of corrplot package"
-#| out-width: "428px"
-#| out-height: 400px
+#| out-width: "535px"
+#| out-height: 500px
 knitr::include_graphics("figures/corrplot.png")
 ```
 
@@ -39,7 +39,7 @@ knitr::include_graphics("figures/model_comparison.png")
 
 In the next step of thermal information importance evaluation, overall measures were derived.
 Again, it turned out that thermal band variable had little impact on the model results.
-With cross-entropy loss value of 23, it was the least important variable in the dataset.
+With cross-entropy loss value of 28, it was the least important variable in the dataset.
 Importance values of all variables are shown in [@fig-rycina13].
 
 ```{r}
@@ -89,8 +89,8 @@ df |>
 #| label: fig-rycina14
 #| echo: false
 #| fig-cap: "Distributions of thermal band's importance by land cover class. Small dots show exact values of each LUCAS point."
-#| out-width: "428px"
-#| out-height: 400px
+#| out-width: "485px"
+#| out-height: 500px
 knitr::include_graphics("figures/importance_classes.png")
 ```
 
@@ -104,7 +104,7 @@ On the other hand, thermal band is one of four bands, whose impact for predictin
 #| label: fig-rycina14a
 #| echo: false
 #| fig-cap: "Comparison of variable importance values by land cover class and variable. Grey bars show average value of importance of a variable."
-#| out-width: "531px"
+#| out-width: "537px"
 #| out-height: 300px
 knitr::include_graphics("figures/importance_comparison.png")
 ```
@@ -120,7 +120,7 @@ Probabilities change significantly along with changes of near-infrared values, t
 #| label: fig-rycina15
 #| echo: false
 #| fig-cap: "Partial-dependence profile for thermal band (B10)"
-#| out-width: "567px"
+#| out-width: "540px"
 #| out-height: 300px
 knitr::include_graphics("figures/profB10.png")
 ```
@@ -129,7 +129,7 @@ knitr::include_graphics("figures/profB10.png")
 #| label: fig-rycina16
 #| echo: false
 #| fig-cap: "Partial-dependence profile for near-infrared band (B5)"
-#| out-width: "567px"
+#| out-width: "540px"
 #| out-height: 300px
 knitr::include_graphics("figures/profB5.png")
 ```
