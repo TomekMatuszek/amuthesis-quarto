@@ -970,20 +970,20 @@ assessed both on dataset and instance (observation) level. The latter
 was used to estimate spatial distribution of thermal band's importance
 in order to present the results on the map.
 
-Before moving to thermal band's importance assessment, I explored
-Landsat dataset more carefully in order to determine correlated
+However, before moving to thermal band's importance assessment, I
+explored Landsat dataset more carefully in order to determine correlated
 variables and interactions between them (Figure~\ref{fig-rycina19}).
-Creating correlation plot revealed that some bands are highly correlated
-- especially these from visible spectrum and SWIR bands. This may
-suggest that these variables depend on the other variable's values
-\autocite{biecek_explanatory_2021}, thus absence of one variable might
-not lower model's performance because other variable can fill this
-information gap. On the other hand, feature selection performed with the
-help of \emph{mlr3} framework \autocite{R-mlr3} has shown that including
-all variables still proves to achieve the best model performance.
-Moreover, implemented methods of assessing variable importance
-(described in Section~\ref{sec-importance}) are designed to minimize
-impact of interactions between variables.
+Creating correlation plot (Figure~\ref{fig-rycina19}) revealed that some
+bands are highly correlated - especially these from visible spectrum and
+SWIR bands. This may suggest that these variables depend on the other
+variable's values \autocite{biecek_explanatory_2021}, thus absence of
+one variable might not lower model's performance because other variable
+can fill this information gap. On the other hand, feature selection
+performed with the help of \emph{mlr3} framework \autocite{R-mlr3} has
+shown that including all variables still proves to achieve the best
+model performance. Moreover, implemented methods of assessing variable
+importance (described in Section~\ref{sec-importance}) are designed to
+minimize impact of interactions between variables.
 
 \begin{figure}[H]
 
@@ -1066,7 +1066,8 @@ can be examined in larger detail in Figure~\ref{fig-rycina14}.
 
 \hypertarget{tbl-tabela6}{}
 \begin{table}
-\caption{\label{tbl-tabela6}Mean value and importance of thermal band, by land cover class }\tabularnewline
+\caption{\label{tbl-tabela6}Mean value and importance of thermal band, by land cover class of LUCAS
+points }\tabularnewline
 
 \centering
 \begin{tabular}{|>{}l|>{}r|>{}r|>{}r|}
@@ -1229,23 +1230,41 @@ other hand, obtained results were accurate enough to apply methods of
 measuring variable importance and to make some conclusions from findings
 of this analysis.
 
-Variable importance was evaluated using several methods such as
-permutation-based computation, break-down plots, Shapley values and
-partial-dependence profiles (Section~\ref{sec-importance}). All these
-approaches gave similar outcomes - thermal band had low impact on
-general results of the created model. Inclusion of thermal band
-increased overall performance measures by a very narrow margin (less
-than 1\%), which is not as optimistic outcome as in other studies
-focused on this issue
+The most substantial difference between this work and previous studies
+on the topic is the scope of variable importance evaluation. Both
+Rodríguez-Galiano et al.
+\autocite*{rodriguez-galiano_incorporating_2012} and Zhao
+\autocite*{zhao_exploring_2019} used only variable importance estimation
+built into the Random Forest algorithm. Sun and Shulz
+\autocite*{sun_improvement_2015} analysed just an increase of overall
+accuracy (OA) of the model. In contrast, variable importance was
+evaluated in this study using several methods such as permutation-based
+computation, break-down plots, Shapley values and partial-dependence
+profiles (Section~\ref{sec-importance}). All these approaches gave
+similar outcomes - thermal band had low impact on general results of the
+created model. Inclusion of thermal band increased overall performance
+measures by a very narrow margin (less than 1\%), which is not as
+optimistic outcome as in previously mentioned studies
 \autocite{rodriguez-galiano_incorporating_2012,sun_improvement_2015,zhao_exploring_2019}.
+All these works estimated impact of thermal band on overall accuracy at
+2-10\%.
 
 However, more in-depth analysis revealed that land surface temperature
 had greater impact on predicting artificial land than any other land
-cover class. In order to add spatial context to the importance values,
-two methods of creating variable importance maps were developed. The
-first method applied points interpolation, while the second one used
-raster aggregation and averaged spectral values. After analysis of the
-created maps, it became clear that thermal band was more influential in
+cover class. Also Rodríguez-Galiano et al.
+\autocite*{rodriguez-galiano_incorporating_2012} and Zhao
+\autocite*{zhao_exploring_2019} discovered that thermal band improves
+classification of artificial areas. On the other hand, my results does
+not show other finding of Zhao \autocite*{zhao_exploring_2019}, stating
+that thermal band helps in distinguishing arable land from wetlands -
+this divergence is probably caused by entirely different study areas,
+Egypt and Poland.
+
+In order to add spatial context to the importance values, two methods of
+creating variable importance maps were developed. The first method
+applied points interpolation, while the second one used raster
+aggregation and averaged spectral values. After analysis of the created
+maps, it became clear that thermal band was more influential in
 classifying urban areas than for rest of the classes, although its
 importance was mostly correlated with land cover type. Clear
 spatial-autocorrelation of thermal band's importance was not detected,
@@ -1257,7 +1276,7 @@ provide new knowledge in this topic.
 
 Findings of this study suggest that thermal band could help in mapping
 the development of cities and urban areas. Its inclusion may help
-distinguish artificial land from other similar land cover types. More
+distinguish an artificial land from other similar land cover types. More
 accurate land cover maps will help in better growth management of
 metropolitan areas and in quantifying impact of urbanization on natural
 environment more precisely. Nonetheless, further research should be
