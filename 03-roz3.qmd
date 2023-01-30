@@ -6,7 +6,7 @@ With the help of this information, a probability map showing model's confidence 
 Value of each pixel reflects the highest probability assigned to one of seven land cover classes.
 
 After a visual analysis of @fig-rycina9, some conclusions about its general accuracy can be made.
-Overall distributions of main land cover classes such as urban areas (artificial land), forests, arable land and waterbodies, seem to be correctly recognized.
+Overall distributions of main land cover classes such as urban areas (artificial land), forests, arable land and water bodies, seem to be correctly recognized.
 
 ```{r}
 #| label: fig-rycina9
@@ -38,7 +38,7 @@ knitr::include_graphics("figures/comparison.png")
 
 Analysis of the model's confidence derived from the probability map ([@fig-rycina11]) showed visible spatial autocorrelation.
 In order to derive mean values of confidence for every land cover class, zonal statistics were calculated.
-Highest values of confidence were recorded for forests (0.86) and waterbodies (0.92).
+Highest values of confidence were recorded for forests (0.86) and water bodies (0.92).
 For urban areas and arable land, model's confidence was lower at mean level of 0.64 and 0.71, respectively.
 The model was least confident in recognizing bare land (0.44), wetlands (0.46) and grassland (0.57).
 
