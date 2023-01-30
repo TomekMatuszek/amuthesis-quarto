@@ -3,8 +3,8 @@
 As described in [@sec-importance], variable importance can be assessed both on dataset and instance (observation) level.
 The latter was used to estimate spatial distribution of thermal band's importance in order to present the results on the map.
 
-Before moving to thermal band's importance assessment, I explored Landsat dataset more carefully in order to determine correlated variables and interactions between them ([@fig-rycina19]).
-Creating correlation plot revealed that some bands are highly correlated - especially these from visible spectrum and SWIR bands.
+However, before moving to thermal band's importance assessment, I explored Landsat dataset more carefully in order to determine correlated variables and interactions between them ([@fig-rycina19]).
+Creating correlation plot ([@fig-rycina19]) revealed that some bands are highly correlated - especially these from visible spectrum and SWIR bands.
 This may suggest that these variables depend on the other variable's values [@biecek_explanatory_2021], thus absence of one variable might not lower model's performance because other variable can fill this information gap.
 On the other hand, feature selection performed with the help of *mlr3* framework [@R-mlr3] has shown that including all variables still proves to achieve the best model performance.
 Moreover, implemented methods of assessing variable importance (described in [@sec-importance]) are designed to minimize impact of interactions between variables.
@@ -18,6 +18,19 @@ Moreover, implemented methods of assessing variable importance (described in [@s
 knitr::include_graphics("figures/corrplot.png")
 ```
 
+<!--In addition, differences between land cover classes in terms of thermal band's value were investigated.
+@fig-rycina19a shows that land surface temperature (LST) can help to distinguish some land cover classes from others.
+On the other hand, there are similarities between pairs of land cover types, for example bare land and artificial land.
+
+```{r}
+#| label: fig-rycina19a
+#| echo: false
+#| fig-cap: "Distribution of land surface temperature (LST) by land cover class for LUCAS points"
+#| out-width: "540px"
+#| out-height: 300px
+knitr::include_graphics("figures/temp_variability.png")
+```
+-->
 ## Measuring importance of thermal band {#sec-imp-overall}
 
 As a very basic way to check thermal band's importance on model results, I implemented benchmarking methods with the help of functions provided by *mlr3* framework [@R-mlr3].
@@ -68,7 +81,7 @@ Distributions of importance values can be examined in larger detail in [@fig-ryc
 ```{r tabela3, echo=FALSE}
 #| label: tbl-tabela6
 #| echo: false
-#| tbl-cap: "Mean value and importance of thermal band, by land cover class"
+#| tbl-cap: "Mean value and importance of thermal band, by land cover class of LUCAS points"
 df = data.frame(
   class = c("arable land", "grasslands", "forests", "bare land", "artificial land", "water bodies", "wetlands"),
   value = c(20.5, 20.5, 16.0, 21.1, 21.9, 13.8, 15.0),
