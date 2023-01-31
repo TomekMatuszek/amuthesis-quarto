@@ -1230,39 +1230,9 @@ other hand, obtained results were accurate enough to apply methods of
 measuring variable importance and to make some conclusions from findings
 of this analysis.
 
-The most substantial difference between this work and previous studies
-on the topic is the scope of variable importance evaluation. Both
-Rodríguez-Galiano et al.
-\autocite*{rodriguez-galiano_incorporating_2012} and Zhao
-\autocite*{zhao_exploring_2019} used only variable importance estimation
-built into the Random Forest algorithm. Sun and Shulz
-\autocite*{sun_improvement_2015} analysed just an increase of overall
-accuracy (OA) of the model. In contrast, variable importance was
-evaluated in this study using several methods such as permutation-based
-computation, break-down plots, Shapley values and partial-dependence
-profiles (Section~\ref{sec-importance}). All these approaches gave
-similar outcomes - thermal band had low impact on general results of the
-created model. Inclusion of thermal band increased overall performance
-measures by a very narrow margin (less than 1\%), which is not as
-optimistic outcome as in previously mentioned studies
-\autocite{rodriguez-galiano_incorporating_2012,sun_improvement_2015,zhao_exploring_2019}.
-All these works estimated impact of thermal band on overall accuracy at
-2-10\%.
-
-However, more in-depth analysis revealed that land surface temperature
-had greater impact on predicting artificial land than any other land
-cover class. Also Rodríguez-Galiano et al.
-\autocite*{rodriguez-galiano_incorporating_2012} and Zhao
-\autocite*{zhao_exploring_2019} discovered that thermal band improves
-classification of artificial areas. On the other hand, my results does
-not show other finding of Zhao \autocite*{zhao_exploring_2019}, stating
-that thermal band helps in distinguishing arable land from wetlands -
-this divergence is probably caused by entirely different study areas,
-Egypt and Poland.
-
 In order to add spatial context to the importance values, two methods of
-creating variable importance maps were developed. The first method
-applied points interpolation, while the second one used raster
+creating variable importance maps were developed in my work. The first
+method applied points interpolation, while the second one used raster
 aggregation and averaged spectral values. After analysis of the created
 maps, it became clear that thermal band was more influential in
 classifying urban areas than for rest of the classes, although its
@@ -1274,8 +1244,36 @@ distribution of variable importance could improve our understanding of
 different variables' impact on machine learning model results or may
 provide new knowledge in this topic.
 
-Findings of this study suggest that thermal band could help in mapping
-the development of cities and urban areas. Its inclusion may help
+The most substantial difference between this work and previous studies
+on the topic is the scope of variable importance evaluation. Both
+Rodríguez-Galiano et al.
+\autocite*{rodriguez-galiano_incorporating_2012} and Zhao
+\autocite*{zhao_exploring_2019} used only variable importance estimation
+built into the Random Forest algorithm. Sun and Shulz
+\autocite*{sun_improvement_2015} analysed an increase of overall
+accuracy (OA) of the model only. In contrast, variable importance was
+evaluated in this study using several methods such as permutation-based
+computation, break-down plots, Shapley values and partial-dependence
+profiles (Section~\ref{sec-importance}). All these approaches gave
+similar outcomes - thermal band had low impact on the general results of
+the created model. Inclusion of thermal band increased overall
+performance measures by a very narrow margin (less than 1\%), which is
+not as optimistic outcome as in previously mentioned studies
+\autocite{rodriguez-galiano_incorporating_2012,sun_improvement_2015,zhao_exploring_2019}.
+All these works estimated impact of thermal band on overall accuracy at
+2-10\%. However, more in-depth analysis revealed that land surface
+temperature had greater impact on predicting artificial land than any
+other land cover class. Also Rodríguez-Galiano et al.
+\autocite*{rodriguez-galiano_incorporating_2012} and Zhao
+\autocite*{zhao_exploring_2019} discovered that thermal band improves
+classification of artificial areas. On the other hand, my results does
+not confirm other finding of Zhao \autocite*{zhao_exploring_2019},
+stating that thermal band helps in distinguishing arable land from
+wetlands - this divergence is probably caused by entirely different
+environments of study areas, Egypt and Poland.
+
+Findings of my study suggest that thermal band could help in mapping the
+development of cities and urban areas. Its inclusion may help
 distinguish an artificial land from other similar land cover types. More
 accurate land cover maps will help in better growth management of
 metropolitan areas and in quantifying impact of urbanization on natural
@@ -1287,9 +1285,8 @@ predictions throughout different vegetation seasons. Moreover, areas
 from different climate zones should be examined with an emphasis on the
 thermal band importance issue. Newly launched Landsat 9 satellite can
 also provide improvement for thermal band's use for land cover mapping,
-because its Thermal Infrared Sensor (TIRS-2) is expected to perform
-better in Earth observation than its predecessor - TIRS sensor from
-Landsat 8.
+because its thermal sensor is expected to perform better in Earth
+observation than its predecessor from Landsat 8.
 
 \printbibliography[heading=bibintoc, title=Bibliography]
 
