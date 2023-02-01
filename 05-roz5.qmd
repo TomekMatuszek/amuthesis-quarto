@@ -12,7 +12,7 @@ Moreover, implemented methods of assessing variable importance (described in [@s
 ```{r}
 #| label: fig-rycina19
 #| echo: false
-#| fig-cap: "Correlation matrix of Landsat bands created with the help of corrplot package"
+#| fig-cap: "Correlation matrix of Landsat bands"
 #| out-width: "535px"
 #| out-height: 500px
 knitr::include_graphics("figures/corrplot.png")
