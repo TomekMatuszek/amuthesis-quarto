@@ -111,7 +111,7 @@ In addition, mean importance values for every land cover class are shown in @fig
 With the help of this chart, some comparisons between land cover classes and variables can be made.
 Thermal band's importance for prediction of artificial land turns out not to be the highest among other variables.
 Some bands have higher influence on predicting this land cover type.
-On the other hand, thermal band is one of four bands, whose impact for predicting artificial land was higher than the average.
+On the other hand, thermal band is one of five bands, whose impact for predicting artificial land was higher than the average.
 
 ```{r}
 #| label: fig-rycina14a
