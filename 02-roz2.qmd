@@ -348,7 +348,7 @@ Thanks to this method, the influence of variable ordering can be mostly removed 
 ```{r}
 #| label: fig-rycina8
 #| echo: false
-#| fig-cap: "Example plot of Shapley Additive Explanations"
+#| fig-cap: "Example plot of Shapley Additive Explanations. Green and red bars show average variable contribution to model result. Blue box plots show distribution of variable contributions across different variable orderings."
 #| out-width: "436px"
 #| out-height: 450px
 knitr::include_graphics("figures/shapley_values.png")
