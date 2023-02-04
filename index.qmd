@@ -27,7 +27,7 @@ Dokładne mapy pokrycia terenu mają kluczowe znaczenie w wielu dziedzinach geog
 W ostatnich latach najpopularniejszą metodą tworzenia takich map jest wykorzystanie zobrazowań satelitarnych oraz technik uczenia maszynowego.
 Naukowcy wciąż badają zastosowanie różnych zmiennych i podejść, dążąc do osiągnięcia jak najwyższej dokładności swoich modeli.
 Celem niniejszej pracy była ocena znaczenia kanału termalnego pozyskanego z satelity Landsat 8 w tworzeniu map pokrycia terenu.
-Do stworzenia modelu lasu losowego wykorzystano zbiór danych o pokryciu terenu pozyskanego w ramach programu LUCAS.
+Do stworzenia modelu lasu losowego wykorzystano zbiór danych o pokryciu terenu pozyskany w ramach programu LUCAS.
 Poza treningiem modelu, w celu uzyskania możliwie wysokiej jakości modelu i dokładnej jego oceny, zastosowano techniki uczenia maszynowego, takie jak optymalizacja parametrów, kroswalidacja przestrzenna oraz benchmarking.
 Ponadto, zbadano znaczenie kanału termalnego na wyniki modelu.
 Analiza istotności zmiennych wykazała, że wpływ temperatury nie był wysoki, ale jednak widoczny.
