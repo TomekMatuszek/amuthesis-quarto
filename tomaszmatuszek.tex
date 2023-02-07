@@ -84,7 +84,7 @@ model. Apart from training the model, several machine learning
 techniques such as hyperparameter tuning, nested spatial
 cross-validation and benchmarking were performed in order to achieve
 possibly high and accurate performance measures. Moreover, thermal
-band's importance on model results was investigated. Analysis the of
+band's importance on model results was investigated. Analysis of the
 variable importance showed that impact of the land surface temperature
 was not very high, but indeed visible. Moreover, I discovered that
 thermal band had significantly higher impact on the model prediction
@@ -115,13 +115,13 @@ wysokiej jakości modelu i dokładnej jego oceny, zastosowano techniki
 uczenia maszynowego, takie jak optymalizacja parametrów, kroswalidacja
 przestrzenna oraz benchmarking. Ponadto, zbadano znaczenie kanału
 termalnego na wyniki modelu. Analiza istotności zmiennych wykazała, że
-wpływ temperatury nie był wysoki, ale jednak widoczny. Co więcej
-zauważono, że kanał termalny miał znacząco większy wpływ na wyniki
-modelu dla klasyfikacji obszarów zabudowanych. Wyniki te sugerują, że
-informacja termiczna może mieć wpływ na lepsze mapowanie rozwoju
-obszarów miejskich. Jednakże aby dokładniej określić wpływ kanału
-termalnego, potrzebne są dalsze badania obejmujące analizę
-przestrzenno-czasową dla większej liczby obszarów badawczych.
+wpływ temperatury nie był wysoki, ale widoczny. Co więcej zauważono, że
+kanał termalny miał znacząco większy wpływ na wyniki modelu dla
+klasyfikacji obszarów zabudowanych. Wyniki te sugerują, że informacja
+termiczna może mieć wpływ na lepsze mapowanie rozwoju obszarów
+miejskich. Jednakże aby dokładniej określić wpływ kanału termalnego,
+potrzebne są dalsze badania obejmujące analizę przestrzenno-czasową dla
+większej liczby obszarów badawczych.
 
 Słowa kluczowe: uczenie maszynowe, teledetekcja, istotność zmiennych,
 temperatura powierzchni
@@ -434,9 +434,10 @@ unsupervised.
 Unsupervised learning analyzes unlabeled datasets without the need for
 human intervention. This is widely used for extracting generative
 features, identifying meaningful trends and structures, grouping results
-and exploratory purposes \autocite{sarker_machine_2021}. This type of
-machine learning discovers hidden patterns or data groupings (clusters)
-which is used in exploration analysis or objects segmentation.
+and for exploratory purposes \autocite{sarker_machine_2021}. This type
+of machine learning discovers hidden patterns or data groupings
+(clusters) which is used in exploration analysis or objects
+segmentation.
 
 Supervised learning uses labeled training data and a collection of
 training examples, which are used by an algorithm to find relationships
@@ -600,11 +601,11 @@ cross-validation }\tabularnewline
 \toprule
 \textbf{Hyper-parameter} & \textbf{Search space} & \textbf{Optimal value}\\
 \midrule
-number of trees & 50 - 400 & 186\\
+number of trees & 50 - 500 & 186\\
 \hline
-maximum depth & 10 - 40 & 99\\
+maximum depth & 5 - 100 & 99\\
 \hline
-min. node size & 1 - 10 & 2\\
+min. node size & 1 - 50 & 2\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -974,18 +975,18 @@ in order to present the results on the map.
 
 However, before moving to thermal band's importance assessment, I
 explored Landsat dataset more carefully in order to determine correlated
-variables and interactions between them (Figure~\ref{fig-rycina19}).
-Creating correlation plot (Figure~\ref{fig-rycina19}) revealed that some
-bands are highly correlated - especially these from visible spectrum and
-SWIR bands. This may suggest that these variables depend on the other
-variable's values \autocite{biecek_explanatory_2021}, thus absence of
-one variable might not lower model's performance because other variable
-can fill this information gap. On the other hand, feature selection
-performed with the help of \emph{mlr3} framework \autocite{R-mlr3} has
-shown that including all variables still proves to achieve the best
-model performance. Moreover, implemented methods of assessing variable
-importance (described in Section~\ref{sec-importance}) are designed to
-minimize impact of interactions between variables.
+variables and interactions between them. Creating correlation plot
+(Figure~\ref{fig-rycina19}) revealed that some bands are highly
+correlated - especially these from visible spectrum and SWIR bands. This
+may suggest that these variables depend on the other variable's values
+\autocite{biecek_explanatory_2021}, thus absence of one variable might
+not lower model's performance because other variable can fill this
+information gap. On the other hand, feature selection performed with the
+help of \emph{mlr3} framework \autocite{R-mlr3} has shown that including
+all variables still proves to achieve the best model performance.
+Moreover, implemented methods of assessing variable importance
+(described in Section~\ref{sec-importance}) are designed to minimize
+impact of interactions between variables.
 
 \begin{figure}[H]
 
@@ -1061,9 +1062,10 @@ artificial land and wetlands. Average value for wetlands is not very
 reliable though, because there were only 3 such points in studied area -
 one of them having much higher value of importance than the other two.
 Due to this issue, median value of importance was calculated too. In
-this case, value for wetlands was much lower, but importance value for
-artificial areas was nearly the same. Distributions of importance values
-can be examined in larger detail in Figure~\ref{fig-rycina14}.
+this case, value for wetlands was much lower, but median importance
+value for artificial areas was nearly the same. Distributions of
+importance values can be examined in larger detail in
+Figure~\ref{fig-rycina14}.
 
 \hypertarget{tbl-tabela6}{}
 \begin{table}
