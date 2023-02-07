@@ -3,7 +3,7 @@
 As described in [@sec-importance], variable importance can be assessed both on dataset and instance (observation) level.
 The latter was used to estimate spatial distribution of thermal band's importance in order to present the results on the map.
 
-However, before moving to thermal band's importance assessment, I explored Landsat dataset more carefully in order to determine correlated variables and interactions between them ([@fig-rycina19]).
+However, before moving to thermal band's importance assessment, I explored Landsat dataset more carefully in order to determine correlated variables and interactions between them.
 Creating correlation plot ([@fig-rycina19]) revealed that some bands are highly correlated - especially these from visible spectrum and SWIR bands.
 This may suggest that these variables depend on the other variable's values [@biecek_explanatory_2021], thus absence of one variable might not lower model's performance because other variable can fill this information gap.
 On the other hand, feature selection performed with the help of *mlr3* framework [@R-mlr3] has shown that including all variables still proves to achieve the best model performance.
@@ -75,7 +75,7 @@ However, it must be emphasized that 166 points was rather small number, especial
 It was significantly higher for artificial land and wetlands.
 Average value for wetlands is not very reliable though, because there were only 3 such points in studied area - one of them having much higher value of importance than the other two.
 Due to this issue, median value of importance was calculated too.
-In this case, value for wetlands was much lower, but importance value for artificial areas was nearly the same.
+In this case, value for wetlands was much lower, but median importance value for artificial areas was nearly the same.
 Distributions of importance values can be examined in larger detail in [@fig-rycina14].
 
 ```{r tabela3, echo=FALSE}
