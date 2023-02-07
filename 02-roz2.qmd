@@ -175,7 +175,7 @@ Machine learning is a computation method used to teach machines from datasets au
 We can divide machine learning methods into two main groups: supervised and unsupervised.
 
 Unsupervised learning analyzes unlabeled datasets without the need for human intervention.
-This is widely used for extracting generative features, identifying meaningful trends and structures, grouping results and exploratory purposes [@sarker_machine_2021].
+This is widely used for extracting generative features, identifying meaningful trends and structures, grouping results and for exploratory purposes [@sarker_machine_2021].
 This type of machine learning discovers hidden patterns or data groupings (clusters) which is used in exploration analysis or objects segmentation.
 
 Supervised learning uses labeled training data and a collection of training examples, which are used by an algorithm to find relationships between different variables.
@@ -268,7 +268,7 @@ Parameters' search spaces and tuning result received from nested cross-validatio
 #| tbl-cap: "Hyperparameters of RF model optimized during nested spatial cross-validation"
 df = data.frame(
   parameter = c("number of trees", "maximum depth", "min. node size"),
-  search_space = c("50 - 400", "10 - 40", "1 - 10"),
+  search_space = c("50 - 500", "5 - 100", "1 - 50"),
   choice = c("186", "99", "2")
 )
 colnames(df) = c("Hyper-parameter", "Search space", "Optimal value")
